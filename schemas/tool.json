@@ -1,0 +1,46 @@
+{
+    "id": "https://www.jisc.ac.uk/par/schema/tool_schema.json/#",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions": {
+        "tool": {
+            "type": "object",
+            "description": "A software tool or application that can be used to perform preservation actions",
+            "properties": {
+                "toolName": {
+                    "type": "string"
+                },
+                "toolID": {
+                    "type": "string"
+                },
+                "toolLabel": {
+                    "type": "string"
+                },
+                "toolVersion": {
+                    "type": "string"
+                },
+                "toolPublisher": {
+                    "type": "string"
+                },
+                "toolAcceptedParameters": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                    "$ref": "https://www.jisc.ac.uk/par/schema/types.json/#/definitions/parameter"
+                    }
+                },
+                "toolOperatingEnvironments": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                    "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "toolName",
+                "toolID"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

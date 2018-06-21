@@ -1,0 +1,399 @@
+{
+    "$id": "https://www.par.org/core/format.json/#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "provenanceInformation": {
+            "type": "object",
+            "properties": {
+                "provenanceSourceId": {
+                    "type": "string"
+                },
+                "provenanceSourceNamespace": {
+                    "type": "string"
+                },
+                "provenanceName": {
+                    "type": "string"
+                },
+                "provenanceSourceDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "provenanceDescription": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "provenanceSourceId",
+                "provenanceSourceNamespace"
+            ]
+        },
+        "environmentInformation": {
+            "type": "string"
+        },
+        "identifierInformation": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                },
+                "identifierType": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier",
+                "identifierType"
+            ]
+        },
+        "documentInformation": {
+            "type": "object",
+            "properties": {
+                "documentId": {
+                    "type": "string"
+                },
+                "documentIdNamespace": {
+                    "type": "string"
+                },
+                "displayText": {
+                    "type": "string"
+                },
+                "documentType": {
+                    "type": "string"
+                },
+                "availabilityDescription": {
+                    "type": "string"
+                },
+                "availabilityNote": {
+                    "type": "string"
+                },
+                "publicationDate": {
+                    "type": "string"
+                },
+                "titleText": {
+                    "type": "string"
+                },
+                "documentIPR": {
+                    "type": "string"
+                },
+                "documentNote": {
+                    "type": "string"
+                },
+                "author": {
+                    "$ref": "#/definitions/authorInformation"
+                },
+                "publisher": {
+                    "$ref": "#/definitions/publisherInformation"
+                },
+            },
+            "required": [
+                "documentId",
+                "documentIdNamespace"
+            ]
+        },
+        "relatedFormatInformation": {
+            "type": "object",
+            "properties": {
+                "relationshipType": {
+                    "type": "string"
+                },
+                "relatedFormatId": {
+                    "type": "string"
+                },
+                "relatedFormatIdNamespace": {
+                    "type": "string"
+                },
+                "relatedFormatName": {
+                    "type": "string"
+                },
+                "relatedFormatVersion": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "relationshipType",
+                "relatedFormatId",
+                "relatedFormatIdNamespace"
+            ]
+        },
+        "authorInformation": {
+            "type": "object",
+            "properties": {
+                "authorId": {
+                    "type": "string"
+                },
+                "authorIdNamespace": {
+                    "type": "string"
+                },
+                "authorName": {
+                    "type": "string"
+                },
+                "organisationName": {
+                    "type": "string"
+                },
+                "authorCompoundName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "authorId",
+                "authorIdNamespace"
+            ]
+        },
+        "publisherInformation": {
+            "type": "object",
+            "properties": {
+                "publisherId": {
+                    "type": "string"
+                },
+                "publisherIdNamespace": {
+                    "type": "string"
+                },
+                "publisherName": {
+                    "type": "string"
+                },
+                "organisationName": {
+                    "type": "string"
+                },
+                "publisherCompoundName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "publisherId",
+                "publisherIdNamespace"
+            ]
+        },
+        "internalSignatureInformation": {
+            "type": "object",
+            "properties": {
+                "signatureId": {
+                    "type": "string"
+                },
+                "signatureIdNamespace": {
+                    "type": "string"
+                },
+                "signatureName": {
+                    "type": "string"
+                },
+                "signatureNote": {
+                    "type": "string"
+                },
+                "byteSequences": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/byteSequenceInformation"
+                    }
+                }
+            },
+            "required": [
+                "signatureId",
+                "signatureIdNamespace"
+            ]
+        },
+        "externalSignatureInformation": {
+            "type": "object",
+            "properties": {
+                "externalSignatureId": {
+                    "type": "string"
+                },
+                "externalSignatureIdNamespace": {
+                    "type": "string"
+                },
+                "signature": {
+                    "type": "string"
+                },
+                "signatureType": {
+                    "type": "string"
+                }
+            },
+            "required": []
+        },
+        "byteSequenceInformation": {
+            "type": "object",
+            "properties": {
+                "byteSequenceId": {
+                    "type": "string"
+                },
+                "byteSequenceIdNamespace": {
+                    "type": "string"
+                },
+                "positionType": {
+                    "type": "string"
+                },
+                "offset": {
+                    "type": "string"
+                },
+                "maxOffset": {
+                    "type": "string"
+                },
+                "indirectOffsetLocation": {
+                    "type": "string"
+                },
+                "indirectOffsetLength": {
+                    "type": "string"
+                },
+                "endianness": {
+                    "type": "string"
+                },
+                "byteSequenceValue": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "byteSequenceId",
+                "byteSequenceIdNamespace"
+            ]
+        },
+        "developerInformation": {
+            "type": "object",
+            "properties": {
+                "developerId": {
+                    "type": "string"
+                },
+                "developerIdNamespace": {
+                    "type": "string"
+                },
+                "developerName": {
+                    "type": "string"
+                },
+                "organisationName": {
+                    "type": "string"
+                },
+                "developerCompoundName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "developerId",
+                "developerIdNamespace"
+            ]
+        }
+    },
+    "title": "Format",
+    "description": "A file format as defined by PRONOM",
+    "type": "object",
+    "properties": {
+        "puid": {
+            "description": "Persistent Unique Identifier, e.g. fmt/40, x-fmt/192",
+            "type": "string"
+        },
+        "puidNamespace": {
+            "description": "Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/",
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string"
+        },
+        "aliases": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "families": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "types": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "disclosure": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "binaryFileFormat": {
+            "type": "string"
+        },
+        "byteOrders": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "releaseDate": {
+            "type": "string",
+            "format": "date"
+        },
+        "withdrawnDate": {
+            "type": "string",
+            "format": "date"
+        },
+        "provenance": {
+            "$ref": "#/definitions/provenanceInformation"
+        },
+        "lastUpdatedDate": {
+            "type": "string",
+            "format": "date"
+        },
+        "note": {
+            "type": "string",
+        },
+        "risk": {
+            "type": "string",
+        },
+        "technicalEnvironment": {
+            "$ref": "#/definitions/environmentInformation"
+        },
+        "identifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/identifierInformation"
+            }
+        },
+        "developers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/developerInformation"
+            }
+        },
+        "documents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/documentInformation"
+            }
+        },
+        "externalSignatures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/externalSignatureInformation"
+            }
+        },
+        "internalSignatures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/internalSignatureInformation"
+            }
+        },
+        "relatedFormats": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/relatedFormatInformation"
+            }
+        },
+        "droidSignatureFileVersion": {
+            "type": "string"
+        },
+        "droidContainerFileVersion": {
+            "type": "string"
+        },
+        "localLastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+    },
+    "required": [
+        "puid",
+        "puidNamespace"
+    ],
+    "additionalProperties": false
+}

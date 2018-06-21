@@ -1,5 +1,5 @@
 {
-    "$id": "https://www.par.org/core/format.json/#",
+    "$id": "http://www.parcore.org/schema/format.json/#",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "provenanceInformation": {
@@ -25,7 +25,8 @@
             "required": [
                 "provenanceSourceId",
                 "provenanceSourceNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "environmentInformation": {
             "type": "string"
@@ -43,7 +44,8 @@
             "required": [
                 "identifier",
                 "identifierType"
-            ]
+            ],
+            "additionalProperties": false
         },
         "documentInformation": {
             "type": "object",
@@ -79,16 +81,17 @@
                     "type": "string"
                 },
                 "author": {
-                    "$ref": "#/definitions/authorInformation"
+                    "$ref": "http://www.parcore.org/schema/format.json/#/definitions/authorInformation"
                 },
                 "publisher": {
-                    "$ref": "#/definitions/publisherInformation"
-                },
+                    "$ref": "http://www.parcore.org/schema/format.json/#/definitions/publisherInformation"
+                }
             },
             "required": [
                 "documentId",
                 "documentIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "relatedFormatInformation": {
             "type": "object",
@@ -113,7 +116,8 @@
                 "relationshipType",
                 "relatedFormatId",
                 "relatedFormatIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "authorInformation": {
             "type": "object",
@@ -137,7 +141,8 @@
             "required": [
                 "authorId",
                 "authorIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "publisherInformation": {
             "type": "object",
@@ -161,7 +166,8 @@
             "required": [
                 "publisherId",
                 "publisherIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "internalSignatureInformation": {
             "type": "object",
@@ -181,14 +187,15 @@
                 "byteSequences": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/byteSequenceInformation"
+                        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/byteSequenceInformation"
                     }
                 }
             },
             "required": [
                 "signatureId",
                 "signatureIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "externalSignatureInformation": {
             "type": "object",
@@ -206,7 +213,7 @@
                     "type": "string"
                 }
             },
-            "required": []
+            "additionalProperties": false
         },
         "byteSequenceInformation": {
             "type": "object",
@@ -242,7 +249,8 @@
             "required": [
                 "byteSequenceId",
                 "byteSequenceIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
         },
         "developerInformation": {
             "type": "object",
@@ -266,7 +274,27 @@
             "required": [
                 "developerId",
                 "developerIdNamespace"
-            ]
+            ],
+            "additionalProperties": false
+        },
+        "registryVersionInformation": {
+            "type": "object",
+            "properties": {
+                "registryNamespace": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "registryNamespace",
+                "version"
+            ],
+            "additionalProperties": false
         }
     },
     "title": "Format",
@@ -329,67 +357,67 @@
             "format": "date"
         },
         "provenance": {
-            "$ref": "#/definitions/provenanceInformation"
+            "$ref": "http://www.parcore.org/schema/format.json/#/definitions/provenanceInformation"
         },
         "lastUpdatedDate": {
             "type": "string",
             "format": "date"
         },
         "note": {
-            "type": "string",
+            "type": "string"
         },
         "risk": {
-            "type": "string",
+            "type": "string"
         },
         "technicalEnvironment": {
-            "$ref": "#/definitions/environmentInformation"
+            "$ref": "http://www.parcore.org/schema/format.json/#/definitions/environmentInformation"
         },
         "identifiers": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/identifierInformation"
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/identifierInformation"
             }
         },
         "developers": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/developerInformation"
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/developerInformation"
             }
         },
         "documents": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/documentInformation"
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/documentInformation"
             }
         },
         "externalSignatures": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/externalSignatureInformation"
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/externalSignatureInformation"
             }
         },
         "internalSignatures": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/internalSignatureInformation"
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/internalSignatureInformation"
             }
         },
         "relatedFormats": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/relatedFormatInformation"
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/relatedFormatInformation"
             }
         },
-        "droidSignatureFileVersion": {
-            "type": "string"
-        },
-        "droidContainerFileVersion": {
-            "type": "string"
+        "registryVersions": {
+            "type": "array",
+            "items": {
+                "$ref": "http://www.parcore.org/schema/format.json/#/definitions/registryVersionInformation"
+            }
         },
         "localLastModifiedDate": {
             "type": "string",
             "format": "date-time"
-        },
+        }
     },
     "required": [
         "puid",

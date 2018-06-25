@@ -1,5 +1,5 @@
 {
-    "id": "https://www.jisc.ac.uk/par/schema/tool_schema.json/#",
+    "$id": "http://www.parcore.org/schema/tool.json/#",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
         "tool": {
@@ -22,17 +22,17 @@
                     "type": "string"
                 },
                 "toolAcceptedParameters": {
-                "type": "array",
-                "uniqueItems": true,
-                "items": {
-                    "$ref": "https://www.jisc.ac.uk/par/schema/types.json/#/definitions/parameter"
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
                     }
                 },
                 "toolOperatingEnvironments": {
-                "type": "array",
-                "uniqueItems": true,
-                "items": {
-                    "type": "string"
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
                     }
                 }
             },

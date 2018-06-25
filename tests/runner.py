@@ -25,6 +25,14 @@ class AbstractSchemaValidatorTest(object):
             "http://www.parcore.org/schema/tool.json/#",
             "schemas/tool.json"
         ),
+        (
+            "http://www.parcore.org/schema/preservation_action_type.json/#",
+            "schemas/preservation_action_type.json"
+        ),
+        (
+            "http://www.parcore.org/schema/types.json/#",
+            "schemas/types.json"
+        ),
     ]
 
     dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))

@@ -295,19 +295,15 @@
                 "version"
             ],
             "additionalProperties": false
-        }
+        }   
     },
     "title": "Format",
     "description": "A file format as defined by PRONOM",
     "type": "object",
     "properties": {
-        "puid": {
-            "description": "Persistent Unique Identifier, e.g. fmt/40, x-fmt/192",
-            "type": "string"
-        },
-        "puidNamespace": {
-            "description": "Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/",
-            "type": "string"
+        "id": {
+            "description": "A persistent unique identifier for the format, in PAR form",
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
         },
         "name": {
             "type": "string"
@@ -420,8 +416,8 @@
         }
     },
     "required": [
-        "puid",
-        "puidNamespace"
+        "id",
+        "localLastModifiedDate"
     ],
     "additionalProperties": false
 }

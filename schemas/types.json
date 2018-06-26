@@ -22,7 +22,6 @@
             "required": ["id", "namespaceURI", "namespacePrefix"],
             "additionalProperties": false
         },
-
         "formatFamily": {
             "type": "object",
             "description": "A format family is simply a means of grouping more specific file formats into more general groups. These can be high level groupings such as Videos, Documents, etc, or more specific groupings such as JPEGs, Excel Spreadsheets, etc. It may even be used to group otherwise unrelated formats, to capture, for example, the set of accepted formats, for example, [PDF 1.4, TIFF, MKV, WAV], or to specify all formats, e.g. [ALL]. These can be formally specified, with a fixed ID and Namespace, or just a generic label",
@@ -43,7 +42,110 @@
             },
             "required": [],
             "additionalProperties": false
+        },
+        "actionInput": {
+            "description": "An input to a preservation action",
+            "title": "Preservation Action Input",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "File",
+                        "string",
+                        "boolean",
+                        "integer",
+                        "stdin"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "binding": {
+                    "type": "object",
+                    "properties": {
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "position": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "secondaryFiles": {
+                    "type": "array",
+                    "description": "files that need to be present when a tool is run, but are not listed on the command line",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "type",
+                "binding"
+            ],
+            "additionalProperties": false
+        },
+        "actionOutput": {
+            "description": "An output from a preservation action",
+            "title": "Preservation Action Output",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "File",
+                        "stdout",
+                        "stderr"
+                    ]
+                },
+                "binding": {
+                    "type": "object",
+                    "properties": {
+                        "glob": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "outputMapping": {
+                    "type": "object",
+                    "properties": {
+                        "mappingExpressionType": {
+                            "enum": [
+                                "shellScript",
+                                "javaScript",
+                                "XPath"
+                            ]
+                        },
+                        "mappingExpression": {
+                            "type": "string"
+                        },
+                        "mapping": {
+                            "parPropertyId": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
         }
-
     }
 }

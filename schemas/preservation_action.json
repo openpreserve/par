@@ -23,148 +23,27 @@
           }
         },
         "additionalProperties": false
-      },
-      "inputItem": {
-        "description": "An input to a preservation action",
-        "title": "Preservation Action Input",
-        "type": "object",
-        "properties": {
-          "inputItemName": {
-            "type": "string"
-          },
-          "inputItemType": {
-            "enum": [
-              "File",
-              "string",
-              "boolean",
-              "integer",
-              "stdin"
-            ]
-          },
-          "inputItemDescription": {
-            "type": "string"
-          },
-          "inputItemBinding": {
-            "type": "object",
-            "properties": {
-              "prefix": {
-                "type": "string"
-              },
-              "position": {
-                "type": "integer"
-              }
-            }
-          },
-          "secondaryFiles": {
-            "type": "array",
-            "description": "files that need to be present when a tool is run, but are not listed on the command line",
-            "minItems": 1,
-            "items": {
-              "type": "object",
-              "properties": {
-                "secondaryFileDescription": {
-                  "type": "string"
-                },
-                "secondaryFileName": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "required": [
-          "inputItemName",
-          "inputItemType",
-          "inputItemBinding"
-        ],
-        "additionalProperties": false
-      },
-      "outputItem": {
-        "description": "An output from a preservation action",
-        "title": "Preservation Action Output",
-        "type": "object",
-        "properties": {
-          "outputItemName": {
-            "type": "string"
-          },
-          "outputItemDescription": {
-            "type": "string"
-          },
-          "outputItemType": {
-            "enum": [
-              "File",
-              "stdout",
-              "stderr"
-            ]
-          },
-          "outputItemBinding": {
-            "type": "object",
-            "properties": {
-              "glob": {
-                "type": "string"
-              }
-            }
-          },
-          "outputItemMapping": {
-            "type": "object",
-            "properties": {
-              "mappingExpressionType": {
-                "enum": [
-                  "shellScript",
-                  "javaScript",
-                  "XPath"
-                ]
-              },
-              "mappingExpression": {
-                "type": "string"
-              },
-              "mapping": {
-                "parPropertyId": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "additionalProperties": false
-      },
-      "tool": {
-        "description": "this is a place holder for a proper definition of a Tool",
-        "title": "Tool",
-        "type": "object",
-        "properties": {
-          "toolIdentifier": {
-            "type": "string"
-          },
-          "toolName": {
-            "type": "string"
-          },
-          "toolDetails": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
       }
     },
     "title": "Preservation Action",
     "type": "object",
     "properties": {
-      "preservationActionID": {
+      "id": {
+        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+      },
+      "description": {
         "type": "string"
       },
-      "preservationActionDescription": {
+      "example": {
         "type": "string"
       },
-      "preservationActionExample": {
-        "type": "string"
-      },
-      "preservationActionType": {
+      "type": {
         "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
       },
       "inputs": {
         "type": "array",
         "items": {
-          "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
+          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionInput"
         },
         "minItems": 1,
         "additionalItems": false
@@ -172,7 +51,7 @@
       "outputs": {
         "type": "array",
         "items": {
-          "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
+          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionOutput"
         },
         "minItems": 1,
         "additionalItems": false
@@ -186,15 +65,15 @@
         "additionalItems": false
       },
       "tool": {
-        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/tool",
+        "$ref": "http://www.parcore.org/schema/tool.json/#",
         "minItems": 1,
         "additionalItems": false
       }
     },
     "required": [
-      "preservationActionID",
-      "preservationActionDescription",
-      "preservationActionType",
+      "id",
+      "description",
+      "type",
       "inputs",
       "outputs",
       "tool"

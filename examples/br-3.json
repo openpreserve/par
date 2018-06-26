@@ -1,0 +1,109 @@
+{
+    "identifier": {
+        "id": "br/3",
+        "namespaceURI": "http://preservica.com",
+        "namespacePrefix": "PRS"
+    },
+
+    "description": "Use resizing parameters on ImageMagick to perform generation of consistent size access copy JPEGs from TIFFs",
+
+    "preservationActionTypes": [{
+            "preservationActionType": "migration",
+            "preservationActionTypeID": "mig",
+            "preservationActionTypeURI": "http://id.loc.gov/vocabulary/preservation/eventType/mig"
+        }
+    ],
+
+    "formats": [{
+            "puid": "fmt/353",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "fmt/155",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "fmt/154",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "fmt/153",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "fmt/156",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "fmt/152",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "x-fmt/387",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "x-fmt/388",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }, {
+            "puid": "x-fmt/399",
+            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+        }
+    ],
+
+    "formatFamilies": [{
+            "familyType": "Images"
+        }, {
+            "identifier": {
+                "id": "fam/TIFF",
+                "namespaceURI": "http://preservica.com",
+                "namespacePrefix": "PRS"
+            },
+            "familyType": "TIFF",
+            "formats": [{
+                    "puid": "fmt/353",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "fmt/155",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "fmt/154",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "fmt/153",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "fmt/156",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "fmt/152",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "x-fmt/387",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "x-fmt/388",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }, {
+                    "puid": "x-fmt/399",
+                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                }
+            ]
+        }
+    ],
+
+    "preservationActions": [{
+            "preservationAction": {
+                "id": "action/25",
+                "namespaceURI": "http://www.parcore.org/actions",
+                "namespacePrefix": "PAR"
+            },
+
+            "optionalInputs": [{
+                    "name": "250x250>",
+                    "type": "string",
+                    "description": "Resize to fit a 250px square box",
+                    "binding": {
+                        "position": 1,
+                    }
+                }
+            ]
+        }
+    ],
+
+    "notes": "We want all JPEGs for presentation to fit into a 250x250px box so that they display properly in our access system, where the template for displaying images has a 300px div for the image itself, however, we only want to resize where the image itself is larger than that box."
+
+}

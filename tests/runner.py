@@ -26,6 +26,10 @@ class AbstractSchemaValidatorTest(object):
             "schemas/tool.json"
         ),
         (
+            "http://www.parcore.org/schema/business_rule.json/#",
+            "schemas/business_rule.json"
+        ),
+        (
             "http://www.parcore.org/schema/preservation_action_type.json/#",
             "schemas/preservation_action_type.json"
         ),
@@ -84,6 +88,28 @@ class ToolTest(AbstractSchemaValidatorTest, TestCase):
 
     def runTest(self):
         self.validate_json('examples/md5sum.json')
+
+
+class BusinessRuleTest1(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/business_rule.json'
+
+    def runTest(self):
+        self.validate_json('examples/br-1.json')
+
+class BusinessRuleTest2(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/business_rule.json'
+
+    def runTest(self):
+        self.validate_json('examples/br-2.json')
+
+class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/business_rule.json'
+
+    def runTest(self):
+        self.validate_json('examples/br-3.json')
 
 
 def suite():

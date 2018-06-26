@@ -1,6 +1,6 @@
 {
     "$id": "http://www.parcore.org/schema/format.json/#",
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
         "provenanceInformation": {
             "type": "object",

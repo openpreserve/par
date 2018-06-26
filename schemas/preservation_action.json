@@ -2,30 +2,6 @@
     "$id": "http://www.parcore.org/schema/preservation_action.json/#",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
-      "preservationActionType": {
-        "title": "Preservation Action Type",
-        "description": "The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html",
-        "type": "object",
-        "properties": {
-          "preservationActionType": {
-            "type": "string"
-          },
-          "preservationActionTypeID": {
-            "type": "string"
-          },
-          "preservationActionTypeLabel": {
-            "type": "string"
-          },
-          "preservationActionTypeURI": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "preservationActionType",
-          "preservationActionTypeID"
-        ],
-        "additionalProperties": false
-      },
       "parProperty": {
         "description": "this is a skeleton definition of a Property",
         "title": "PAR Property",
@@ -183,12 +159,12 @@
         "type": "string"
       },
       "preservationActionType": {
-        "$ref": "#/definitions/preservationActionType"
+        "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
       },
       "inputs": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/inputItem"
+          "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
         },
         "minItems": 1,
         "additionalItems": false
@@ -196,7 +172,7 @@
       "outputs": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/outputItem"
+          "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
         },
         "minItems": 1,
         "additionalItems": false
@@ -204,13 +180,13 @@
       "constraints": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/parProperty"
+          "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/parProperty"
         },
         "minItems": 1,
         "additionalItems": false
       },
       "tool": {
-        "$ref": "#/definitions/tool",
+        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/tool",
         "minItems": 1,
         "additionalItems": false
       }

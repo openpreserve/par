@@ -8,6 +8,7 @@ from unittest import TestCase, TestSuite, TextTestRunner
 
 from jsonschema import validate, FormatChecker, RefResolver
 
+from tests.const import get_schema_path
 
 class AbstractSchemaValidatorTest(object):
     __metaclass__ = ABCMeta
@@ -15,15 +16,15 @@ class AbstractSchemaValidatorTest(object):
     schema_id_path_pairs = [
         (
             "http://www.parcore.org/schema/format.json/#",
-            "schemas/format.json"
+            get_schema_path("format.json")
         ),
         (
             "http://www.parcore.org/schema/preservation_action.json/#",
-            "schemas/preservation_action.json"
+            get_schema_path("preservation_action.json")
         ),
         (
             "http://www.parcore.org/schema/tool.json/#",
-            "schemas/tool.json"
+            get_schema_path("tool.json")
         ),
     ]
 
@@ -47,12 +48,11 @@ class AbstractSchemaValidatorTest(object):
         )
 
     def get_json(self, file_name):
-        with open(self.prepare_file_name(file_name)) as json_data:
+        with open(file_name) as json_data:
             return json.load(json_data)
 
     def prepare_file_name(self, file_name):
         return self.dir_path + '/' + file_name
-
 
 class FormatTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):

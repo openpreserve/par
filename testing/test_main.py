@@ -1,14 +1,13 @@
-#!/usr/bin/env python
-
 from abc import ABCMeta, abstractmethod
 import json
 import os
 import sys
-from unittest import TestCase, TestSuite, TextTestRunner
+from unittest import TestCase
 
 from jsonschema import validate, FormatChecker, RefResolver
 
-from tests.const import get_schema_path
+from .const import get_schema_path
+
 
 class AbstractSchemaValidatorTest(object):
     __metaclass__ = ABCMeta
@@ -62,6 +61,7 @@ class AbstractSchemaValidatorTest(object):
     def prepare_file_name(self, file_name):
         return self.dir_path + '/' + file_name
 
+
 class FormatTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
         return 'schemas/format.json'
@@ -84,24 +84,3 @@ class ToolTest(AbstractSchemaValidatorTest, TestCase):
 
     def runTest(self):
         self.validate_json('examples/md5sum.json')
-
-
-def suite():
-    suite = TestSuite()
-    suite.addTest(FormatTest())
-    suite.addTest(PreservationActionTest())
-    suite.addTest(ToolTest())
-    return suite
-
-
-def main():
-    runner = TextTestRunner()
-    test_suite = suite()
-    result = runner.run(test_suite)
-    if len(result.errors) > 0:
-        return 1
-    return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())

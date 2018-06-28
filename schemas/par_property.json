@@ -1,0 +1,24 @@
+{
+  "$id": "http://www.parcore.org/schema/par_property.json/#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "description": "this is a skeleton definition of a Property",
+  "title": "PAR Property",
+  "type": "object",
+  "properties": {
+    "parPropertyName": {
+      "description": "Property Name is a specific property, e.g. fmt/43, MD5, SHA512, PASS, FAIL, number of bytes etc.",
+      "type": "string"
+    },
+    "parPropertyType": {
+      "description": "Property Type is the class into which a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.",
+      "enum": [
+        "checksum",
+        "file format",
+        "validity",
+        "size",
+        "other"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

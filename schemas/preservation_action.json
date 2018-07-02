@@ -52,8 +52,7 @@
       },
       "required": [
         "inputItemName",
-        "inputItemType",
-        "inputItemBinding"
+        "inputItemType"
       ],
       "additionalProperties": false
     },
@@ -147,7 +146,7 @@
       "additionalItems": false
     },
     "tool": {
-      "$ref": "http://www.parcore.org/schema/tool.json/#",
+      "$ref": "http://www.parcore.org/schema/tool.json/#/definitions/tool",
       "minItems": 1,
       "additionalItems": false
     }

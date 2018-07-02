@@ -1,0 +1,6 @@
+manifest_file:
+  class: File
+  path: manifest.md5
+input_file:
+  class: File
+  path: testfile.txt

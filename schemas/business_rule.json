@@ -18,7 +18,7 @@
                 "outputsRetrieved": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionOuput"
+                        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionOutput"
                     }
                 },
                 "priority": {

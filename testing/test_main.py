@@ -1,12 +1,12 @@
-#!/usr/bin/env python
-
 from abc import ABCMeta, abstractmethod
 import json
 import os
 import sys
-from unittest import TestCase, TestSuite, TextTestRunner
+from unittest import TestCase
 
 from jsonschema import validate, FormatChecker, RefResolver
+
+from .const import get_schema_path
 
 
 class AbstractSchemaValidatorTest(object):
@@ -15,15 +15,15 @@ class AbstractSchemaValidatorTest(object):
     schema_id_path_pairs = [
         (
             "http://www.parcore.org/schema/format.json/#",
-            "schemas/format.json"
+            get_schema_path("format.json")
         ),
         (
             "http://www.parcore.org/schema/preservation_action.json/#",
-            "schemas/preservation_action.json"
+            get_schema_path("preservation_action.json")
         ),
         (
             "http://www.parcore.org/schema/tool.json/#",
-            "schemas/tool.json"
+            get_schema_path("tool.json")
         ),
         (
             "http://www.parcore.org/schema/business_rule.json/#",
@@ -59,7 +59,7 @@ class AbstractSchemaValidatorTest(object):
         )
 
     def get_json(self, file_name):
-        with open(self.prepare_file_name(file_name)) as json_data:
+        with open(file_name) as json_data:
             return json.load(json_data)
 
     def prepare_file_name(self, file_name):
@@ -110,27 +110,3 @@ class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
 
     def runTest(self):
         self.validate_json('examples/br-3.json')
-
-
-def suite():
-    suite = TestSuite()
-    suite.addTest(FormatTest())
-    suite.addTest(PreservationActionTest())
-    suite.addTest(ToolTest())
-    suite.addTest(BusinessRuleTest1())
-    suite.addTest(BusinessRuleTest2())
-    suite.addTest(BusinessRuleTest3())
-    return suite
-
-
-def main():
-    runner = TextTestRunner()
-    test_suite = suite()
-    result = runner.run(test_suite)
-    if len(result.errors) > 0:
-        return 1
-    return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())

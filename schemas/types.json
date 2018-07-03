@@ -36,7 +36,7 @@
                 "formats": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://www.parcore.org/schema/fileFormat.json/#"
+                        "$ref": "#/definitions/parIdentifier"
                     }
                 }
             },

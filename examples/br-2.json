@@ -1,5 +1,5 @@
 {
-	"identifier": {
+	"id": {
 		"id": "br/2",
 		"namespaceURI": "http://preservica.com/",
 		"namespacePrefix": "PRS"
@@ -19,8 +19,9 @@
 	],
 
 	"formats": [{
-			"puid": "fmt/5",
-			"puidNamespace": "http://www.nationalarchives.gov.uk/"
+			"id": "fmt/5",
+			"namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
 		}
 	],
 

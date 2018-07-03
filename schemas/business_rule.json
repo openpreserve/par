@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-06/schema#",
 
     "definitions": {
-        "actions": {
+        "action": {
             "type": "object",
             "properties": {
                 "preservationAction": {
@@ -49,7 +49,7 @@
             "description": "A list of file formats that this Business Rule should be applied to",
             "type": "array",
             "items": {
-                "$ref": "http://www.parcore.org/schema/fileFormat.json/#"
+                "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
             }
         },
 
@@ -73,7 +73,7 @@
             "description": "A list of specific actions. These are defined internally to reference the Core Preservation Action, the priority order in which it should be performed, and any inputs and outputs that should be used.",
             "type": "array",
             "items": {
-                "$ref": "http://www.parcore.org/schema/business_rule.json#/definitions/actions"
+                "$ref": "http://www.parcore.org/schema/business_rule.json/#/definitions/action"
             }
         },
 

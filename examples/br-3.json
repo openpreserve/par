@@ -1,5 +1,5 @@
 {
-    "identifier": {
+    "id": {
         "id": "br/3",
         "namespaceURI": "http://preservica.com",
         "namespacePrefix": "PRS"
@@ -8,39 +8,48 @@
     "description": "Use resizing parameters on ImageMagick to perform generation of consistent size access copy JPEGs from TIFFs",
 
     "preservationActionTypes": [{
-            "preservationActionType": "migration",
-            "preservationActionTypeID": "mig",
-            "preservationActionTypeURI": "http://id.loc.gov/vocabulary/preservation/eventType/mig"
+            "label": "migration",
+            "id": "mig",
+            "uri": "http://id.loc.gov/vocabulary/preservation/eventType/mig"
         }
     ],
 
     "formats": [{
-            "puid": "fmt/353",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "fmt/353",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "fmt/155",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "fmt/155",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "fmt/154",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "fmt/154",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "fmt/153",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "fmt/153",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "fmt/156",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "fmt/156",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "fmt/152",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "fmt/152",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "x-fmt/387",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "x-fmt/387",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "x-fmt/388",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "x-fmt/388",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }, {
-            "puid": "x-fmt/399",
-            "puidNamespace": "http://www.nationalarchives.gov.uk/"
+            "id": "x-fmt/399",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
         }
     ],
 
@@ -54,32 +63,41 @@
             },
             "familyType": "TIFF",
             "formats": [{
-                    "puid": "fmt/353",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "fmt/353",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "fmt/155",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "fmt/155",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "fmt/154",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "fmt/154",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "fmt/153",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "fmt/153",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "fmt/156",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "fmt/156",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "fmt/152",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "fmt/152",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "x-fmt/387",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "x-fmt/387",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "x-fmt/388",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "x-fmt/388",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }, {
-                    "puid": "x-fmt/399",
-                    "puidNamespace": "http://www.nationalarchives.gov.uk/"
+                    "id": "x-fmt/399",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
                 }
             ]
         }
@@ -97,7 +115,7 @@
                     "type": "string",
                     "description": "Resize to fit a 250px square box",
                     "binding": {
-                        "position": 1,
+                        "position": 1
                     }
                 }
             ]

@@ -117,6 +117,9 @@ def suite():
     suite.addTest(FormatTest())
     suite.addTest(PreservationActionTest())
     suite.addTest(ToolTest())
+    suite.addTest(BusinessRuleTest1())
+    suite.addTest(BusinessRuleTest2())
+    suite.addTest(BusinessRuleTest3())
     return suite
 
 

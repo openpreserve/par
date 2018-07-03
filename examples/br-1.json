@@ -1,40 +1,40 @@
 {
-	"id": {
-		"id": "br/1",
-		"namespaceURI": "http://preservica.com/",
-		"namespacePrefix": "PRS"
-	},
+    "id": {
+        "id": "br/1",
+        "namespaceURI": "http://preservica.com/",
+        "namespacePrefix": "PRS"
+    },
 
-	"description": "For File Format Identification of any type of file, use DROID (PAR-tool/1) as the first preference, and FIDO (PAR-tool/2) as the second",
+    "description": "For File Format Identification of any type of file, use DROID (PAR-tool/1) as the first preference, and FIDO (PAR-tool/2) as the second",
 
     "formatFamilies": [{
-			"familyType": "ALL"
-		}
-	],
-	
+            "familyType": "ALL"
+        }
+    ],
+
     "preservationActionTypes": [{
-			"id": "for",
-			"label": "format identification",
-			"uri": "http://id.loc.gov/vocabulary/preservation/eventType/for"
-		}
-	],
+            "id": "for",
+            "label": "format identification",
+            "uri": "http://id.loc.gov/vocabulary/preservation/eventType/for"
+        }
+    ],
 
-	"preservationActions": [{
-			"preservationAction": {
-				"id": "action/1",
-				"namespaceURI": "http://www.parcore.org/actions",
-				"namespacePrefix": "PAR"
-			},
-			"priority": 1
-		}, {
-			"preservationAction": {
-				"id": "action/2",
-				"namespaceURI": "http://www.parcore.org/actions",
-				"namespacePrefix": "PAR"
-			},
-			"priority": 2
-		}
-	],
+    "preservationActions": [{
+            "preservationAction": {
+                "id": "action/1",
+                "namespaceURI": "http://www.parcore.org/actions",
+                "namespacePrefix": "PAR"
+            },
+            "priority": 1
+        }, {
+            "preservationAction": {
+                "id": "action/2",
+                "namespaceURI": "http://www.parcore.org/actions",
+                "namespacePrefix": "PAR"
+            },
+            "priority": 2
+        }
+    ],
 
-	"notes": "My order of preference/priority when using multiple tools are available for file format identification is DROID then FIDO"
+    "notes": "My order of preference/priority when using multiple tools are available for file format identification is DROID then FIDO"
 }

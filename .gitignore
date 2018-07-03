@@ -45,6 +45,7 @@ __pycache__/
 
 # pytest's working directory
 .cache
+.pytest_cache
 
 # tox working directory
 .tox/

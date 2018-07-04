@@ -2,80 +2,160 @@
     "$id": "http://www.parcore.org/schema/preservation_action.json/#",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "definitions": {
-      "parProperty": {
-        "description": "this is a skeleton definition of a Property",
-        "title": "PAR Property",
-        "type": "object",
-        "properties": {
-          "parPropertyName": {
-            "description": "Property Name is a specific property, e.g. fmt/43, MD5, SHA512, PASS, FAIL, number of bytes etc.",
-            "type": "string"
-          },
-          "parPropertyType": {
-            "description": "Property Type is the class into which a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.",
-            "enum": [
-              "checksum",
-              "file format",
-              "validity",
-              "size",
-              "other"
-            ]
-          }
+        "inputItem": {
+            "description": "An input to a preservation action",
+            "title": "Preservation Action Input",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "File",
+                        "string",
+                        "boolean",
+                        "integer",
+                        "stdin"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "binding": {
+                    "type": "object",
+                    "properties": {
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "position": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "secondaryFiles": {
+                    "type": "array",
+                    "description": "files that need to be present when a tool is run, but are not listed on the command line",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "type"
+            ],
+            "additionalProperties": false
         },
-        "additionalProperties": false
-      }
+        "outputItem": {
+            "description": "An output from a preservation action",
+            "title": "Preservation Action Output",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "File",
+                        "stdout",
+                        "stderr"
+                    ]
+                },
+                "binding": {
+                    "type": "object",
+                    "properties": {
+                        "glob": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "outputMapping": {
+                    "type": "object",
+                    "properties": {
+                        "mappingExpressionType": {
+                            "enum": [
+                                "shellScript",
+                                "javaScript",
+                                "XPath"
+                            ]
+                        },
+                        "mappingExpression": {
+                            "type": "string"
+                        },
+                        "mapping": {
+                            "parPropertyId": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
     },
     "title": "Preservation Action",
     "type": "object",
     "properties": {
-      "id": {
-        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
-      },
-      "description": {
-        "type": "string"
-      },
-      "example": {
-        "type": "string"
-      },
-      "type": {
-        "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
-      },
-      "inputs": {
-        "type": "array",
-        "items": {
-          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionInput"
+        "id": {
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
         },
-        "minItems": 1,
-        "additionalItems": false
-      },
-      "outputs": {
-        "type": "array",
-        "items": {
-          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionOutput"
+        "description": {
+            "type": "string"
         },
-        "minItems": 1,
-        "additionalItems": false
-      },
-      "constraints": {
-        "type": "array",
-        "items": {
-          "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/parProperty"
+        "example": {
+            "type": "string"
         },
-        "minItems": 1,
-        "additionalItems": false
-      },
-      "tool": {
-        "$ref": "http://www.parcore.org/schema/tool.json/#",
-        "minItems": 1,
-        "additionalItems": false
-      }
+        "type": {
+            "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
+        },
+        "inputs": {
+            "type": "array",
+            "items": {
+                "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
+            },
+            "minItems": 1,
+            "additionalItems": false
+        },
+        "outputs": {
+            "type": "array",
+            "items": {
+                "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
+            },
+            "minItems": 1,
+            "additionalItems": false
+
+        },
+        "constraints": {
+            "type": "array",
+            "items": {
+                "$ref": "http://www.parcore.org/schema/par_property.json/#"
+            },
+            "minItems": 1,
+            "additionalItems": false
+        },
+        "tool": {
+            "$ref": "http://www.parcore.org/schema/tool.json/#"
+        }
     },
     "required": [
-      "id",
-      "description",
-      "type",
-      "inputs",
-      "outputs",
-      "tool"
+        "id",
+        "description",
+        "type",
+        "inputs",
+        "outputs",
+        "tool"
     ]
 }

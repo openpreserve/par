@@ -12,13 +12,13 @@
                 "optionalInputs": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionInput"
+                        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
                     }
                 },
                 "outputsRetrieved": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/actionOutput"
+                        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
                     }
                 },
                 "priority": {

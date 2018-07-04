@@ -8,26 +8,28 @@
     "description": "Validation of an MD5 checksum on a File using md5sum",
     "example": " commandline 'md5sum -c manifest.md5', where manifest.md5 contains a MD5 checksum for a file called inputfile",
     "type": {
+
         "id": "fix",
         "label": "fixity check",
         "uri": "http://id.loc.gov/vocabulary/preservation/eventType/fix"
     },
-    "inputs": [{
+    "inputs": [
+        {
             "name": "manifest.md5",
             "type": "File",
             "description": "Manifest file containing the MD5 and name of the file to be checked",
             "binding": {
                 "prefix": "-c",
                 "position": 1
-            },
-            "secondaryFiles": [{
-                    "name": "inputfile",
-                    "description": "The file that needs checking"
-                }
-            ]
+            }
+        }, {
+            "name": "inputfile",
+            "type": "File",
+            "description": "File that will be fixity checked"
         }
     ],
-    "outputs": [{
+    "outputs": [
+        {
             "name": "pass_fail",
             "description": "Fixity PASS or FAIL",
             "type": "stdout",
@@ -41,6 +43,7 @@
         }
     ],
     "tool": {
-        "toolID": "md5sum"
+        "toolID": "md5sum",
+        "toolName": "md5sum"
     }
 }

@@ -1,0 +1,12 @@
+{
+    "id": {
+        "guid": "55ac1a1d-2c31-501d-9adf-9e8c18e7df96",
+        "name": "width",
+        "namespace": "http://www.parcore.org/properties"
+    },
+    "class": "size",
+    "type": "string",
+    "equivalentTo": [
+        "ebucore:aspectRatio"
+    ]
+}

@@ -1,4 +1,9 @@
 {
-  "parPropertyName": "MD5",
-  "parPropertyType": "checksum"
+    "id": {
+        "guid":"944a16dc-41f6-574e-99d0-2555497b74a4",
+        "name": "MD5",
+        "namespace": "http://www.parcore.org/properties"
+    },
+    "class":"checksum",
+    "type":"string"
 }

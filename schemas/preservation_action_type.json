@@ -7,7 +7,7 @@
     "type": "object",
     "properties": {
         "id": {
-            "$ref": "http://www.parcore.org/schema/types/json/#/definitions/parIdentifier"
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
         },
         "label": {
             "type": "string"

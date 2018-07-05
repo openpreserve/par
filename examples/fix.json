@@ -2,7 +2,7 @@
     "id": {
         "guid": "f2e953e4-425e-5ed1-a65e-efd0b2e061be",
         "name": "http://id.loc.gov/vocabulary/preservation/eventType/fix",
-        "namespace": "dns"
+        "namespace": "url"
     },
     "label": "fixity check"
 }

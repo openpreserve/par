@@ -1,8 +1,8 @@
 {
     "id":{
-        "id": "fmt/43",
-        "namespaceURI": "http://www.nationalarchives.gov.uk/",
-        "namespacePrefix": ""
+        "guid": "aa415933-f8e6-5b56-ba35-f032b59683f2",
+        "name": "fmt/43",
+        "namespace": "http://www.nationalarchives.gov.uk/"
     },
     "name": "JPEG File Interchange Format",
     "version": "1.01",

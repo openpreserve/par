@@ -1,8 +1,8 @@
 # Common Workflow Language Examples
 
-The examples in the cwl directory are written in [Common Workflow Language] (https://github.com/common-workflow-language/common-workflow-language)
+The examples in the cwl directory are written in [Common Workflow Language](https://github.com/common-workflow-language/common-workflow-language)
 
-To run the Common Workflow Language (CWL) examples you will need a cwl-runner.  The examples have been tested using the [reference implementation] (https://github.com/common-workflow-language/cwltool)
+To run the Common Workflow Language (CWL) examples you will need a cwl-runner.  The examples have been tested using the [reference implementation](https://github.com/common-workflow-language/cwltool)
 
 The CWL spec for running command line tools is [here](https://www.commonwl.org/v1.0/CommandLineTool.html) and there is a simple user guide to CWL [here](http://www.commonwl.org/user_guide/)
 

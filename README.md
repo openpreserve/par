@@ -35,7 +35,7 @@ Automated testing currently consists of:
 - validation of the example sets against the schema using these [Python tests](testing/test_main.py).
 
 To run the tests locally, first run the JSON linting script:
-```bash
+```shell
 ./scripts/lint-json-dirs
 
 JSONLINT - All files in dir schemas.
@@ -65,7 +65,7 @@ JSONLINT - All files in dir examples.
 ```
 then run the `pytest` tests
 
-```bash
+```shell
 pytest
 
 ===================== test session starts ===============================

@@ -1,0 +1,127 @@
+{
+    "id": {
+        "id": "br/3",
+        "namespaceURI": "http://preservica.com",
+        "namespacePrefix": "PRS"
+    },
+
+    "description": "Use resizing parameters on ImageMagick to perform generation of consistent size access copy JPEGs from TIFFs",
+
+    "preservationActionTypes": [{
+            "label": "migration",
+            "id": "mig",
+            "uri": "http://id.loc.gov/vocabulary/preservation/eventType/mig"
+        }
+    ],
+
+    "formats": [{
+            "id": "fmt/353",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "fmt/155",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "fmt/154",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "fmt/153",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "fmt/156",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "fmt/152",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "x-fmt/387",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "x-fmt/388",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }, {
+            "id": "x-fmt/399",
+            "namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+        }
+    ],
+
+    "formatFamilies": [{
+            "familyType": "Images"
+        }, {
+            "identifier": {
+                "id": "fam/TIFF",
+                "namespaceURI": "http://preservica.com",
+                "namespacePrefix": "PRS"
+            },
+            "familyType": "TIFF",
+            "formats": [{
+                    "id": "fmt/353",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "fmt/155",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "fmt/154",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "fmt/153",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "fmt/156",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "fmt/152",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "x-fmt/387",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "x-fmt/388",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }, {
+                    "id": "x-fmt/399",
+                    "namespaceURI": "http://www.nationalarchives.gov.uk/",
+                    "namespacePrefix": "TNA"
+                }
+            ]
+        }
+    ],
+
+    "preservationActions": [{
+            "preservationAction": {
+                "id": "action/25",
+                "namespaceURI": "http://www.parcore.org/actions",
+                "namespacePrefix": "PAR"
+            },
+
+            "optionalInputs": [{
+                    "name": "250x250>",
+                    "type": "string",
+                    "description": "Resize to fit a 250px square box",
+                    "binding": {
+                        "position": 1
+                    }
+                }
+            ]
+        }
+    ],
+
+    "notes": "We want all JPEGs for presentation to fit into a 250x250px box so that they display properly in our access system, where the template for displaying images has a 300px div for the image itself, however, we only want to resize where the image itself is larger than that box."
+
+}

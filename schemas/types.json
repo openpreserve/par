@@ -22,7 +22,6 @@
             "required": ["id", "namespaceURI", "namespacePrefix"],
             "additionalProperties": false
         },
-
         "formatFamily": {
             "type": "object",
             "description": "A format family is simply a means of grouping more specific file formats into more general groups. These can be high level groupings such as Videos, Documents, etc, or more specific groupings such as JPEGs, Excel Spreadsheets, etc. It may even be used to group otherwise unrelated formats, to capture, for example, the set of accepted formats, for example, [PDF 1.4, TIFF, MKV, WAV], or to specify all formats, e.g. [ALL]. These can be formally specified, with a fixed ID and Namespace, or just a generic label",
@@ -37,13 +36,12 @@
                 "formats": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://www.parcore.org/schema/fileFormat.json/#"
+                        "$ref": "#/definitions/parIdentifier"
                     }
                 }
             },
             "required": [],
             "additionalProperties": false
         }
-
     }
 }

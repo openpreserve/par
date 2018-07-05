@@ -1,0 +1,51 @@
+{
+	"id": {
+		"id": "br/2",
+		"namespaceURI": "http://preservica.com/",
+		"namespacePrefix": "PRS"
+	},
+
+	"description": "FFMPEG is preferable to HandBrake for migrating AVI files to WebM",
+
+	"preservationActionTypes": [{
+			"id": "mig",
+			"label": "migration",
+			"uri": "http://id.loc.gov/vocabulary/preservation/eventType/mig"
+		}, {
+			"id": "nor",
+			"label": "normalization",
+			"uri": "http://id.loc.gov/vocabulary/preservation/eventType/nor"
+		}
+	],
+
+	"formats": [{
+			"id": "fmt/5",
+			"namespaceURI": "http://www.nationalarchives.gov.uk/",
+            "namespacePrefix": "TNA"
+		}
+	],
+
+	"formatFamilies": [{
+			"familyType": "AVI"
+		}
+	],
+
+	"preservationActions": [{
+			"preservationAction": {
+				"id": "action/123",
+				"namespaceURI": "http://www.parcore.org/actions",
+				"namespacePrefix": "PAR"
+			},
+			"priority": 1
+		}, {
+			"preservationAction": {
+				"id": "action/456",
+				"namespaceURI": "http://www.parcore.org/actions",
+				"namespacePrefix": "PAR"
+			},
+			"priority": 2
+		}
+	],
+
+	"notes": "We have found that the HandBrake process occasionally hangs when performing this type of migration.  FFMPEG displays no similar behaviour and therefore should be used in preference"
+}

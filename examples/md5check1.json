@@ -1,0 +1,48 @@
+{
+    "preservationActionName": "MD5 Checksum Validation Using md5sum",
+    "id": {
+        "guid": "7c8f5ea6-e6ff-5fbd-90f5-811d2cf74ff8",
+        "name": "MD5CheckMD5Sum",
+        "namespace": "http://www.parcore.org/actions"
+    },
+    "description": "Validation of an MD5 checksum on a File using md5sum",
+    "example": " commandline 'md5sum -c manifest.md5', where manifest.md5 contains a MD5 checksum for a file called inputfile",
+    "type": {
+        "id": {
+            "guid": "f2e953e4-425e-5ed1-a65e-efd0b2e061be",
+            "name": "http://id.loc.gov/vocabulary/preservation/eventType/fix",
+            "namespace": "url"
+        },
+        "label": "fixity check"
+    },
+    "inputs": [{
+            "name": "manifest.md5",
+            "description": "Manifest file containing the MD5 and name of the file to be checked",
+            "type": {
+              "file": {
+                "filepath": ""
+              }
+            }
+        }, {
+            "name": "inputfile",
+            "description": "File that will be fixity checked",
+            "type": {
+	      "file": {
+                "filepath": ""
+              }
+            }
+        }
+    ],
+    "outputs": [{
+            "name": "pass_fail",
+            "description": "Fixity PASS or FAIL",
+            "type": {
+              "raw": ""
+            }
+        }
+    ],
+    "tool": {
+        "toolID": "md5sum",
+        "toolName": "md5sum"
+    }
+}

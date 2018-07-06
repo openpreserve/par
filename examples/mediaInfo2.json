@@ -1,0 +1,83 @@
+{
+  "preservationActionName": "AV Property Extraction Using MediaInfo",
+  "id": {
+    "guid": "78365fc6-fcae-4f64-9005-9ae42141abb8",
+    "name": "MediaInfo2",
+    "namespace": "http://www.parcore.org/actions"
+  },
+  "description": "Extraction of properties for Video files using MediaInfo",
+  "example": "commandline 'cwltool mediaInfo2.cwl mediaInfo2.yml'",
+  "type": {
+    "id": {
+      "guid": "ed411b7f-1e0f-4486-b7b7-9a06835c04d9",
+      "name": "http://id.loc.gov/vocabulary/preservation/eventType/mee",
+      "namespace": "url"
+    },
+    "label": "metadata extraction"
+  },
+  "inputs": [
+    {
+      "name": "inputfile",
+      "description": "File that will have metadata extracted from",
+      "type": {
+        "file": {
+          "filepath": ""
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "name": "width",
+      "description": "Width in pixels of the video",
+      "type": {
+        "parProperty": {
+          "id": {
+            "guid": "ffc702fe-d4bb-5243-99b2-45a4ea28f7c2",
+            "name": "width",
+            "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
+          },
+          "class": "size",
+          "type": "integer",
+          "units": "pixel"
+        }
+      }
+    },
+    {
+      "name": "height",
+      "description": "Height in pixels of the video",
+      "type": {
+        "parProperty": {
+          "id": {
+            "guid": "526b1d5e-d176-4879-9e2c-47e429155c8f",
+            "name": "height",
+            "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
+          },
+          "class": "size",
+          "type": "integer",
+          "units": "pixel"
+        }
+      }
+    },
+    {
+      "name": "bitrate",
+      "description": "bitrate of the video",
+      "type": {
+        "parProperty": {
+          "id": {
+            "guid": "5cb7a433-762b-465d-b227-9291779c2456",
+            "name": "bitrate",
+            "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
+          },
+          "class": "rate",
+          "type": "integer",
+          "units": "bits per second"
+        }
+      }
+    }
+  ],
+  "tool": {
+    "toolID": "mediainfo",
+    "toolName": "mediainfo"
+  }
+}

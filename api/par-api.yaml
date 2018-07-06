@@ -14,29 +14,170 @@ schemes:
   - https
   - http
 paths:
-  /preservation_action_types:
+  /tools:
     post:
       tags:
-        - Preservation Action Types
-      summary: Create a new preservation action type
-      description: 'Create a new preservation action type with the data provided in the body of the request.'
+        - Tools
+      summary: Create a new tool
+      description: Create a new tool with the data provided in the body of the request.
       consumes:
         - application/json
       produces:
         - application/json
       parameters:
         - in: body
-          name: data
+          name: body example
           schema:
-            $ref: '#/definitions/PreservationActionTypesPOSTBodyExample'
+            $ref: '#/definitions/tool'
+          description: 'Required body parameters are: "toolName" and "toolID".'
+          required: false
+      responses:
+        '201':
+          description: Tool successfully created.
+          schema:
+            $ref: '#/definitions/tool'
+        '400':
+          description: >-
+            Required field missing in the request or the provided puid is
+            already being used.
+        '404':
+          description: Endpoint does not exist.
+        '500':
+          description: Internal Server Error.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+    get:
+      tags:
+        - Tools
+      summary: Retrieve all tool
+      description: Allow to retrieve the details of all the tool
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: limit
+          type: string
+          description: >-
+            An integer to limit the number of tools returned. Default value is zero.
+        - in: query
+          name: offset
+          type: string
+          description: >-
+            An integer to specify the offset of the first element of the list of tools returned. Default value is zero.
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/tool'
+        '403':
+          description: >-
+            Forbidden action. Trying to update the value of a non-modifiable
+            field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+  '/tool/{toolID}':
+    get:
+      tags:
+        - Tools
+      summary: Retrieve a tool
+      description: Allow to retrieve the details of the specific tool provided in the url.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: toolID
+          type: string
+          description: Unique identifier for the tool to retrieve.
           required: true
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/tool'
+        '400':
+          description: Tool not found.
+        '403':
+          description: >-
+            Forbidden action. Trying to update the value of a non-modifiable
+            field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+    put:
+      tags:
+        - Tools
+      summary: Update an existing tool
+      description: >-
+        Allow to modify the content of a tool. The updated tool will like just
+        like the body provided in the request.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: toolID
+          type: string
+          description: Unique identifier for the existing tool to update
+          required: true
+        - in: body
+          name: body example
+          schema:
+            $ref: '#/definitions/tool'
+          description: 'Required body parameters are: "toolName" and "toolID".'
+          required: false
+      responses:
+        '201':
+          description: Tool successfully updated.
+          schema:
+            $ref: '#/definitions/tool'
+        '403':
+          description: >-
+            Forbidden action. Attempting to update the value of a non-modifiable
+            or non-existing resource.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+  /preservation_action_types:
+    post:
+      tags:
+        - Preservation Action Types
+      summary: Create a new preservation action type
+      description: >-
+        Create a new preservation action type with the data provided in the body
+        of the request.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body example
+          schema:
+            $ref: '#/definitions/preservationActionType'
+          description: 'Required body parameters are: "id" and "uri".'
+          required: false
       responses:
         '201':
           description: Preservation Action Type successfully created.
           schema:
             $ref: '#/definitions/preservationActionType'
         '400':
-          description: Required field missing in the request or the provided puid is already being used.
+          description: >-
+            Required field missing in the request or the provided puid is
+            already being used.
         '404':
           description: Endpoint does not exist.
         '500':
@@ -54,23 +195,38 @@ paths:
         - application/json
       produces:
         - application/json
+      parameters:
+        - in: query
+          name: limit
+          type: string
+          description: >-
+            An integer to limit the number of preservation action types returned. Default value is zero.
+        - in: query
+          name: offset
+          type: string
+          description: >-
+            An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero.
       responses:
         '200':
           description: Request has gone thorugh successfully.
           schema:
             $ref: '#/definitions/preservationActionTypes'
         '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
+          description: >-
+            Forbidden action. Trying to update the value of a non-modifiable
+            field.
         '404':
           description: Endpoint does not exist.
         '502':
           description: Server failed to handle the request.
-  /preservation_action_types/{id}:
+  '/preservation_action_types/{id}':
     get:
       tags:
         - Preservation Action Types
       summary: Retrieve a preservation action type
-      description: Allow to retrieve the details of the specific preservation action type provided in the url.
+      description: >-
+        Allow to retrieve the details of the specific preservation action type
+        provided in the url.
       consumes:
         - application/json
       produces:
@@ -89,7 +245,9 @@ paths:
         '400':
           description: Preservation action type not found.
         '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
+          description: >-
+            Forbidden action. Trying to update the value of a non-modifiable
+            field.
         '404':
           description: Endpoint does not exist.
         '502':
@@ -98,7 +256,10 @@ paths:
       tags:
         - Preservation Action Types
       summary: Update an existing preservation action type
-      description: Allow to apply the changes specified int the body to the preservation action type provided in the url.
+      description: >-
+        Allow to modify the content of a preservation action type. The updated
+        preservation action type will like just like the body provided in the
+        request.
       consumes:
         - application/json
       produces:
@@ -107,20 +268,25 @@ paths:
         - in: path
           name: id
           type: string
-          description: Unique identifier for the existing preservation action type to update
+          description: >-
+            Unique identifier for the existing preservation action type to
+            update
           required: true
         - in: body
-          name: data
+          name: body example
           schema:
-            $ref: '#/definitions/FileFormatPOSTBodyExample'
-          required: true
+            $ref: '#/definitions/preservationActionType'
+          description: 'Required body parameters are: "id" and "uri".'
+          required: false
       responses:
         '201':
           description: File format successfully updated.
           schema:
             $ref: '#/definitions/preservationActionType'
         '403':
-          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
+          description: >-
+            Forbidden action. Attempting to update the value of a non-modifiable
+            or non-existing resource.
         '404':
           description: Endpoint does not exist.
         '502':
@@ -132,7 +298,12 @@ paths:
       tags:
         - File Formats
       summary: Create a new file format
-      description: 'Create a new file format with the data provided in the body of the request. The only field that is always required is the file format that has to be created. If the body is not provided with the desired puid for the new file format, then the next available puid in the database will be used.'
+      description: >-
+        Create a new file format with the data provided in the body of the
+        request. The only field that is always required is the file format that
+        has to be created. If the body is not provided with the desired puid for
+        the new file format, then the next available puid in the database will
+        be used.
       consumes:
         - application/json
       produces:
@@ -144,9 +315,10 @@ paths:
           description: Specify if sub entities should be included in response.
           required: false
         - in: body
-          name: data
+          name: body example
           schema:
-            $ref: '#/definitions/FileFormatPOSTBodyExample'
+            $ref: '#/definitions/FileFormat'
+          description: 'Required body parameters are: "name".'
           required: true
       responses:
         '201':
@@ -154,7 +326,9 @@ paths:
           schema:
             $ref: '#/definitions/FileFormat'
         '400':
-          description: Required field missing in the request or the provided puid is already being used.
+          description: >-
+            Required field missing in the request or the provided puid is
+            already being used.
         '404':
           description: Endpoint does not exist.
         '500':
@@ -176,25 +350,48 @@ paths:
         - in: header
           name: ReturnSubEntities
           type: boolean
-          description: Specify if sub entities should be included in response.
+          description: >-
+            Specify if sub entities should be included in response.
           required: false
         - in: query
           name: modifiedAfter
           type: string
-          description: 'Filter the file formats to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
+          description: >-
+            Filter the file formats to return only the ones having a
+            localLastModifiedDate value GREATER than the one passed in. Allowed
+            datetime formats are YYYY-MM-DD\'T\'hh\:mm\:ssTZD and YYYY-MM-DD. In
+            the second scenario, when the time is not provided, it will be
+            assumed to be 00\:00\:00 UTC time.
           required: false
         - in: query
           name: modifiedBefore
           type: string
-          description: 'Filter the file formats to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
+          description: >-
+            Filter the file formats to return only the ones having a
+            localLastModifiedDate value LOWER than the one passed in. Allowed
+            datetime formats are YYYY-MM-DD\'T\'hh\:mm\:ssTZD and YYYY-MM-DD. In
+            the second scenario, when the time is not provided, it will be
+            assumed to be 00\:00\:00 UTC time
           required: false
+        - in: query
+          name: limit
+          type: string
+          description: >-
+            An integer to limit the number of file formats returned. Default value is zero.
+        - in: query
+          name: offset
+          type: string
+          description: >-
+            An integer to specify the offset of the first element of the list of file formats returned. Default value is zero.
       responses:
         '200':
           description: Request has gone thorugh successfully.
           schema:
             $ref: '#/definitions/FileFormats'
         '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
+          description: >-
+            Forbidden action. Trying to update the value of a non-modifiable
+            field.
         '404':
           description: Endpoint does not exist.
         '502':
@@ -204,7 +401,9 @@ paths:
       tags:
         - File Formats
       summary: Retrieve a file format
-      description: Allow to retrieve the details of the specific file format provided in the url.
+      description: >-
+        Allow to retrieve the details of the specific file format provided in
+        the url.
       consumes:
         - application/json
       produces:
@@ -228,7 +427,9 @@ paths:
         '400':
           description: File format not found.
         '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
+          description: >-
+            Forbidden action. Trying to update the value of a non-modifiable
+            field.
         '404':
           description: Endpoint does not exist.
         '502':
@@ -237,7 +438,9 @@ paths:
       tags:
         - File Formats
       summary: Update an existing file format
-      description: Allow to apply the changes specified int the body to the file format provided in the url.
+      description: >-
+        Allow to modify the content of a file format. The updated file format
+        will like just like the body provided in the request.
       consumes:
         - application/json
       produces:
@@ -254,9 +457,10 @@ paths:
           description: Specify if sub entities should be included in response.
           required: false
         - in: body
-          name: data
+          name: body example
           schema:
-            $ref: '#/definitions/FileFormatPUTBodyExample'
+            $ref: '#/definitions/FileFormat'
+          description: 'Required body parameters are: "puid", "puidNamespace" and "name".'
           required: true
       responses:
         '201':
@@ -264,7 +468,9 @@ paths:
           schema:
             $ref: '#/definitions/FileFormat'
         '403':
-          description: Forbidden action. Attempting to update the value of a non-modifiable field or to modify a non-existing fileFormat.
+          description: >-
+            Forbidden action. Attempting to update the value of a non-modifiable
+            field or to modify a non-existing fileFormat.
         '404':
           description: Endpoint does not exist.
         '502':
@@ -461,7 +667,9 @@ definitions:
         description: 'Persistent Unique Identifier, e.g. fmt/40, x-fmt/192'
         type: string
       puidNamespace:
-        description: 'Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/'
+        description: >-
+          Identifier for the publisher/issuer of the PUID, e.g.
+          http://www.nationalarchives.gov.uk/
         type: string
       name:
         type: string
@@ -551,6 +759,8 @@ definitions:
         type: string
       name:
         type: string
+      puidNamespace:
+        type: string
   FileFormatPOSTBodyExample:
     title: fileFormat POST body example
     description: Required elements in a POST body request
@@ -578,7 +788,9 @@ definitions:
           $ref: '#/definitions/preservationActionType'
   preservationActionType:
     title: Preservation Action Types
-    description: 'The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html'
+    description: >-
+      The type of the preservation action as defined by PREMIS v3 event types. 
+      http://id.loc.gov/vocabulary/preservation/eventType.html
     type: object
     properties:
       id:
@@ -591,21 +803,53 @@ definitions:
       - id
       - uri
     additionalProperties: false
-  PreservationActionTypesPOSTBodyExample:
-    title: preservation_action_types POST body example
-    description: Required elements in a POST body request
+  PreservationActionTypesBodyExample:
+    title: preservation_action_types body example
+    description: Required elements in a request's body
     type: object
     properties:
       id:
         type: string
       uri:
         type: string
-  PreservationActionTypesPUTBodyExample:
-    title: preservation_action_types PUT body example
-    description: Required elements in a PUT body request
+  tool:
+    type: object
+    description: >-
+      A software tool or application that can be used to perform preservation
+      actions
+    properties:
+      toolName:
+        type: string
+      toolID:
+        type: string
+      toolLabel:
+        type: string
+      toolVersion:
+        type: string
+      toolPublisher:
+        type: string
+      toolAcceptedParameters:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: 'http://www.parcore.org/schema/types.json/#/definitions/parameter'
+      toolOperatingEnvironments:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+    required:
+      - toolName
+      - toolID
+    additionalProperties: false
+  toolBodyExample:
+    title: tool body example
+    description: Required elements in a request's body
     type: object
     properties:
-      id:
+      toolName:
+        type: string
+      toolID:
         type: string
 externalDocs:
   description: Find out more about PAR

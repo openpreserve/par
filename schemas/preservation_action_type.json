@@ -7,19 +7,19 @@
     "type": "object",
     "properties": {
         "id": {
-            "type": "string"
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
         },
-
         "label": {
             "type": "string"
         },
-        "uri": {
-            "type": "string"
+        "localLastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
         }
     },
     "required": [
         "id",
-        "uri"
+        "label"
     ],
     "additionalProperties": false
 }

@@ -6,10 +6,10 @@
             "type": "object",
             "description": "A software tool or application that can be used to perform preservation actions",
             "properties": {
-                "toolName": {
-                    "type": "string"
+                "id": {
+                    "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
                 },
-                "toolID": {
+                "toolName": {
                     "type": "string"
                 },
                 "toolLabel": {
@@ -37,8 +37,7 @@
                 }
             },
             "required": [
-                "toolName",
-                "toolID"
+                "id"
             ],
             "additionalProperties": false
         }

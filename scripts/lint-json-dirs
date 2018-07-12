@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Grab the execution directory
+SCRIPT_DIR="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )")"
+OUTPUT_SEP="==================================="
+
+# Define variables for the directory to lint
+lintDirJson() {
+  echo "JSONLINT - All files in dir $1."
+  echo $OUTPUT_SEP
+  for file in $SCRIPT_DIR/../$1/*.json; do
+    jsonlint $file
+    exitStatus=$?
+    if [[ $exitStatus -ne 0 ]]
+    then
+      exit $exitStatus
+    fi
+  done
+  echo ""
+}
+
+lintDirJson "schemas"
+lintDirJson "api"
+lintDirJson "examples"

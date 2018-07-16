@@ -14,18 +14,82 @@ package org.parcore.api.client.utilities;
  */
 public class ClientFactory {
 
-    //TODO: Add some standard configs
-
-    private static ApiClient defaultApiClient = new ApiClient();
-
     /**
      * Get the default API client, which would be used when creating API
      * instances without providing an API client.
      *
      * @return Default API client
      */
-    public static ApiClient getDefaultApiClient() {
-        return defaultApiClient;
+    public static ApiClient getDefaultClient() {
+        return new ApiClient();
+    }
+
+    /**
+     * Get the API client for a given URL endpoint (this should be the root of the PAR API)
+     *
+     * @param endpoint URL Endpoint
+     * @return Client
+     */
+    public static ApiClient getClientForEndpoint(String endpoint) {
+        ApiClient client = getDefaultClient();
+        client.setBasePath(endpoint);
+        return client;
+    }
+
+    /**
+     * Get the API client for a given URL endpoint, with basic authentication user credentials
+     *
+     * @param endpoint URL Endpoint
+     * @param username Basic Auth Username
+     * @param password Basic Auth Password
+     * @return Client
+     */
+    public static ApiClient getClientForEndpoint(String endpoint, String username, String password) {
+        ApiClient client = getClientForEndpoint(endpoint);
+        client.setUsername(username);
+        client.setPassword(password);
+        return client;
+    }
+
+    /**
+     * Get an API client which does not attempt to verify SSL connections
+     * Note, this should only be used in dev, or other high trust environments.
+     *
+     * @return API Client
+     */
+    public static ApiClient getNonVerifyingHttpsClient() {
+        ApiClient client = getDefaultClient();
+        client.setVerifyingSsl(false);
+        return client;
+    }
+
+    /**
+     * Get an API client for a given URL endpoint, which does not attempt to verify SSL connections
+     * Note, this should only be used in dev, or other high trust environments.
+     *
+     * @param endpoint URL Endpoint
+     * @return Client
+     */
+    public static ApiClient getNonVerifyingHttpsClientForEndpoint(String endpoint) {
+        ApiClient client = getNonVerifyingHttpsClient();
+        client.setBasePath(endpoint);
+        return client;
+    }
+
+    /**
+     * Get the API client for a given URL endpoint, with basic authentication user credentials, which does not attempt to verify SSL connections
+     * Note, this should only be used in dev, or other high trust environments
+     *
+     * @param endpoint URL Endpoint
+     * @param username Basic Auth Username
+     * @param password Basic Auth Password
+     * @return Client
+     */
+    public static ApiClient getNonVerifyingHttpsClientForEndpoint(String endpoint, String username, String password) {
+        ApiClient client = getNonVerifyingHttpsClientForEndpoint(endpoint);
+        client.setUsername(username);
+        client.setPassword(password);
+        return client;
     }
 
 }

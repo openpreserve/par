@@ -177,11 +177,6 @@ public class ApiClient {
         return this;
     }
 
-//    public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
-//        this.json.setLocalDateFormat(dateFormat);
-//        return this;
-//    }
-
     public ApiClient setLenientOnJson(boolean lenientOnJson) {
         this.json.setLenientOnJson(lenientOnJson);
         return this;

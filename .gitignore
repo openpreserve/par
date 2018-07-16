@@ -54,7 +54,7 @@ __pycache__/
 
 # IntelliJ
 /out/
-/target/
+target/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

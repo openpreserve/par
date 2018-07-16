@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.LocalDate;
 
 /**
  * PAR API
@@ -29,7 +28,7 @@ public class ProvenanceInformation {
     private String provenanceName = null;
 
     @SerializedName("provenanceSourceDate")
-    private LocalDate provenanceSourceDate = null;
+    private String provenanceSourceDate = null;
 
     @SerializedName("provenanceDescription")
     private String provenanceDescription = null;
@@ -91,7 +90,7 @@ public class ProvenanceInformation {
         this.provenanceName = provenanceName;
     }
 
-    public ProvenanceInformation provenanceSourceDate(LocalDate provenanceSourceDate) {
+    public ProvenanceInformation provenanceSourceDate(String provenanceSourceDate) {
         this.provenanceSourceDate = provenanceSourceDate;
         return this;
     }
@@ -102,11 +101,11 @@ public class ProvenanceInformation {
      * @return provenanceSourceDate
      **/
     @ApiModelProperty(value = "")
-    public LocalDate getProvenanceSourceDate() {
+    public String getProvenanceSourceDate() {
         return provenanceSourceDate;
     }
 
-    public void setProvenanceSourceDate(LocalDate provenanceSourceDate) {
+    public void setProvenanceSourceDate(String provenanceSourceDate) {
         this.provenanceSourceDate = provenanceSourceDate;
     }
 

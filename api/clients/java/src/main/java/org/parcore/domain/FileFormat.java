@@ -9,8 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.threeten.bp.LocalDate;
-
 /**
  * PAR API
  * <p>
@@ -59,10 +57,10 @@ public class FileFormat {
     private List<String> byteOrders = null;
 
     @SerializedName("releaseDate")
-    private LocalDate releaseDate = null;
+    private String releaseDate = null;
 
     @SerializedName("withdrawnDate")
-    private LocalDate withdrawnDate = null;
+    private String withdrawnDate = null;
 
     @SerializedName("provenance")
     private ProvenanceInformation provenance = null;
@@ -348,7 +346,7 @@ public class FileFormat {
         this.byteOrders = byteOrders;
     }
 
-    public FileFormat releaseDate(LocalDate releaseDate) {
+    public FileFormat releaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
         return this;
     }
@@ -359,15 +357,15 @@ public class FileFormat {
      * @return releaseDate
      **/
     @ApiModelProperty(value = "")
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public FileFormat withdrawnDate(LocalDate withdrawnDate) {
+    public FileFormat withdrawnDate(String withdrawnDate) {
         this.withdrawnDate = withdrawnDate;
         return this;
     }
@@ -378,11 +376,11 @@ public class FileFormat {
      * @return withdrawnDate
      **/
     @ApiModelProperty(value = "")
-    public LocalDate getWithdrawnDate() {
+    public String getWithdrawnDate() {
         return withdrawnDate;
     }
 
-    public void setWithdrawnDate(LocalDate withdrawnDate) {
+    public void setWithdrawnDate(String withdrawnDate) {
         this.withdrawnDate = withdrawnDate;
     }
 

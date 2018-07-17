@@ -1,8 +1,8 @@
 {
     "id": {
-        "id": "br/1",
-        "namespaceURI": "http://preservica.com/",
-        "namespacePrefix": "PRS"
+        "guid": "a593036d-7427-54aa-b8c0-50a5fb7bd50b",
+        "name": "br/1",
+        "namespace": "http://preservica.com/"
     },
 
     "description": "For File Format Identification of any type of file, use DROID (PAR-tool/1) as the first preference, and FIDO (PAR-tool/2) as the second",
@@ -13,24 +13,27 @@
     ],
 
     "preservationActionTypes": [{
-            "id": "for",
-            "label": "format identification",
-            "uri": "http://id.loc.gov/vocabulary/preservation/eventType/for"
+            "id": {
+                "guid": "814a688c-be47-5b53-b3a6-7dc9edcfe589",
+                "name": "http://id.loc.gov/vocabulary/preservation/eventType/for",
+                "namespace": "url"
+            },
+            "label": "format identification"
         }
     ],
 
     "preservationActions": [{
             "preservationAction": {
-                "id": "action/1",
-                "namespaceURI": "http://www.parcore.org/actions",
-                "namespacePrefix": "PAR"
+                "guid": "cc242e92-9aeb-5561-ab93-3e0810172c50",
+                "name": "action/1",
+                "namespace": "http://www.parcore.org/actions"
             },
             "priority": 1
         }, {
             "preservationAction": {
-                "id": "action/2",
-                "namespaceURI": "http://www.parcore.org/actions",
-                "namespacePrefix": "PAR"
+                "guid": "8be9b816-d1b2-5949-aa2c-23725cf71163",
+                "name": "action/2",
+                "namespace": "http://www.parcore.org/actions"
             },
             "priority": 2
         }

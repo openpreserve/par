@@ -116,9 +116,33 @@ class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
         self.validate_json('examples/br-3.json')
 
 
-class PropertyTest(AbstractSchemaValidatorTest, TestCase):
+class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
         return 'schemas/par_property.json'
 
     def runTest(self):
         self.validate_json('examples/md5prop.json')
+
+
+class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/par_property.json'
+
+    def runTest(self):
+        self.validate_json('examples/md5prop.json')
+
+
+class AspectRatioPropertyTest(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/par_property.json'
+
+    def runTest(self):
+        self.validate_json('examples/aspectratioprop.json')
+
+
+class WidthPropertyTest(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/par_property.json'
+
+    def runTest(self):
+        self.validate_json('examples/ebucorewidthprop.json')

@@ -21,6 +21,198 @@
     "http"
   ],
   "paths": {
+    "/tools": {
+      "post": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Create a new tool",
+        "description": "Create a new tool with the data provided in the body of the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            },
+            "description": "Required body parameters are: \"toolName\" and \"toolID\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tool successfully created.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Retrieve all tool",
+        "description": "Allow to retrieve the details of all the tool",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of tools returned. Default value is zero."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of tools returned. Default value is zero."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/tool/{toolID}": {
+      "get": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Retrieve a tool",
+        "description": "Allow to retrieve the details of the specific tool provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "toolID",
+            "type": "string",
+            "description": "Unique identifier for the tool to retrieve.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "400": {
+            "description": "Tool not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Update an existing tool",
+        "description": "Allow to modify the content of a tool. The updated tool will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "toolID",
+            "type": "string",
+            "description": "Unique identifier for the existing tool to update",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            },
+            "description": "Required body parameters are: \"toolName\" and \"toolID\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tool successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
     "/preservation_action_types": {
       "post": {
         "tags": [
@@ -37,11 +229,12 @@
         "parameters": [
           {
             "in": "body",
-            "name": "data",
+            "name": "body example",
             "schema": {
-              "$ref": "#/definitions/PreservationActionTypesPOSTBodyExample"
+              "$ref": "#/definitions/preservationActionType"
             },
-            "required": true
+            "description": "Required body parameters are: \"id\" and \"uri\".",
+            "required": false
           }
         ],
         "responses": {
@@ -81,6 +274,20 @@
         ],
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of preservation action types returned. Default value is zero."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero."
+          }
         ],
         "responses": {
           "200": {
@@ -149,7 +356,7 @@
           "Preservation Action Types"
         ],
         "summary": "Update an existing preservation action type",
-        "description": "Allow to apply the changes specified int the body to the preservation action type provided in the url.",
+        "description": "Allow to modify the content of a preservation action type. The updated preservation action type will like just like the body provided in the request.",
         "consumes": [
           "application/json"
         ],
@@ -166,11 +373,12 @@
           },
           {
             "in": "body",
-            "name": "data",
+            "name": "body example",
             "schema": {
-              "$ref": "#/definitions/FileFormatPOSTBodyExample"
+              "$ref": "#/definitions/preservationActionType"
             },
-            "required": true
+            "description": "Required body parameters are: \"id\" and \"uri\".",
+            "required": false
           }
         ],
         "responses": {
@@ -220,10 +428,11 @@
           },
           {
             "in": "body",
-            "name": "data",
+            "name": "body example",
             "schema": {
-              "$ref": "#/definitions/FileFormatPOSTBodyExample"
+              "$ref": "#/definitions/FileFormat"
             },
+            "description": "Required body parameters are: \"name\".",
             "required": true
           }
         ],
@@ -286,6 +495,18 @@
             "type": "string",
             "description": "Filter the file formats to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time",
             "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of file formats returned. Default value is zero."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of file formats returned. Default value is zero."
           }
         ],
         "responses": {
@@ -362,7 +583,7 @@
           "File Formats"
         ],
         "summary": "Update an existing file format",
-        "description": "Allow to apply the changes specified int the body to the file format provided in the url.",
+        "description": "Allow to modify the content of a file format. The updated file format will like just like the body provided in the request.",
         "consumes": [
           "application/json"
         ],
@@ -386,10 +607,11 @@
           },
           {
             "in": "body",
-            "name": "data",
+            "name": "body example",
             "schema": {
-              "$ref": "#/definitions/FileFormatPUTBodyExample"
+              "$ref": "#/definitions/FileFormat"
             },
+            "description": "Required body parameters are: \"puid\", \"puidNamespace\" and \"name\".",
             "required": true
           }
         ],
@@ -829,6 +1051,9 @@
         },
         "name": {
           "type": "string"
+        },
+        "puidNamespace": {
+          "type": "string"
         }
       }
     },
@@ -889,9 +1114,9 @@
       ],
       "additionalProperties": false
     },
-    "PreservationActionTypesPOSTBodyExample": {
-      "title": "preservation_action_types POST body example",
-      "description": "Required elements in a POST body request",
+    "PreservationActionTypesBodyExample": {
+      "title": "preservation_action_types body example",
+      "description": "Required elements in a request's body",
       "type": "object",
       "properties": {
         "id": {
@@ -902,12 +1127,55 @@
         }
       }
     },
-    "PreservationActionTypesPUTBodyExample": {
-      "title": "preservation_action_types PUT body example",
-      "description": "Required elements in a PUT body request",
+    "tool": {
+      "type": "object",
+      "description": "A software tool or application that can be used to perform preservation actions",
+      "properties": {
+        "toolName": {
+          "type": "string"
+        },
+        "toolID": {
+          "type": "string"
+        },
+        "toolLabel": {
+          "type": "string"
+        },
+        "toolVersion": {
+          "type": "string"
+        },
+        "toolPublisher": {
+          "type": "string"
+        },
+        "toolAcceptedParameters": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+          }
+        },
+        "toolOperatingEnvironments": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "toolName",
+        "toolID"
+      ],
+      "additionalProperties": false
+    },
+    "toolBodyExample": {
+      "title": "tool body example",
+      "description": "Required elements in a request's body",
       "type": "object",
       "properties": {
-        "id": {
+        "toolName": {
+          "type": "string"
+        },
+        "toolID": {
           "type": "string"
         }
       }

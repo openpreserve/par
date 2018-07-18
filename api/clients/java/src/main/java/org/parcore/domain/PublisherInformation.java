@@ -33,11 +33,6 @@ public class PublisherInformation {
     @SerializedName("publisherCompoundName")
     private String publisherCompoundName = null;
 
-    public PublisherInformation publisherId(String publisherId) {
-        this.publisherId = publisherId;
-        return this;
-    }
-
     /**
      * Get publisherId
      *
@@ -50,11 +45,6 @@ public class PublisherInformation {
 
     public void setPublisherId(String publisherId) {
         this.publisherId = publisherId;
-    }
-
-    public PublisherInformation publisherIdNamespace(String publisherIdNamespace) {
-        this.publisherIdNamespace = publisherIdNamespace;
-        return this;
     }
 
     /**
@@ -71,11 +61,6 @@ public class PublisherInformation {
         this.publisherIdNamespace = publisherIdNamespace;
     }
 
-    public PublisherInformation publisherName(String publisherName) {
-        this.publisherName = publisherName;
-        return this;
-    }
-
     /**
      * Get publisherName
      *
@@ -90,11 +75,6 @@ public class PublisherInformation {
         this.publisherName = publisherName;
     }
 
-    public PublisherInformation organisationName(String organisationName) {
-        this.organisationName = organisationName;
-        return this;
-    }
-
     /**
      * Get organisationName
      *
@@ -107,11 +87,6 @@ public class PublisherInformation {
 
     public void setOrganisationName(String organisationName) {
         this.organisationName = organisationName;
-    }
-
-    public PublisherInformation publisherCompoundName(String publisherCompoundName) {
-        this.publisherCompoundName = publisherCompoundName;
-        return this;
     }
 
     /**

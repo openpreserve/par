@@ -45,11 +45,6 @@ public class ByteSequenceInformation {
     @SerializedName("byteSequenceValue")
     private String byteSequenceValue = null;
 
-    public ByteSequenceInformation byteSequenceId(String byteSequenceId) {
-        this.byteSequenceId = byteSequenceId;
-        return this;
-    }
-
     /**
      * Get byteSequenceId
      *
@@ -62,11 +57,6 @@ public class ByteSequenceInformation {
 
     public void setByteSequenceId(String byteSequenceId) {
         this.byteSequenceId = byteSequenceId;
-    }
-
-    public ByteSequenceInformation byteSequenceIdNamespace(String byteSequenceIdNamespace) {
-        this.byteSequenceIdNamespace = byteSequenceIdNamespace;
-        return this;
     }
 
     /**
@@ -83,11 +73,6 @@ public class ByteSequenceInformation {
         this.byteSequenceIdNamespace = byteSequenceIdNamespace;
     }
 
-    public ByteSequenceInformation positionType(String positionType) {
-        this.positionType = positionType;
-        return this;
-    }
-
     /**
      * Get positionType
      *
@@ -100,11 +85,6 @@ public class ByteSequenceInformation {
 
     public void setPositionType(String positionType) {
         this.positionType = positionType;
-    }
-
-    public ByteSequenceInformation offset(String offset) {
-        this.offset = offset;
-        return this;
     }
 
     /**
@@ -121,11 +101,6 @@ public class ByteSequenceInformation {
         this.offset = offset;
     }
 
-    public ByteSequenceInformation maxOffset(String maxOffset) {
-        this.maxOffset = maxOffset;
-        return this;
-    }
-
     /**
      * Get maxOffset
      *
@@ -138,11 +113,6 @@ public class ByteSequenceInformation {
 
     public void setMaxOffset(String maxOffset) {
         this.maxOffset = maxOffset;
-    }
-
-    public ByteSequenceInformation indirectOffsetLocation(String indirectOffsetLocation) {
-        this.indirectOffsetLocation = indirectOffsetLocation;
-        return this;
     }
 
     /**
@@ -159,11 +129,6 @@ public class ByteSequenceInformation {
         this.indirectOffsetLocation = indirectOffsetLocation;
     }
 
-    public ByteSequenceInformation indirectOffsetLength(String indirectOffsetLength) {
-        this.indirectOffsetLength = indirectOffsetLength;
-        return this;
-    }
-
     /**
      * Get indirectOffsetLength
      *
@@ -178,11 +143,6 @@ public class ByteSequenceInformation {
         this.indirectOffsetLength = indirectOffsetLength;
     }
 
-    public ByteSequenceInformation endianness(String endianness) {
-        this.endianness = endianness;
-        return this;
-    }
-
     /**
      * Get endianness
      *
@@ -195,11 +155,6 @@ public class ByteSequenceInformation {
 
     public void setEndianness(String endianness) {
         this.endianness = endianness;
-    }
-
-    public ByteSequenceInformation byteSequenceValue(String byteSequenceValue) {
-        this.byteSequenceValue = byteSequenceValue;
-        return this;
     }
 
     /**

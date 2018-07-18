@@ -33,11 +33,6 @@ public class DeveloperInformation {
     @SerializedName("developerCompoundName")
     private String developerCompoundName = null;
 
-    public DeveloperInformation developerId(String developerId) {
-        this.developerId = developerId;
-        return this;
-    }
-
     /**
      * Get developerId
      *
@@ -50,11 +45,6 @@ public class DeveloperInformation {
 
     public void setDeveloperId(String developerId) {
         this.developerId = developerId;
-    }
-
-    public DeveloperInformation developerIdNamespace(String developerIdNamespace) {
-        this.developerIdNamespace = developerIdNamespace;
-        return this;
     }
 
     /**
@@ -71,11 +61,6 @@ public class DeveloperInformation {
         this.developerIdNamespace = developerIdNamespace;
     }
 
-    public DeveloperInformation developerName(String developerName) {
-        this.developerName = developerName;
-        return this;
-    }
-
     /**
      * Get developerName
      *
@@ -90,11 +75,6 @@ public class DeveloperInformation {
         this.developerName = developerName;
     }
 
-    public DeveloperInformation organisationName(String organisationName) {
-        this.organisationName = organisationName;
-        return this;
-    }
-
     /**
      * Get organisationName
      *
@@ -107,11 +87,6 @@ public class DeveloperInformation {
 
     public void setOrganisationName(String organisationName) {
         this.organisationName = organisationName;
-    }
-
-    public DeveloperInformation developerCompoundName(String developerCompoundName) {
-        this.developerCompoundName = developerCompoundName;
-        return this;
     }
 
     /**

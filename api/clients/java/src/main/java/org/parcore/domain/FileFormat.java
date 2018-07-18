@@ -105,11 +105,6 @@ public class FileFormat {
     private String localLastModifiedDate = null;
 
 
-    public FileFormat puid(String puid) {
-        this.puid = puid;
-        return this;
-    }
-
     /**
      * Persistent Unique Identifier, e.g. fmt/40, x-fmt/192
      *
@@ -122,11 +117,6 @@ public class FileFormat {
 
     public void setPuid(String puid) {
         this.puid = puid;
-    }
-
-    public FileFormat puidNamespace(String puidNamespace) {
-        this.puidNamespace = puidNamespace;
-        return this;
     }
 
     /**
@@ -143,11 +133,6 @@ public class FileFormat {
         this.puidNamespace = puidNamespace;
     }
 
-    public FileFormat name(String name) {
-        this.name = name;
-        return this;
-    }
-
     /**
      * Get name
      *
@@ -160,11 +145,6 @@ public class FileFormat {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public FileFormat version(String version) {
-        this.version = version;
-        return this;
     }
 
     /**
@@ -181,17 +161,11 @@ public class FileFormat {
         this.version = version;
     }
 
-    public FileFormat aliases(List<String> aliases) {
-        this.aliases = aliases;
-        return this;
-    }
-
-    public FileFormat addAliasesItem(String aliasesItem) {
+    public void addAliasesItem(String aliasesItem) {
         if (this.aliases == null) {
-            this.aliases = new ArrayList<String>();
+            this.aliases = new ArrayList<>();
         }
         this.aliases.add(aliasesItem);
-        return this;
     }
 
     /**
@@ -208,17 +182,11 @@ public class FileFormat {
         this.aliases = aliases;
     }
 
-    public FileFormat families(List<String> families) {
-        this.families = families;
-        return this;
-    }
-
-    public FileFormat addFamiliesItem(String familiesItem) {
+    public void addFamiliesItem(String familiesItem) {
         if (this.families == null) {
-            this.families = new ArrayList<String>();
+            this.families = new ArrayList<>();
         }
         this.families.add(familiesItem);
-        return this;
     }
 
     /**
@@ -235,17 +203,11 @@ public class FileFormat {
         this.families = families;
     }
 
-    public FileFormat types(List<String> types) {
-        this.types = types;
-        return this;
-    }
-
-    public FileFormat addTypesItem(String typesItem) {
+    public void addTypesItem(String typesItem) {
         if (this.types == null) {
-            this.types = new ArrayList<String>();
+            this.types = new ArrayList<>();
         }
         this.types.add(typesItem);
-        return this;
     }
 
     /**
@@ -262,11 +224,6 @@ public class FileFormat {
         this.types = types;
     }
 
-    public FileFormat disclosure(String disclosure) {
-        this.disclosure = disclosure;
-        return this;
-    }
-
     /**
      * Get disclosure
      *
@@ -279,11 +236,6 @@ public class FileFormat {
 
     public void setDisclosure(String disclosure) {
         this.disclosure = disclosure;
-    }
-
-    public FileFormat description(String description) {
-        this.description = description;
-        return this;
     }
 
     /**
@@ -300,11 +252,6 @@ public class FileFormat {
         this.description = description;
     }
 
-    public FileFormat binaryFileFormat(String binaryFileFormat) {
-        this.binaryFileFormat = binaryFileFormat;
-        return this;
-    }
-
     /**
      * Get binaryFileFormat
      *
@@ -319,17 +266,11 @@ public class FileFormat {
         this.binaryFileFormat = binaryFileFormat;
     }
 
-    public FileFormat byteOrders(List<String> byteOrders) {
-        this.byteOrders = byteOrders;
-        return this;
-    }
-
-    public FileFormat addByteOrdersItem(String byteOrdersItem) {
+    public void addByteOrdersItem(String byteOrdersItem) {
         if (this.byteOrders == null) {
-            this.byteOrders = new ArrayList<String>();
+            this.byteOrders = new ArrayList<>();
         }
         this.byteOrders.add(byteOrdersItem);
-        return this;
     }
 
     /**
@@ -346,11 +287,6 @@ public class FileFormat {
         this.byteOrders = byteOrders;
     }
 
-    public FileFormat releaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-        return this;
-    }
-
     /**
      * Get releaseDate
      *
@@ -363,11 +299,6 @@ public class FileFormat {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public FileFormat withdrawnDate(String withdrawnDate) {
-        this.withdrawnDate = withdrawnDate;
-        return this;
     }
 
     /**
@@ -384,11 +315,6 @@ public class FileFormat {
         this.withdrawnDate = withdrawnDate;
     }
 
-    public FileFormat provenance(ProvenanceInformation provenance) {
-        this.provenance = provenance;
-        return this;
-    }
-
     /**
      * Get provenance
      *
@@ -401,11 +327,6 @@ public class FileFormat {
 
     public void setProvenance(ProvenanceInformation provenance) {
         this.provenance = provenance;
-    }
-
-    public FileFormat lastUpdatedDate(String lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
-        return this;
     }
 
     /**
@@ -422,11 +343,6 @@ public class FileFormat {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public FileFormat note(String note) {
-        this.note = note;
-        return this;
-    }
-
     /**
      * Get note
      *
@@ -439,11 +355,6 @@ public class FileFormat {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public FileFormat risk(String risk) {
-        this.risk = risk;
-        return this;
     }
 
     /**
@@ -460,11 +371,6 @@ public class FileFormat {
         this.risk = risk;
     }
 
-    public FileFormat technicalEnvironment(String technicalEnvironment) {
-        this.technicalEnvironment = technicalEnvironment;
-        return this;
-    }
-
     /**
      * Get technicalEnvironment
      *
@@ -479,17 +385,11 @@ public class FileFormat {
         this.technicalEnvironment = technicalEnvironment;
     }
 
-    public FileFormat identifiers(List<IdentifierInformation> identifiers) {
-        this.identifiers = identifiers;
-        return this;
-    }
-
-    public FileFormat addIdentifiersItem(IdentifierInformation identifiersItem) {
+    public void addIdentifiersItem(IdentifierInformation identifiersItem) {
         if (this.identifiers == null) {
-            this.identifiers = new ArrayList<IdentifierInformation>();
+            this.identifiers = new ArrayList<>();
         }
         this.identifiers.add(identifiersItem);
-        return this;
     }
 
     /**
@@ -506,17 +406,11 @@ public class FileFormat {
         this.identifiers = identifiers;
     }
 
-    public FileFormat developers(List<DeveloperInformation> developers) {
-        this.developers = developers;
-        return this;
-    }
-
-    public FileFormat addDevelopersItem(DeveloperInformation developersItem) {
+    public void addDevelopersItem(DeveloperInformation developersItem) {
         if (this.developers == null) {
-            this.developers = new ArrayList<DeveloperInformation>();
+            this.developers = new ArrayList<>();
         }
         this.developers.add(developersItem);
-        return this;
     }
 
     /**
@@ -533,17 +427,11 @@ public class FileFormat {
         this.developers = developers;
     }
 
-    public FileFormat documents(List<DocumentInformation> documents) {
-        this.documents = documents;
-        return this;
-    }
-
-    public FileFormat addDocumentsItem(DocumentInformation documentsItem) {
+    public void addDocumentsItem(DocumentInformation documentsItem) {
         if (this.documents == null) {
-            this.documents = new ArrayList<DocumentInformation>();
+            this.documents = new ArrayList<>();
         }
         this.documents.add(documentsItem);
-        return this;
     }
 
     /**
@@ -560,17 +448,11 @@ public class FileFormat {
         this.documents = documents;
     }
 
-    public FileFormat externalSignatures(List<ExternalSignatureInformation> externalSignatures) {
-        this.externalSignatures = externalSignatures;
-        return this;
-    }
-
-    public FileFormat addExternalSignaturesItem(ExternalSignatureInformation externalSignaturesItem) {
+    public void addExternalSignaturesItem(ExternalSignatureInformation externalSignaturesItem) {
         if (this.externalSignatures == null) {
-            this.externalSignatures = new ArrayList<ExternalSignatureInformation>();
+            this.externalSignatures = new ArrayList<>();
         }
         this.externalSignatures.add(externalSignaturesItem);
-        return this;
     }
 
     /**
@@ -587,17 +469,11 @@ public class FileFormat {
         this.externalSignatures = externalSignatures;
     }
 
-    public FileFormat internalSignatures(List<InternalSignatureInformation> internalSignatures) {
-        this.internalSignatures = internalSignatures;
-        return this;
-    }
-
-    public FileFormat addInternalSignaturesItem(InternalSignatureInformation internalSignaturesItem) {
+    public void addInternalSignaturesItem(InternalSignatureInformation internalSignaturesItem) {
         if (this.internalSignatures == null) {
-            this.internalSignatures = new ArrayList<InternalSignatureInformation>();
+            this.internalSignatures = new ArrayList<>();
         }
         this.internalSignatures.add(internalSignaturesItem);
-        return this;
     }
 
     /**
@@ -614,17 +490,11 @@ public class FileFormat {
         this.internalSignatures = internalSignatures;
     }
 
-    public FileFormat relatedFormats(List<RelatedFormatInformation> relatedFormats) {
-        this.relatedFormats = relatedFormats;
-        return this;
-    }
-
-    public FileFormat addRelatedFormatsItem(RelatedFormatInformation relatedFormatsItem) {
+    public void addRelatedFormatsItem(RelatedFormatInformation relatedFormatsItem) {
         if (this.relatedFormats == null) {
-            this.relatedFormats = new ArrayList<RelatedFormatInformation>();
+            this.relatedFormats = new ArrayList<>();
         }
         this.relatedFormats.add(relatedFormatsItem);
-        return this;
     }
 
     /**
@@ -641,11 +511,6 @@ public class FileFormat {
         this.relatedFormats = relatedFormats;
     }
 
-    public FileFormat droidSignatureFileVersion(String droidSignatureFileVersion) {
-        this.droidSignatureFileVersion = droidSignatureFileVersion;
-        return this;
-    }
-
     /**
      * Get droidSignatureFileVersion
      *
@@ -660,11 +525,6 @@ public class FileFormat {
         this.droidSignatureFileVersion = droidSignatureFileVersion;
     }
 
-    public FileFormat droidContainerFileVersion(String droidContainerFileVersion) {
-        this.droidContainerFileVersion = droidContainerFileVersion;
-        return this;
-    }
-
     /**
      * Get droidContainerFileVersion
      *
@@ -677,11 +537,6 @@ public class FileFormat {
 
     public void setDroidContainerFileVersion(String droidContainerFileVersion) {
         this.droidContainerFileVersion = droidContainerFileVersion;
-    }
-
-    public FileFormat localLastModifiedDate(String localLastModifiedDate) {
-        this.localLastModifiedDate = localLastModifiedDate;
-        return this;
     }
 
     /**

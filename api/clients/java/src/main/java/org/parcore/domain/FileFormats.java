@@ -26,17 +26,11 @@ public class FileFormats {
     @SerializedName("fileFormats")
     private List<FileFormat> fileFormats = null;
 
-    public FileFormats fileFormats(List<FileFormat> fileFormats) {
-        this.fileFormats = fileFormats;
-        return this;
-    }
-
-    public FileFormats addFileFormatsItem(FileFormat fileFormatsItem) {
+   public void addFileFormatsItem(FileFormat fileFormatsItem) {
         if (this.fileFormats == null) {
             this.fileFormats = new ArrayList<>();
         }
         this.fileFormats.add(fileFormatsItem);
-        return this;
     }
 
     /**
@@ -46,6 +40,9 @@ public class FileFormats {
      **/
     @ApiModelProperty(value = "")
     public List<FileFormat> getFileFormats() {
+        if (fileFormats == null) {
+            fileFormats = new ArrayList<>();
+        }
         return fileFormats;
     }
 

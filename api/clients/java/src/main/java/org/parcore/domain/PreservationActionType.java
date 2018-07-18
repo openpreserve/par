@@ -23,23 +23,22 @@ public class PreservationActionType {
     @SerializedName("id")
     private String id = null;
 
-    @SerializedName("label")
-    private String label = null;
+    @SerializedName("name")
+    private String name = null;
 
     @SerializedName("uri")
     private String uri = null;
 
-    public PreservationActionType id(String id) {
-        this.id = id;
-        return this;
-    }
+    @SerializedName("localLastModifiedDate")
+    private String localLastModifiedDate = null;
+
 
     /**
      * Get id
      *
      * @return id
      **/
-    @ApiModelProperty(required = true, value = "")
+    @ApiModelProperty(value = "")
     public String getId() {
         return id;
     }
@@ -48,28 +47,18 @@ public class PreservationActionType {
         this.id = id;
     }
 
-    public PreservationActionType label(String label) {
-        this.label = label;
-        return this;
-    }
-
     /**
-     * Get label
+     * Get name
      *
-     * @return label
+     * @return name
      **/
     @ApiModelProperty(value = "")
-    public String getLabel() {
-        return label;
+    public String getName() {
+        return name;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public PreservationActionType uri(String uri) {
-        this.uri = uri;
-        return this;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -77,13 +66,27 @@ public class PreservationActionType {
      *
      * @return uri
      **/
-    @ApiModelProperty(required = true, value = "")
+    @ApiModelProperty(value = "")
     public String getUri() {
         return uri;
     }
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    /**
+     * Get localLastModifiedDate
+     *
+     * @return localLastModifiedDate
+     **/
+    @ApiModelProperty(value = "")
+    public String getLocalLastModifiedDate() {
+        return localLastModifiedDate;
+    }
+
+    public void setLocalLastModifiedDate(String uri) {
+        this.localLastModifiedDate = uri;
     }
 
 
@@ -97,13 +100,14 @@ public class PreservationActionType {
         }
         PreservationActionType preservationActionType = (PreservationActionType) o;
         return Objects.equals(this.id, preservationActionType.id) &&
-                Objects.equals(this.label, preservationActionType.label) &&
-                Objects.equals(this.uri, preservationActionType.uri);
+                Objects.equals(this.name, preservationActionType.name) &&
+                Objects.equals(this.uri, preservationActionType.uri) &&
+                Objects.equals(this.localLastModifiedDate, preservationActionType.localLastModifiedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, label, uri);
+        return Objects.hash(id, name, uri, localLastModifiedDate);
     }
 
 
@@ -113,8 +117,9 @@ public class PreservationActionType {
         sb.append("class PreservationActionType {\n");
 
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    label: ").append(toIndentedString(label)).append("\n");
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    uri: ").append(toIndentedString(uri)).append("\n");
+        sb.append("    localLastModifiedDate: ").append(toIndentedString(localLastModifiedDate)).append("\n");
         sb.append("}");
         return sb.toString();
     }

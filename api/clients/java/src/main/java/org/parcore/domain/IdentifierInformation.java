@@ -24,11 +24,6 @@ public class IdentifierInformation {
     @SerializedName("identifierType")
     private String identifierType = null;
 
-    public IdentifierInformation identifier(String identifier) {
-        this.identifier = identifier;
-        return this;
-    }
-
     /**
      * Get identifier
      *
@@ -41,11 +36,6 @@ public class IdentifierInformation {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
-    }
-
-    public IdentifierInformation identifierType(String identifierType) {
-        this.identifierType = identifierType;
-        return this;
     }
 
     /**

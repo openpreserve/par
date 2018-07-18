@@ -23,20 +23,16 @@ import java.util.List;
  */
 @ApiModel(description = "A list of preservation action types")
 public class PreservationActionTypes {
-    @SerializedName("preservationActionTypes")
+
+//    @SerializedName("preservationActionTypes")
+    @SerializedName("preservationActionType")
     private List<PreservationActionType> preservationActionTypes = null;
 
-    public PreservationActionTypes preservationActionTypes(List<PreservationActionType> preservationActionTypes) {
-        this.preservationActionTypes = preservationActionTypes;
-        return this;
-    }
-
-    public PreservationActionTypes addPreservationActionTypesItem(PreservationActionType preservationActionTypesItem) {
+    public void addPreservationActionTypesItem(PreservationActionType preservationActionTypesItem) {
         if (this.preservationActionTypes == null) {
             this.preservationActionTypes = new ArrayList<>();
         }
         this.preservationActionTypes.add(preservationActionTypesItem);
-        return this;
     }
 
     /**
@@ -46,6 +42,9 @@ public class PreservationActionTypes {
      **/
     @ApiModelProperty(value = "")
     public List<PreservationActionType> getPreservationActionTypes() {
+        if (this.preservationActionTypes == null) {
+            this.preservationActionTypes = new ArrayList<>();
+        }
         return preservationActionTypes;
     }
 

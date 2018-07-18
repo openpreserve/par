@@ -33,11 +33,6 @@ public class ProvenanceInformation {
     @SerializedName("provenanceDescription")
     private String provenanceDescription = null;
 
-    public ProvenanceInformation provenanceSourceId(String provenanceSourceId) {
-        this.provenanceSourceId = provenanceSourceId;
-        return this;
-    }
-
     /**
      * Get provenanceSourceId
      *
@@ -50,11 +45,6 @@ public class ProvenanceInformation {
 
     public void setProvenanceSourceId(String provenanceSourceId) {
         this.provenanceSourceId = provenanceSourceId;
-    }
-
-    public ProvenanceInformation provenanceSourceNamespace(String provenanceSourceNamespace) {
-        this.provenanceSourceNamespace = provenanceSourceNamespace;
-        return this;
     }
 
     /**
@@ -71,11 +61,6 @@ public class ProvenanceInformation {
         this.provenanceSourceNamespace = provenanceSourceNamespace;
     }
 
-    public ProvenanceInformation provenanceName(String provenanceName) {
-        this.provenanceName = provenanceName;
-        return this;
-    }
-
     /**
      * Get provenanceName
      *
@@ -90,11 +75,6 @@ public class ProvenanceInformation {
         this.provenanceName = provenanceName;
     }
 
-    public ProvenanceInformation provenanceSourceDate(String provenanceSourceDate) {
-        this.provenanceSourceDate = provenanceSourceDate;
-        return this;
-    }
-
     /**
      * Get provenanceSourceDate
      *
@@ -107,11 +87,6 @@ public class ProvenanceInformation {
 
     public void setProvenanceSourceDate(String provenanceSourceDate) {
         this.provenanceSourceDate = provenanceSourceDate;
-    }
-
-    public ProvenanceInformation provenanceDescription(String provenanceDescription) {
-        this.provenanceDescription = provenanceDescription;
-        return this;
     }
 
     /**

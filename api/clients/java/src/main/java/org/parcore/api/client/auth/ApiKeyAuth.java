@@ -10,7 +10,7 @@ import java.util.List;
  * <p>
  * ApiKeyAuth
  * <p>
- * Implementation of authentication interface using a API key. A string in the form "$apiKeyPrefix $apiKey" is appended to the
+ * Implementation of authentication interface using an API key. A string in the form "$apiKeyPrefix $apiKey" is appended to the
  * header or query parameters, as specified by the $location
  * <p>
  * OpenAPI spec version: 1.0.0

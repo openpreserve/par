@@ -49,11 +49,6 @@ public class ExternalSignatureInformation {
         this.externalSignatureId = externalSignatureId;
     }
 
-    public ExternalSignatureInformation externalSignatureIdNamespace(String externalSignatureIdNamespace) {
-        this.externalSignatureIdNamespace = externalSignatureIdNamespace;
-        return this;
-    }
-
     /**
      * Get externalSignatureIdNamespace
      *
@@ -68,11 +63,6 @@ public class ExternalSignatureInformation {
         this.externalSignatureIdNamespace = externalSignatureIdNamespace;
     }
 
-    public ExternalSignatureInformation signature(String signature) {
-        this.signature = signature;
-        return this;
-    }
-
     /**
      * Get signature
      *
@@ -85,11 +75,6 @@ public class ExternalSignatureInformation {
 
     public void setSignature(String signature) {
         this.signature = signature;
-    }
-
-    public ExternalSignatureInformation signatureType(String signatureType) {
-        this.signatureType = signatureType;
-        return this;
     }
 
     /**

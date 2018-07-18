@@ -33,11 +33,6 @@ public class RelatedFormatInformation {
     @SerializedName("relatedFormatVersion")
     private String relatedFormatVersion = null;
 
-    public RelatedFormatInformation relationshipType(String relationshipType) {
-        this.relationshipType = relationshipType;
-        return this;
-    }
-
     /**
      * Get relationshipType
      *
@@ -50,11 +45,6 @@ public class RelatedFormatInformation {
 
     public void setRelationshipType(String relationshipType) {
         this.relationshipType = relationshipType;
-    }
-
-    public RelatedFormatInformation relatedFormatId(String relatedFormatId) {
-        this.relatedFormatId = relatedFormatId;
-        return this;
     }
 
     /**
@@ -71,11 +61,6 @@ public class RelatedFormatInformation {
         this.relatedFormatId = relatedFormatId;
     }
 
-    public RelatedFormatInformation relatedFormatIdNamespace(String relatedFormatIdNamespace) {
-        this.relatedFormatIdNamespace = relatedFormatIdNamespace;
-        return this;
-    }
-
     /**
      * Get relatedFormatIdNamespace
      *
@@ -90,11 +75,6 @@ public class RelatedFormatInformation {
         this.relatedFormatIdNamespace = relatedFormatIdNamespace;
     }
 
-    public RelatedFormatInformation relatedFormatName(String relatedFormatName) {
-        this.relatedFormatName = relatedFormatName;
-        return this;
-    }
-
     /**
      * Get relatedFormatName
      *
@@ -107,11 +87,6 @@ public class RelatedFormatInformation {
 
     public void setRelatedFormatName(String relatedFormatName) {
         this.relatedFormatName = relatedFormatName;
-    }
-
-    public RelatedFormatInformation relatedFormatVersion(String relatedFormatVersion) {
-        this.relatedFormatVersion = relatedFormatVersion;
-        return this;
     }
 
     /**

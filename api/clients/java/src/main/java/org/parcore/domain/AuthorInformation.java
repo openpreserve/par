@@ -33,11 +33,6 @@ public class AuthorInformation {
     @SerializedName("authorCompoundName")
     private String authorCompoundName = null;
 
-    public AuthorInformation authorId(String authorId) {
-        this.authorId = authorId;
-        return this;
-    }
-
     /**
      * Get authorId
      *
@@ -50,11 +45,6 @@ public class AuthorInformation {
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
-    }
-
-    public AuthorInformation authorIdNamespace(String authorIdNamespace) {
-        this.authorIdNamespace = authorIdNamespace;
-        return this;
     }
 
     /**
@@ -71,11 +61,6 @@ public class AuthorInformation {
         this.authorIdNamespace = authorIdNamespace;
     }
 
-    public AuthorInformation authorName(String authorName) {
-        this.authorName = authorName;
-        return this;
-    }
-
     /**
      * Get authorName
      *
@@ -90,11 +75,6 @@ public class AuthorInformation {
         this.authorName = authorName;
     }
 
-    public AuthorInformation organisationName(String organisationName) {
-        this.organisationName = organisationName;
-        return this;
-    }
-
     /**
      * Get organisationName
      *
@@ -107,11 +87,6 @@ public class AuthorInformation {
 
     public void setOrganisationName(String organisationName) {
         this.organisationName = organisationName;
-    }
-
-    public AuthorInformation authorCompoundName(String authorCompoundName) {
-        this.authorCompoundName = authorCompoundName;
-        return this;
     }
 
     /**

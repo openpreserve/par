@@ -54,11 +54,6 @@ public class DocumentInformation {
     @SerializedName("publisher")
     private PublisherInformation publisher = null;
 
-    public DocumentInformation documentId(String documentId) {
-        this.documentId = documentId;
-        return this;
-    }
-
     /**
      * Get documentId
      *
@@ -71,11 +66,6 @@ public class DocumentInformation {
 
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
-    }
-
-    public DocumentInformation documentIdNamespace(String documentIdNamespace) {
-        this.documentIdNamespace = documentIdNamespace;
-        return this;
     }
 
     /**
@@ -92,11 +82,6 @@ public class DocumentInformation {
         this.documentIdNamespace = documentIdNamespace;
     }
 
-    public DocumentInformation displayText(String displayText) {
-        this.displayText = displayText;
-        return this;
-    }
-
     /**
      * Get displayText
      *
@@ -109,11 +94,6 @@ public class DocumentInformation {
 
     public void setDisplayText(String displayText) {
         this.displayText = displayText;
-    }
-
-    public DocumentInformation documentType(String documentType) {
-        this.documentType = documentType;
-        return this;
     }
 
     /**
@@ -130,11 +110,6 @@ public class DocumentInformation {
         this.documentType = documentType;
     }
 
-    public DocumentInformation availabilityDescription(String availabilityDescription) {
-        this.availabilityDescription = availabilityDescription;
-        return this;
-    }
-
     /**
      * Get availabilityDescription
      *
@@ -147,11 +122,6 @@ public class DocumentInformation {
 
     public void setAvailabilityDescription(String availabilityDescription) {
         this.availabilityDescription = availabilityDescription;
-    }
-
-    public DocumentInformation availabilityNote(String availabilityNote) {
-        this.availabilityNote = availabilityNote;
-        return this;
     }
 
     /**
@@ -168,11 +138,6 @@ public class DocumentInformation {
         this.availabilityNote = availabilityNote;
     }
 
-    public DocumentInformation publicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
-        return this;
-    }
-
     /**
      * Get publicationDate
      *
@@ -185,11 +150,6 @@ public class DocumentInformation {
 
     public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
-    }
-
-    public DocumentInformation titleText(String titleText) {
-        this.titleText = titleText;
-        return this;
     }
 
     /**
@@ -206,11 +166,6 @@ public class DocumentInformation {
         this.titleText = titleText;
     }
 
-    public DocumentInformation documentIPR(String documentIPR) {
-        this.documentIPR = documentIPR;
-        return this;
-    }
-
     /**
      * Get documentIPR
      *
@@ -223,11 +178,6 @@ public class DocumentInformation {
 
     public void setDocumentIPR(String documentIPR) {
         this.documentIPR = documentIPR;
-    }
-
-    public DocumentInformation documentNote(String documentNote) {
-        this.documentNote = documentNote;
-        return this;
     }
 
     /**
@@ -244,11 +194,6 @@ public class DocumentInformation {
         this.documentNote = documentNote;
     }
 
-    public DocumentInformation author(AuthorInformation author) {
-        this.author = author;
-        return this;
-    }
-
     /**
      * Get author
      *
@@ -261,11 +206,6 @@ public class DocumentInformation {
 
     public void setAuthor(AuthorInformation author) {
         this.author = author;
-    }
-
-    public DocumentInformation publisher(PublisherInformation publisher) {
-        this.publisher = publisher;
-        return this;
     }
 
     /**

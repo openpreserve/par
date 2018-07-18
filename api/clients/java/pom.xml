@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.parcore</groupId>
-    <artifactId>parcore-java-client</artifactId>
+    <artifactId>java-rest-client</artifactId>
     <packaging>jar</packaging>
-    <name>parcore-java-client</name>
+    <name>java-rest-client</name>
     <version>1.0.0</version>
     <url>https://www.parcore.org</url>
     <description>PAR Core Java SDK</description>

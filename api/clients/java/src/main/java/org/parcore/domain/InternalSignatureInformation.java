@@ -36,11 +36,6 @@ public class InternalSignatureInformation {
     @SerializedName("byteSequences")
     private List<ByteSequenceInformation> byteSequences = null;
 
-    public InternalSignatureInformation signatureId(String signatureId) {
-        this.signatureId = signatureId;
-        return this;
-    }
-
     /**
      * Get signatureId
      *
@@ -53,11 +48,6 @@ public class InternalSignatureInformation {
 
     public void setSignatureId(String signatureId) {
         this.signatureId = signatureId;
-    }
-
-    public InternalSignatureInformation signatureIdNamespace(String signatureIdNamespace) {
-        this.signatureIdNamespace = signatureIdNamespace;
-        return this;
     }
 
     /**
@@ -74,11 +64,6 @@ public class InternalSignatureInformation {
         this.signatureIdNamespace = signatureIdNamespace;
     }
 
-    public InternalSignatureInformation signatureName(String signatureName) {
-        this.signatureName = signatureName;
-        return this;
-    }
-
     /**
      * Get signatureName
      *
@@ -91,11 +76,6 @@ public class InternalSignatureInformation {
 
     public void setSignatureName(String signatureName) {
         this.signatureName = signatureName;
-    }
-
-    public InternalSignatureInformation signatureNote(String signatureNote) {
-        this.signatureNote = signatureNote;
-        return this;
     }
 
     /**
@@ -112,17 +92,11 @@ public class InternalSignatureInformation {
         this.signatureNote = signatureNote;
     }
 
-    public InternalSignatureInformation byteSequences(List<ByteSequenceInformation> byteSequences) {
-        this.byteSequences = byteSequences;
-        return this;
-    }
-
-    public InternalSignatureInformation addByteSequencesItem(ByteSequenceInformation byteSequencesItem) {
+    public void addByteSequencesItem(ByteSequenceInformation byteSequencesItem) {
         if (this.byteSequences == null) {
-            this.byteSequences = new ArrayList<ByteSequenceInformation>();
+            this.byteSequences = new ArrayList<>();
         }
         this.byteSequences.add(byteSequencesItem);
-        return this;
     }
 
     /**

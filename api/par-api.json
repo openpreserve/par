@@ -1,0 +1,1188 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Preservation Action Registry's API from Preservica",
+    "version": "1.0.0",
+    "title": "REST API"
+  },
+  "host": "preservica.com",
+  "basePath": "/Registry/par",
+  "tags": [
+    {
+      "name": "Preservation Action Registry",
+      "externalDocs": {
+        "description": "Website",
+        "url": "http://parcore.org"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/tools": {
+      "post": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Create a new tool",
+        "description": "Create a new tool with the data provided in the body of the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            },
+            "description": "Required body parameters are: \"toolName\" and \"toolID\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tool successfully created.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Retrieve all tool",
+        "description": "Allow to retrieve the details of all the tool",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of tools returned. Default value is zero."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of tools returned. Default value is zero."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/tool/{toolID}": {
+      "get": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Retrieve a tool",
+        "description": "Allow to retrieve the details of the specific tool provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "toolID",
+            "type": "string",
+            "description": "Unique identifier for the tool to retrieve.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "400": {
+            "description": "Tool not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Update an existing tool",
+        "description": "Allow to modify the content of a tool. The updated tool will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "toolID",
+            "type": "string",
+            "description": "Unique identifier for the existing tool to update",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            },
+            "description": "Required body parameters are: \"toolName\" and \"toolID\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tool successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/tool"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/preservation_action_types": {
+      "post": {
+        "tags": [
+          "Preservation Action Types"
+        ],
+        "summary": "Create a new preservation action type",
+        "description": "Create a new preservation action type with the data provided in the body of the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/preservationActionType"
+            },
+            "description": "Required body parameters are: \"id\" and \"uri\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Preservation Action Type successfully created.",
+            "schema": {
+              "$ref": "#/definitions/preservationActionType"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Preservation Action Types"
+        ],
+        "summary": "Retrieve all preservation action types",
+        "description": "Allow to retrieve the details of all the preservation action types",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of preservation action types returned. Default value is zero."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/preservationActionTypes"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/preservation_action_types/{id}": {
+      "get": {
+        "tags": [
+          "Preservation Action Types"
+        ],
+        "summary": "Retrieve a preservation action type",
+        "description": "Allow to retrieve the details of the specific preservation action type provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the preservation action type to retrieve.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/preservationActionType"
+            }
+          },
+          "400": {
+            "description": "Preservation action type not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Preservation Action Types"
+        ],
+        "summary": "Update an existing preservation action type",
+        "description": "Allow to modify the content of a preservation action type. The updated preservation action type will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing preservation action type to update",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/preservationActionType"
+            },
+            "description": "Required body parameters are: \"id\" and \"uri\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "File format successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/preservationActionType"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/fileFormats": {
+      "post": {
+        "tags": [
+          "File Formats"
+        ],
+        "summary": "Create a new file format",
+        "description": "Create a new file format with the data provided in the body of the request. The only field that is always required is the file format that has to be created. If the body is not provided with the desired puid for the new file format, then the next available puid in the database will be used.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "ReturnSubEntities",
+            "type": "boolean",
+            "description": "Specify if sub entities should be included in response.",
+            "required": false
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/FileFormat"
+            },
+            "description": "Required body parameters are: \"name\".",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "File format successfully created.",
+            "schema": {
+              "$ref": "#/definitions/FileFormat"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "File Formats"
+        ],
+        "summary": "Retrieve all file formats",
+        "description": "Allow to retrieve the details of all the file formats",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "ReturnSubEntities",
+            "type": "boolean",
+            "description": "Specify if sub entities should be included in response.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedAfter",
+            "type": "string",
+            "description": "Filter the file formats to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedBefore",
+            "type": "string",
+            "description": "Filter the file formats to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of file formats returned. Default value is zero."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of file formats returned. Default value is zero."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/FileFormats"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/fileFormats/{puid}": {
+      "get": {
+        "tags": [
+          "File Formats"
+        ],
+        "summary": "Retrieve a file format",
+        "description": "Allow to retrieve the details of the specific file format provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "puid",
+            "type": "string",
+            "description": "Unique identifier for the file format to retrieve.",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "ReturnSubEntities",
+            "type": "boolean",
+            "description": "Specify if sub entities should be included in response.",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/FileFormat"
+            }
+          },
+          "400": {
+            "description": "File format not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "File Formats"
+        ],
+        "summary": "Update an existing file format",
+        "description": "Allow to modify the content of a file format. The updated file format will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "puid",
+            "type": "string",
+            "description": "Unique identifier for the file format to update",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "ReturnSubEntities",
+            "type": "boolean",
+            "description": "Specify if sub entities should be included in response.",
+            "required": false
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/FileFormat"
+            },
+            "description": "Required body parameters are: \"puid\", \"puidNamespace\" and \"name\".",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "File format successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/FileFormat"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable field or to modify a non-existing fileFormat."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "basic"
+    }
+  },
+  "definitions": {
+    "provenanceInformation": {
+      "type": "object",
+      "properties": {
+        "provenanceSourceId": {
+          "type": "string"
+        },
+        "provenanceSourceNamespace": {
+          "type": "string"
+        },
+        "provenanceName": {
+          "type": "string"
+        },
+        "provenanceSourceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "provenanceDescription": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenanceSourceId",
+        "provenanceSourceNamespace"
+      ]
+    },
+    "environmentInformation": {
+      "type": "string"
+    },
+    "identifierInformation": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "identifierType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "identifierType"
+      ]
+    },
+    "documentInformation": {
+      "type": "object",
+      "properties": {
+        "documentId": {
+          "type": "string"
+        },
+        "documentIdNamespace": {
+          "type": "string"
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "documentType": {
+          "type": "string"
+        },
+        "availabilityDescription": {
+          "type": "string"
+        },
+        "availabilityNote": {
+          "type": "string"
+        },
+        "publicationDate": {
+          "type": "string"
+        },
+        "titleText": {
+          "type": "string"
+        },
+        "documentIPR": {
+          "type": "string"
+        },
+        "documentNote": {
+          "type": "string"
+        },
+        "author": {
+          "$ref": "#/definitions/authorInformation"
+        },
+        "publisher": {
+          "$ref": "#/definitions/publisherInformation"
+        }
+      },
+      "required": [
+        "documentId",
+        "documentIdNamespace"
+      ]
+    },
+    "relatedFormatInformation": {
+      "type": "object",
+      "properties": {
+        "relationshipType": {
+          "type": "string"
+        },
+        "relatedFormatId": {
+          "type": "string"
+        },
+        "relatedFormatIdNamespace": {
+          "type": "string"
+        },
+        "relatedFormatName": {
+          "type": "string"
+        },
+        "relatedFormatVersion": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "relationshipType",
+        "relatedFormatId",
+        "relatedFormatIdNamespace"
+      ]
+    },
+    "authorInformation": {
+      "type": "object",
+      "properties": {
+        "authorId": {
+          "type": "string"
+        },
+        "authorIdNamespace": {
+          "type": "string"
+        },
+        "authorName": {
+          "type": "string"
+        },
+        "organisationName": {
+          "type": "string"
+        },
+        "authorCompoundName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "authorId",
+        "authorIdNamespace"
+      ]
+    },
+    "publisherInformation": {
+      "type": "object",
+      "properties": {
+        "publisherId": {
+          "type": "string"
+        },
+        "publisherIdNamespace": {
+          "type": "string"
+        },
+        "publisherName": {
+          "type": "string"
+        },
+        "organisationName": {
+          "type": "string"
+        },
+        "publisherCompoundName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "publisherId",
+        "publisherIdNamespace"
+      ]
+    },
+    "internalSignatureInformation": {
+      "type": "object",
+      "properties": {
+        "signatureId": {
+          "type": "string"
+        },
+        "signatureIdNamespace": {
+          "type": "string"
+        },
+        "signatureName": {
+          "type": "string"
+        },
+        "signatureNote": {
+          "type": "string"
+        },
+        "byteSequences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/byteSequenceInformation"
+          }
+        }
+      },
+      "required": [
+        "signatureId",
+        "signatureIdNamespace"
+      ]
+    },
+    "externalSignatureInformation": {
+      "type": "object",
+      "properties": {
+        "externalSignatureId": {
+          "type": "string"
+        },
+        "externalSignatureIdNamespace": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "signatureType": {
+          "type": "string"
+        }
+      }
+    },
+    "byteSequenceInformation": {
+      "type": "object",
+      "properties": {
+        "byteSequenceId": {
+          "type": "string"
+        },
+        "byteSequenceIdNamespace": {
+          "type": "string"
+        },
+        "positionType": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "string"
+        },
+        "maxOffset": {
+          "type": "string"
+        },
+        "indirectOffsetLocation": {
+          "type": "string"
+        },
+        "indirectOffsetLength": {
+          "type": "string"
+        },
+        "endianness": {
+          "type": "string"
+        },
+        "byteSequenceValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "byteSequenceId",
+        "byteSequenceIdNamespace"
+      ]
+    },
+    "developerInformation": {
+      "type": "object",
+      "properties": {
+        "developerId": {
+          "type": "string"
+        },
+        "developerIdNamespace": {
+          "type": "string"
+        },
+        "developerName": {
+          "type": "string"
+        },
+        "organisationName": {
+          "type": "string"
+        },
+        "developerCompoundName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "developerId",
+        "developerIdNamespace"
+      ]
+    },
+    "FileFormat": {
+      "title": "fileFormat",
+      "description": "A file format as defined by PRONOM",
+      "type": "object",
+      "properties": {
+        "puid": {
+          "description": "Persistent Unique Identifier, e.g. fmt/40, x-fmt/192",
+          "type": "string"
+        },
+        "puidNamespace": {
+          "description": "Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disclosure": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "binaryFileFormat": {
+          "type": "string"
+        },
+        "byteOrders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "releaseDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "withdrawnDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "provenance": {
+          "$ref": "#/definitions/provenanceInformation"
+        },
+        "lastUpdatedDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": "string"
+        },
+        "risk": {
+          "type": "string"
+        },
+        "technicalEnvironment": {
+          "$ref": "#/definitions/environmentInformation"
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/identifierInformation"
+          }
+        },
+        "developers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/developerInformation"
+          }
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/documentInformation"
+          }
+        },
+        "externalSignatures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/externalSignatureInformation"
+          }
+        },
+        "internalSignatures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/internalSignatureInformation"
+          }
+        },
+        "relatedFormats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/relatedFormatInformation"
+          }
+        },
+        "droidSignatureFileVersion": {
+          "type": "string"
+        },
+        "droidContainerFileVersion": {
+          "type": "string"
+        },
+        "localLastModifiedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "puid",
+        "puidNamespace"
+      ],
+      "additionalProperties": false
+    },
+    "FileFormatPUTBodyExample": {
+      "title": "fileFormat PUT body example",
+      "description": "Required elements in a PUT body request",
+      "type": "object",
+      "properties": {
+        "puid": {
+          "description": "Persistent Unique Identifier, e.g. fmt/40, x-fmt/192",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "puidNamespace": {
+          "type": "string"
+        }
+      }
+    },
+    "FileFormatPOSTBodyExample": {
+      "title": "fileFormat POST body example",
+      "description": "Required elements in a POST body request",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "FileFormats": {
+      "title": "A list of file formats",
+      "description": "A list of file formats",
+      "type": "object",
+      "properties": {
+        "fileFormats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileFormat"
+          }
+        }
+      }
+    },
+    "preservationActionTypes": {
+      "title": "A list of preservation action types",
+      "description": "A list of preservation action types",
+      "type": "object",
+      "properties": {
+        "preservationActionTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/preservationActionType"
+          }
+        }
+      }
+    },
+    "preservationActionType": {
+      "title": "Preservation Action Types",
+      "description": "The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "uri"
+      ],
+      "additionalProperties": false
+    },
+    "PreservationActionTypesBodyExample": {
+      "title": "preservation_action_types body example",
+      "description": "Required elements in a request's body",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "description": "A software tool or application that can be used to perform preservation actions",
+      "properties": {
+        "toolName": {
+          "type": "string"
+        },
+        "toolID": {
+          "type": "string"
+        },
+        "toolLabel": {
+          "type": "string"
+        },
+        "toolVersion": {
+          "type": "string"
+        },
+        "toolPublisher": {
+          "type": "string"
+        },
+        "toolAcceptedParameters": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+          }
+        },
+        "toolOperatingEnvironments": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "toolName",
+        "toolID"
+      ],
+      "additionalProperties": false
+    },
+    "toolBodyExample": {
+      "title": "tool body example",
+      "description": "Required elements in a request's body",
+      "type": "object",
+      "properties": {
+        "toolName": {
+          "type": "string"
+        },
+        "toolID": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about PAR",
+    "url": "http://parcore.org"
+  }
+}

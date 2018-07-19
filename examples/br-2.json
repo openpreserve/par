@@ -1,0 +1,57 @@
+{
+	"id": {
+        "guid":"bc6c7498-2b8d-5314-bb0d-c773e72e9ff2",
+		"name": "br/2",
+		"namespace": "http://preservica.com/"
+	},
+
+	"description": "FFMPEG is preferable to HandBrake for migrating AVI files to WebM",
+
+	"preservationActionTypes": [{
+			"id": {
+                "guid": "b09aebcc-da41-5e90-8a92-5da1a838ce69",
+                "name": "http://id.loc.gov/vocabulary/preservation/eventType/mig",
+                "namespace": "url"
+            },
+            "label": "migration"
+		}, {
+			"id": {
+                "guid": "ca5dda15-b648-55b9-a126-90e958d4bb7d",
+                "name": "http://id.loc.gov/vocabulary/preservation/eventType/nor",
+                "namespace": "url"
+            },
+            "label": "normalization"
+		}
+	],
+
+	"formats": [{
+            "guid": "f21bab26-c3ab-57d0-b1d6-fcdf1d451842",
+			"name": "fmt/5",
+			"namespace": "http://www.nationalarchives.gov.uk/"
+		}
+	],
+
+	"formatFamilies": [{
+			"familyType": "AVI"
+		}
+	],
+
+	"preservationActions": [{
+			"preservationAction": {
+				"guid": "9efdd00a-f91f-5b6b-8a17-b6a855541501",
+				"name": "action/123",
+				"namespace": "http://www.parcore.org/actions"
+			},
+			"priority": 1
+		}, {
+			"preservationAction": {
+				"guid": "96812575-0ebc-5616-94d9-394511585d96",
+				"name": "action/456",
+				"namespace": "http://www.parcore.org/actions"
+			},
+			"priority": 2
+		}
+	],
+
+	"notes": "We have found that the HandBrake process occasionally hangs when performing this type of migration.  FFMPEG displays no similar behaviour and therefore should be used in preference"
+}

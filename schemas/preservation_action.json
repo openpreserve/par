@@ -14,23 +14,21 @@
           "type": "string"
         },
         "type": {
-          "enum": [
-            "File",
-            "parProperty"
-          ]
-        },
-        "value": {
           "anyOf": [
             {
-              "file": {
-                "path": {
-                  "type": "string"
+              "type": "object",
+              "properties": {
+                "file": {
+                  "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
                 }
               }
             },
             {
-              "parProperty": {
-                "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parProperty"
+              "type": "object",
+              "properties": {
+                "parProperty": {
+                  "$ref": "http://www.parcore.org/schema/par_property.json/#"
+                }
               }
             }
           ]
@@ -38,6 +36,7 @@
       },
       "required": [
         "name",
+        "description",
         "type"
       ],
       "additionalProperties": false
@@ -54,29 +53,27 @@
           "type": "string"
         },
         "type": {
-          "enum": [
-            "File",
-            "parProperty",
-            "raw"
-          ]
-        },
-        "value": {
           "anyOf": [
             {
-              "file": {
-                "path": {
-                  "type": "string"
+              "type": "object",
+              "properties": {
+                "file": {
+                  "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
                 }
               }
             },
             {
-              "parProperty": {
-                "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parProperty"
+              "type": "object",
+              "properties": {
+                "parProperty": {
+                  "$ref": "http://www.parcore.org/schema/par_property.json/#"
+                }
               }
             },
             {
-              "raw": {
-                "output": {
+              "type": "object",
+              "properties": {
+                "raw": {
                   "type": "string"
                 }
               }
@@ -84,6 +81,11 @@
           ]
         }
       },
+      "required": [
+        "name",
+        "description",
+        "type"
+      ],
       "additionalProperties": false
     }
   },

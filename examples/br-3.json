@@ -112,13 +112,26 @@
                 "name": "action/25",
                 "namespace": "http://www.parcore.org/actions"
             },
-
-            "optionalInputs": [{
-                    "name": "250x250",
-                    "type": "parProperty",
-                    "description": "Resize to fit a 250px square box"
+            "optionalInputs": [
+            {
+              "name": "250x250",
+              "description": "Resize to fit a 250px square box",
+              "type": {
+                "parProperty": {
+                  "id": {
+                    "guid": "iab747c2a-9c2f-4e79-9ac8-d12015398d32",
+                    "name": "2D resolution",
+                    "namespace": "http://www.parcore.org/properties"
+                  },
+                  "class": "size",
+                  "value": "250x250",
+                  "units": "pixels",
+                  "type": "string"
                 }
-            ]
+              }
+            }
+      ]
+
         }
     ],
 

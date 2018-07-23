@@ -17,19 +17,29 @@
     },
     "inputs": [{
             "name": "manifest.md5",
-            "type": "File",
-            "description": "Manifest file containing the MD5 and name of the file to be checked"
+            "description": "Manifest file containing the MD5 and name of the file to be checked",
+            "type": {
+              "file": {
+                "filepath": ""
+              }
+            }
         }, {
             "name": "inputfile",
-            "type": "File",
-            "description": "File that will be fixity checked"
+            "description": "File that will be fixity checked",
+            "type": {
+	      "file": {
+                "filepath": ""
+              }
+            }
         }
     ],
     "outputs": [{
             "name": "pass_fail",
             "description": "Fixity PASS or FAIL",
-            "type": "raw"
+            "type": {
+              "raw": ""
             }
+        }
     ],
     "tool": {
         "toolID": "md5sum",

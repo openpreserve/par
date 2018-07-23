@@ -17,9 +17,8 @@
     },
     "inputs": [{
             "name": "MD5 checksum",
-            "type": "parProperty",
-            "description": "Checksum file to be checked",
-            "value": {
+            "description": "Checksum of the file to be checked",
+            "type": {
               "parProperty": {
                 "id": {
                   "guid":"944a16dc-41f6-574e-99d0-2555497b74a4",
@@ -28,26 +27,31 @@
                 },
                 "class":"checksum",
                 "type":"string"
-             } 
-           }
+             }
+           } 
         }, {
             "name": "inputfile",
-            "type": "File",
-            "description": "File that will be fixity checked"
+            "description": "File that will be fixity checked",
+            "type": {
+              "file": {
+                "filepath": ""
+              }
+            }
         }
     ],
     "outputs": [{
             "name": "PASS or FAIL",
             "description": "PASS if file matches the checksum, otherwise FAIL",
-            "type": "parProperty",
-            "value": {
-              "id": {
-                "guid":"444d6f5f-ae27-4350-a951-0c1c0ae3ff34",
-                "name": "PASS FAIL",
-                "namespace": "http://www.parcore.org/properties"
-              },
-              "class":"validity",
-              "type":"string"
+            "type": {
+              "parProperty": {
+                "id": {
+                  "guid":"444d6f5f-ae27-4350-a951-0c1c0ae3ff34",
+                  "name": "PASS FAIL",
+                  "namespace": "http://www.parcore.org/properties"
+                },
+                "class":"validity",
+                "type":"string"
+              }
             }
           } 
     ],

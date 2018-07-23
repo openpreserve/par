@@ -1,0 +1,58 @@
+{
+    "preservationActionName": "MD5 Checksum Validation Using md5sum",
+    "id": {
+        "guid": "367da64c-56a9-4f77-bfdf-0ba1a7593592",
+        "name": "MD5CheckMD5Sum2",
+        "namespace": "http://www.parcore.org/actions"
+    },
+    "description": "Validation of an MD5 checksum on a File using md5sum",
+    "example": "commandline 'cwltool md5check2.cwl md5check2.yml'",
+    "type": {
+        "id": {
+            "guid": "f2e953e4-425e-5ed1-a65e-efd0b2e061be",
+            "name": "http://id.loc.gov/vocabulary/preservation/eventType/fix",
+            "namespace": "url"
+        },
+        "label": "fixity check"
+    },
+    "inputs": [{
+            "name": "MD5 checksum",
+            "type": "parProperty",
+            "description": "Checksum file to be checked",
+            "value": {
+              "parProperty": {
+                "id": {
+                  "guid":"944a16dc-41f6-574e-99d0-2555497b74a4",
+                  "name": "MD5",
+                  "namespace": "http://www.parcore.org/properties"
+                },
+                "class":"checksum",
+                "type":"string"
+             } 
+           }
+        }, {
+            "name": "inputfile",
+            "type": "File",
+            "description": "File that will be fixity checked"
+        }
+    ],
+    "outputs": [{
+            "name": "PASS or FAIL",
+            "description": "PASS if file matches the checksum, otherwise FAIL",
+            "type": "parProperty",
+            "value": {
+              "id": {
+                "guid":"444d6f5f-ae27-4350-a951-0c1c0ae3ff34",
+                "name": "PASS FAIL",
+                "namespace": "http://www.parcore.org/properties"
+              },
+              "class":"validity",
+              "type":"string"
+            }
+          } 
+    ],
+    "tool": {
+        "toolID": "md5sum",
+        "toolName": "md5sum"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "id": {
+        "guid":"444d6f5f-ae27-4350-a951-0c1c0ae3ff34",
+        "name": "PASS FAIL",
+        "namespace": "http://www.parcore.org/properties"
+    },
+    "class":"validity",
+    "type":"string"
+}

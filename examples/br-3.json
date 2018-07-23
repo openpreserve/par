@@ -114,12 +114,9 @@
             },
 
             "optionalInputs": [{
-                    "name": "250x250>",
-                    "type": "string",
-                    "description": "Resize to fit a 250px square box",
-                    "binding": {
-                        "position": 1
-                    }
+                    "name": "250x250",
+                    "type": "parProperty",
+                    "description": "Resize to fit a 250px square box"
                 }
             ]
         }

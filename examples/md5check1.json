@@ -18,11 +18,7 @@
     "inputs": [{
             "name": "manifest.md5",
             "type": "File",
-            "description": "Manifest file containing the MD5 and name of the file to be checked",
-            "binding": {
-                "prefix": "-c",
-                "position": 1
-            }
+            "description": "Manifest file containing the MD5 and name of the file to be checked"
         }, {
             "name": "inputfile",
             "type": "File",
@@ -32,15 +28,8 @@
     "outputs": [{
             "name": "pass_fail",
             "description": "Fixity PASS or FAIL",
-            "type": "stdout",
-            "outputMapping": {
-                "mappingExpression": "grep -o -e 'FAILED' -e 'OK' | sed 's/OK/PASS/g' | sed 's/FAILED/FAIL/g'",
-                "mappingExpressionType": "shellScript",
-                "mapping": {
-                    "parPropertyId": "fixityStatus"
-                }
+            "type": "raw"
             }
-        }
     ],
     "tool": {
         "toolID": "md5sum",

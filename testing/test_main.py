@@ -92,7 +92,12 @@ class PreservationActionTest2(AbstractSchemaValidatorTest, TestCase):
     def runTest(self):
         self.validate_json('examples/md5check2.json')
 
+class PreservationActionTest3(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/preservation_action.json'
 
+    def runTest(self):
+        self.validate_json('examples/mediaInfo2.json')
 
 class ToolTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):

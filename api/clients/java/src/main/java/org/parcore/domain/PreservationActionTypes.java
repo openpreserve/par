@@ -24,8 +24,7 @@ import java.util.List;
 @ApiModel(description = "A list of preservation action types")
 public class PreservationActionTypes {
 
-//    @SerializedName("preservationActionTypes")
-    @SerializedName("preservationActionType")
+    @SerializedName("preservationActionTypes")
     private List<PreservationActionType> preservationActionTypes = null;
 
     public void addPreservationActionTypesItem(PreservationActionType preservationActionTypesItem) {

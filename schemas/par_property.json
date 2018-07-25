@@ -49,6 +49,11 @@
         "value": {
             "description": "Property Value is the measured value of a specific property for a particular object.",
             "type": "string"
+        },
+        
+        "localLastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
         }
     },
     "required": [

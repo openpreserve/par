@@ -80,6 +80,10 @@
         "notes": {
             "description": "A free text field for providing additional context. This may be used to record the decision making process that led to the formulation of this rule, details of real-world experience in applying the rule, or any other text.",
             "type": "string"
+        },
+        "localLastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
         }
     },
 

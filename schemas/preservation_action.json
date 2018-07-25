@@ -130,6 +130,10 @@
     },
     "tool": {
       "$ref": "http://www.parcore.org/schema/tool.json/#"
+    },
+    "localLastModifiedDate": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "required": [

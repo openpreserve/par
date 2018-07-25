@@ -78,13 +78,26 @@ class FormatTest(AbstractSchemaValidatorTest, TestCase):
         self.validate_json('examples/fmt-43.json')
 
 
-class PreservationActionTest(AbstractSchemaValidatorTest, TestCase):
+class PreservationActionTest1(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
         return 'schemas/preservation_action.json'
 
     def runTest(self):
-        self.validate_json('examples/md5check.json')
+        self.validate_json('examples/md5check1.json')
 
+class PreservationActionTest2(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/preservation_action.json'
+
+    def runTest(self):
+        self.validate_json('examples/md5check2.json')
+
+class PreservationActionTest3(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/preservation_action.json'
+
+    def runTest(self):
+        self.validate_json('examples/mediaInfo2.json')
 
 class ToolTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
@@ -123,6 +136,13 @@ class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
     def runTest(self):
         self.validate_json('examples/md5prop.json')
 
+
+class PassFailPropertyTest(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/par_property.json'
+
+    def runTest(self):
+        self.validate_json('examples/passfailprop.json')
 
 class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):

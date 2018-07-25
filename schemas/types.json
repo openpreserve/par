@@ -3,6 +3,17 @@
     "$schema": "http://json-schema.org/draft-06/schema#",
 
     "definitions": {
+        "parFile": {
+          "type": "object",
+          "description": "A file that is an input or output of a preservation action",
+          "properties": {
+            "filepath": {
+              "type": "string"
+            }
+          }, 
+          "required": [],
+          "additionalProperties": false
+        },
 
         "parIdentifier": {
             "type": "object",

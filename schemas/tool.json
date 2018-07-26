@@ -1,50 +1,50 @@
 {
-    "$id": "http://www.parcore.org/schema/tool.json/#",
-    "$schema": "http://json-schema.org/draft-06/schema#",
-    "definitions": {
-        "tool": {
-            "type": "object",
-            "description": "A software tool or application that can be used to perform preservation actions",
-            "properties": {
-                "toolName": {
-                    "type": "string"
-                },
-                "toolID": {
-                    "type": "string"
-                },
-                "toolLabel": {
-                    "type": "string"
-                },
-                "toolVersion": {
-                    "type": "string"
-                },
-                "toolPublisher": {
-                    "type": "string"
-                },
-                "toolAcceptedParameters": {
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
-                    }
-                },
-                "toolOperatingEnvironments": {
-                    "type": "array",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "localLastModifiedDate": {
-                    "type": "string",
-                    "format": "date-time"
-                }
-            },
-            "required": [
-                "toolName",
-                "toolID"
-            ],
-            "additionalProperties": false
+  "$id": "http://www.parcore.org/schema/tool.json/#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "tool": {
+      "additionalProperties": false,
+      "description": "A software tool or application that can be used to perform preservation actions",
+      "properties": {
+        "localLastModifiedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "toolAcceptedParameters": {
+          "items": {
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "toolID": {
+          "type": "string"
+        },
+        "toolLabel": {
+          "type": "string"
+        },
+        "toolName": {
+          "type": "string"
+        },
+        "toolOperatingEnvironments": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "toolPublisher": {
+          "type": "string"
+        },
+        "toolVersion": {
+          "type": "string"
         }
+      },
+      "required": [
+        "toolName",
+        "toolID"
+      ],
+      "type": "object"
     }
+  }
 }

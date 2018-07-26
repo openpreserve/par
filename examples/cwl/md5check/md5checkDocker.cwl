@@ -27,4 +27,3 @@ outputs:
   fixity_report:
     type: stdout
 stdout: fixity_report.txt
-

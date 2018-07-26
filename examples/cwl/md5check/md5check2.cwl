@@ -39,4 +39,3 @@ outputs:
         }
 
 stdout: fixity_report.txt
-

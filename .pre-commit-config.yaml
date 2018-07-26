@@ -1,0 +1,14 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v1.4.0
+    hooks:
+    -   id: check-byte-order-marker
+    -   id: check-case-conflict
+    -   id: check-docstring-first
+    -   id: check-json
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: forbid-new-submodules
+    -   id: name-tests-test
+    -   id: requirements-txt-fixer
+    -   id: pretty-format-json
+        args: [ --autofix, --indent=2]

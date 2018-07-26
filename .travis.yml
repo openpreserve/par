@@ -23,7 +23,6 @@ script:
   - pre-commit run --all-files --verbose
   - pytest
   - ajv compile -s "schemas/*.json" -r "schemas/*.json"
-  - ajv validate -s "schemas/*.json" -r "schemas/*.json"
   - ajv validate -s schemas/format.json -d "examples/fmt-*.json" -r "schemas/*.json"
   - ajv validate -s schemas/tool.json -d "examples/md5*.json" -r "schemas/*.json"
   - ajv validate -s schemas/business_rule.json -d "examples/br-*.json" -r "schemas/*.json"

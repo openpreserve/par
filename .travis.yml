@@ -1,7 +1,20 @@
 language: python
+
 python:
   - "2.7"
   - "3.4"
+
+before_install:
+  - sudo apt-get update -yqq
+
+before_script:
+  - pylint --errors-only ./tests
+
+install:
+  - pip install -r requirements.txt
+  -
+
 script:
   - ./scripts/lint-json-dirs
+  - pre-commit run --all-files --verbose
   - pytest

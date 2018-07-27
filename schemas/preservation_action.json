@@ -13,16 +13,14 @@
           "type": "string"
         },
         "type": {
-          "anyOf": [
-            {
+          "anyOf": [{
               "properties": {
                 "file": {
                   "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
                 }
               },
               "type": "object"
-            }, 
-            {
+            }, {
               "properties": {
                 "parProperty": {
                   "$ref": "http://www.parcore.org/schema/par_property.json/#"
@@ -52,24 +50,21 @@
           "type": "string"
         },
         "type": {
-          "anyOf": [
-            {
+          "anyOf": [{
               "properties": {
                 "file": {
                   "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
                 }
               },
               "type": "object"
-            }, 
-            {
+            }, {
               "properties": {
                 "parProperty": {
                   "$ref": "http://www.parcore.org/schema/par_property.json/#"
                 }
               },
               "type": "object"
-            }, 
-            {
+            }, {
               "properties": {
                 "raw": {
                   "type": "string"
@@ -144,25 +139,26 @@
               "$ref": "http://www.parcore.org/schema/format.json/#"
             }
           }
+        },
+        "minItems": 1,
+        "additionalItems": false
       },
-      "minItems": 1,
-      "additionalItems": false
+      "tool": {
+        "$ref": "http://www.parcore.org/schema/tool.json/#"
+      },
+      "type": {
+        "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
+      }
     },
-    "tool": {
-      "$ref": "http://www.parcore.org/schema/tool.json/#"
-    },
-    "type": {
-      "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
-    }
-  },
-  "required": [
-    "id",
-    "description",
-    "type",
-    "inputs",
-    "outputs",
-    "tool"
-  ],
-  "title": "Preservation Action",
-  "type": "object"
+    "required": [
+      "id",
+      "description",
+      "type",
+      "inputs",
+      "outputs",
+      "tool"
+    ],
+    "title": "Preservation Action",
+    "type": "object"
+  }
 }

@@ -112,7 +112,6 @@
       "type": "string"
     },
     "outputs": {
-      "additionalItems": false,
       "items": {
         "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
       },

@@ -3,33 +3,32 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
     "inputItem": {
+      "additionalProperties": false,
       "description": "An input to a preservation action",
-      "title": "Preservation Action Input",
-      "type": "object",
       "properties": {
-        "name": {
+        "description": {
           "type": "string"
         },
-        "description": {
+        "name": {
           "type": "string"
         },
         "type": {
           "anyOf": [
             {
-              "type": "object",
               "properties": {
                 "file": {
                   "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
                 }
-              }
+              },
+              "type": "object"
             },
             {
-              "type": "object",
               "properties": {
                 "parProperty": {
                   "$ref": "http://www.parcore.org/schema/par_property.json/#"
                 }
-              }
+              },
+              "type": "object"
             }
           ]
         }
@@ -39,44 +38,44 @@
         "description",
         "type"
       ],
-      "additionalProperties": false
+      "title": "Preservation Action Input",
+      "type": "object"
     },
     "outputItem": {
+      "additionalProperties": false,
       "description": "An output from a preservation action",
-      "title": "Preservation Action Output",
-      "type": "object",
       "properties": {
-        "name": {
+        "description": {
           "type": "string"
         },
-        "description": {
+        "name": {
           "type": "string"
         },
         "type": {
           "anyOf": [
             {
-              "type": "object",
               "properties": {
                 "file": {
                   "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
                 }
-              }
+              },
+              "type": "object"
             },
             {
-              "type": "object",
               "properties": {
                 "parProperty": {
                   "$ref": "http://www.parcore.org/schema/par_property.json/#"
                 }
-              }
+              },
+              "type": "object"
             },
             {
-              "type": "object",
               "properties": {
                 "raw": {
                   "type": "string"
                 }
-              }
+              },
+              "type": "object"
             }
           ]
         }
@@ -86,34 +85,34 @@
         "description",
         "type"
       ],
-      "additionalProperties": false
+      "title": "Preservation Action Output",
+      "type": "object"
     }
   },
-  "title": "Preservation Action",
-  "type": "object",
   "properties": {
-    "id": {
-      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
-    },
     "description": {
       "type": "string"
     },
     "example": {
       "type": "string"
     },
-    "type": {
-      "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
+    "id": {
+      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
     },
     "inputs": {
-      "type": "array",
+      "additionalItems": false,
       "items": {
         "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
       },
       "minItems": 1,
-      "additionalItems": false
+      "type": "array"
+    },
+    "localLastModifiedDate": {
+      "format": "date-time",
+      "type": "string"
     },
     "outputs": {
-      "type": "array",
+      "additionalItems": false,
       "items": {
         "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
       },
@@ -155,9 +154,8 @@
     "tool": {
       "$ref": "http://www.parcore.org/schema/tool.json/#"
     },
-    "localLastModifiedDate": {
-      "type": "string",
-      "format": "date-time"
+    "type": {
+      "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
     }
   },
   "required": [
@@ -167,5 +165,7 @@
     "inputs",
     "outputs",
     "tool"
-  ]
+  ],
+  "title": "Preservation Action",
+  "type": "object"
 }

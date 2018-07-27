@@ -1,7 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import json
 import os
-import sys
 from unittest import TestCase
 
 from jsonschema import validate, FormatChecker, RefResolver
@@ -37,7 +36,7 @@ class AbstractSchemaValidatorTest(object):
             "http://www.parcore.org/schema/types.json/#",
             "schemas/types.json"
         ),
-                (
+        (
             "http://www.parcore.org/schema/par_property.json/#",
             "schemas/par_property.json"
         ),
@@ -47,9 +46,11 @@ class AbstractSchemaValidatorTest(object):
 
     @abstractmethod
     def get_json_schema_file_name(self):
+        """Return the file name for the JSON schema for the test case."""
         pass
 
     def validate_json(self, json_file_name):
+        """Validate the JSON using the test classes schema file."""
         json_schema = self.get_json(self.get_json_schema_file_name())
         json_data = self.get_json(json_file_name)
         validate(
@@ -143,14 +144,6 @@ class PassFailPropertyTest(AbstractSchemaValidatorTest, TestCase):
 
     def runTest(self):
         self.validate_json('examples/passfailprop.json')
-
-class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
-    def get_json_schema_file_name(self):
-        return 'schemas/par_property.json'
-
-    def runTest(self):
-        self.validate_json('examples/md5prop.json')
-
 
 class AspectRatioPropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):

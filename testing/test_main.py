@@ -18,28 +18,28 @@ class AbstractSchemaValidatorTest(object):
             get_schema_path("format.json")
         ),
         (
-            "http://www.parcore.org/schema/preservation_action.json/#",
-            get_schema_path("preservation_action.json")
+            "http://www.parcore.org/schema/preservation-action.json/#",
+            get_schema_path("preservation-action.json")
         ),
         (
             "http://www.parcore.org/schema/tool.json/#",
             get_schema_path("tool.json")
         ),
         (
-            "http://www.parcore.org/schema/business_rule.json/#",
-            "schemas/business_rule.json"
+            "http://www.parcore.org/schema/business-rule.json/#",
+            "schemas/business-rule.json"
         ),
         (
-            "http://www.parcore.org/schema/preservation_action_type.json/#",
-            "schemas/preservation_action_type.json"
+            "http://www.parcore.org/schema/preservation-action-type.json/#",
+            "schemas/preservation-action-type.json"
         ),
         (
             "http://www.parcore.org/schema/types.json/#",
             "schemas/types.json"
         ),
                 (
-            "http://www.parcore.org/schema/par_property.json/#",
-            "schemas/par_property.json"
+            "http://www.parcore.org/schema/par-property.json/#",
+            "schemas/par-property.json"
         ),
     ]
 
@@ -80,21 +80,21 @@ class FormatTest(AbstractSchemaValidatorTest, TestCase):
 
 class PreservationActionTest1(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/preservation_action.json'
+        return 'schemas/preservation-action.json'
 
     def runTest(self):
         self.validate_json('examples/md5check1.json')
 
 class PreservationActionTest2(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/preservation_action.json'
+        return 'schemas/preservation-action.json'
 
     def runTest(self):
         self.validate_json('examples/md5check2.json')
 
 class PreservationActionTest3(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/preservation_action.json'
+        return 'schemas/preservation-action.json'
 
     def runTest(self):
         self.validate_json('examples/mediaInfo2.json')
@@ -109,21 +109,21 @@ class ToolTest(AbstractSchemaValidatorTest, TestCase):
 
 class BusinessRuleTest1(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/business_rule.json'
+        return 'schemas/business-rule.json'
 
     def runTest(self):
         self.validate_json('examples/br-1.json')
 
 class BusinessRuleTest2(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/business_rule.json'
+        return 'schemas/business-rule.json'
 
     def runTest(self):
         self.validate_json('examples/br-2.json')
 
 class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/business_rule.json'
+        return 'schemas/business-rule.json'
 
     def runTest(self):
         self.validate_json('examples/br-3.json')
@@ -131,7 +131,7 @@ class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
 
 class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/par_property.json'
+        return 'schemas/par-property.json'
 
     def runTest(self):
         self.validate_json('examples/md5prop.json')
@@ -139,14 +139,14 @@ class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
 
 class PassFailPropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/par_property.json'
+        return 'schemas/par-property.json'
 
     def runTest(self):
         self.validate_json('examples/passfailprop.json')
 
 class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/par_property.json'
+        return 'schemas/par-property.json'
 
     def runTest(self):
         self.validate_json('examples/md5prop.json')
@@ -154,7 +154,7 @@ class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
 
 class AspectRatioPropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/par_property.json'
+        return 'schemas/par-property.json'
 
     def runTest(self):
         self.validate_json('examples/aspectratioprop.json')
@@ -162,7 +162,7 @@ class AspectRatioPropertyTest(AbstractSchemaValidatorTest, TestCase):
 
 class WidthPropertyTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
-        return 'schemas/par_property.json'
+        return 'schemas/par-property.json'
 
     def runTest(self):
         self.validate_json('examples/ebucorewidthprop.json')

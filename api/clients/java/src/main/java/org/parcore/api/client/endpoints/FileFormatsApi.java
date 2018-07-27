@@ -53,6 +53,8 @@ public interface FileFormatsApi {
     FileFormats getFileFormatsByModifiedDates(Boolean returnSubEntities, String modifiedAfter, String modifiedBefore) throws ApiException;
 
     /**
+     * Retrieve a paged list of file formats modified between given dates
+     *
      * @param returnSubEntities Specify if sub entities should be included in response. (optional)
      * @param modifiedAfter     Filter the file formats to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\&#39;T\\&#39;hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time. (optional)
      * @param modifiedBefore    Filter the file formats to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\&#39;T\\&#39;hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time (optional)

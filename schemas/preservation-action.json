@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/preservation_action.json/#",
+  "$id": "http://www.parcore.org/schema/preservation-action.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
     "inputItem": {
@@ -27,7 +27,7 @@
               "type": "object",
               "properties": {
                 "parProperty": {
-                  "$ref": "http://www.parcore.org/schema/par_property.json/#"
+                  "$ref": "http://www.parcore.org/schema/par-property.json/#"
                 }
               }
             }
@@ -66,7 +66,7 @@
               "type": "object",
               "properties": {
                 "parProperty": {
-                  "$ref": "http://www.parcore.org/schema/par_property.json/#"
+                  "$ref": "http://www.parcore.org/schema/par-property.json/#"
                 }
               }
             },
@@ -102,12 +102,12 @@
       "type": "string"
     },
     "type": {
-      "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
+      "$ref": "http://www.parcore.org/schema/preservation-action-type.json/#"
     },
     "inputs": {
       "type": "array",
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
+        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputItem"
       },
       "minItems": 1,
       "additionalItems": false
@@ -115,7 +115,7 @@
     "outputs": {
       "type": "array",
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
+        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputItem"
       },
       "minItems": 1,
       "additionalItems": false
@@ -123,7 +123,7 @@
     "constraints": {
       "type": "array",
       "items": {
-        "$ref": "http://www.parcore.org/schema/par_property.json/#"
+        "$ref": "http://www.parcore.org/schema/par-property.json/#"
       },
       "minItems": 1,
       "additionalItems": false

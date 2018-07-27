@@ -21,6 +21,766 @@
     "http"
   ],
   "paths": {
+    "/business-rules": {
+      "post": {
+        "tags": [
+          "Business Rules"
+        ],
+        "summary": "Create a new business rule",
+        "description": "Create a new business rule with the data provided in the body of the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/businessRule"
+            },
+            "description": "Required body parameters are: \"id\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Business Rule successfully created.",
+            "schema": {
+              "$ref": "#/definitions/businessRule"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Business Rules"
+        ],
+        "summary": "Retrieve all business rules",
+        "description": "Allow to retrieve the details of all the business rules",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of business rules returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of business rules returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "modifiedAfter",
+            "type": "string",
+            "description": "Filter the business rules to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedBefore",
+            "type": "string",
+            "description": "Filter the business rules to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/businessRule"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/business-rules/{id}": {
+      "get": {
+        "tags": [
+          "Business Rules"
+        ],
+        "summary": "Retrieve a business rule",
+        "description": "Allow to retrieve the details of the specific business rule provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the business rule to retrieve.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/businessRule"
+            }
+          },
+          "400": {
+            "description": "Business rule not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Business Rules"
+        ],
+        "summary": "Update an existing business rule",
+        "description": "Allow to modify the content of a business rule. The updated business rule will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing business rule to update",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/businessRule"
+            },
+            "description": "Required body parameters are: \"id\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Business rule successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/businessRule"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Business Rules"
+        ],
+        "summary": "Delete a business rule",
+        "description": "Delete a new business rule.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing business rule to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Business Rule successfully deleted."
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/par-properties": {
+      "post": {
+        "tags": [
+          "Par Properties"
+        ],
+        "summary": "Create a new par property",
+        "description": "Create a new par property with the data provided in the body of the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/parProperty"
+            },
+            "description": "Required body parameters are: \"id\", \"class\" and \"type\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Par Property successfully created.",
+            "schema": {
+              "$ref": "#/definitions/parProperty"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Par Properties"
+        ],
+        "summary": "Retrieve all par properties",
+        "description": "Allow to retrieve the details of all the par properties",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of par properties returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of par properties returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "modifiedAfter",
+            "type": "string",
+            "description": "Filter the par properties to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedBefore",
+            "type": "string",
+            "description": "Filter the par properties to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/parProperty"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/par-properties/{id}": {
+      "get": {
+        "tags": [
+          "Par Properties"
+        ],
+        "summary": "Retrieve a par property",
+        "description": "Allow to retrieve the details of the specific par property provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the par property to retrieve.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/parProperty"
+            }
+          },
+          "400": {
+            "description": "Par property not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Par Properties"
+        ],
+        "summary": "Update an existing par property",
+        "description": "Allow to modify the content of a par property. The updated par property will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing par property to update",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/parProperty"
+            },
+            "description": "Required body parameters are: \"id\", \"class\" and \"type\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Par property successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/parProperty"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Par Properties"
+        ],
+        "summary": "Delete a par property",
+        "description": "Delete a par property.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing par property to deletee",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Par Property successfully deleted."
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/preservation-actions": {
+      "post": {
+        "tags": [
+          "Preservation Actions"
+        ],
+        "summary": "Create a new preservation action",
+        "description": "Create a new preservation action with the data provided in the body of the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/preservationAction"
+            },
+            "description": "Required body parameters are: \"id\", \"description\", \"type\", \"inputs\", \"outputs\",          and \"tools\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Preservation Action successfully created.",
+            "schema": {
+              "$ref": "#/definitions/preservationAction"
+            }
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Preservation Actions"
+        ],
+        "summary": "Retrieve all preservation actions",
+        "description": "Allow to retrieve the details of all the preservation action",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "string",
+            "description": "An integer to limit the number of preservation action returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "type": "string",
+            "description": "An integer to specify the offset of the first element of the list of preservation action returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "modifiedAfter",
+            "type": "string",
+            "description": "Filter the preservation action to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time."
+          },
+          {
+            "in": "query",
+            "name": "modifiedBefore",
+            "type": "string",
+            "description": "Filter the preservation action to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time"
+          },
+          {
+            "in": "header",
+            "name": "tool",
+            "type": "string",
+            "description": "'Filter the preservation actions by the Tool they use, provided its ID. Multiple IDs can be passed in within the same string, linked together using an ampersand symbol as follow: ID_1&ID_2&ID_3. When more than one ID is provided, the endpoint will return all the preservation actions that use one of the IDs in the list. When used together with the preservation_action_type header parameter, the endpoint will return only those preservation actions satisfying both filters' criteria. A list of Tool IDs cannot be combined with another list of Preservation Action Type IDs. '"
+          },
+          {
+            "in": "header",
+            "name": "preservation_action_type",
+            "type": "string",
+            "description": "'Filter the preservation actions by the Preservation Action Type they use, provided its ID. Multiple IDs can be passed in within the same string, linked together using an ampersand symbol as follow: ID_1&ID_2&ID_3. When more than one ID is provided, the endpoint will return all the preservation actions that use one of the IDs in the list. When used together with the tool header parameter, the endpoint will return only those preservation actions satisfying both filters' criteria. A list of Tool IDs cannot be combined with another list of Preservation Action Type IDs. '"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/preservationAction"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      }
+    },
+    "/preservation-actions/{id}": {
+      "get": {
+        "tags": [
+          "Preservation Actions"
+        ],
+        "summary": "Retrieve a preservation action",
+        "description": "Allow to retrieve the details of the specific preservation action provided in the url.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the preservation action to retrieve.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request has gone thorugh successfully.",
+            "schema": {
+              "$ref": "#/definitions/preservationAction"
+            }
+          },
+          "400": {
+            "description": "Preservation action not found."
+          },
+          "403": {
+            "description": "Forbidden action. Trying to update the value of a non-modifiable field."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Preservation Actions"
+        ],
+        "summary": "Update an existing preservation action",
+        "description": "Allow to modify the content of a preservation action. The updated preservation action will like just like the body provided in the request.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing preservation action to update",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body example",
+            "schema": {
+              "$ref": "#/definitions/preservationAction"
+            },
+            "description": "Required body parameters are: \"id\", \"description\", \"type\", \"inputs\", \"outputs\",           and \"tools\".",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Preservation action successfully updated.",
+            "schema": {
+              "$ref": "#/definitions/preservationAction"
+            }
+          },
+          "403": {
+            "description": "Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Preservation Actions"
+        ],
+        "summary": "Delete a preservation action",
+        "description": "Delete a preservation action.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing preservation action to deletee",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Preservation Action successfully deleted."
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
     "/tools": {
       "post": {
         "tags": [
@@ -75,7 +835,7 @@
         "tags": [
           "Tools"
         ],
-        "summary": "Retrieve all tool",
+        "summary": "Retrieve all tools",
         "description": "Allow to retrieve the details of all the tool",
         "consumes": [
           "application/json"
@@ -88,13 +848,27 @@
             "in": "query",
             "name": "limit",
             "type": "string",
-            "description": "An integer to limit the number of tools returned. Default value is zero."
+            "description": "An integer to limit the number of tools returned. Default value is zero, which will no filter the result."
           },
           {
             "in": "query",
             "name": "offset",
             "type": "string",
-            "description": "An integer to specify the offset of the first element of the list of tools returned. Default value is zero."
+            "description": "An integer to specify the offset of the first element of the list of tools returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "modifiedAfter",
+            "type": "string",
+            "description": "Filter the tools to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedBefore",
+            "type": "string",
+            "description": "Filter the tools to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time",
+            "required": false
           }
         ],
         "responses": {
@@ -116,7 +890,7 @@
         }
       }
     },
-    "/tool/{toolID}": {
+    "/tools/{toolID}": {
       "get": {
         "tags": [
           "Tools"
@@ -211,9 +985,53 @@
             "authorization": []
           }
         ]
+      },
+      "delete": {
+        "tags": [
+          "Tools"
+        ],
+        "summary": "Delete a tool",
+        "description": "Delete a tool.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "toolID",
+            "type": "string",
+            "description": "Unique identifier for the existing tool to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tool successfully deleted."
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
       }
     },
-    "/preservation_action_types": {
+    "/preservation-action-types": {
       "post": {
         "tags": [
           "Preservation Action Types"
@@ -280,13 +1098,27 @@
             "in": "query",
             "name": "limit",
             "type": "string",
-            "description": "An integer to limit the number of preservation action types returned. Default value is zero."
+            "description": "An integer to limit the number of preservation action types returned. Default value is zero, which will no filter the result."
           },
           {
             "in": "query",
             "name": "offset",
             "type": "string",
-            "description": "An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero."
+            "description": "An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero, which will no filter the result."
+          },
+          {
+            "in": "query",
+            "name": "modifiedAfter",
+            "type": "string",
+            "description": "Filter the preservation action types to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedBefore",
+            "type": "string",
+            "description": "Filter the preservation action types to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\\'T\\'hh\\:mm\\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\\:00\\:00 UTC time",
+            "required": false
           }
         ],
         "responses": {
@@ -308,7 +1140,7 @@
         }
       }
     },
-    "/preservation_action_types/{id}": {
+    "/preservation-action-types/{id}": {
       "get": {
         "tags": [
           "Preservation Action Types"
@@ -383,7 +1215,7 @@
         ],
         "responses": {
           "201": {
-            "description": "File format successfully updated.",
+            "description": "Preservation action type successfully updated.",
             "schema": {
               "$ref": "#/definitions/preservationActionType"
             }
@@ -403,9 +1235,53 @@
             "authorization": []
           }
         ]
+      },
+      "delete": {
+        "tags": [
+          "Preservation Action Types"
+        ],
+        "summary": "Delete a preservation action type",
+        "description": "Delete a preservation action type.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "Unique identifier for the existing preservation action type to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Preservation action type successfully deleted."
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
       }
     },
-    "/fileFormats": {
+    "/file-formats": {
       "post": {
         "tags": [
           "File Formats"
@@ -500,13 +1376,13 @@
             "in": "query",
             "name": "limit",
             "type": "string",
-            "description": "An integer to limit the number of file formats returned. Default value is zero."
+            "description": "An integer to limit the number of file formats returned. Default value is zero, which will no filter the result."
           },
           {
             "in": "query",
             "name": "offset",
             "type": "string",
-            "description": "An integer to specify the offset of the first element of the list of file formats returned. Default value is zero."
+            "description": "An integer to specify the offset of the first element of the list of file formats returned. Default value is zero, which will no filter the result."
           }
         ],
         "responses": {
@@ -528,7 +1404,7 @@
         }
       }
     },
-    "/fileFormats/{puid}": {
+    "/file-formats/{puid}": {
       "get": {
         "tags": [
           "File Formats"
@@ -627,6 +1503,50 @@
           },
           "404": {
             "description": "Endpoint does not exist."
+          },
+          "502": {
+            "description": "Server failed to handle the request."
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "File Formats"
+        ],
+        "summary": "Delete a file format",
+        "description": "Delete a file format.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "puid",
+            "type": "string",
+            "description": "Unique identifier for the existing file format to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "File format type successfully deleted."
+          },
+          "400": {
+            "description": "Required field missing in the request or the provided puid is already being used."
+          },
+          "404": {
+            "description": "Endpoint does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error."
           },
           "502": {
             "description": "Server failed to handle the request."
@@ -912,7 +1832,7 @@
       ]
     },
     "FileFormat": {
-      "title": "fileFormat",
+      "title": "File Format",
       "description": "A file format as defined by PRONOM",
       "type": "object",
       "properties": {
@@ -1106,6 +2026,10 @@
         },
         "uri": {
           "type": "string"
+        },
+        "localLastModifiedDate": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "required": [
@@ -1128,6 +2052,7 @@
       }
     },
     "tool": {
+      "title": "Tool",
       "type": "object",
       "description": "A software tool or application that can be used to perform preservation actions",
       "properties": {
@@ -1150,7 +2075,7 @@
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+            "$ref": "#/definitions/parameter"
           }
         },
         "toolOperatingEnvironments": {
@@ -1159,6 +2084,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "localLastModifiedDate": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "required": [
@@ -1179,6 +2108,334 @@
           "type": "string"
         }
       }
+    },
+    "inputItem": {
+      "description": "An input to a preservation action",
+      "title": "Preservation Action Input",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "File",
+            "string",
+            "boolean",
+            "integer",
+            "stdin"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "binding": {
+          "type": "object",
+          "properties": {
+            "prefix": {
+              "type": "string"
+            },
+            "position": {
+              "type": "integer"
+            }
+          }
+        },
+        "secondaryFiles": {
+          "type": "array",
+          "description": "files that need to be present when a tool is run, but are not listed on the command line",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "outputItem": {
+      "description": "An output from a preservation action",
+      "title": "Preservation Action Output",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "File",
+            "stdout",
+            "stderr"
+          ]
+        },
+        "binding": {
+          "type": "object",
+          "properties": {
+            "glob": {
+              "type": "string"
+            }
+          }
+        },
+        "outputMapping": {
+          "type": "object",
+          "properties": {
+            "mappingExpressionType": {
+              "enum": [
+                "shellScript",
+                "javaScript",
+                "XPath"
+              ]
+            },
+            "mappingExpression": {
+              "type": "string"
+            },
+            "mapping": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "preservationAction": {
+      "title": "Preservation Action",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "description": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/preservationActionType"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inputItem"
+          },
+          "minItems": 1
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/outputItem"
+          },
+          "minItems": 1
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/parProperty"
+          },
+          "minItems": 1
+        },
+        "tool": {
+          "$ref": "#/definitions/tool"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "type",
+        "inputs",
+        "outputs",
+        "tool"
+      ]
+    },
+    "parProperty": {
+      "title": "PAR Property",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "class": {
+          "example": "other",
+          "description": "Property Class is the logical type of a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.",
+          "enum": [
+            "checksum",
+            "file format",
+            "validity",
+            "size",
+            "rate",
+            "raw",
+            "other"
+          ]
+        },
+        "type": {
+          "example": "boolean",
+          "description": "Property Type is the datatype in which the value of a specific property should be formatted, for example fmt/43, MD5 and SHA512 values are typically strings, validity metrics may be booleans, size measures will be numeric types.",
+          "enum": [
+            "string",
+            "boolean",
+            "integer",
+            "float",
+            "other"
+          ]
+        },
+        "units": {
+          "description": "Property Units allow for the specification of the units in which the value is given, for example an image size may be given in pixels (px), video bitrates may be specified in bits per second (bps) or kilobits per second (kbps).",
+          "type": "string"
+        },
+        "equivalentTo": {
+          "description": "Equivalent To allows for assertions that a specific property is equivalent to named properties in other schemas or registries, for example, an Aspect Ration property for a video may be declared to be equivalent to the ebucore:aspectRatio, even if the representation of the measurement is different",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "value": {
+          "description": "Property Value is the measured value of a specific property for a particular object.",
+          "type": "string"
+        },
+        "localLastModifiedDate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "class",
+        "type"
+      ]
+    },
+    "parIdentifier": {
+      "title": "PAR Identifier",
+      "type": "object",
+      "description": "A generic identifier type for any PAR Core Entity. An identifier in PAR consists of the name of the object to identify, and the namespace in which that name is unique. These basic components should be combined into a GUID (Globally Unique Identifier). This is intended to be the machine readable and usable form and is the resource identifier that can be specified unambiguously in an API call. It is strongly recommended that this is a Version 3 or Version 5 UUID, generated by specifying the name of the object and a UUID identifying the namespace. The name and namespace elements are intended to be more human readable and usable forms of the identifier. Names are not required to be universally unique, but the combination of name and namespace should be.",
+      "properties": {
+        "guid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "guid"
+      ]
+    },
+    "formatFamily": {
+      "title": "Format Family",
+      "type": "object",
+      "description": "A format family is simply a means of grouping more specific file formats into more general groups. These can be high level groupings such as Videos, Documents, etc, or more specific groupings such as JPEGs, Excel Spreadsheets, etc. It may even be used to group otherwise unrelated formats, to capture, for example, the set of accepted formats, for example, [PDF 1.4, TIFF, MKV, WAV], or to specify all formats, e.g. [ALL]. These can be formally specified, with a fixed ID and Namespace, or just a generic label",
+      "properties": {
+        "identifier": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "familyType": {
+          "type": "string"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/parIdentifier"
+          }
+        }
+      }
+    },
+    "parameter": {
+      "title": "Parameter",
+      "type": "object"
+    },
+    "action": {
+      "title": "Action",
+      "type": "object",
+      "properties": {
+        "preservationAction": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "optionalInputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inputItem"
+          }
+        },
+        "outputsRetrieved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/outputItem"
+          }
+        },
+        "priority": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "preservationAction"
+      ]
+    },
+    "businessRule": {
+      "title": "Business Rule",
+      "description": "A Business Rule describes additional context asserting how a Preservation Action should be performed. This allows the author of the rule to specify for example, a priority order in which to attempt certain Preservation Actions on particular content types, which inputs to supply, which outputs to extract etc. It also allows some free text fields to provide justification or share experience.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "description": {
+          "description": "A short human readable explanation/display name for the Business Rule, e.g. 'Use md5sum to perform the MD5Check Preservation Action for all files'",
+          "type": "string"
+        },
+        "formats": {
+          "description": "A list of file formats that this Business Rule should be applied to",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/parIdentifier"
+          }
+        },
+        "formatFamilies": {
+          "description": "A list of format families that this Business Rule should be applied to",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/formatFamily"
+          }
+        },
+        "preservationActionTypes": {
+          "description": "A list of Preservation Action Types that this Business Rule should be applied to. This might be a subset of those that the Preservation Actions themselves apply to. For example, a file format transformation action might itself apply to Migration and Normalization action types, but the Business Rule might be applicable only to Normalization",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/preservationActionType"
+          }
+        },
+        "preservationActions": {
+          "description": "A list of specific actions. These are defined internally to reference the Core Preservation Action, the priority order in which it should be performed, and any inputs and outputs that should be used.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/action"
+          }
+        },
+        "notes": {
+          "description": "A free text field for providing additional context. This may be used to record the decision making process that led to the formulation of this rule, details of real-world experience in applying the rule, or any other text.",
+          "type": "string"
+        },
+        "localLastModifiedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id"
+      ]
     }
   },
   "externalDocs": {

@@ -1,5 +1,5 @@
 {
-    "$id": "http://www.parcore.org/schema/par_property.json/#",
+    "$id": "http://www.parcore.org/schema/par-property.json/#",
     "$schema": "http://json-schema.org/draft-06/schema#",
     "description": "this is a skeleton definition of a Property",
     "title": "PAR Property",

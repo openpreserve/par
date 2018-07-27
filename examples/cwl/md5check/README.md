@@ -30,4 +30,3 @@ Outputs:
 ## md5checkDocker.cwl
 
 Same as md5check1.cwl but runs md5sum in a docker container.
-

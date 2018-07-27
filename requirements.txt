@@ -1,2 +1,4 @@
 demjson
 jsonschema
+pre-commit
+pylint

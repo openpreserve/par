@@ -1,4 +1,31 @@
 {
+  "constraints": [
+    {
+      "allowedFormats": [
+        {
+          "id": {
+            "guid": "bf5ae53e-ffb4-4c40-a4f2-5b8e7c53e602",
+            "name": "x-fmt/384",
+            "namespace": "http://www.nationalarchives.gov.uk/"
+          },
+          "localLastModifiedDate": "2018-06-14T15:00:00.0Z",
+          "name": "Quicktime"
+        }
+      ],
+      "allowedPropertiesAnyOf": [
+        {
+          "class": "file format",
+          "id": {
+            "guid": "6bee4d02-20a4-4344-bf84-16be0418b08d",
+            "name": "fmt/199",
+            "namespace": "http://www.nationalarchives.gov.uk/"
+          },
+          "type": "string"
+        }
+      ],
+      "inputItemName": "inputfile"
+    }
+  ],
   "description": "Extraction of properties for Video files using MediaInfo",
   "example": "commandline 'cwltool mediaInfo2.cwl mediaInfo2.yml'",
   "id": {
@@ -66,34 +93,8 @@
         }
       }
     }
-    ],
-    "constraints": [
-      {
-        "inputItemName": "inputfile",
-        "allowedPropertiesAnyOf": [
-          {
-            "id":{
-              "guid": "6bee4d02-20a4-4344-bf84-16be0418b08d",
-              "name": "fmt/199",
-              "namespace": "http://www.nationalarchives.gov.uk/"
-            },
-            "class": "file format",
-            "type": "string"
-          }
-        ],
-        "allowedFormats": [
-          {
-          "id":{
-            "guid": "bf5ae53e-ffb4-4c40-a4f2-5b8e7c53e602",
-            "name": "x-fmt/384",
-            "namespace": "http://www.nationalarchives.gov.uk/"
-          },
-          "name": "Quicktime",
-          "localLastModifiedDate": "2018-06-14T15:00:00.0Z"
-        }
-      ]
-    }
   ],
+  "preservationActionName": "AV Property Extraction Using MediaInfo",
   "tool": {
     "toolID": "mediainfo",
     "toolName": "mediainfo"

@@ -93,7 +93,30 @@
     "constraints": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/par_property.json/#"
+        "properties": {
+          "allowedFormats": {
+            "items": {
+              "$ref": "http://www.parcore.org/schema/format.json/#"
+            },
+            "type": "array"
+          },
+          "allowedPropertiesAllOf": {
+            "items": {
+              "$ref": "http://www.parcore.org/schema/par_property.json/#"
+            },
+            "type": "array"
+          },
+          "allowedPropertiesAnyOf": {
+            "items": {
+              "$ref": "http://www.parcore.org/schema/par_property.json/#"
+            },
+            "type": "array"
+          },
+          "inputItemName": {
+            "type": "string"
+          }
+        },
+        "type": "object"
       },
       "minItems": 1,
       "type": "array"

@@ -1,130 +1,130 @@
 {
-    "id":{
-        "id": "fmt/43",
-        "namespaceURI": "http://www.nationalarchives.gov.uk/",
-        "namespacePrefix": ""
+  "aliases": [
+    "JFIF (1.01)"
+  ],
+  "binaryFileFormat": "Binary",
+  "byteOrders": [
+    "Big-endian (Motorola)"
+  ],
+  "description": "The JPEG File Interchange Format (JFIF) is a file format for storing JPEG-compressed raster images. It was developed by the Independent JPEG Group and C-Cube Microsystems, in the absence of any such format being defined in the JPEG standard, and rapidly became a de facto standard; this is what is commonly referred to as the JPEG file format. A JFIF file comprises a JPEG data stream together with a JFIF marker. It begins with a Start of Image (SOI) marker, immediately followed by a JFIF Application (APP0). This is followed by the JPEG image data, which is terminated by an End of Image (EOI) marker. JFIF supports up to 24-bit colour and uses lossy compression (based on the Discrete Cosine Transform algorithm). Other types of compression are available through JPEG extensions, including progressive image buildup, arithmetic encoding, variable quantization, selective refinement, image tiling, and lossless compression, but these may not be supported by all JFIF readers and writers.",
+  "developers": [
+    {
+      "developerCompoundName": "Independent JPEG Group",
+      "developerId": "1",
+      "developerIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "organisationName": "Independent JPEG Group"
+    }
+  ],
+  "disclosure": "full",
+  "externalSignatures": [
+    {
+      "externalSignatureId": "665",
+      "externalSignatureIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "signature": "jpg",
+      "signatureType": "File extension"
     },
-    "name": "JPEG File Interchange Format",
-    "version": "1.01",
-    "aliases": [
-        "JFIF (1.01)"
-    ],
-    "types": [
-        "Image (Raster)"
-    ],
-    "disclosure": "full",
-    "description": "The JPEG File Interchange Format (JFIF) is a file format for storing JPEG-compressed raster images. It was developed by the Independent JPEG Group and C-Cube Microsystems, in the absence of any such format being defined in the JPEG standard, and rapidly became a de facto standard; this is what is commonly referred to as the JPEG file format. A JFIF file comprises a JPEG data stream together with a JFIF marker. It begins with a Start of Image (SOI) marker, immediately followed by a JFIF Application (APP0). This is followed by the JPEG image data, which is terminated by an End of Image (EOI) marker. JFIF supports up to 24-bit colour and uses lossy compression (based on the Discrete Cosine Transform algorithm). Other types of compression are available through JPEG extensions, including progressive image buildup, arithmetic encoding, variable quantization, selective refinement, image tiling, and lossless compression, but these may not be supported by all JFIF readers and writers.",
-    "binaryFileFormat": "Binary",
-    "byteOrders": [
-        "Big-endian (Motorola)"
-    ],
-    "provenance": {
-        "provenanceSourceId": "1",
-        "provenanceSourceNamespace": "http://www.nationalarchives.gov.uk/",
-        "provenanceName": "Digital Preservation Department / The National Archives",
-        "provenanceSourceDate": "2005-03-11"
+    {
+      "externalSignatureId": "694",
+      "externalSignatureIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "signature": "jpe",
+      "signatureType": "File extension"
     },
-    "lastUpdatedDate": "2005-08-02",
-    "identifiers": [
+    {
+      "externalSignatureId": "736",
+      "externalSignatureIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "signature": "jpeg",
+      "signatureType": "File extension"
+    }
+  ],
+  "id": {
+    "guid": "aa415933-f8e6-5b56-ba35-f032b59683f2",
+    "name": "fmt/43",
+    "namespace": "http://www.nationalarchives.gov.uk/"
+  },
+  "identifiers": [
+    {
+      "identifier": "fmt/43",
+      "identifierType": "PUID"
+    },
+    {
+      "identifier": "image/jpeg",
+      "identifierType": "MIME"
+    },
+    {
+      "identifier": "public.jpeg",
+      "identifierType": "Apple Uniform Type Identifier"
+    }
+  ],
+  "internalSignatures": [
+    {
+      "byteSequences": [
         {
-            "identifier": "fmt/43",
-            "identifierType": "PUID"
+          "byteSequenceId": "170",
+          "byteSequenceIdNamespace": "http://www.nationalarchives.gov.uk/",
+          "byteSequenceValue": "FFD8FFE0{2}4A464946000101(00|01|02)",
+          "offset": "0",
+          "positionType": "Absolute from BOF"
         },
         {
-            "identifier": "image/jpeg",
-            "identifierType": "MIME"
-        },
-        {
-            "identifier": "public.jpeg",
-            "identifierType": "Apple Uniform Type Identifier"
+          "byteSequenceId": "171",
+          "byteSequenceIdNamespace": "http://www.nationalarchives.gov.uk/",
+          "byteSequenceValue": "FFD9",
+          "maxOffset": "65536",
+          "offset": "0",
+          "positionType": "Absolute from EOF"
         }
-    ],
-    "developers": [
-        {
-            "developerId": "1",
-            "developerIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "organisationName": "Independent JPEG Group",
-            "developerCompoundName": "Independent JPEG Group"
-        }
-    ],
-    "externalSignatures": [
-        {
-            "externalSignatureId": "665",
-            "externalSignatureIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "signature": "jpg",
-            "signatureType": "File extension"
-        },
-        {
-            "externalSignatureId": "694",
-            "externalSignatureIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "signature": "jpe",
-            "signatureType": "File extension"
-        },
-        {
-            "externalSignatureId": "736",
-            "externalSignatureIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "signature": "jpeg",
-            "signatureType": "File extension"
-        }
-    ],
-    "internalSignatures": [
-        {
-            "signatureId": "67",
-            "signatureIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "signatureName": "JFIF 1.01",
-            "signatureNote": "SOI and APP0 markers at BOF, EOI marker at EOF",
-            "byteSequences": [
-                {
-                    "byteSequenceId": "170",
-                    "byteSequenceIdNamespace": "http://www.nationalarchives.gov.uk/",
-                    "positionType": "Absolute from BOF",
-                    "offset": "0",
-                    "byteSequenceValue": "FFD8FFE0{2}4A464946000101(00|01|02)"
-                },
-                {
-                    "byteSequenceId": "171",
-                    "byteSequenceIdNamespace": "http://www.nationalarchives.gov.uk/",
-                    "positionType": "Absolute from EOF",
-                    "offset": "0",
-                    "maxOffset": "65536",
-                    "byteSequenceValue": "FFD9"
-                }
-            ]
-        }
-    ],
-    "relatedFormats": [
-        {
-            "relationshipType": "Has priority over",
-            "relatedFormatId": "fmt/41",
-            "relatedFormatIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "relatedFormatName": "Raw JPEG Stream"
-        },
-        {
-            "relationshipType": "Is previous version of",
-            "relatedFormatId": "fmt/44",
-            "relatedFormatIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "relatedFormatName": "JPEG File Interchange Format",
-            "relatedFormatVersion": "1.00"
-        },
-        {
-            "relationshipType": "Is subsequent version of",
-            "relatedFormatId": "fmt/42",
-            "relatedFormatIdNamespace": "http://www.nationalarchives.gov.uk/",
-            "relatedFormatName": "JPEG File Interchange Format",
-            "relatedFormatVersion": "1.01"
-        }
-    ],
-    "registryVersions": [
-        {
-            "registryNamespace": "http://www.nationalarchives.gov.uk/PRONOM",
-            "name": "DROID Signature File",
-            "version": "93"
-        },
-        {
-            "registryNamespace": "https://preservica.com/Registry",
-            "name": "Preservica Release",
-            "version": "5.10"
-        }
-    ],
-    "localLastModifiedDate": "2018-06-14T15:00:00.0Z"
+      ],
+      "signatureId": "67",
+      "signatureIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "signatureName": "JFIF 1.01",
+      "signatureNote": "SOI and APP0 markers at BOF, EOI marker at EOF"
+    }
+  ],
+  "lastUpdatedDate": "2005-08-02",
+  "localLastModifiedDate": "2018-06-14T15:00:00.0Z",
+  "name": "JPEG File Interchange Format",
+  "provenance": {
+    "provenanceName": "Digital Preservation Department / The National Archives",
+    "provenanceSourceDate": "2005-03-11",
+    "provenanceSourceId": "1",
+    "provenanceSourceNamespace": "http://www.nationalarchives.gov.uk/"
+  },
+  "registryVersions": [
+    {
+      "name": "DROID Signature File",
+      "registryNamespace": "http://www.nationalarchives.gov.uk/PRONOM",
+      "version": "93"
+    },
+    {
+      "name": "Preservica Release",
+      "registryNamespace": "https://preservica.com/Registry",
+      "version": "5.10"
+    }
+  ],
+  "relatedFormats": [
+    {
+      "relatedFormatId": "fmt/41",
+      "relatedFormatIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "relatedFormatName": "Raw JPEG Stream",
+      "relationshipType": "Has priority over"
+    },
+    {
+      "relatedFormatId": "fmt/44",
+      "relatedFormatIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "relatedFormatName": "JPEG File Interchange Format",
+      "relatedFormatVersion": "1.00",
+      "relationshipType": "Is previous version of"
+    },
+    {
+      "relatedFormatId": "fmt/42",
+      "relatedFormatIdNamespace": "http://www.nationalarchives.gov.uk/",
+      "relatedFormatName": "JPEG File Interchange Format",
+      "relatedFormatVersion": "1.01",
+      "relationshipType": "Is subsequent version of"
+    }
+  ],
+  "types": [
+    "Image (Raster)"
+  ],
+  "version": "1.01"
 }

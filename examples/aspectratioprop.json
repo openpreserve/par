@@ -1,0 +1,12 @@
+{
+  "class": "size",
+  "equivalentTo": [
+    "ebucore:aspectRatio"
+  ],
+  "id": {
+    "guid": "55ac1a1d-2c31-501d-9adf-9e8c18e7df96",
+    "name": "width",
+    "namespace": "http://www.parcore.org/properties"
+  },
+  "type": "string"
+}

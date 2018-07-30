@@ -1,0 +1,170 @@
+{
+  "$id": "http://www.parcore.org/schema/preservation-action.json/#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "inputItem": {
+      "additionalProperties": false,
+      "description": "An input to a preservation action",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "properties": {
+                "file": {
+                  "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "parProperty": {
+                  "$ref": "http://www.parcore.org/schema/par-property.json/#"
+                }
+              },
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "type"
+      ],
+      "title": "Preservation Action Input",
+      "type": "object"
+    },
+    "outputItem": {
+      "additionalProperties": false,
+      "description": "An output from a preservation action",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "properties": {
+                "file": {
+                  "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "parProperty": {
+                  "$ref": "http://www.parcore.org/schema/par-property.json/#"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "raw": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "type"
+      ],
+      "title": "Preservation Action Output",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "constraints": {
+      "additionalItems": false,
+      "items": {
+        "properties": {
+          "allowedFormats": {
+            "items": {
+              "$ref": "http://www.parcore.org/schema/format.json/#"
+            },
+            "type": "array"
+          },
+          "allowedPropertiesAllOf": {
+            "items": {
+              "$ref": "http://www.parcore.org/schema/par-property.json/#"
+            },
+            "type": "array"
+          },
+          "allowedPropertiesAnyOf": {
+            "items": {
+              "$ref": "http://www.parcore.org/schema/par-property.json/#"
+            },
+            "type": "array"
+          },
+          "inputItemName": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "example": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+    },
+    "inputs": {
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputItem"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "localLastModifiedDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "outputs": {
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputItem"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "tool": {
+      "$ref": "http://www.parcore.org/schema/tool.json/#"
+    },
+    "type": {
+      "$ref": "http://www.parcore.org/schema/preservation-action-type.json/#"
+    }
+  },
+  "required": [
+    "id",
+    "description",
+    "type",
+    "inputs",
+    "outputs",
+    "tool"
+  ],
+  "title": "Preservation Action",
+  "type": "object"
+}

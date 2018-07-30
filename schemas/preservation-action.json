@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/preservation_action.json/#",
+  "$id": "http://www.parcore.org/schema/preservation-action.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
     "inputItem": {
@@ -25,7 +25,7 @@
             {
               "properties": {
                 "parProperty": {
-                  "$ref": "http://www.parcore.org/schema/par_property.json/#"
+                  "$ref": "http://www.parcore.org/schema/par-property.json/#"
                 }
               },
               "type": "object"
@@ -64,7 +64,7 @@
             {
               "properties": {
                 "parProperty": {
-                  "$ref": "http://www.parcore.org/schema/par_property.json/#"
+                  "$ref": "http://www.parcore.org/schema/par-property.json/#"
                 }
               },
               "type": "object"
@@ -102,13 +102,13 @@
           },
           "allowedPropertiesAllOf": {
             "items": {
-              "$ref": "http://www.parcore.org/schema/par_property.json/#"
+              "$ref": "http://www.parcore.org/schema/par-property.json/#"
             },
             "type": "array"
           },
           "allowedPropertiesAnyOf": {
             "items": {
-              "$ref": "http://www.parcore.org/schema/par_property.json/#"
+              "$ref": "http://www.parcore.org/schema/par-property.json/#"
             },
             "type": "array"
           },
@@ -133,7 +133,7 @@
     "inputs": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/inputItem"
+        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputItem"
       },
       "minItems": 1,
       "type": "array"
@@ -145,7 +145,7 @@
     "outputs": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation_action.json/#/definitions/outputItem"
+        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputItem"
       },
       "minItems": 1,
       "type": "array"
@@ -154,7 +154,7 @@
       "$ref": "http://www.parcore.org/schema/tool.json/#"
     },
     "type": {
-      "$ref": "http://www.parcore.org/schema/preservation_action_type.json/#"
+      "$ref": "http://www.parcore.org/schema/preservation-action-type.json/#"
     }
   },
   "required": [

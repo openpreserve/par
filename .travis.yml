@@ -1,5 +1,28 @@
 language: python
+
 python:
   - "2.7"
   - "3.4"
-script: pytest
+
+env:
+  - NODE_VERSION="10.7"
+
+before_install:
+  - sudo apt-get update -yqq
+  - nvm install $NODE_VERSION
+
+install:
+  - npm install -g ajv-cli
+  - pip install -r requirements.txt
+
+before_script:
+  - pylint --errors-only ./testing
+
+script:
+  - ./scripts/lint-json-dirs
+  - pre-commit run --all-files --verbose
+  - pytest
+  - ajv compile -s "schemas/*.json" -r "schemas/*.json"
+  - ajv validate -s schemas/format.json -d "examples/fmt-*.json" -r "schemas/*.json"
+  - ajv validate -s schemas/tool.json -d "examples/md5*.json" -r "schemas/*.json"
+  - ajv validate -s schemas/business_rule.json -d "examples/br-*.json" -r "schemas/*.json"

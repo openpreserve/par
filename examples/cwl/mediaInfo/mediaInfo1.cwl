@@ -24,4 +24,3 @@ arguments:
   - "--Output=EBUCore"
 
 stdout: mediainfo_report.txt
-

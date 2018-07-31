@@ -342,9 +342,16 @@
         "id": {
           "$ref": "#/definitions/parIdentifier"
         },
-        "inputs": {
+        "inputFiles": {
           "items": {
-            "$ref": "#/definitions/inputItem"
+            "$ref": "#/definitions/inputFile"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "inputProperties": {
+          "items": {
+            "$ref": "#/definitions/inputProperty"
           },
           "minItems": 1,
           "type": "array"
@@ -353,9 +360,23 @@
           "format": "date-time",
           "type": "string"
         },
-        "outputs": {
+        "outputFiles": {
           "items": {
-            "$ref": "#/definitions/outputItem"
+            "$ref": "#/definitions/outputFile"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "outputProperties": {
+          "items": {
+            "$ref": "#/definitions/outputProperty"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "rawOutputs": {
+          "items": {
+            "$ref": "#/definitions/outputRaw"
           },
           "minItems": 1,
           "type": "array"
@@ -371,8 +392,6 @@
         "id",
         "description",
         "type",
-        "inputs",
-        "outputs",
         "tool"
       ],
       "title": "Preservation Action",
@@ -511,15 +530,27 @@
     },
     "action": {
       "properties": {
-        "optionalInputs": {
+        "optionalInputFiles": {
           "items": {
-            "$ref": "#/definitions/inputItem"
+            "$ref": "#/definitions/inputFile"
           },
           "type": "array"
         },
-        "outputsRetrieved": {
+        "optionalInputProperties": {
           "items": {
-            "$ref": "#/definitions/outputItem"
+            "$ref": "#/definitions/inputProperty"
+          },
+          "type": "array"
+        },
+        "outputFilesRetrieved": {
+          "items": {
+            "$ref": "#/definitions/outputFile"
+          },
+          "type": "array"
+        },
+        "outputPropertiesRetrieved": {
+          "items": {
+            "$ref": "#/definitions/outputProperty"
           },
           "type": "array"
         },
@@ -528,6 +559,12 @@
         },
         "priority": {
           "type": "integer"
+        },
+        "rawOutputsRetrieved": {
+          "items": {
+            "$ref": "#/definitions/outputRaw"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -719,8 +756,29 @@
       ],
       "type": "object"
     },
-    "inputItem": {
-      "description": "An input to a preservation action",
+    "inputFile": {
+      "description": "A file input to a preservation action",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/definitions/parFile"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "file"
+      ],
+      "title": "Preservation Action Input File",
+      "type": "object"
+    },
+    "inputProperty": {
+      "description": "A property input to a preservation action",
       "properties": {
         "description": {
           "type": "string"
@@ -728,33 +786,16 @@
         "name": {
           "type": "string"
         },
-        "type": {
-          "anyOf": [
-            {
-              "properties": {
-                "file": {
-                  "$ref": "#/definitions/parFile"
-                }
-              },
-              "type": "object"
-            },
-            {
-              "properties": {
-                "parProperty": {
-                  "$ref": "#/definitions/ParProperty"
-                }
-              },
-              "type": "object"
-            }
-          ]
+        "parProperty": {
+          "$ref": "#/definitions/ParProperty"
         }
       },
       "required": [
         "name",
         "description",
-        "type"
+        "parProperty"
       ],
-      "title": "Preservation Action Input",
+      "title": "Preservation Action Input Property",
       "type": "object"
     },
     "internalSignatureInformation": {
@@ -784,8 +825,29 @@
       ],
       "type": "object"
     },
-    "outputItem": {
-      "description": "An output from a preservation action",
+    "outputFile": {
+      "description": "An output file from a preservation action",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/definitions/parFile"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "file"
+      ],
+      "title": "Preservation Action Output File",
+      "type": "object"
+    },
+    "outputProperty": {
+      "description": "An output property from a preservation action",
       "properties": {
         "description": {
           "type": "string"
@@ -793,41 +855,37 @@
         "name": {
           "type": "string"
         },
-        "type": {
-          "anyOf": [
-            {
-              "properties": {
-                "file": {
-                  "$ref": "#/definitions/parFile"
-                }
-              },
-              "type": "object"
-            },
-            {
-              "properties": {
-                "parProperty": {
-                  "$ref": "#/definitions/ParProperty"
-                }
-              },
-              "type": "object"
-            },
-            {
-              "properties": {
-                "raw": {
-                  "type": "string"
-                }
-              },
-              "type": "object"
-            }
-          ]
+        "parProperty": {
+          "$ref": "#/definitions/ParProperty"
         }
       },
       "required": [
         "name",
         "description",
-        "type"
+        "parProperty"
       ],
       "title": "Preservation Action Output",
+      "type": "object"
+    },
+    "outputRaw": {
+      "description": "A raw output from a preservation action",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "value"
+      ],
+      "title": "Preservation Action Raw Output",
       "type": "object"
     },
     "parFile": {

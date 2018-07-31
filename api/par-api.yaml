@@ -161,6 +161,15 @@ definitions:
         type: array
     title: A list of file formats
     type: object
+  ParProperties:
+    description: A list of PAR properties
+    properties:
+      parProperties:
+        items:
+          $ref: '#/definitions/ParProperty'
+        type: array
+    title: A list of properties
+    type: object
   ParProperty:
     properties:
       class:
@@ -204,49 +213,6 @@ definitions:
       - type
     title: PAR Property
     type: object
-  ParProperties:
-    description: A list of PAR properties
-    properties:
-      parProperties:
-        items:
-          $ref: '#/definitions/ParProperty'
-        type: array
-    title: A list of properties
-    type: object
-  PreservationActionType:
-    additionalProperties: false
-    description: 'The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html'
-    properties:
-      id:
-        type: string
-      label:
-        type: string
-      localLastModifiedDate:
-        format: date-time
-        type: string
-    required:
-      - id
-      - label
-    title: Preservation Action Types
-    type: object
-  PreservationActionTypes:
-    description: A list of preservation action types
-    properties:
-      preservationActionTypes:
-        items:
-          $ref: '#/definitions/PreservationActionType'
-        type: array
-    title: A list of preservation action types
-    type: object
-  PreservationActionTypesBodyExample:
-    description: Required elements in a request's body
-    properties:
-      id:
-        type: string
-      label:
-        type: string
-    title: preservation-action-types body example
-    type: object
   PreservationAction:
     properties:
       constraints:
@@ -275,17 +241,32 @@ definitions:
         type: string
       id:
         $ref: '#/definitions/parIdentifier'
-      inputs:
+      inputFiles:
         items:
-          $ref: '#/definitions/inputItem'
+          $ref: '#/definitions/inputFile'
+        minItems: 1
+        type: array
+      inputProperties:
+        items:
+          $ref: '#/definitions/inputProperty'
         minItems: 1
         type: array
       localLastModifiedDate:
         format: date-time
         type: string
-      outputs:
+      outputFiles:
         items:
-          $ref: '#/definitions/outputItem'
+          $ref: '#/definitions/outputFile'
+        minItems: 1
+        type: array
+      outputProperties:
+        items:
+          $ref: '#/definitions/outputProperty'
+        minItems: 1
+        type: array
+      rawOutputs:
+        items:
+          $ref: '#/definitions/outputRaw'
         minItems: 1
         type: array
       tool:
@@ -296,10 +277,42 @@ definitions:
       - id
       - description
       - type
-      - inputs
-      - outputs
       - tool
     title: Preservation Action
+    type: object
+  PreservationActionType:
+    additionalProperties: false
+    description: 'The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html'
+    properties:
+      id:
+        $ref: '#/definitions/parIdentifier'
+      label:
+        type: string
+      localLastModifiedDate:
+        format: date-time
+        type: string
+    required:
+      - id
+      - label
+    title: Preservation Action Types
+    type: object
+  PreservationActionTypes:
+    description: A list of preservation action types
+    properties:
+      preservationActionTypes:
+        items:
+          $ref: '#/definitions/PreservationActionType'
+        type: array
+    title: A list of preservation action types
+    type: object
+  PreservationActionTypesBodyExample:
+    description: Required elements in a request's body
+    properties:
+      id:
+        type: string
+      label:
+        type: string
+    title: preservation-action-types body example
     type: object
   PreservationActions:
     description: A list of preservation actions
@@ -341,15 +354,6 @@ definitions:
       - toolName
     title: Tool
     type: object
-  Tools:
-    description: A list of tools
-    properties:
-      tools:
-        items:
-          $ref: '#/definitions/Tool'
-        type: array
-    title: A list of tools
-    type: object
   ToolBodyExample:
     description: Required elements in a request's body
     properties:
@@ -359,15 +363,36 @@ definitions:
         type: string
     title: tool body example
     type: object
+  Tools:
+    description: A list of tools
+    properties:
+      tools:
+        items:
+          $ref: '#/definitions/Tool'
+        type: array
+    title: A list of tools
+    type: object
   action:
     properties:
-      optionalInputs:
+      optionalInputProperties:
         items:
-          $ref: '#/definitions/inputItem'
+          $ref: '#/definitions/inputProperty'
         type: array
-      outputsRetrieved:
+      optionalInputFiles:
         items:
-          $ref: '#/definitions/outputItem'
+          $ref: '#/definitions/inputFile'
+        type: array
+      outputPropertiesRetrieved:
+        items:
+          $ref: '#/definitions/outputProperty'
+        type: array
+      outputFilesRetrieved:
+        items:
+          $ref: '#/definitions/outputFile'
+        type: array
+      rawOutputsRetrieved:
+        items:
+          $ref: '#/definitions/outputRaw'
         type: array
       preservationAction:
         $ref: '#/definitions/parIdentifier'
@@ -499,28 +524,80 @@ definitions:
       - identifier
       - identifierType
     type: object
-  inputItem:
-    description: An input to a preservation action
+  inputFile:
+    description: A file input to a preservation action
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/parFile'
+      name:
+        type: string
+    required:
+      - name
+      - description
+      - file
+    title: Preservation Action Input File
+    type: object
+  inputProperty:
+    description: A property input to a preservation action
     properties:
       description:
         type: string
       name:
         type: string
-      type:
-        anyOf:
-          - properties:
-              file:
-                $ref: '#/definitions/parFile'
-            type: object
-          - properties:
-              parProperty:
-                $ref: '#/definitions/ParProperty'
-            type: object
+      parProperty:
+        $ref: '#/definitions/ParProperty'
     required:
       - name
       - description
-      - type
-    title: Preservation Action Input
+      - parProperty
+    title: Preservation Action Input Property
+    type: object
+  outputFile:
+    description: An output file from a preservation action
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/parFile'
+      name:
+        type: string
+    required:
+      - name
+      - description
+      - file
+    title: Preservation Action Output File
+    type: object
+  outputProperty:
+    description: An output property from a preservation action
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      parProperty:
+        $ref: '#/definitions/ParProperty'
+    required:
+      - name
+      - description
+      - parProperty
+    title: Preservation Action Output
+    type: object
+  outputRaw:
+    description: A raw output from a preservation action
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      value:
+        type: string
+    required:
+      - name
+      - description
+      - value
+    title: Preservation Action Raw Output
     type: object
   internalSignatureInformation:
     properties:
@@ -539,33 +616,6 @@ definitions:
     required:
       - signatureId
       - signatureIdNamespace
-    type: object
-  outputItem:
-    description: An output from a preservation action
-    properties:
-      description:
-        type: string
-      name:
-        type: string
-      type:
-        anyOf:
-          - properties:
-              file:
-                $ref: '#/definitions/parFile'
-            type: object
-          - properties:
-              parProperty:
-                $ref: '#/definitions/ParProperty'
-            type: object
-          - properties:
-              raw:
-                type: string
-            type: object
-    required:
-      - name
-      - description
-      - type
-    title: Preservation Action Output
     type: object
   parFile:
     description: A file that is an input or output of a preservation action

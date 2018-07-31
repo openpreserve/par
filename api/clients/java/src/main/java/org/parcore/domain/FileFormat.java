@@ -23,32 +23,8 @@ import java.util.List;
  */
 @ApiModel(description = "A file format as defined by PRONOM")
 public class FileFormat {
-    @SerializedName("puid")
-    private String puid = null;
-
-    @SerializedName("puidNamespace")
-    private String puidNamespace = null;
-
-    @SerializedName("name")
-    private String name = null;
-
-    @SerializedName("version")
-    private String version = null;
-
     @SerializedName("aliases")
     private List<String> aliases = null;
-
-    @SerializedName("families")
-    private List<String> families = null;
-
-    @SerializedName("types")
-    private List<String> types = null;
-
-    @SerializedName("disclosure")
-    private String disclosure = null;
-
-    @SerializedName("description")
-    private String description = null;
 
     @SerializedName("binaryFileFormat")
     private String binaryFileFormat = null;
@@ -56,32 +32,14 @@ public class FileFormat {
     @SerializedName("byteOrders")
     private List<String> byteOrders = null;
 
-    @SerializedName("releaseDate")
-    private String releaseDate = null;
-
-    @SerializedName("withdrawnDate")
-    private String withdrawnDate = null;
-
-    @SerializedName("provenance")
-    private ProvenanceInformation provenance = null;
-
-    @SerializedName("lastUpdatedDate")
-    private String lastUpdatedDate = null;
-
-    @SerializedName("note")
-    private String note = null;
-
-    @SerializedName("risk")
-    private String risk = null;
-
-    @SerializedName("technicalEnvironment")
-    private String technicalEnvironment = null;
-
-    @SerializedName("identifiers")
-    private List<IdentifierInformation> identifiers = null;
+    @SerializedName("description")
+    private String description = null;
 
     @SerializedName("developers")
     private List<DeveloperInformation> developers = null;
+
+    @SerializedName("disclosure")
+    private String disclosure = null;
 
     @SerializedName("documents")
     private List<DocumentInformation> documents = null;
@@ -89,20 +47,56 @@ public class FileFormat {
     @SerializedName("externalSignatures")
     private List<ExternalSignatureInformation> externalSignatures = null;
 
+    @SerializedName("families")
+    private List<String> families = null;
+
+    @SerializedName("id")
+    private ParIdentifier id = null;
+
+    @SerializedName("identifiers")
+    private List<IdentifierInformation> identifiers = null;
+
     @SerializedName("internalSignatures")
     private List<InternalSignatureInformation> internalSignatures = null;
+
+    @SerializedName("lastUpdatedDate")
+    private String lastUpdatedDate = null;
+
+    @SerializedName("localLastModifiedDate")
+    private String localLastModifiedDate = null;
+
+    @SerializedName("name")
+    private String name = null;
+
+    @SerializedName("note")
+    private String note = null;
+
+    @SerializedName("provenance")
+    private ProvenanceInformation provenance = null;
+
+    @SerializedName("registryVersions")
+    private List<RegistryVersionInformation> registryVersions = null;
 
     @SerializedName("relatedFormats")
     private List<RelatedFormatInformation> relatedFormats = null;
 
-    @SerializedName("droidSignatureFileVersion")
-    private String droidSignatureFileVersion = null;
+    @SerializedName("releaseDate")
+    private String releaseDate = null;
 
-    @SerializedName("droidContainerFileVersion")
-    private String droidContainerFileVersion = null;
+    @SerializedName("risk")
+    private String risk = null;
 
-    @SerializedName("localLastModifiedDate")
-    private String localLastModifiedDate = null;
+    @SerializedName("technicalEnvironment")
+    private String technicalEnvironment = null;
+
+    @SerializedName("types")
+    private List<String> types = null;
+
+    @SerializedName("version")
+    private String version = null;
+
+    @SerializedName("withdrawnDate")
+    private String withdrawnDate = null;
 
 
     /**
@@ -110,27 +104,13 @@ public class FileFormat {
      *
      * @return puid
      **/
-    @ApiModelProperty(required = true, value = "Persistent Unique Identifier, e.g. fmt/40, x-fmt/192")
-    public String getPuid() {
-        return puid;
+    @ApiModelProperty(required = true, value = "Persistent Unique PAR Identifier")
+    public ParIdentifier getId() {
+        return id;
     }
 
-    public void setPuid(String puid) {
-        this.puid = puid;
-    }
-
-    /**
-     * Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/
-     *
-     * @return puidNamespace
-     **/
-    @ApiModelProperty(required = true, value = "Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/")
-    public String getPuidNamespace() {
-        return puidNamespace;
-    }
-
-    public void setPuidNamespace(String puidNamespace) {
-        this.puidNamespace = puidNamespace;
+    public void setId(ParIdentifier id) {
+        this.id = id;
     }
 
     /**
@@ -299,6 +279,20 @@ public class FileFormat {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    /**
+     * Get registryVersions
+     *
+     * @return registryVersion
+     */
+    @ApiModelProperty(value = "")
+    public List<RegistryVersionInformation> getRegistryVersions() {
+        return registryVersions;
+    }
+
+    public void setRegistryVersions(List<RegistryVersionInformation> registryVersions) {
+        this.registryVersions = registryVersions;
     }
 
     /**
@@ -511,33 +505,7 @@ public class FileFormat {
         this.relatedFormats = relatedFormats;
     }
 
-    /**
-     * Get droidSignatureFileVersion
-     *
-     * @return droidSignatureFileVersion
-     **/
-    @ApiModelProperty(value = "")
-    public String getDroidSignatureFileVersion() {
-        return droidSignatureFileVersion;
-    }
 
-    public void setDroidSignatureFileVersion(String droidSignatureFileVersion) {
-        this.droidSignatureFileVersion = droidSignatureFileVersion;
-    }
-
-    /**
-     * Get droidContainerFileVersion
-     *
-     * @return droidContainerFileVersion
-     **/
-    @ApiModelProperty(value = "")
-    public String getDroidContainerFileVersion() {
-        return droidContainerFileVersion;
-    }
-
-    public void setDroidContainerFileVersion(String droidContainerFileVersion) {
-        this.droidContainerFileVersion = droidContainerFileVersion;
-    }
 
     /**
      * Get localLastModifiedDate
@@ -563,8 +531,7 @@ public class FileFormat {
             return false;
         }
         FileFormat fileFormat = (FileFormat) o;
-        return Objects.equals(this.puid, fileFormat.puid) &&
-                Objects.equals(this.puidNamespace, fileFormat.puidNamespace) &&
+        return Objects.equals(this.id, fileFormat.id) &&
                 Objects.equals(this.name, fileFormat.name) &&
                 Objects.equals(this.version, fileFormat.version) &&
                 Objects.equals(this.aliases, fileFormat.aliases) &&
@@ -587,14 +554,13 @@ public class FileFormat {
                 Objects.equals(this.externalSignatures, fileFormat.externalSignatures) &&
                 Objects.equals(this.internalSignatures, fileFormat.internalSignatures) &&
                 Objects.equals(this.relatedFormats, fileFormat.relatedFormats) &&
-                Objects.equals(this.droidSignatureFileVersion, fileFormat.droidSignatureFileVersion) &&
-                Objects.equals(this.droidContainerFileVersion, fileFormat.droidContainerFileVersion) &&
+                Objects.equals(this.registryVersions, fileFormat.registryVersions) &&
                 Objects.equals(this.localLastModifiedDate, fileFormat.localLastModifiedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(puid, puidNamespace, name, version, aliases, families, types, disclosure, description, binaryFileFormat, byteOrders, releaseDate, withdrawnDate, provenance, lastUpdatedDate, note, risk, technicalEnvironment, identifiers, developers, documents, externalSignatures, internalSignatures, relatedFormats, droidSignatureFileVersion, droidContainerFileVersion, localLastModifiedDate);
+        return Objects.hash(id, name, version, aliases, families, types, disclosure, description, binaryFileFormat, byteOrders, releaseDate, withdrawnDate, provenance, lastUpdatedDate, note, risk, technicalEnvironment, identifiers, developers, documents, externalSignatures, internalSignatures, relatedFormats, registryVersions, localLastModifiedDate);
     }
 
 
@@ -603,8 +569,7 @@ public class FileFormat {
         StringBuilder sb = new StringBuilder();
         sb.append("class FileFormat {\n");
 
-        sb.append("    puid: ").append(toIndentedString(puid)).append("\n");
-        sb.append("    puidNamespace: ").append(toIndentedString(puidNamespace)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    version: ").append(toIndentedString(version)).append("\n");
         sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
@@ -627,8 +592,7 @@ public class FileFormat {
         sb.append("    externalSignatures: ").append(toIndentedString(externalSignatures)).append("\n");
         sb.append("    internalSignatures: ").append(toIndentedString(internalSignatures)).append("\n");
         sb.append("    relatedFormats: ").append(toIndentedString(relatedFormats)).append("\n");
-        sb.append("    droidSignatureFileVersion: ").append(toIndentedString(droidSignatureFileVersion)).append("\n");
-        sb.append("    droidContainerFileVersion: ").append(toIndentedString(droidContainerFileVersion)).append("\n");
+        sb.append("    registryVersions: ").append(toIndentedString(registryVersions)).append("\n");
         sb.append("    localLastModifiedDate: ").append(toIndentedString(localLastModifiedDate)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -646,4 +610,3 @@ public class FileFormat {
     }
 
 }
-

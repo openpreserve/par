@@ -6,6 +6,9 @@
       "additionalProperties": false,
       "description": "A software tool or application that can be used to perform preservation actions",
       "properties": {
+        "id": {
+          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+        },
         "localLastModifiedDate": {
           "format": "date-time",
           "type": "string"
@@ -16,9 +19,6 @@
           },
           "type": "array",
           "uniqueItems": true
-        },
-        "toolID": {
-          "type": "string"
         },
         "toolLabel": {
           "type": "string"
@@ -41,8 +41,8 @@
         }
       },
       "required": [
-        "toolName",
-        "toolID"
+        "id",
+        "toolName"
       ],
       "type": "object"
     }

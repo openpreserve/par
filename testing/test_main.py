@@ -101,12 +101,20 @@ class PreservationActionTest3(AbstractSchemaValidatorTest, TestCase):
     def runTest(self):
         self.validate_json('examples/mediaInfo2.json')
 
-class ToolTest(AbstractSchemaValidatorTest, TestCase):
+class md5sumToolTest(AbstractSchemaValidatorTest, TestCase):
     def get_json_schema_file_name(self):
         return 'schemas/tool.json'
 
     def runTest(self):
         self.validate_json('examples/md5sum.json')
+
+
+class ffmpegToolTest(AbstractSchemaValidatorTest, TestCase):
+    def get_json_schema_file_name(self):
+        return 'schemas/tool.json'
+
+    def runTest(self):
+        self.validate_json('examples/ffmpeg.json')
 
 
 class BusinessRuleTest1(AbstractSchemaValidatorTest, TestCase):

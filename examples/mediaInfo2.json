@@ -33,64 +33,56 @@
     "name": "MediaInfo2",
     "namespace": "http://www.parcore.org/actions"
   },
-  "inputs": [
+  "inputFiles": [
     {
       "description": "File that will have metadata extracted from",
-      "name": "inputfile",
-      "type": {
-        "file": {
-          "filepath": ""
-        }
-      }
+      "file": {
+        "filepath": ""
+      },
+      "name": "inputfile"
     }
   ],
-  "outputs": [
+  "outputProperties": [
     {
       "description": "Width in pixels of the video",
       "name": "width",
-      "type": {
-        "parProperty": {
-          "class": "size",
-          "id": {
-            "guid": "ffc702fe-d4bb-5243-99b2-45a4ea28f7c2",
-            "name": "width",
-            "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
-          },
-          "type": "integer",
-          "units": "pixel"
-        }
+      "parProperty": {
+        "class": "size",
+        "id": {
+          "guid": "ffc702fe-d4bb-5243-99b2-45a4ea28f7c2",
+          "name": "width",
+          "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
+        },
+        "type": "integer",
+        "units": "pixel"
       }
     },
     {
       "description": "Height in pixels of the video",
       "name": "height",
-      "type": {
-        "parProperty": {
-          "class": "size",
-          "id": {
-            "guid": "526b1d5e-d176-4879-9e2c-47e429155c8f",
-            "name": "height",
-            "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
-          },
-          "type": "integer",
-          "units": "pixel"
-        }
+      "parProperty": {
+        "class": "size",
+        "id": {
+          "guid": "526b1d5e-d176-4879-9e2c-47e429155c8f",
+          "name": "height",
+          "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
+        },
+        "type": "integer",
+        "units": "pixel"
       }
     },
     {
       "description": "bitrate of the video",
       "name": "bitrate",
-      "type": {
-        "parProperty": {
-          "class": "rate",
-          "id": {
-            "guid": "5cb7a433-762b-465d-b227-9291779c2456",
-            "name": "bitrate",
-            "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
-          },
-          "type": "integer",
-          "units": "bits per second"
-        }
+      "parProperty": {
+        "class": "rate",
+        "id": {
+          "guid": "5cb7a433-762b-465d-b227-9291779c2456",
+          "name": "bitrate",
+          "namespace": "https://www.ebu.ch/metadata/ontologies/ebucore"
+        },
+        "type": "integer",
+        "units": "bits per second"
       }
     }
   ],

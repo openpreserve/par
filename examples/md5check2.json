@@ -6,46 +6,42 @@
     "name": "MD5CheckMD5Sum2",
     "namespace": "http://www.parcore.org/actions"
   },
-  "inputs": [
+  "inputFiles": [
+    {
+      "description": "File that will be fixity checked",
+      "file": {
+        "filepath": ""
+      },
+      "name": "inputfile"
+    }
+  ],
+  "inputProperties": [
     {
       "description": "Checksum of the file to be checked",
       "name": "MD5 checksum",
-      "type": {
-        "parProperty": {
-          "class": "checksum",
-          "id": {
-            "guid": "944a16dc-41f6-574e-99d0-2555497b74a4",
-            "name": "MD5",
-            "namespace": "http://www.parcore.org/properties"
-          },
-          "type": "string"
-        }
-      }
-    },
-    {
-      "description": "File that will be fixity checked",
-      "name": "inputfile",
-      "type": {
-        "file": {
-          "filepath": ""
-        }
+      "parProperty": {
+        "class": "checksum",
+        "id": {
+          "guid": "944a16dc-41f6-574e-99d0-2555497b74a4",
+          "name": "MD5",
+          "namespace": "http://www.parcore.org/properties"
+        },
+        "type": "string"
       }
     }
   ],
-  "outputs": [
+  "outputProperties": [
     {
       "description": "PASS if file matches the checksum, otherwise FAIL",
       "name": "PASS or FAIL",
-      "type": {
-        "parProperty": {
-          "class": "validity",
-          "id": {
-            "guid": "444d6f5f-ae27-4350-a951-0c1c0ae3ff34",
-            "name": "PASS FAIL",
-            "namespace": "http://www.parcore.org/properties"
-          },
-          "type": "string"
-        }
+      "parProperty": {
+        "class": "validity",
+        "id": {
+          "guid": "444d6f5f-ae27-4350-a951-0c1c0ae3ff34",
+          "name": "PASS FAIL",
+          "namespace": "http://www.parcore.org/properties"
+        },
+        "type": "string"
       }
     }
   ],

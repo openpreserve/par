@@ -5,15 +5,21 @@
   "definitions": {
     "action": {
       "properties": {
-        "optionalInputs": {
+        "optionalInputProperties": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputItem"
+            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputProperty"
           },
           "type": "array"
         },
-        "outputsRetrieved": {
+        "outputFilesRetrieved": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputItem"
+            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputFile"
+          },
+          "type": "array"
+        },
+        "outputPropertiesRetrieved": {
+          "items": {
+            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputProperty"
           },
           "type": "array"
         },
@@ -22,6 +28,12 @@
         },
         "priority": {
           "type": "integer"
+        },
+        "rawOutputsRetrieved": {
+          "items": {
+            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputRaw"
+          },
+          "type": "array"
         }
       },
       "required": [

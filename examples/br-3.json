@@ -125,22 +125,20 @@
   ],
   "preservationActions": [
     {
-      "optionalInputs": [
+      "optionalInputProperties": [
         {
           "description": "Resize to fit a 250px square box",
           "name": "250x250",
-          "type": {
-            "parProperty": {
-              "class": "size",
-              "id": {
-                "guid": "iab747c2a-9c2f-4e79-9ac8-d12015398d32",
-                "name": "2D resolution",
-                "namespace": "http://www.parcore.org/properties"
-              },
-              "type": "string",
-              "units": "pixels",
-              "value": "250x250"
-            }
+          "parProperty": {
+            "class": "size",
+            "id": {
+              "guid": "iab747c2a-9c2f-4e79-9ac8-d12015398d32",
+              "name": "2D resolution",
+              "namespace": "http://www.parcore.org/properties"
+            },
+            "type": "string",
+            "units": "pixels",
+            "value": "250x250"
           }
         }
       ],

@@ -36,7 +36,7 @@
         "preservationActionTypes": {
           "description": "A list of Preservation Action Types that this Business Rule should be applied to. This might be a subset of those that the Preservation Actions themselves apply to. For example, a file format transformation action might itself apply to Migration and Normalization action types, but the Business Rule might be applicable only to Normalization",
           "items": {
-            "$ref": "#/definitions/preservationActionType"
+            "$ref": "#/definitions/PreservationActionType"
           },
           "type": "array"
         },
@@ -52,6 +52,19 @@
         "id"
       ],
       "title": "Business Rule",
+      "type": "object"
+    },
+    "BusinessRules": {
+      "description": "A list of business rules",
+      "properties": {
+        "businessRules": {
+          "items": {
+            "$ref": "#/definitions/BusinessRule"
+          },
+          "type": "array"
+        }
+      },
+      "title": "A list of business rules",
       "type": "object"
     },
     "FileFormat": {
@@ -91,12 +104,6 @@
           },
           "type": "array"
         },
-        "droidContainerFileVersion": {
-          "type": "string"
-        },
-        "droidSignatureFileVersion": {
-          "type": "string"
-        },
         "externalSignatures": {
           "items": {
             "$ref": "#/definitions/externalSignatureInformation"
@@ -108,6 +115,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "id": {
+          "$ref": "#/definitions/parIdentifier",
+          "description": "A persistent unique identifier for the format, in PAR form"
         },
         "identifiers": {
           "items": {
@@ -138,13 +149,11 @@
         "provenance": {
           "$ref": "#/definitions/provenanceInformation"
         },
-        "puid": {
-          "description": "Persistent Unique Identifier, e.g. fmt/40, x-fmt/192",
-          "type": "string"
-        },
-        "puidNamespace": {
-          "description": "Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/",
-          "type": "string"
+        "registryVersions": {
+          "items": {
+            "$ref": "#/definitions/registryVersionInformation"
+          },
+          "type": "array"
         },
         "relatedFormats": {
           "items": {
@@ -177,10 +186,10 @@
         }
       },
       "required": [
-        "puid",
-        "puidNamespace"
+        "id",
+        "localLastModifiedDate"
       ],
-      "title": "fileFormat",
+      "title": "Format",
       "type": "object"
     },
     "FileFormatPOSTBodyExample": {
@@ -221,6 +230,19 @@
         }
       },
       "title": "A list of file formats",
+      "type": "object"
+    },
+    "ParProperties": {
+      "description": "A list of PAR properties",
+      "properties": {
+        "parProperties": {
+          "items": {
+            "$ref": "#/definitions/ParProperty"
+          },
+          "type": "array"
+        }
+      },
+      "title": "A list of properties",
       "type": "object"
     },
     "ParProperty": {
@@ -279,23 +301,101 @@
       "title": "PAR Property",
       "type": "object"
     },
+    "PreservationAction": {
+      "properties": {
+        "constraints": {
+          "items": {
+            "properties": {
+              "allowedFormats": {
+                "items": {
+                  "$ref": "#/definitions/FileFormat"
+                },
+                "type": "array"
+              },
+              "allowedPropertiesAllOf": {
+                "items": {
+                  "$ref": "#/definitions/ParProperty"
+                },
+                "type": "array"
+              },
+              "allowedPropertiesAnyOf": {
+                "items": {
+                  "$ref": "#/definitions/ParProperty"
+                },
+                "type": "array"
+              },
+              "inputItemName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "inputs": {
+          "items": {
+            "$ref": "#/definitions/inputItem"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "localLastModifiedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "outputs": {
+          "items": {
+            "$ref": "#/definitions/outputItem"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "tool": {
+          "$ref": "#/definitions/Tool"
+        },
+        "type": {
+          "$ref": "#/definitions/PreservationActionType"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "type",
+        "inputs",
+        "outputs",
+        "tool"
+      ],
+      "title": "Preservation Action",
+      "type": "object"
+    },
     "PreservationActionType": {
       "additionalProperties": false,
       "description": "The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html",
       "properties": {
         "id": {
-          "type": "string"
+          "$ref": "#/definitions/parIdentifier"
         },
         "label": {
           "type": "string"
         },
-        "uri": {
+        "localLastModifiedDate": {
+          "format": "date-time",
           "type": "string"
         }
       },
       "required": [
         "id",
-        "uri"
+        "label"
       ],
       "title": "Preservation Action Types",
       "type": "object"
@@ -305,7 +405,7 @@
       "properties": {
         "preservationActionTypes": {
           "items": {
-            "$ref": "#/definitions/preservationActionType"
+            "$ref": "#/definitions/PreservationActionType"
           },
           "type": "array"
         }
@@ -319,26 +419,42 @@
         "id": {
           "type": "string"
         },
-        "uri": {
+        "label": {
           "type": "string"
         }
       },
       "title": "preservation-action-types body example",
       "type": "object"
     },
+    "PreservationActions": {
+      "description": "A list of preservation actions",
+      "properties": {
+        "preservationActions": {
+          "items": {
+            "$ref": "#/definitions/PreservationAction"
+          },
+          "type": "array"
+        }
+      },
+      "title": "A list of preservation actions",
+      "type": "object"
+    },
     "Tool": {
-      "additionalProperties": false,
       "description": "A software tool or application that can be used to perform preservation actions",
       "properties": {
+        "id": {
+          "$ref": "#/definitions/parIdentifier"
+        },
+        "localLastModifiedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
         "toolAcceptedParameters": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+            "$ref": "#/definitions/parameter"
           },
           "type": "array",
           "uniqueItems": true
-        },
-        "toolID": {
-          "type": "string"
         },
         "toolLabel": {
           "type": "string"
@@ -361,22 +477,36 @@
         }
       },
       "required": [
-        "toolName",
-        "toolID"
+        "id",
+        "toolName"
       ],
+      "title": "Tool",
       "type": "object"
     },
     "ToolBodyExample": {
       "description": "Required elements in a request's body",
       "properties": {
-        "toolID": {
-          "type": "string"
+        "id": {
+          "$ref": "#/definitions/parIdentifier"
         },
         "toolName": {
           "type": "string"
         }
       },
       "title": "tool body example",
+      "type": "object"
+    },
+    "Tools": {
+      "description": "A list of tools",
+      "properties": {
+        "tools": {
+          "items": {
+            "$ref": "#/definitions/Tool"
+          },
+          "type": "array"
+        }
+      },
+      "title": "A list of tools",
       "type": "object"
     },
     "action": {
@@ -590,54 +720,38 @@
       "type": "object"
     },
     "inputItem": {
-      "additionalProperties": false,
       "description": "An input to a preservation action",
       "properties": {
-        "binding": {
-          "properties": {
-            "position": {
-              "type": "integer"
-            },
-            "prefix": {
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
         "description": {
           "type": "string"
         },
         "name": {
           "type": "string"
         },
-        "secondaryFiles": {
-          "description": "files that need to be present when a tool is run, but are not listed on the command line",
-          "items": {
-            "properties": {
-              "description": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              }
-            },
-            "type": "object"
-          },
-          "minItems": 1,
-          "type": "array"
-        },
         "type": {
-          "enum": [
-            "File",
-            "string",
-            "boolean",
-            "integer",
-            "stdin"
+          "anyOf": [
+            {
+              "properties": {
+                "file": {
+                  "$ref": "#/definitions/parFile"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "parProperty": {
+                  "$ref": "#/definitions/ParProperty"
+                }
+              },
+              "type": "object"
+            }
           ]
         }
       },
       "required": [
         "name",
+        "description",
         "type"
       ],
       "title": "Preservation Action Input",
@@ -673,47 +787,57 @@
     "outputItem": {
       "description": "An output from a preservation action",
       "properties": {
-        "binding": {
-          "properties": {
-            "glob": {
-              "type": "string"
-            }
-          },
-          "type": "object"
-        },
         "description": {
           "type": "string"
         },
         "name": {
           "type": "string"
         },
-        "outputMapping": {
-          "properties": {
-            "mapping": {
-              "type": "string"
-            },
-            "mappingExpression": {
-              "type": "string"
-            },
-            "mappingExpressionType": {
-              "enum": [
-                "shellScript",
-                "javaScript",
-                "XPath"
-              ]
-            }
-          },
-          "type": "object"
-        },
         "type": {
-          "enum": [
-            "File",
-            "stdout",
-            "stderr"
+          "anyOf": [
+            {
+              "properties": {
+                "file": {
+                  "$ref": "#/definitions/parFile"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "parProperty": {
+                  "$ref": "#/definitions/ParProperty"
+                }
+              },
+              "type": "object"
+            },
+            {
+              "properties": {
+                "raw": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
           ]
         }
       },
+      "required": [
+        "name",
+        "description",
+        "type"
+      ],
       "title": "Preservation Action Output",
+      "type": "object"
+    },
+    "parFile": {
+      "description": "A file that is an input or output of a preservation action",
+      "properties": {
+        "filepath": {
+          "type": "string"
+        }
+      },
+      "title": "PAR File",
       "type": "object"
     },
     "parIdentifier": {
@@ -737,56 +861,6 @@
     },
     "parameter": {
       "title": "Parameter",
-      "type": "object"
-    },
-    "preservationAction": {
-      "properties": {
-        "constraints": {
-          "items": {
-            "$ref": "#/definitions/parProperty"
-          },
-          "minItems": 1,
-          "type": "array"
-        },
-        "description": {
-          "type": "string"
-        },
-        "example": {
-          "type": "string"
-        },
-        "id": {
-          "$ref": "#/definitions/parIdentifier"
-        },
-        "inputs": {
-          "items": {
-            "$ref": "#/definitions/inputItem"
-          },
-          "minItems": 1,
-          "type": "array"
-        },
-        "outputs": {
-          "items": {
-            "$ref": "#/definitions/outputItem"
-          },
-          "minItems": 1,
-          "type": "array"
-        },
-        "tool": {
-          "$ref": "#/definitions/tool"
-        },
-        "type": {
-          "$ref": "#/definitions/preservationActionType"
-        }
-      },
-      "required": [
-        "id",
-        "description",
-        "type",
-        "inputs",
-        "outputs",
-        "tool"
-      ],
-      "title": "Preservation Action",
       "type": "object"
     },
     "provenanceInformation": {
@@ -835,6 +909,24 @@
       "required": [
         "publisherId",
         "publisherIdNamespace"
+      ],
+      "type": "object"
+    },
+    "registryVersionInformation": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "registryNamespace": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "registryNamespace",
+        "version"
       ],
       "type": "object"
     },
@@ -916,7 +1008,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/businessRule"
+              "$ref": "#/definitions/BusinessRule"
             }
           },
           "403": {
@@ -946,7 +1038,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/businessRule"
+              "$ref": "#/definitions/BusinessRule"
             }
           }
         ],
@@ -957,7 +1049,7 @@
           "201": {
             "description": "Business Rule successfully created.",
             "schema": {
-              "$ref": "#/definitions/businessRule"
+              "$ref": "#/definitions/BusinessRule"
             }
           },
           "400": {
@@ -1050,7 +1142,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/businessRule"
+              "$ref": "#/definitions/BusinessRule"
             }
           },
           "400": {
@@ -1090,7 +1182,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/businessRule"
+              "$ref": "#/definitions/BusinessRule"
             }
           }
         ],
@@ -1101,7 +1193,7 @@
           "201": {
             "description": "Business rule successfully updated.",
             "schema": {
-              "$ref": "#/definitions/businessRule"
+              "$ref": "#/definitions/BusinessRule"
             }
           },
           "403": {
@@ -1400,7 +1492,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/parProperty"
+              "$ref": "#/definitions/ParProperty"
             }
           },
           "403": {
@@ -1430,7 +1522,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/parProperty"
+              "$ref": "#/definitions/ParProperty"
             }
           }
         ],
@@ -1441,7 +1533,7 @@
           "201": {
             "description": "Par Property successfully created.",
             "schema": {
-              "$ref": "#/definitions/parProperty"
+              "$ref": "#/definitions/ParProperty"
             }
           },
           "400": {
@@ -1534,7 +1626,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/parProperty"
+              "$ref": "#/definitions/ParProperty"
             }
           },
           "400": {
@@ -1574,7 +1666,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/parProperty"
+              "$ref": "#/definitions/ParProperty"
             }
           }
         ],
@@ -1585,7 +1677,7 @@
           "201": {
             "description": "Par property successfully updated.",
             "schema": {
-              "$ref": "#/definitions/parProperty"
+              "$ref": "#/definitions/ParProperty"
             }
           },
           "403": {
@@ -1636,7 +1728,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/preservationActionTypes"
+              "$ref": "#/definitions/PreservationActionTypes"
             }
           },
           "403": {
@@ -1666,7 +1758,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/preservationActionType"
+              "$ref": "#/definitions/PreservationActionType"
             }
           }
         ],
@@ -1677,7 +1769,7 @@
           "201": {
             "description": "Preservation Action Type successfully created.",
             "schema": {
-              "$ref": "#/definitions/preservationActionType"
+              "$ref": "#/definitions/PreservationActionType"
             }
           },
           "400": {
@@ -1726,7 +1818,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/preservationActionType"
+              "$ref": "#/definitions/PreservationActionType"
             }
           },
           "400": {
@@ -1766,7 +1858,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/preservationActionType"
+              "$ref": "#/definitions/PreservationActionType"
             }
           }
         ],
@@ -1777,7 +1869,7 @@
           "201": {
             "description": "File format successfully updated.",
             "schema": {
-              "$ref": "#/definitions/preservationActionType"
+              "$ref": "#/definitions/PreservationActionType"
             }
           },
           "403": {
@@ -1852,7 +1944,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/preservationAction"
+              "$ref": "#/definitions/PreservationAction"
             }
           },
           "403": {
@@ -1882,7 +1974,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/preservationAction"
+              "$ref": "#/definitions/PreservationAction"
             }
           }
         ],
@@ -1893,7 +1985,7 @@
           "201": {
             "description": "Preservation Action successfully created.",
             "schema": {
-              "$ref": "#/definitions/preservationAction"
+              "$ref": "#/definitions/PreservationAction"
             }
           },
           "400": {
@@ -1986,7 +2078,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/preservationAction"
+              "$ref": "#/definitions/PreservationAction"
             }
           },
           "400": {
@@ -2026,7 +2118,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/preservationAction"
+              "$ref": "#/definitions/PreservationAction"
             }
           }
         ],
@@ -2037,7 +2129,7 @@
           "201": {
             "description": "Preservation action successfully updated.",
             "schema": {
-              "$ref": "#/definitions/preservationAction"
+              "$ref": "#/definitions/PreservationAction"
             }
           },
           "403": {
@@ -2088,7 +2180,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/tool"
+              "$ref": "#/definitions/Tool"
             }
           },
           "403": {
@@ -2113,12 +2205,12 @@
         "description": "Create a new tool with the data provided in the body of the request.",
         "parameters": [
           {
-            "description": "Required body parameters are: \"toolName\" and \"toolID\".",
+            "description": "Required body parameters are: \"toolName\" and \"id\".",
             "in": "body",
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/tool"
+              "$ref": "#/definitions/Tool"
             }
           }
         ],
@@ -2129,7 +2221,7 @@
           "201": {
             "description": "Tool successfully created.",
             "schema": {
-              "$ref": "#/definitions/tool"
+              "$ref": "#/definitions/Tool"
             }
           },
           "400": {
@@ -2178,7 +2270,7 @@
           "200": {
             "description": "Request has gone thorugh successfully.",
             "schema": {
-              "$ref": "#/definitions/tool"
+              "$ref": "#/definitions/Tool"
             }
           },
           "400": {
@@ -2218,7 +2310,7 @@
             "name": "body example",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/tool"
+              "$ref": "#/definitions/Tool"
             }
           }
         ],
@@ -2229,7 +2321,7 @@
           "201": {
             "description": "Tool successfully updated.",
             "schema": {
-              "$ref": "#/definitions/tool"
+              "$ref": "#/definitions/Tool"
             }
           },
           "403": {

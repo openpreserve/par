@@ -4,7 +4,7 @@
     <groupId>org.parcore</groupId>
     <artifactId>java-rest-client</artifactId>
     <packaging>jar</packaging>
-    <name>java-rest-client</name>
+    <label>java-rest-client</label>
     <version>1.0.0</version>
     <url>https://www.parcore.org</url>
     <description>PAR Core Java SDK</description>
@@ -16,7 +16,7 @@
 
     <licenses>
         <license>
-            <name>The Apache Software License, Version 2.0</name>
+            <label>The Apache Software License, Version 2.0</label>
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
@@ -24,7 +24,7 @@
 
     <developers>
         <developer>
-            <name>PAR Core</name>
+            <label>PAR Core</label>
             <email>developers@parcore.org</email>
             <organization>PAR Core</organization>
             <organizationUrl>http://www.parcore.org</organizationUrl>
@@ -60,7 +60,7 @@
                 <configuration>
                     <systemProperties>
                         <property>
-                            <name>loggerPath</name>
+                            <label>loggerPath</label>
                             <value>conf/log4j.properties</value>
                         </property>
                     </systemProperties>

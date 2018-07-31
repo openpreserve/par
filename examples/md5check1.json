@@ -6,36 +6,30 @@
     "name": "MD5CheckMD5Sum",
     "namespace": "http://www.parcore.org/actions"
   },
-  "inputs": [
+  "inputFiles": [
     {
       "description": "Manifest file containing the MD5 and name of the file to be checked",
-      "name": "manifest.md5",
-      "type": {
-        "file": {
-          "filepath": ""
-        }
-      }
+      "file": {
+        "filepath": ""
+      },
+      "name": "manifest.md5"
     },
     {
       "description": "File that will be fixity checked",
-      "name": "inputfile",
-      "type": {
-        "file": {
-          "filepath": ""
-        }
-      }
-    }
-  ],
-  "outputs": [
-    {
-      "description": "Fixity PASS or FAIL",
-      "name": "pass_fail",
-      "type": {
-        "raw": ""
-      }
+      "file": {
+        "filepath": ""
+      },
+      "name": "inputfile"
     }
   ],
   "preservationActionName": "MD5 Checksum Validation Using md5sum",
+  "rawOutputs": [
+    {
+      "description": "Fixity PASS or FAIL",
+      "name": "pass_fail",
+      "value": ""
+    }
+  ],
   "tool": {
     "toolID": "md5sum",
     "toolName": "md5sum"

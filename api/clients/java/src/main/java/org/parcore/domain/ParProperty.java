@@ -2,12 +2,7 @@ package org.parcore.domain;
 
 import java.util.Objects;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
@@ -28,6 +23,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class ParProperty {
 
+    @SerializedName("class")
+    private PropertyClass propertyClass = null;
+
     @SerializedName("equivalentTo")
     private List<String> equivalentTo = null;
 
@@ -37,11 +35,28 @@ public class ParProperty {
     @SerializedName("localLastModifiedDate")
     private String localLastModifiedDate = null;
 
+    @SerializedName("type")
+    private PropertyType propertyType = null;
+
     @SerializedName("units")
     private String units = null;
 
     @SerializedName("value")
     private String value = null;
+
+    /**
+     * Property Class is the logical type of a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.
+     *
+     * @return class
+     */
+    @ApiModelProperty(value = "Property Class is the logical type of a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.")
+    public PropertyClass getPropertyClass() {
+        return propertyClass;
+    }
+
+    public void setPropertyClass(PropertyClass propertyClass) {
+        this.propertyClass = propertyClass;
+    }
 
     public void addEquivalentToItem(String equivalentToItem) {
         if (this.equivalentTo == null) {
@@ -93,6 +108,20 @@ public class ParProperty {
     }
 
     /**
+     * Property Type is the datatype in which the value of a specific property should be formatted, for example fmt/43, MD5 and SHA512 values are typically strings, validity metrics may be booleans, size measures will be numeric types.
+     *
+     * @return type
+     */
+    @ApiModelProperty(value = "Property Type is the datatype in which the value of a specific property should be formatted, for example fmt/43, MD5 and SHA512 values are typically strings, validity metrics may be booleans, size measures will be numeric types.")
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(PropertyType propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    /**
      * Property Units allow for the specification of the units in which the value is given, for example an image size may be given in pixels (px), video bitrates may be specified in bits per second (bps) or kilobits per second (kbps).
      *
      * @return units
@@ -120,6 +149,51 @@ public class ParProperty {
         this.value = value;
     }
 
+    /**
+     * enum to establish controlled vocabulary for property type
+     */
+    public enum PropertyType {
+        STRING("string"),
+        BOOLEAN("boolean"),
+        INTEGER("integer"),
+        FLOAT("float"),
+        OTHER("other");
+
+        private String type;
+
+        PropertyType(String type) {
+            this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return this.type;
+        }
+    }
+
+    /**
+     * enum to establish controlled vocabulary for property class
+     */
+    public enum PropertyClass {
+        CHECKSUM("checksum"),
+        FILEFORMAT("file format"),
+        VALIDITY("validity"),
+        SIZE("size"),
+        RATE("rate"),
+        RAW("raw"),
+        OTHER("other");
+
+        private String clzz;
+
+        PropertyClass(String clzz) {
+            this.clzz = clzz;
+        }
+
+        @Override
+        public String toString() {
+            return clzz;
+        }
+    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -130,9 +204,11 @@ public class ParProperty {
             return false;
         }
         ParProperty parProperty = (ParProperty) o;
-        return Objects.equals(this.equivalentTo, parProperty.equivalentTo) &&
+        return Objects.equals(this.propertyClass, parProperty.propertyClass) &&
+                Objects.equals(this.equivalentTo, parProperty.equivalentTo) &&
                 Objects.equals(this.id, parProperty.id) &&
                 Objects.equals(this.localLastModifiedDate, parProperty.localLastModifiedDate) &&
+                Objects.equals(this.propertyType, parProperty.propertyType) &&
                 Objects.equals(this.units, parProperty.units) &&
                 Objects.equals(this.value, parProperty.value);
     }
@@ -148,9 +224,11 @@ public class ParProperty {
         StringBuilder sb = new StringBuilder();
         sb.append("class ParProperty {\n");
 
+        sb.append("    class: ").append(toIndentedString(propertyClass)).append("\n");
         sb.append("    equivalentTo: ").append(toIndentedString(equivalentTo)).append("\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("    localLastModifiedDate: ").append(toIndentedString(localLastModifiedDate)).append("\n");
+        sb.append("    type: ").append(toIndentedString(propertyType)).append("\n");
         sb.append("    units: ").append(toIndentedString(units)).append("\n");
         sb.append("    value: ").append(toIndentedString(value)).append("\n");
         sb.append("}");

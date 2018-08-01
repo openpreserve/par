@@ -80,6 +80,8 @@ public interface ToolsApi {
     Tool getToolById(String id) throws ApiException;
 
     /**
+     * Asynchronously retrieve a specific tool
+     *
      * @param id       Identifier
      * @param callback The callback to be executed when the API call finishes
      * @throws ApiException on error

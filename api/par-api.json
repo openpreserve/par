@@ -1,5 +1,5 @@
 {
-  "basePath": "/Registry/par",
+  "basePath": "/par",
   "definitions": {
     "BusinessRule": {
       "description": "A Business Rule describes additional context asserting how a Preservation Action should be performed. This allows the author of the rule to specify for example, a priority order in which to attempt certain Preservation Actions on particular content types, which inputs to supply, which outputs to extract etc. It also allows some free text fields to provide justification or share experience.",
@@ -1018,9 +1018,9 @@
     "description": "Find out more about PAR",
     "url": "http://parcore.org"
   },
-  "host": "preservica.com",
+  "host": "parcore.org",
   "info": {
-    "description": "Preservation Action Registry's API from Preservica",
+    "description": "Preservation Action Registry API",
     "title": "REST API",
     "version": "1.0.0"
   },

@@ -5,17 +5,17 @@ import org.parcore.api.client.utilities.AbstractApiCallImpl;
 import org.parcore.api.client.utilities.ApiClient;
 import org.parcore.api.client.utilities.ApiException;
 import org.parcore.api.client.utilities.ApiResponse;
-import org.parcore.domain.ParProperties;
-import org.parcore.domain.ParProperty;
+import org.parcore.domain.BusinessRule;
+import org.parcore.domain.BusinessRules;
 
 import java.util.Collections;
 
 /**
  * PAR API
  * <p>
- * ParPropertiesApiImpl
+ * BusinessRulesApiImpl
  * <p>
- * Client implementation for the PAR Properties PAR Core Entity endpoint
+ * Typed implementation of the AbstractApiCall providing methods to use PAR Core BusinessRule entity
  * <p>
  * OpenAPI spec version: 1.0.0
  * <p>
@@ -23,15 +23,15 @@ import java.util.Collections;
  * https://github.com/swagger-api/swagger-codegen.git
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class ParPropertiesApiImpl extends AbstractApiCallImpl<ParProperties, ParProperty> implements ParPropertiesApi {
+public class BusinessRulesApiImpl extends AbstractApiCallImpl<BusinessRules, BusinessRule> implements BusinessRulesApi {
 
     /**
      * Default Constructor
      *
      * @param apiClient Configured client
      */
-    public ParPropertiesApiImpl(ApiClient apiClient) {
-        super(apiClient, "/par-properties", ParProperties.class, ParProperty.class);
+    public BusinessRulesApiImpl(ApiClient apiClient) {
+        super(apiClient, "/business-rules", BusinessRules.class, BusinessRule.class);
     }
 
     /**
@@ -40,71 +40,67 @@ public class ParPropertiesApiImpl extends AbstractApiCallImpl<ParProperties, Par
      * @param apiClient Configured client
      * @param authNames Authentication/Authorization schema to use
      */
-    public ParPropertiesApiImpl(ApiClient apiClient, String[] authNames) {
+    public BusinessRulesApiImpl(ApiClient apiClient, String[] authNames) {
         this(apiClient);
         this.localVarAuthNames = authNames;
     }
 
     @Override
-    public ParProperties getAllProperties() throws ApiException {
+    public BusinessRules getAllBusinessRules() throws ApiException {
         return getListingApiResponse(null, null, null, null).getData();
     }
 
     @Override
-    public ParProperties getPagedListOfProperties(Integer offset, Integer limit) throws ApiException {
+    public BusinessRules getPagedListOfBusinessRules(Integer offset, Integer limit) throws ApiException {
         return getListingApiResponse(null, null, offset, limit).getData();
     }
 
     @Override
-    public ParProperties getPagedListofPropertiesByModifiedDate(String modifiedAfter, String modifiedBefore, Integer offset, Integer limit) throws ApiException {
+    public BusinessRules getPagedListOfBusinessRulesByModifiedDate(String modifiedAfter, String modifiedBefore, Integer offset, Integer limit) throws ApiException {
         return getListingApiResponse(modifiedAfter, modifiedBefore, offset, limit).getData();
     }
 
     @Override
-    public ParProperties getPropertiesByModifiedDate(String modifiedAfter, String modifiedBefore) throws ApiException {
+    public BusinessRules getBusinessRulesByModifiedDate(String modifiedAfter, String modifiedBefore) throws ApiException {
         return getListingApiResponse(modifiedAfter, modifiedBefore, null, null).getData();
     }
 
     @Override
-    public void getPropertiesAsync(String modifiedAfter, String modifiedBefore, final ApiCallback<ParProperties> callback) throws ApiException {
+    public void getBusinessRulesAsync(String modifiedAfter, String modifiedBefore, ApiCallback<BusinessRules> callback) throws ApiException {
         getListingAsync(null, modifiedAfter, modifiedBefore, Collections.emptyMap(), callback);
     }
 
     @Override
-    public ParProperty getPropertyById(String id) throws ApiException {
+    public BusinessRule getBusinessRuleById(String id) throws ApiException {
         return getEntity(id, null).getData();
     }
 
     @Override
-    public void getPropertyByIdAsync(String id, ApiCallback<ParProperty> callback) throws ApiException {
+    public void getBusinessRuleByIdAsync(String id, ApiCallback<BusinessRule> callback) throws ApiException {
         getEntityAsync(id, null, callback);
     }
 
     @Override
-    public ParProperty updateProperty(String id, ParProperty data) throws ApiException {
+    public BusinessRule updateBusinessRule(String id, BusinessRule data) throws ApiException {
         return updateEntity(id, data).getData();
     }
 
     @Override
-    public void updatePropertyAsync(String id, ParProperty data, ApiCallback<ParProperty> callback) throws ApiException {
+    public void updateBusinessRuleAsync(String id, BusinessRule data, ApiCallback<BusinessRule> callback) throws ApiException {
         updateEntityAsync(id, data, callback);
     }
 
     @Override
-    public ParProperty createProperty(ParProperty data) throws ApiException {
+    public BusinessRule createBusinessRule(BusinessRule data) throws ApiException {
         return createNewEntity(data).getData();
     }
 
     @Override
-    public void createPropertyAsync(ParProperty data, ApiCallback<ParProperty> callback) throws ApiException {
+    public void createBusinessRuleAsync(BusinessRule data, ApiCallback<BusinessRule> callback) throws ApiException {
         createNewEntityAsync(data, callback);
     }
 
-
-    // --- Internal methods that call down to the AbstractClass
-
-    private ApiResponse<ParProperties> getListingApiResponse(String modifiedAfter, String modifiedBefore, Integer offset, Integer limit) throws ApiException {
+    private ApiResponse<BusinessRules> getListingApiResponse(String modifiedAfter, String modifiedBefore, Integer offset, Integer limit) throws ApiException {
         return getListing(null, modifiedAfter, modifiedBefore, offset, limit, Collections.emptyMap());
     }
-
 }

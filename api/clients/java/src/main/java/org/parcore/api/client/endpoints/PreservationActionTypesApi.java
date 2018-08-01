@@ -92,7 +92,7 @@ public interface PreservationActionTypesApi {
     void getPreservationActionTypeByIdAsync(String id, ApiCallback<PreservationActionType> callback) throws ApiException;
 
     /**
-     * Update an existing preservation action type The newly updated PreservationActionType is return by the request.
+     * Update an existing preservation action type The newly updated PreservationActionType is returned by the request.
      * Allow to apply the changes specified int the body to the preservation action type provided in the url.
      *
      * @param id   Unique identifier for the existing preservation action type to update (required)

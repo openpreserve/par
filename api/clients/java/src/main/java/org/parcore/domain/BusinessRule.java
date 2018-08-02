@@ -3,7 +3,6 @@ package org.parcore.domain;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,7 @@ public class BusinessRule {
     private ParIdentifier id = null;
 
     @SerializedName("localLastModifiedDate")
-    private OffsetDateTime localLastModifiedDate = null;
+    private String localLastModifiedDate = null;
 
     @SerializedName("notes")
     private String notes = null;
@@ -125,11 +124,11 @@ public class BusinessRule {
      * @return localLastModifiedDate
      **/
     @ApiModelProperty(value = "")
-    public OffsetDateTime getLocalLastModifiedDate() {
+    public String getLocalLastModifiedDate() {
         return localLastModifiedDate;
     }
 
-    public void setLocalLastModifiedDate(OffsetDateTime localLastModifiedDate) {
+    public void setLocalLastModifiedDate(String localLastModifiedDate) {
         this.localLastModifiedDate = localLastModifiedDate;
     }
 

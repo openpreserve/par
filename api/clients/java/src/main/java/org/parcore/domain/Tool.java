@@ -1,19 +1,12 @@
 package org.parcore.domain;
 
-import java.util.Objects;
-
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.threeten.bp.OffsetDateTime;
+import java.util.Objects;
 
 /**
  * PAR API
@@ -34,7 +27,7 @@ public class Tool {
     private ParIdentifier id = null;
 
     @SerializedName("localLastModifiedDate")
-    private OffsetDateTime localLastModifiedDate = null;
+    private String localLastModifiedDate = null;
 
     @SerializedName("toolAcceptedParameters")
     private List<Parameter> toolAcceptedParameters = null;
@@ -74,11 +67,11 @@ public class Tool {
      * @return localLastModifiedDate
      **/
     @ApiModelProperty(value = "")
-    public OffsetDateTime getLocalLastModifiedDate() {
+    public String getLocalLastModifiedDate() {
         return localLastModifiedDate;
     }
 
-    public void setLocalLastModifiedDate(OffsetDateTime localLastModifiedDate) {
+    public void setLocalLastModifiedDate(String localLastModifiedDate) {
         this.localLastModifiedDate = localLastModifiedDate;
     }
 

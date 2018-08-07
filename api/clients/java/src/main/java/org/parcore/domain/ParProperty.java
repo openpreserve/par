@@ -153,10 +153,15 @@ public class ParProperty {
      * enum to establish controlled vocabulary for property type
      */
     public enum PropertyType {
+        @SerializedName("string")
         STRING("string"),
+        @SerializedName("boolean")
         BOOLEAN("boolean"),
+        @SerializedName("integer")
         INTEGER("integer"),
+        @SerializedName("float")
         FLOAT("float"),
+        @SerializedName("other")
         OTHER("other");
 
         private String type;
@@ -175,12 +180,19 @@ public class ParProperty {
      * enum to establish controlled vocabulary for property class
      */
     public enum PropertyClass {
+        @SerializedName("checksum")
         CHECKSUM("checksum"),
+        @SerializedName("file format")
         FILEFORMAT("file format"),
+        @SerializedName("validity")
         VALIDITY("validity"),
+        @SerializedName("size")
         SIZE("size"),
+        @SerializedName("rate")
         RATE("rate"),
+        @SerializedName("raw")
         RAW("raw"),
+        @SerializedName("other")
         OTHER("other");
 
         private String clzz;

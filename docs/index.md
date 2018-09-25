@@ -4,8 +4,7 @@ Current digital preservation systems such as Archivematica and Preservica lack a
 
 Artefactual, Arkivum, Preservica, Jisc and the Open Preservation Foundation are working on a Preservation Action Registries (PAR) that can be used to capture and share technical best practice for the preservation of digital objects in the form of a corpus of machine-readable recommendations. The registry’s data model defines what tools can be used for different digital object formats, what properties can be extracted or measured and what preservation actions can be taken. The model includes contextual and historical information on the reasons why recommendations are being given. The information is versioned and includes the tool parameters and software environments needed to execute different preservation actions so they are directly ‘executable’ by preservation systems.
 
-<img src="/assets/img/par-model.svg" alt="PAR simplified conceptual model"/>
-
+<img src="/rdss-par/assets/img/par-model.svg" alt="PAR simplified conceptual model"/>
 
 The first phase, currently underway, is a proof of concept which is designed to address the technical process of how information can be exchanged.
 

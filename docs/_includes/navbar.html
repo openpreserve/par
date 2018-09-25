@@ -8,12 +8,13 @@
       <ul class="navbar-nav mr-auto">
       {% for item in include.nav %}
         {% if item.url == navurl %}
-        <li class="active">
+        <li class="nav-item active">
         {% else %}
-        <li>
+        <li class="nav-item">
         {% endif %}
-        <a href="{{ site.url }}{{ item.href }}">{{ item.title }}</a>
-      {% endfor %}
+          <a class="nav-link" href="{{ site.url }}{{ item.href }}">{{ item.title }}</a>
+        </li>
+        {% endfor %}
       </ul>
     </div>
   </nav>

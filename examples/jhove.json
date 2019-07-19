@@ -14,7 +14,7 @@
       "description": "Module name",
       "type": "command line argument",
       "value": "-m MODULE"
-    }
+    },
     {
       "description": "Output handler name (defaults to TEXT)",
       "type": "command line argument",

@@ -1,0 +1,89 @@
+{
+  "id": {
+    "guid": "1d168550-a7ad-5599-9ed1-be93a5b9d5c5",
+    "name": "opf-jhove",
+    "namespace": "https://openpreservation.org"
+  },
+  "toolAcceptedParameters": [
+    {
+      "description": "Configuration file path name",
+      "type": "command line argument",
+      "value": "-c CONFIG"
+    },
+    {
+      "description": "Module name",
+      "type": "command line argument",
+      "value": "-m MODULE"
+    },
+    {
+      "description": "Output handler name (defaults to TEXT)",
+      "type": "command line argument",
+      "value": "-h HANDLER"
+    },
+    {
+      "description": "Character encoding used by output handler (defaults to UTF-8)",
+      "type": "command line argument",
+      "value": "-e ENCODING"
+    },
+    {
+      "description": "About handler name",
+      "type": "command line argument",
+      "value": "-H HANDLER"
+    },
+    {
+      "description": "Output file path name (defaults to standard output)",
+      "type": "command line argument",
+      "value": "-o OUTPUT"
+    },
+    {
+      "description": "SAX parser class (defaults to J2SE default)",
+      "type": "command line argument",
+      "value": "-x SAXCLASS"
+    },
+    {
+      "description": "Temporary directory in which to create temporary files",
+      "type": "command line argument",
+      "value": "-t TEMPDIR"
+    },
+    {
+      "description": "Buffer size for buffered I/O (defaults to J2SE 1.4 default)",
+      "type": "command line argument",
+      "value": "-b BUFSIZE"
+    },
+    {
+      "description": "Logging level",
+      "type": "command line argument",
+      "value": "-l LOGLEVEL"
+    },
+    {
+      "description": "Calculate CRC32, MD5, and SHA-1 checksums",
+      "type": "command line flag",
+      "value": "-k"
+    },
+    {
+      "description": "Display raw data flags, not textual equivalents",
+      "type": "command line flag",
+      "value": "-r"
+    },
+    {
+      "description": "Format identification based on internal signatures only",
+      "type": "command line flag",
+      "value": "-s"
+    },
+    {
+      "description": "Directory or file path name or URI of formatted content stream",
+      "type": "command line input",
+      "value": "DIR-FILE-OR-URI"
+    }
+  ],
+  "toolLabel": "JSTOR Harvard Object Validation Environment",
+  "toolName": "JHOVE",
+  "toolOperatingEnvironments": [
+    "linux",
+    "windows",
+    "macos",
+    "java 8 or greater"
+  ],
+  "toolPublisher": "Open Preservation Foundation",
+  "toolVersion": "1.22.1"
+}

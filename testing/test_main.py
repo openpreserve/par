@@ -1,3 +1,6 @@
+"""
+Main test methods for schema, etc.
+"""
 from abc import ABCMeta, abstractmethod
 import json
 import os
@@ -9,6 +12,9 @@ from .const import get_schema_path
 
 
 class AbstractSchemaValidatorTest(object):
+    """
+    Main test class.
+    """
     __metaclass__ = ABCMeta
 
     schema_id_path_pairs = [
@@ -52,120 +58,149 @@ class AbstractSchemaValidatorTest(object):
 
     def validate_json(self, json_file_name):
         """Validate the JSON using the test classes schema file."""
-        json_schema = self.get_json(self.get_json_schema_file_name())
-        json_data = self.get_json(json_file_name)
+        json_schema = get_json(self.get_json_schema_file_name())
+        json_data = get_json(json_file_name)
         validate(
             json_data,
             json_schema,
             resolver=RefResolver('', {}, store={
-                schema_id: self.get_json(schema_path)
+                schema_id: get_json(schema_path)
                 for schema_id, schema_path in self.schema_id_path_pairs
             }),
             format_checker=FormatChecker(),
         )
 
-    def get_json(self, file_name):
-        with open(file_name) as json_data:
-            return json.load(json_data)
-
     def prepare_file_name(self, file_name):
+        """Return the file name in a suitable format with the path."""
         return self.dir_path + '/' + file_name
+
+def get_json(file_name):
+    """Load JSON data from a file."""
+    with open(file_name) as json_data:
+        return json.load(json_data)
 
 
 class FormatTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for format Schema."""
     def get_json_schema_file_name(self):
+        """Return the format JSON schema file."""
         return 'schemas/format.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/fmt-43.json')
 
 
 class PreservationActionTest1(AbstractSchemaValidatorTest, TestCase):
+    """Test for preservation action example."""
     def get_json_schema_file_name(self):
         return 'schemas/preservation-action.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/md5check1.json')
 
 class PreservationActionTest2(AbstractSchemaValidatorTest, TestCase):
+    """Test for preservation action example."""
     def get_json_schema_file_name(self):
         return 'schemas/preservation-action.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/md5check2.json')
 
 class PreservationActionTest3(AbstractSchemaValidatorTest, TestCase):
+    """Test for preservation action example."""
     def get_json_schema_file_name(self):
         return 'schemas/preservation-action.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/mediaInfo2.json')
 
-class md5sumToolTest(AbstractSchemaValidatorTest, TestCase):
+class Md5sumToolTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for preservation tool example."""
     def get_json_schema_file_name(self):
         return 'schemas/tool.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/md5sum.json')
 
 
-class ffmpegToolTest(AbstractSchemaValidatorTest, TestCase):
+class FfmpegToolTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for preservation tool example."""
     def get_json_schema_file_name(self):
         return 'schemas/tool.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/ffmpeg.json')
 
 
 class BusinessRuleTest1(AbstractSchemaValidatorTest, TestCase):
+    """Test for business rule example."""
     def get_json_schema_file_name(self):
         return 'schemas/business-rule.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/br-1.json')
 
 class BusinessRuleTest2(AbstractSchemaValidatorTest, TestCase):
+    """Test for business rule example."""
     def get_json_schema_file_name(self):
         return 'schemas/business-rule.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/br-2.json')
 
 class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
+    """Test for business rule example."""
     def get_json_schema_file_name(self):
         return 'schemas/business-rule.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/br-3.json')
 
 
 class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for PAR property example."""
     def get_json_schema_file_name(self):
         return 'schemas/par-property.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/md5prop.json')
 
 
 class PassFailPropertyTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for pass/fail property example."""
     def get_json_schema_file_name(self):
         return 'schemas/par-property.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/passfailprop.json')
 
 
 class AspectRatioPropertyTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for ration property example."""
     def get_json_schema_file_name(self):
         return 'schemas/par-property.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/aspectratioprop.json')
 
 
 class WidthPropertyTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for width property example."""
     def get_json_schema_file_name(self):
         return 'schemas/par-property.json'
 
-    def runTest(self):
+    def test_validation(self):
+        """ Test the example."""
         self.validate_json('examples/ebucorewidthprop.json')

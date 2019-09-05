@@ -9,7 +9,7 @@
 import os
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
-SCHEMA_DIR = os.path.abspath(os.path.join(TESTS_DIR, os.pardir, "schemas"))
+SCHEMA_DIR = os.path.abspath(os.path.join(TESTS_DIR, os.pardir, "schema"))
 
 def get_schema_path(json_file_name):
     """Returns the full JSON schema path for the passed file name."""

@@ -18,6 +18,6 @@ lintDirJson() {
   echo ""
 }
 
-lintDirJson "schemas"
+lintDirJson "schema"
 lintDirJson "api"
 lintDirJson "examples"

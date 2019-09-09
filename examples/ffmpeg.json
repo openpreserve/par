@@ -5,8 +5,16 @@
     "namespace": "http://preservica.com"
   },
   "toolAcceptedParameters": [
-    "-i",
-    "-acodec"
+    {
+      "description": "Input file path",
+      "type": "command line argument",
+      "value": "-i INPUT"
+    },
+    {
+      "description": "Audio codec to use",
+      "type": "command line argument",
+      "value": "-acodec CODEC_NAME"
+    }
   ],
   "toolLabel": "FFmpeg",
   "toolName": "FFmpeg v3.1",

@@ -1,41 +1,774 @@
-swagger: '2.0'
+basePath: /par
+definitions:
+  BusinessRule:
+    description: 'A Business Rule describes additional context asserting how a Preservation Action should be performed. This allows the author of the rule to specify for example, a priority order in which to attempt certain Preservation Actions on particular content types, which inputs to supply, which outputs to extract etc. It also allows some free text fields to provide justification or share experience.'
+    properties:
+      description:
+        description: 'A short human readable explanation/display name for the Business Rule, e.g. ''Use md5sum to perform the MD5Check Preservation Action for all files'''
+        type: string
+      formatFamilies:
+        description: A list of format families that this Business Rule should be applied to
+        items:
+          $ref: '#/definitions/formatFamily'
+        type: array
+      formats:
+        description: A list of file formats that this Business Rule should be applied to
+        items:
+          $ref: '#/definitions/parIdentifier'
+        type: array
+      id:
+        $ref: '#/definitions/parIdentifier'
+      localLastModifiedDate:
+        format: date-time
+        type: string
+      notes:
+        description: 'A free text field for providing additional context. This may be used to record the decision making process that led to the formulation of this rule, details of real-world experience in applying the rule, or any other text.'
+        type: string
+      preservationActionTypes:
+        description: 'A list of Preservation Action Types that this Business Rule should be applied to. This might be a subset of those that the Preservation Actions themselves apply to. For example, a file format transformation action might itself apply to Migration and Normalization action types, but the Business Rule might be applicable only to Normalization'
+        items:
+          $ref: '#/definitions/PreservationActionType'
+        type: array
+      preservationActions:
+        description: 'A list of specific actions. These are defined internally to reference the Core Preservation Action, the priority order in which it should be performed, and any inputs and outputs that should be used.'
+        items:
+          $ref: '#/definitions/action'
+        type: array
+    required:
+      - id
+    title: Business Rule
+    type: object
+  BusinessRules:
+    description: A list of business rules
+    properties:
+      businessRules:
+        items:
+          $ref: '#/definitions/BusinessRule'
+        type: array
+    title: A list of business rules
+    type: object
+  FileFormat:
+    additionalProperties: false
+    description: A file format as defined by PRONOM
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      binaryFileFormat:
+        type: string
+      byteOrders:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      developers:
+        items:
+          $ref: '#/definitions/developerInformation'
+        type: array
+      disclosure:
+        type: string
+      documents:
+        items:
+          $ref: '#/definitions/documentInformation'
+        type: array
+      externalSignatures:
+        items:
+          $ref: '#/definitions/externalSignatureInformation'
+        type: array
+      families:
+        items:
+          type: string
+        type: array
+      id:
+        $ref: '#/definitions/parIdentifier'
+        description: 'A persistent unique identifier for the format, in PAR form'
+      identifiers:
+        items:
+          $ref: '#/definitions/identifierInformation'
+        type: array
+      internalSignatures:
+        items:
+          $ref: '#/definitions/internalSignatureInformation'
+        type: array
+      lastUpdatedDate:
+        format: date
+        type: string
+      localLastModifiedDate:
+        format: date-time
+        type: string
+      name:
+        type: string
+      note:
+        type: string
+      provenance:
+        $ref: '#/definitions/provenanceInformation'
+      registryVersions:
+        items:
+          $ref: '#/definitions/registryVersionInformation'
+        type: array
+      relatedFormats:
+        items:
+          $ref: '#/definitions/relatedFormatInformation'
+        type: array
+      releaseDate:
+        format: date
+        type: string
+      risk:
+        type: string
+      technicalEnvironment:
+        $ref: '#/definitions/environmentInformation'
+      types:
+        items:
+          type: string
+        type: array
+      version:
+        type: string
+      withdrawnDate:
+        format: date
+        type: string
+    required:
+      - id
+      - localLastModifiedDate
+    title: Format
+    type: object
+  FileFormatPOSTBodyExample:
+    description: Required elements in a POST body request
+    properties:
+      name:
+        type: string
+    title: fileFormat POST body example
+    type: object
+  FileFormatPUTBodyExample:
+    description: Required elements in a PUT body request
+    properties:
+      name:
+        type: string
+      puid:
+        description: 'Persistent Unique Identifier, e.g. fmt/40, x-fmt/192'
+        type: string
+      puidNamespace:
+        type: string
+    title: fileFormat PUT body example
+    type: object
+  FileFormats:
+    description: A list of file formats
+    properties:
+      fileFormats:
+        items:
+          $ref: '#/definitions/FileFormat'
+        type: array
+    title: A list of file formats
+    type: object
+  ParProperties:
+    description: A list of PAR properties
+    properties:
+      parProperties:
+        items:
+          $ref: '#/definitions/ParProperty'
+        type: array
+    title: A list of properties
+    type: object
+  ParProperty:
+    properties:
+      class:
+        description: 'Property Class is the logical type of a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.'
+        enum:
+          - checksum
+          - file format
+          - validity
+          - size
+          - rate
+          - raw
+          - other
+        example: other
+      equivalentTo:
+        description: 'Equivalent To allows for assertions that a specific property is equivalent to named properties in other schemas or registries, for example, an Aspect Ration property for a video may be declared to be equivalent to the ebucore:aspectRatio, even if the representation of the measurement is different'
+        items:
+          type: string
+        type: array
+      id:
+        $ref: '#/definitions/parIdentifier'
+      localLastModifiedDate:
+        type: string
+      type:
+        description: 'Property Type is the datatype in which the value of a specific property should be formatted, for example fmt/43, MD5 and SHA512 values are typically strings, validity metrics may be booleans, size measures will be numeric types.'
+        enum:
+          - string
+          - boolean
+          - integer
+          - float
+          - other
+        example: boolean
+      units:
+        description: 'Property Units allow for the specification of the units in which the value is given, for example an image size may be given in pixels (px), video bitrates may be specified in bits per second (bps) or kilobits per second (kbps).'
+        type: string
+      value:
+        description: Property Value is the measured value of a specific property for a particular object.
+        type: string
+    required:
+      - id
+      - class
+      - type
+    title: PAR Property
+    type: object
+  PreservationAction:
+    properties:
+      constraints:
+        items:
+          properties:
+            allowedFormats:
+              items:
+                $ref: '#/definitions/FileFormat'
+              type: array
+            allowedPropertiesAllOf:
+              items:
+                $ref: '#/definitions/ParProperty'
+              type: array
+            allowedPropertiesAnyOf:
+              items:
+                $ref: '#/definitions/ParProperty'
+              type: array
+            inputItemName:
+              type: string
+          type: object
+        minItems: 1
+        type: array
+      description:
+        type: string
+      example:
+        type: string
+      id:
+        $ref: '#/definitions/parIdentifier'
+      inputFiles:
+        items:
+          $ref: '#/definitions/inputFile'
+        minItems: 1
+        type: array
+      inputProperties:
+        items:
+          $ref: '#/definitions/inputProperty'
+        minItems: 1
+        type: array
+      localLastModifiedDate:
+        format: date-time
+        type: string
+      outputFiles:
+        items:
+          $ref: '#/definitions/outputFile'
+        minItems: 1
+        type: array
+      outputProperties:
+        items:
+          $ref: '#/definitions/outputProperty'
+        minItems: 1
+        type: array
+      rawOutputs:
+        items:
+          $ref: '#/definitions/outputRaw'
+        minItems: 1
+        type: array
+      tool:
+        $ref: '#/definitions/Tool'
+      type:
+        $ref: '#/definitions/PreservationActionType'
+    required:
+      - id
+      - description
+      - type
+      - tool
+    title: Preservation Action
+    type: object
+  PreservationActionType:
+    additionalProperties: false
+    description: 'The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html'
+    properties:
+      id:
+        $ref: '#/definitions/parIdentifier'
+      label:
+        type: string
+      localLastModifiedDate:
+        format: date-time
+        type: string
+    required:
+      - id
+      - label
+    title: Preservation Action Types
+    type: object
+  PreservationActionTypes:
+    description: A list of preservation action types
+    properties:
+      preservationActionTypes:
+        items:
+          $ref: '#/definitions/PreservationActionType'
+        type: array
+    title: A list of preservation action types
+    type: object
+  PreservationActionTypesBodyExample:
+    description: Required elements in a request's body
+    properties:
+      id:
+        type: string
+      label:
+        type: string
+    title: preservation-action-types body example
+    type: object
+  PreservationActions:
+    description: A list of preservation actions
+    properties:
+      preservationActions:
+        items:
+          $ref: '#/definitions/PreservationAction'
+        type: array
+    title: A list of preservation actions
+    type: object
+  Tool:
+    description: A software tool or application that can be used to perform preservation actions
+    properties:
+      id:
+        $ref: '#/definitions/parIdentifier'
+      localLastModifiedDate:
+        format: date-time
+        type: string
+      toolAcceptedParameters:
+        items:
+          $ref: '#/definitions/parameter'
+        type: array
+        uniqueItems: true
+      toolLabel:
+        type: string
+      toolName:
+        type: string
+      toolOperatingEnvironments:
+        items:
+          type: string
+        type: array
+        uniqueItems: true
+      toolPublisher:
+        type: string
+      toolVersion:
+        type: string
+    required:
+      - id
+      - toolName
+    title: Tool
+    type: object
+  ToolBodyExample:
+    description: Required elements in a request's body
+    properties:
+      id:
+        $ref: '#/definitions/parIdentifier'
+      toolName:
+        type: string
+    title: tool body example
+    type: object
+  Tools:
+    description: A list of tools
+    properties:
+      tools:
+        items:
+          $ref: '#/definitions/Tool'
+        type: array
+    title: A list of tools
+    type: object
+  action:
+    properties:
+      optionalInputProperties:
+        items:
+          $ref: '#/definitions/inputProperty'
+        type: array
+      optionalInputFiles:
+        items:
+          $ref: '#/definitions/inputFile'
+        type: array
+      outputPropertiesRetrieved:
+        items:
+          $ref: '#/definitions/outputProperty'
+        type: array
+      outputFilesRetrieved:
+        items:
+          $ref: '#/definitions/outputFile'
+        type: array
+      rawOutputsRetrieved:
+        items:
+          $ref: '#/definitions/outputRaw'
+        type: array
+      preservationAction:
+        $ref: '#/definitions/parIdentifier'
+      priority:
+        type: integer
+    required:
+      - preservationAction
+    title: Action
+    type: object
+  authorInformation:
+    properties:
+      authorCompoundName:
+        type: string
+      authorId:
+        type: string
+      authorIdNamespace:
+        type: string
+      authorName:
+        type: string
+      organisationName:
+        type: string
+    required:
+      - authorId
+      - authorIdNamespace
+    type: object
+  byteSequenceInformation:
+    properties:
+      byteSequenceId:
+        type: string
+      byteSequenceIdNamespace:
+        type: string
+      byteSequenceValue:
+        type: string
+      endianness:
+        type: string
+      indirectOffsetLength:
+        type: string
+      indirectOffsetLocation:
+        type: string
+      maxOffset:
+        type: string
+      offset:
+        type: string
+      positionType:
+        type: string
+    required:
+      - byteSequenceId
+      - byteSequenceIdNamespace
+    type: object
+  developerInformation:
+    properties:
+      developerCompoundName:
+        type: string
+      developerId:
+        type: string
+      developerIdNamespace:
+        type: string
+      developerName:
+        type: string
+      organisationName:
+        type: string
+    required:
+      - developerId
+      - developerIdNamespace
+    type: object
+  documentInformation:
+    properties:
+      author:
+        $ref: '#/definitions/authorInformation'
+      availabilityDescription:
+        type: string
+      availabilityNote:
+        type: string
+      displayText:
+        type: string
+      documentIPR:
+        type: string
+      documentId:
+        type: string
+      documentIdNamespace:
+        type: string
+      documentNote:
+        type: string
+      documentType:
+        type: string
+      publicationDate:
+        type: string
+      publisher:
+        $ref: '#/definitions/publisherInformation'
+      titleText:
+        type: string
+    required:
+      - documentId
+      - documentIdNamespace
+    type: object
+  environmentInformation:
+    type: string
+  externalSignatureInformation:
+    properties:
+      externalSignatureId:
+        type: string
+      externalSignatureIdNamespace:
+        type: string
+      signature:
+        type: string
+      signatureType:
+        type: string
+    type: object
+  formatFamily:
+    description: 'A format family is simply a means of grouping more specific file formats into more general groups. These can be high level groupings such as Videos, Documents, etc, or more specific groupings such as JPEGs, Excel Spreadsheets, etc. It may even be used to group otherwise unrelated formats, to capture, for example, the set of accepted formats, for example, [PDF 1.4, TIFF, MKV, WAV], or to specify all formats, e.g. [ALL]. These can be formally specified, with a fixed ID and Namespace, or just a generic label'
+    properties:
+      familyType:
+        type: string
+      formats:
+        items:
+          $ref: '#/definitions/parIdentifier'
+        type: array
+      identifier:
+        $ref: '#/definitions/parIdentifier'
+    title: Format Family
+    type: object
+  identifierInformation:
+    properties:
+      identifier:
+        type: string
+      identifierType:
+        type: string
+    required:
+      - identifier
+      - identifierType
+    type: object
+  inputFile:
+    description: A file input to a preservation action
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/parFile'
+      name:
+        type: string
+    required:
+      - name
+      - description
+      - file
+    title: Preservation Action Input File
+    type: object
+  inputProperty:
+    description: A property input to a preservation action
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      parProperty:
+        $ref: '#/definitions/ParProperty'
+    required:
+      - name
+      - description
+      - parProperty
+    title: Preservation Action Input Property
+    type: object
+  outputFile:
+    description: An output file from a preservation action
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/parFile'
+      name:
+        type: string
+    required:
+      - name
+      - description
+      - file
+    title: Preservation Action Output File
+    type: object
+  outputProperty:
+    description: An output property from a preservation action
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      parProperty:
+        $ref: '#/definitions/ParProperty'
+    required:
+      - name
+      - description
+      - parProperty
+    title: Preservation Action Output
+    type: object
+  outputRaw:
+    description: A raw output from a preservation action
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      value:
+        type: string
+    required:
+      - name
+      - description
+      - value
+    title: Preservation Action Raw Output
+    type: object
+  internalSignatureInformation:
+    properties:
+      byteSequences:
+        items:
+          $ref: '#/definitions/byteSequenceInformation'
+        type: array
+      signatureId:
+        type: string
+      signatureIdNamespace:
+        type: string
+      signatureName:
+        type: string
+      signatureNote:
+        type: string
+    required:
+      - signatureId
+      - signatureIdNamespace
+    type: object
+  parFile:
+    description: A file that is an input or output of a preservation action
+    properties:
+      filepath:
+        type: string
+    title: PAR File
+    type: object
+  parIdentifier:
+    description: 'A generic identifier type for any PAR Core Entity. An identifier in PAR consists of the name of the object to identify, and the namespace in which that name is unique. These basic components should be combined into a GUID (Globally Unique Identifier). This is intended to be the machine readable and usable form and is the resource identifier that can be specified unambiguously in an API call. It is strongly recommended that this is a Version 3 or Version 5 UUID, generated by specifying the name of the object and a UUID identifying the namespace. The name and namespace elements are intended to be more human readable and usable forms of the identifier. Names are not required to be universally unique, but the combination of name and namespace should be.'
+    properties:
+      guid:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+    required:
+      - guid
+    title: PAR Identifier
+    type: object
+  parameter:
+    title: Parameter
+    type: object
+  provenanceInformation:
+    properties:
+      provenanceDescription:
+        type: string
+      provenanceName:
+        type: string
+      provenanceSourceDate:
+        format: date
+        type: string
+      provenanceSourceId:
+        type: string
+      provenanceSourceNamespace:
+        type: string
+    required:
+      - provenanceSourceId
+      - provenanceSourceNamespace
+    type: object
+  publisherInformation:
+    properties:
+      organisationName:
+        type: string
+      publisherCompoundName:
+        type: string
+      publisherId:
+        type: string
+      publisherIdNamespace:
+        type: string
+      publisherName:
+        type: string
+    required:
+      - publisherId
+      - publisherIdNamespace
+    type: object
+  registryVersionInformation:
+    properties:
+      name:
+        type: string
+      registryNamespace:
+        type: string
+      version:
+        type: string
+    required:
+      - registryNamespace
+      - version
+    type: object
+  relatedFormatInformation:
+    properties:
+      relatedFormatId:
+        type: string
+      relatedFormatIdNamespace:
+        type: string
+      relatedFormatName:
+        type: string
+      relatedFormatVersion:
+        type: string
+      relationshipType:
+        type: string
+    required:
+      - relationshipType
+      - relatedFormatId
+      - relatedFormatIdNamespace
+    type: object
+externalDocs:
+  description: Find out more about PAR
+  url: 'http://parcore.org'
+host: parcore.org
 info:
-  description: Preservation Action Registry's API from Preservica
-  version: 1.0.0
+  description: Preservation Action Registry API
   title: REST API
-host: preservica.com
-basePath: /Registry/par
-tags:
-  - name: Preservation Action Registry
-    externalDocs:
-      description: Website
-      url: 'http://parcore.org'
-schemes:
-  - https
-  - http
+  version: 1.0.0
 paths:
   /business-rules:
-    post:
-      tags:
-        - Business Rules
-      summary: Create a new business rule
-      description: Create a new business rule with the data provided in the body of the request.
+    get:
       consumes:
         - application/json
+      description: Allow to retrieve the details of all the business rules
+      parameters:
+        - description: 'An integer to limit the number of business rules returned. Default value is zero, which will no filter the result.'
+          in: query
+          name: limit
+          type: string
+        - description: 'An integer to specify the offset of the first element of the list of business rules returned. Default value is zero, which will no filter the result.'
+          in: query
+          name: offset
+          type: string
+        - description: 'Filter the business rules to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
+          in: query
+          name: modifiedAfter
+          required: false
+          type: string
+        - description: 'Filter the business rules to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
+          in: query
+          name: modifiedBefore
+          required: false
+          type: string
       produces:
         - application/json
-      parameters:
-        - in: body
-          name: body example
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
           schema:
-            $ref: '#/definitions/businessRule'
-          description: 'Required body parameters are: "id".'
+            $ref: '#/definitions/BusinessRule'
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve all business rules
+      tags:
+        - Business Rules
+    post:
+      consumes:
+        - application/json
+      description: Create a new business rule with the data provided in the body of the request.
+      parameters:
+        - description: 'Required body parameters are: "id".'
+          in: body
+          name: body example
           required: false
+          schema:
+            $ref: '#/definitions/BusinessRule'
+      produces:
+        - application/json
       responses:
         '201':
           description: Business Rule successfully created.
           schema:
-            $ref: '#/definitions/businessRule'
+            $ref: '#/definitions/BusinessRule'
         '400':
           description: Required field missing in the request or the provided puid is already being used.
         '404':
@@ -46,123 +779,22 @@ paths:
           description: Server failed to handle the request.
       security:
         - authorization: []
-    get:
+      summary: Create a new business rule
       tags:
         - Business Rules
-      summary: Retrieve all business rules
-      description: Allow to retrieve the details of all the business rules
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: query
-          name: limit
-          type: string
-          description: 'An integer to limit the number of business rules returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: offset
-          type: string
-          description: 'An integer to specify the offset of the first element of the list of business rules returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: modifiedAfter
-          type: string
-          description: 'Filter the business rules to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
-          required: false
-        - in: query
-          name: modifiedBefore
-          type: string
-          description: 'Filter the business rules to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
-          required: false
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/businessRule'
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
   '/business-rules/{id}':
-    get:
-      tags:
-        - Business Rules
-      summary: Retrieve a business rule
-      description: Allow to retrieve the details of the specific business rule provided in the url.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the business rule to retrieve.
-          required: true
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/businessRule'
-        '400':
-          description: Business rule not found.
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-    put:
-      tags:
-        - Business Rules
-      summary: Update an existing business rule
-      description: Allow to modify the content of a business rule. The updated business rule will like just like the body provided in the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing business rule to update
-          required: true
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/businessRule'
-          description: 'Required body parameters are: "id".'
-          required: false
-      responses:
-        '201':
-          description: Business rule successfully updated.
-          schema:
-            $ref: '#/definitions/businessRule'
-        '403':
-          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
     delete:
-      tags:
-        - Business Rules
-      summary: Delete a business rule
-      description: Delete a new business rule.
       consumes:
         - application/json
+      description: Delete a new business rule.
+      parameters:
+        - description: Unique identifier for the existing business rule to delete
+          in: path
+          name: id
+          required: true
+          type: string
       produces:
         - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing business rule to delete
-          required: true
       responses:
         '204':
           description: Business Rule successfully deleted.
@@ -176,132 +808,60 @@ paths:
           description: Server failed to handle the request.
       security:
         - authorization: []
-  /par-properties:
-    post:
+      summary: Delete a business rule
       tags:
-        - Par Properties
-      summary: Create a new par property
-      description: Create a new par property with the data provided in the body of the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/parProperty'
-          description: 'Required body parameters are: "id", "class" and "type".'
-          required: false
-      responses:
-        '201':
-          description: Par Property successfully created.
-          schema:
-            $ref: '#/definitions/parProperty'
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
+        - Business Rules
     get:
-      tags:
-        - Par Properties
-      summary: Retrieve all par properties
-      description: Allow to retrieve the details of all the par properties
       consumes:
         - application/json
-      produces:
-        - application/json
+      description: Allow to retrieve the details of the specific business rule provided in the url.
       parameters:
-        - in: query
-          name: limit
-          type: string
-          description: 'An integer to limit the number of par properties returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: offset
-          type: string
-          description: 'An integer to specify the offset of the first element of the list of par properties returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: modifiedAfter
-          type: string
-          description: 'Filter the par properties to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
-          required: false
-        - in: query
-          name: modifiedBefore
-          type: string
-          description: 'Filter the par properties to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
-          required: false
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/parProperty'
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-  '/par-properties/{id}':
-    get:
-      tags:
-        - Par Properties
-      summary: Retrieve a par property
-      description: Allow to retrieve the details of the specific par property provided in the url.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
+        - description: Unique identifier for the business rule to retrieve.
+          in: path
           name: id
-          type: string
-          description: Unique identifier for the par property to retrieve.
           required: true
+          type: string
+      produces:
+        - application/json
       responses:
         '200':
           description: Request has gone thorugh successfully.
           schema:
-            $ref: '#/definitions/parProperty'
+            $ref: '#/definitions/BusinessRule'
         '400':
-          description: Par property not found.
+          description: Business rule not found.
         '403':
           description: Forbidden action. Trying to update the value of a non-modifiable field.
         '404':
           description: Endpoint does not exist.
         '502':
           description: Server failed to handle the request.
+      summary: Retrieve a business rule
+      tags:
+        - Business Rules
     put:
-      tags:
-        - Par Properties
-      summary: Update an existing par property
-      description: Allow to modify the content of a par property. The updated par property will like just like the body provided in the request.
       consumes:
         - application/json
+      description: Allow to modify the content of a business rule. The updated business rule will like just like the body provided in the request.
+      parameters:
+        - description: Unique identifier for the existing business rule to update
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: 'Required body parameters are: "id".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/BusinessRule'
       produces:
         - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing par property to update
-          required: true
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/parProperty'
-          description: 'Required body parameters are: "id", "class" and "type".'
-          required: false
       responses:
         '201':
-          description: Par property successfully updated.
+          description: Business rule successfully updated.
           schema:
-            $ref: '#/definitions/parProperty'
+            $ref: '#/definitions/BusinessRule'
         '403':
           description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
         '404':
@@ -310,549 +870,72 @@ paths:
           description: Server failed to handle the request.
       security:
         - authorization: []
-    delete:
+      summary: Update an existing business rule
       tags:
-        - Par Properties
-      summary: Delete a par property
-      description: Delete a par property.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing par property to deletee
-          required: true
-      responses:
-        '204':
-          description: Par Property successfully deleted.
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-  
-  /preservation-actions:
-    post:
-      tags:
-        - Preservation Actions
-      summary: Create a new preservation action
-      description: Create a new preservation action with the data provided in the body of the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/preservationAction'
-          description: 'Required body parameters are: "id", "description", "type", "inputs", "outputs",          and "tools".'
-          required: false
-      responses:
-        '201':
-          description: Preservation Action successfully created.
-          schema:
-            $ref: '#/definitions/preservationAction'
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-    get:
-      tags:
-        - Preservation Actions
-      summary: Retrieve all preservation actions
-      description: Allow to retrieve the details of all the preservation action
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: query
-          name: limit
-          type: string
-          description: 'An integer to limit the number of preservation action returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: offset
-          type: string
-          description: 'An integer to specify the offset of the first element of the list of preservation action returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: modifiedAfter
-          type: string
-          description: 'Filter the preservation action to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
-        - in: query
-          name: modifiedBefore
-          type: string
-          description: 'Filter the preservation action to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
-        - in: header
-          name: tool
-          type: string
-          description: '''Filter the preservation actions by the Tool they use, provided its ID. Multiple IDs can be passed in within the same string, linked together using an ampersand symbol as follow: ID_1&ID_2&ID_3. When more than one ID is provided, the endpoint will return all the preservation actions that use one of the IDs in the list. When used together with the preservation_action_type header parameter, the endpoint will return only those preservation actions satisfying both filters'' criteria. A list of Tool IDs cannot be combined with another list of Preservation Action Type IDs. '''
-        - in: header
-          name: preservation_action_type
-          type: string
-          description: '''Filter the preservation actions by the Preservation Action Type they use, provided its ID. Multiple IDs can be passed in within the same string, linked together using an ampersand symbol as follow: ID_1&ID_2&ID_3. When more than one ID is provided, the endpoint will return all the preservation actions that use one of the IDs in the list. When used together with the tool header parameter, the endpoint will return only those preservation actions satisfying both filters'' criteria. A list of Tool IDs cannot be combined with another list of Preservation Action Type IDs. '''
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/preservationAction'
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-  '/preservation-actions/{id}':
-    get:
-      tags:
-        - Preservation Actions
-      summary: Retrieve a preservation action
-      description: Allow to retrieve the details of the specific preservation action provided in the url.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the preservation action to retrieve.
-          required: true
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/preservationAction'
-        '400':
-          description: Preservation action not found.
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-    put:
-      tags:
-        - Preservation Actions
-      summary: Update an existing preservation action
-      description: Allow to modify the content of a preservation action. The updated preservation action will like just like the body provided in the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing preservation action to update
-          required: true
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/preservationAction'
-          description: 'Required body parameters are: "id", "description", "type", "inputs", "outputs",           and "tools".'
-          required: false
-      responses:
-        '201':
-          description: Preservation action successfully updated.
-          schema:
-            $ref: '#/definitions/preservationAction'
-        '403':
-          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-    delete:
-      tags:
-        - Preservation Actions
-      summary: Delete a preservation action
-      description: Delete a preservation action.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing preservation action to deletee
-          required: true
-      responses:
-        '204':
-          description: Preservation Action successfully deleted.
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-  /tools:
-    post:
-      tags:
-        - Tools
-      summary: Create a new tool
-      description: Create a new tool with the data provided in the body of the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/tool'
-          description: 'Required body parameters are: "toolName" and "toolID".'
-          required: false
-      responses:
-        '201':
-          description: Tool successfully created.
-          schema:
-            $ref: '#/definitions/tool'
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-    get:
-      tags:
-        - Tools
-      summary: Retrieve all tools
-      description: Allow to retrieve the details of all the tool
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: query
-          name: limit
-          type: string
-          description: 'An integer to limit the number of tools returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: offset
-          type: string
-          description: 'An integer to specify the offset of the first element of the list of tools returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: modifiedAfter
-          type: string
-          description: 'Filter the tools to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
-          required: false
-        - in: query
-          name: modifiedBefore
-          type: string
-          description: 'Filter the tools to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
-          required: false
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/tool'
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-  '/tools/{toolID}':
-    get:
-      tags:
-        - Tools
-      summary: Retrieve a tool
-      description: Allow to retrieve the details of the specific tool provided in the url.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: toolID
-          type: string
-          description: Unique identifier for the tool to retrieve.
-          required: true
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/tool'
-        '400':
-          description: Tool not found.
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-    put:
-      tags:
-        - Tools
-      summary: Update an existing tool
-      description: Allow to modify the content of a tool. The updated tool will like just like the body provided in the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: toolID
-          type: string
-          description: Unique identifier for the existing tool to update
-          required: true
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/tool'
-          description: 'Required body parameters are: "toolName" and "toolID".'
-          required: false
-      responses:
-        '201':
-          description: Tool successfully updated.
-          schema:
-            $ref: '#/definitions/tool'
-        '403':
-          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-    delete:
-      tags:
-        - Tools
-      summary: Delete a tool
-      description: Delete a tool.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: toolID
-          type: string
-          description: Unique identifier for the existing tool to delete
-          required: true
-      responses:
-        '204':
-          description: Tool successfully deleted.
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-  /preservation-action-types:
-    post:
-      tags:
-        - Preservation Action Types
-      summary: Create a new preservation action type
-      description: Create a new preservation action type with the data provided in the body of the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/preservationActionType'
-          description: 'Required body parameters are: "id" and "uri".'
-          required: false
-      responses:
-        '201':
-          description: Preservation Action Type successfully created.
-          schema:
-            $ref: '#/definitions/preservationActionType'
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-    get:
-      tags:
-        - Preservation Action Types
-      summary: Retrieve all preservation action types
-      description: Allow to retrieve the details of all the preservation action types
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: query
-          name: limit
-          type: string
-          description: 'An integer to limit the number of preservation action types returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: offset
-          type: string
-          description: 'An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: modifiedAfter
-          type: string
-          description: 'Filter the preservation action types to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
-          required: false
-        - in: query
-          name: modifiedBefore
-          type: string
-          description: 'Filter the preservation action types to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
-          required: false
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/preservationActionTypes'
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-  '/preservation-action-types/{id}':
-    get:
-      tags:
-        - Preservation Action Types
-      summary: Retrieve a preservation action type
-      description: Allow to retrieve the details of the specific preservation action type provided in the url.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the preservation action type to retrieve.
-          required: true
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/preservationActionType'
-        '400':
-          description: Preservation action type not found.
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-    put:
-      tags:
-        - Preservation Action Types
-      summary: Update an existing preservation action type
-      description: Allow to modify the content of a preservation action type. The updated preservation action type will like just like the body provided in the request.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing preservation action type to update
-          required: true
-        - in: body
-          name: body example
-          schema:
-            $ref: '#/definitions/preservationActionType'
-          description: 'Required body parameters are: "id" and "uri".'
-          required: false
-      responses:
-        '201':
-          description: Preservation action type successfully updated.
-          schema:
-            $ref: '#/definitions/preservationActionType'
-        '403':
-          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
-    delete:
-      tags:
-        - Preservation Action Types
-      summary: Delete a preservation action type
-      description: Delete a preservation action type.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          type: string
-          description: Unique identifier for the existing preservation action type to delete
-          required: true
-      responses:
-        '204':
-          description: Preservation action type successfully deleted.
-        '400':
-          description: Required field missing in the request or the provided puid is already being used.
-        '404':
-          description: Endpoint does not exist.
-        '500':
-          description: Internal Server Error.
-        '502':
-          description: Server failed to handle the request.
-      security:
-        - authorization: []
+        - Business Rules
   /file-formats:
-    post:
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of all the file formats
+      parameters:
+        - description: Specify if sub entities should be included in response.
+          in: header
+          name: ReturnSubEntities
+          required: false
+          type: boolean
+        - description: 'Filter the file formats to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
+          in: query
+          name: modifiedAfter
+          required: false
+          type: string
+        - description: 'Filter the file formats to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
+          in: query
+          name: modifiedBefore
+          required: false
+          type: string
+        - description: An integer to limit the number of file formats returned. Default value is zero.
+          in: query
+          name: limit
+          type: string
+        - description: An integer to specify the offset of the first element of the list of file formats returned. Default value is zero.
+          in: query
+          name: offset
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/FileFormats'
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve all file formats
       tags:
         - File Formats
-      summary: Create a new file format
-      description: 'Create a new file format with the data provided in the body of the request. The only field that is always required is the file format that has to be created. If the body is not provided with the desired puid for the new file format, then the next available puid in the database will be used.'
+    post:
       consumes:
         - application/json
-      produces:
-        - application/json
+      description: 'Create a new file format with the data provided in the body of the request. The only field that is always required is the file format that has to be created. If the body is not provided with the desired puid for the new file format, then the next available puid in the database will be used.'
       parameters:
-        - in: header
+        - description: Specify if sub entities should be included in response.
+          in: header
           name: ReturnSubEntities
-          type: boolean
-          description: Specify if sub entities should be included in response.
           required: false
-        - in: body
+          type: boolean
+        - description: 'Required body parameters are: "name".'
+          in: body
           name: body example
+          required: true
           schema:
             $ref: '#/definitions/FileFormat'
-          description: 'Required body parameters are: "name".'
-          required: true
+      produces:
+        - application/json
       responses:
         '201':
           description: File format successfully created.
@@ -868,71 +951,27 @@ paths:
           description: Server failed to handle the request.
       security:
         - authorization: []
-    get:
+      summary: Create a new file format
       tags:
         - File Formats
-      summary: Retrieve all file formats
-      description: Allow to retrieve the details of all the file formats
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: header
-          name: ReturnSubEntities
-          type: boolean
-          description: Specify if sub entities should be included in response.
-          required: false
-        - in: query
-          name: modifiedAfter
-          type: string
-          description: 'Filter the file formats to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
-          required: false
-        - in: query
-          name: modifiedBefore
-          type: string
-          description: 'Filter the file formats to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
-          required: false
-        - in: query
-          name: limit
-          type: string
-          description: 'An integer to limit the number of file formats returned. Default value is zero, which will no filter the result.'
-        - in: query
-          name: offset
-          type: string
-          description: 'An integer to specify the offset of the first element of the list of file formats returned. Default value is zero, which will no filter the result.'
-      responses:
-        '200':
-          description: Request has gone thorugh successfully.
-          schema:
-            $ref: '#/definitions/FileFormats'
-        '403':
-          description: Forbidden action. Trying to update the value of a non-modifiable field.
-        '404':
-          description: Endpoint does not exist.
-        '502':
-          description: Server failed to handle the request.
   '/file-formats/{puid}':
     get:
-      tags:
-        - File Formats
-      summary: Retrieve a file format
-      description: Allow to retrieve the details of the specific file format provided in the url.
       consumes:
         - application/json
+      description: Allow to retrieve the details of the specific file format provided in the url.
+      parameters:
+        - description: Unique identifier for the file format to retrieve.
+          in: path
+          name: puid
+          required: true
+          type: string
+        - description: Specify if sub entities should be included in response.
+          in: header
+          name: ReturnSubEntities
+          required: false
+          type: boolean
       produces:
         - application/json
-      parameters:
-        - in: path
-          name: puid
-          type: string
-          description: Unique identifier for the file format to retrieve.
-          required: true
-        - in: header
-          name: ReturnSubEntities
-          type: boolean
-          description: Specify if sub entities should be included in response.
-          required: false
       responses:
         '200':
           description: Request has gone thorugh successfully.
@@ -946,32 +985,32 @@ paths:
           description: Endpoint does not exist.
         '502':
           description: Server failed to handle the request.
-    put:
+      summary: Retrieve a file format
       tags:
         - File Formats
-      summary: Update an existing file format
-      description: Allow to modify the content of a file format. The updated file format will like just like the body provided in the request.
+    put:
       consumes:
         - application/json
-      produces:
-        - application/json
+      description: Allow to modify the content of a file format. The updated file format will like just like the body provided in the request.
       parameters:
-        - in: path
+        - description: Unique identifier for the file format to update
+          in: path
           name: puid
-          type: string
-          description: Unique identifier for the file format to update
           required: true
-        - in: header
+          type: string
+        - description: Specify if sub entities should be included in response.
+          in: header
           name: ReturnSubEntities
-          type: boolean
-          description: Specify if sub entities should be included in response.
           required: false
-        - in: body
+          type: boolean
+        - description: 'Required body parameters are: "puid", "puidNamespace" and "name".'
+          in: body
           name: body example
+          required: true
           schema:
             $ref: '#/definitions/FileFormat'
-          description: 'Required body parameters are: "puid", "puidNamespace" and "name".'
-          required: true
+      produces:
+        - application/json
       responses:
         '201':
           description: File format successfully updated.
@@ -985,24 +1024,67 @@ paths:
           description: Server failed to handle the request.
       security:
         - authorization: []
-    delete:
+      summary: Update an existing file format
       tags:
         - File Formats
-      summary: Delete a file format
-      description: Delete a file format.
+  /par-properties:
+    get:
       consumes:
         - application/json
+      description: Allow to retrieve the details of all the par properties
+      parameters:
+        - description: 'An integer to limit the number of par properties returned. Default value is zero, which will no filter the result.'
+          in: query
+          name: limit
+          type: string
+        - description: 'An integer to specify the offset of the first element of the list of par properties returned. Default value is zero, which will no filter the result.'
+          in: query
+          name: offset
+          type: string
+        - description: 'Filter the par properties to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
+          in: query
+          name: modifiedAfter
+          required: false
+          type: string
+        - description: 'Filter the par properties to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
+          in: query
+          name: modifiedBefore
+          required: false
+          type: string
       produces:
         - application/json
-      parameters:
-        - in: path
-          name: puid
-          type: string
-          description: Unique identifier for the existing file format to delete
-          required: true
       responses:
-        '204':
-          description: File format type successfully deleted.
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/ParProperty'
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve all par properties
+      tags:
+        - Par Properties
+    post:
+      consumes:
+        - application/json
+      description: Create a new par property with the data provided in the body of the request.
+      parameters:
+        - description: 'Required body parameters are: "id", "class" and "type".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/ParProperty'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Par Property successfully created.
+          schema:
+            $ref: '#/definitions/ParProperty'
         '400':
           description: Required field missing in the request or the provided puid is already being used.
         '404':
@@ -1013,614 +1095,525 @@ paths:
           description: Server failed to handle the request.
       security:
         - authorization: []
+      summary: Create a new par property
+      tags:
+        - Par Properties
+  '/par-properties/{id}':
+    delete:
+      consumes:
+        - application/json
+      description: Delete a par property.
+      parameters:
+        - description: Unique identifier for the existing par property to deletee
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Par Property successfully deleted.
+        '400':
+          description: Required field missing in the request or the provided puid is already being used.
+        '404':
+          description: Endpoint does not exist.
+        '500':
+          description: Internal Server Error.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Delete a par property
+      tags:
+        - Par Properties
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of the specific par property provided in the url.
+      parameters:
+        - description: Unique identifier for the par property to retrieve.
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/ParProperty'
+        '400':
+          description: Par property not found.
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve a par property
+      tags:
+        - Par Properties
+    put:
+      consumes:
+        - application/json
+      description: Allow to modify the content of a par property. The updated par property will like just like the body provided in the request.
+      parameters:
+        - description: Unique identifier for the existing par property to update
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: 'Required body parameters are: "id", "class" and "type".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/ParProperty'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Par property successfully updated.
+          schema:
+            $ref: '#/definitions/ParProperty'
+        '403':
+          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Update an existing par property
+      tags:
+        - Par Properties
+  /preservation-action-types:
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of all the preservation action types
+      parameters:
+        - description: An integer to limit the number of preservation action types returned. Default value is zero.
+          in: query
+          name: limit
+          type: string
+        - description: An integer to specify the offset of the first element of the list of preservation action types returned. Default value is zero.
+          in: query
+          name: offset
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/PreservationActionTypes'
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve all preservation action types
+      tags:
+        - Preservation Action Types
+    post:
+      consumes:
+        - application/json
+      description: Create a new preservation action type with the data provided in the body of the request.
+      parameters:
+        - description: 'Required body parameters are: "id" and "uri".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/PreservationActionType'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Preservation Action Type successfully created.
+          schema:
+            $ref: '#/definitions/PreservationActionType'
+        '400':
+          description: Required field missing in the request or the provided puid is already being used.
+        '404':
+          description: Endpoint does not exist.
+        '500':
+          description: Internal Server Error.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Create a new preservation action type
+      tags:
+        - Preservation Action Types
+  '/preservation-action-types/{id}':
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of the specific preservation action type provided in the url.
+      parameters:
+        - description: Unique identifier for the preservation action type to retrieve.
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/PreservationActionType'
+        '400':
+          description: Preservation action type not found.
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve a preservation action type
+      tags:
+        - Preservation Action Types
+    put:
+      consumes:
+        - application/json
+      description: Allow to modify the content of a preservation action type. The updated preservation action type will like just like the body provided in the request.
+      parameters:
+        - description: Unique identifier for the existing preservation action type to update
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: 'Required body parameters are: "id" and "uri".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/PreservationActionType'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: File format successfully updated.
+          schema:
+            $ref: '#/definitions/PreservationActionType'
+        '403':
+          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Update an existing preservation action type
+      tags:
+        - Preservation Action Types
+  /preservation-actions:
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of all the preservation action
+      parameters:
+        - description: 'An integer to limit the number of preservation action returned. Default value is zero, which will no filter the result.'
+          in: query
+          name: limit
+          type: string
+        - description: 'An integer to specify the offset of the first element of the list of preservation action returned. Default value is zero, which will no filter the result.'
+          in: query
+          name: offset
+          type: string
+        - description: 'Filter the preservation action to return only the ones having a localLastModifiedDate value GREATER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time.'
+          in: query
+          name: modifiedAfter
+          type: string
+        - description: 'Filter the preservation action to return only the ones having a localLastModifiedDate value LOWER than the one passed in. Allowed datetime formats are YYYY-MM-DD\''T\''hh\:mm\:ssTZD and YYYY-MM-DD. In the second scenario, when the time is not provided, it will be assumed to be 00\:00\:00 UTC time'
+          in: query
+          name: modifiedBefore
+          type: string
+        - description: '''Filter the preservation actions by the Tool they use, provided its ID. Multiple IDs can be passed in within the same string, linked together using an ampersand symbol as follow: ID_1&ID_2&ID_3. When more than one ID is provided, the endpoint will return all the preservation actions that use one of the IDs in the list. When used together with the preservation_action_type header parameter, the endpoint will return only those preservation actions satisfying both filters'' criteria. A list of Tool IDs cannot be combined with another list of Preservation Action Type IDs. '''
+          in: header
+          name: tool
+          type: string
+        - description: '''Filter the preservation actions by the Preservation Action Type they use, provided its ID. Multiple IDs can be passed in within the same string, linked together using an ampersand symbol as follow: ID_1&ID_2&ID_3. When more than one ID is provided, the endpoint will return all the preservation actions that use one of the IDs in the list. When used together with the tool header parameter, the endpoint will return only those preservation actions satisfying both filters'' criteria. A list of Tool IDs cannot be combined with another list of Preservation Action Type IDs. '''
+          in: header
+          name: preservation_action_type
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/PreservationAction'
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve all preservation actions
+      tags:
+        - Preservation Actions
+    post:
+      consumes:
+        - application/json
+      description: Create a new preservation action with the data provided in the body of the request.
+      parameters:
+        - description: 'Required body parameters are: "id", "description", "type", "inputs", "outputs",          and "tools".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/PreservationAction'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Preservation Action successfully created.
+          schema:
+            $ref: '#/definitions/PreservationAction'
+        '400':
+          description: Required field missing in the request or the provided puid is already being used.
+        '404':
+          description: Endpoint does not exist.
+        '500':
+          description: Internal Server Error.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Create a new preservation action
+      tags:
+        - Preservation Actions
+  '/preservation-actions/{id}':
+    delete:
+      consumes:
+        - application/json
+      description: Delete a preservation action.
+      parameters:
+        - description: Unique identifier for the existing preservation action to deletee
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: Preservation Action successfully deleted.
+        '400':
+          description: Required field missing in the request or the provided puid is already being used.
+        '404':
+          description: Endpoint does not exist.
+        '500':
+          description: Internal Server Error.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Delete a preservation action
+      tags:
+        - Preservation Actions
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of the specific preservation action provided in the url.
+      parameters:
+        - description: Unique identifier for the preservation action to retrieve.
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/PreservationAction'
+        '400':
+          description: Preservation action not found.
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve a preservation action
+      tags:
+        - Preservation Actions
+    put:
+      consumes:
+        - application/json
+      description: Allow to modify the content of a preservation action. The updated preservation action will like just like the body provided in the request.
+      parameters:
+        - description: Unique identifier for the existing preservation action to update
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: 'Required body parameters are: "id", "description", "type", "inputs", "outputs",           and "tools".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/PreservationAction'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Preservation action successfully updated.
+          schema:
+            $ref: '#/definitions/PreservationAction'
+        '403':
+          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Update an existing preservation action
+      tags:
+        - Preservation Actions
+  /tools:
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of all the tool
+      parameters:
+        - description: An integer to limit the number of tools returned. Default value is zero.
+          in: query
+          name: limit
+          type: string
+        - description: An integer to specify the offset of the first element of the list of tools returned. Default value is zero.
+          in: query
+          name: offset
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/Tool'
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve all tool
+      tags:
+        - Tools
+    post:
+      consumes:
+        - application/json
+      description: Create a new tool with the data provided in the body of the request.
+      parameters:
+        - description: 'Required body parameters are: "toolName" and "id".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/Tool'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Tool successfully created.
+          schema:
+            $ref: '#/definitions/Tool'
+        '400':
+          description: Required field missing in the request or the provided puid is already being used.
+        '404':
+          description: Endpoint does not exist.
+        '500':
+          description: Internal Server Error.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Create a new tool
+      tags:
+        - Tools
+  '/tools/{toolID}':
+    get:
+      consumes:
+        - application/json
+      description: Allow to retrieve the details of the specific tool provided in the url.
+      parameters:
+        - description: Unique identifier for the tool to retrieve.
+          in: path
+          name: toolID
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Request has gone thorugh successfully.
+          schema:
+            $ref: '#/definitions/Tool'
+        '400':
+          description: Tool not found.
+        '403':
+          description: Forbidden action. Trying to update the value of a non-modifiable field.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      summary: Retrieve a tool
+      tags:
+        - Tools
+    put:
+      consumes:
+        - application/json
+      description: Allow to modify the content of a tool. The updated tool will like just like the body provided in the request.
+      parameters:
+        - description: Unique identifier for the existing tool to update
+          in: path
+          name: toolID
+          required: true
+          type: string
+        - description: 'Required body parameters are: "toolName" and "toolID".'
+          in: body
+          name: body example
+          required: false
+          schema:
+            $ref: '#/definitions/Tool'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Tool successfully updated.
+          schema:
+            $ref: '#/definitions/Tool'
+        '403':
+          description: Forbidden action. Attempting to update the value of a non-modifiable or non-existing resource.
+        '404':
+          description: Endpoint does not exist.
+        '502':
+          description: Server failed to handle the request.
+      security:
+        - authorization: []
+      summary: Update an existing tool
+      tags:
+        - Tools
+schemes:
+  - https
+  - http
 securityDefinitions:
   authorization:
     type: basic
-definitions:
-  provenanceInformation:
-    type: object
-    properties:
-      provenanceSourceId:
-        type: string
-      provenanceSourceNamespace:
-        type: string
-      provenanceName:
-        type: string
-      provenanceSourceDate:
-        type: string
-        format: date
-      provenanceDescription:
-        type: string
-    required:
-      - provenanceSourceId
-      - provenanceSourceNamespace
-  environmentInformation:
-    type: string
-  identifierInformation:
-    type: object
-    properties:
-      identifier:
-        type: string
-      identifierType:
-        type: string
-    required:
-      - identifier
-      - identifierType
-  documentInformation:
-    type: object
-    properties:
-      documentId:
-        type: string
-      documentIdNamespace:
-        type: string
-      displayText:
-        type: string
-      documentType:
-        type: string
-      availabilityDescription:
-        type: string
-      availabilityNote:
-        type: string
-      publicationDate:
-        type: string
-      titleText:
-        type: string
-      documentIPR:
-        type: string
-      documentNote:
-        type: string
-      author:
-        $ref: '#/definitions/authorInformation'
-      publisher:
-        $ref: '#/definitions/publisherInformation'
-    required:
-      - documentId
-      - documentIdNamespace
-  relatedFormatInformation:
-    type: object
-    properties:
-      relationshipType:
-        type: string
-      relatedFormatId:
-        type: string
-      relatedFormatIdNamespace:
-        type: string
-      relatedFormatName:
-        type: string
-      relatedFormatVersion:
-        type: string
-    required:
-      - relationshipType
-      - relatedFormatId
-      - relatedFormatIdNamespace
-  authorInformation:
-    type: object
-    properties:
-      authorId:
-        type: string
-      authorIdNamespace:
-        type: string
-      authorName:
-        type: string
-      organisationName:
-        type: string
-      authorCompoundName:
-        type: string
-    required:
-      - authorId
-      - authorIdNamespace
-  publisherInformation:
-    type: object
-    properties:
-      publisherId:
-        type: string
-      publisherIdNamespace:
-        type: string
-      publisherName:
-        type: string
-      organisationName:
-        type: string
-      publisherCompoundName:
-        type: string
-    required:
-      - publisherId
-      - publisherIdNamespace
-  internalSignatureInformation:
-    type: object
-    properties:
-      signatureId:
-        type: string
-      signatureIdNamespace:
-        type: string
-      signatureName:
-        type: string
-      signatureNote:
-        type: string
-      byteSequences:
-        type: array
-        items:
-          $ref: '#/definitions/byteSequenceInformation'
-    required:
-      - signatureId
-      - signatureIdNamespace
-  externalSignatureInformation:
-    type: object
-    properties:
-      externalSignatureId:
-        type: string
-      externalSignatureIdNamespace:
-        type: string
-      signature:
-        type: string
-      signatureType:
-        type: string
-  byteSequenceInformation:
-    type: object
-    properties:
-      byteSequenceId:
-        type: string
-      byteSequenceIdNamespace:
-        type: string
-      positionType:
-        type: string
-      offset:
-        type: string
-      maxOffset:
-        type: string
-      indirectOffsetLocation:
-        type: string
-      indirectOffsetLength:
-        type: string
-      endianness:
-        type: string
-      byteSequenceValue:
-        type: string
-    required:
-      - byteSequenceId
-      - byteSequenceIdNamespace
-  developerInformation:
-    type: object
-    properties:
-      developerId:
-        type: string
-      developerIdNamespace:
-        type: string
-      developerName:
-        type: string
-      organisationName:
-        type: string
-      developerCompoundName:
-        type: string
-    required:
-      - developerId
-      - developerIdNamespace
-  FileFormat:
-    title: File Format
-    description: A file format as defined by PRONOM
-    type: object
-    properties:
-      puid:
-        description: 'Persistent Unique Identifier, e.g. fmt/40, x-fmt/192'
-        type: string
-      puidNamespace:
-        description: 'Identifier for the publisher/issuer of the PUID, e.g. http://www.nationalarchives.gov.uk/'
-        type: string
-      name:
-        type: string
-      version:
-        type: string
-      aliases:
-        type: array
-        items:
-          type: string
-      families:
-        type: array
-        items:
-          type: string
-      types:
-        type: array
-        items:
-          type: string
-      disclosure:
-        type: string
-      description:
-        type: string
-      binaryFileFormat:
-        type: string
-      byteOrders:
-        type: array
-        items:
-          type: string
-      releaseDate:
-        type: string
-        format: date
-      withdrawnDate:
-        type: string
-        format: date
-      provenance:
-        $ref: '#/definitions/provenanceInformation'
-      lastUpdatedDate:
-        type: string
-        format: date
-      note:
-        type: string
-      risk:
-        type: string
-      technicalEnvironment:
-        $ref: '#/definitions/environmentInformation'
-      identifiers:
-        type: array
-        items:
-          $ref: '#/definitions/identifierInformation'
-      developers:
-        type: array
-        items:
-          $ref: '#/definitions/developerInformation'
-      documents:
-        type: array
-        items:
-          $ref: '#/definitions/documentInformation'
-      externalSignatures:
-        type: array
-        items:
-          $ref: '#/definitions/externalSignatureInformation'
-      internalSignatures:
-        type: array
-        items:
-          $ref: '#/definitions/internalSignatureInformation'
-      relatedFormats:
-        type: array
-        items:
-          $ref: '#/definitions/relatedFormatInformation'
-      droidSignatureFileVersion:
-        type: string
-      droidContainerFileVersion:
-        type: string
-      localLastModifiedDate:
-        type: string
-        format: date-time
-    required:
-      - puid
-      - puidNamespace
-    additionalProperties: false
-  FileFormatPUTBodyExample:
-    title: fileFormat PUT body example
-    description: Required elements in a PUT body request
-    type: object
-    properties:
-      puid:
-        description: 'Persistent Unique Identifier, e.g. fmt/40, x-fmt/192'
-        type: string
-      name:
-        type: string
-      puidNamespace:
-        type: string
-  FileFormatPOSTBodyExample:
-    title: fileFormat POST body example
-    description: Required elements in a POST body request
-    type: object
-    properties:
-      name:
-        type: string
-  FileFormats:
-    title: A list of file formats
-    description: A list of file formats
-    type: object
-    properties:
-      fileFormats:
-        type: array
-        items:
-          $ref: '#/definitions/FileFormat'
-  preservationActionTypes:
-    title: A list of preservation action types
-    description: A list of preservation action types
-    type: object
-    properties:
-      preservationActionTypes:
-        type: array
-        items:
-          $ref: '#/definitions/preservationActionType'
-  preservationActionType:
-    title: Preservation Action Types
-    description: 'The type of the preservation action as defined by PREMIS v3 event types.  http://id.loc.gov/vocabulary/preservation/eventType.html'
-    type: object
-    properties:
-      id:
-        type: string
-      label:
-        type: string
-      uri:
-        type: string
-      localLastModifiedDate:
-        type: string
-        format: date-time
-    required:
-      - id
-      - uri
-    additionalProperties: false
-  PreservationActionTypesBodyExample:
-    title: preservation_action_types body example
-    description: Required elements in a request's body
-    type: object
-    properties:
-      id:
-        type: string
-      uri:
-        type: string
-  tool:
-    title: Tool
-    type: object
-    description: A software tool or application that can be used to perform preservation actions
-    properties:
-      toolName:
-        type: string
-      toolID:
-        type: string
-      toolLabel:
-        type: string
-      toolVersion:
-        type: string
-      toolPublisher:
-        type: string
-      toolAcceptedParameters:
-        type: array
-        uniqueItems: true
-        items:
-          $ref: '#/definitions/parameter'
-      toolOperatingEnvironments:
-        type: array
-        uniqueItems: true
-        items:
-          type: string
-      localLastModifiedDate:
-        type: string
-        format: date-time
-    required:
-      - toolName
-      - toolID
-    additionalProperties: false
-  toolBodyExample:
-    title: tool body example
-    description: Required elements in a request's body
-    type: object
-    properties:
-      toolName:
-        type: string
-      toolID:
-        type: string
-  inputItem:
-    description: An input to a preservation action
-    title: Preservation Action Input
-    type: object
-    properties:
-      name:
-        type: string
-      type:
-        enum:
-          - File
-          - string
-          - boolean
-          - integer
-          - stdin
-      description:
-        type: string
-      binding:
-        type: object
-        properties:
-          prefix:
-            type: string
-          position:
-            type: integer
-      secondaryFiles:
-        type: array
-        description: 'files that need to be present when a tool is run, but are not listed on the command line'
-        minItems: 1
-        items:
-          type: object
-          properties:
-            description:
-              type: string
-            name:
-              type: string
-    required:
-      - name
-      - type
-    additionalProperties: false
-  outputItem:
-    description: An output from a preservation action
-    title: Preservation Action Output
-    type: object
-    properties:
-      name:
-        type: string
-      description:
-        type: string
-      type:
-        enum:
-          - File
-          - stdout
-          - stderr
-      binding:
-        type: object
-        properties:
-          glob:
-            type: string
-      outputMapping:
-        type: object
-        properties:
-          mappingExpressionType:
-            enum:
-              - shellScript
-              - javaScript
-              - XPath
-          mappingExpression:
-            type: string
-          mapping:
-            type: string
-  preservationAction:
-    title: Preservation Action
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/parIdentifier'
-      description:
-        type: string
-      example:
-        type: string
-      type:
-        $ref: '#/definitions/preservationActionType'
-      inputs:
-        type: array
-        items:
-          $ref: '#/definitions/inputItem'
-        minItems: 1
-      outputs:
-        type: array
-        items:
-          $ref: '#/definitions/outputItem'
-        minItems: 1
-      constraints:
-        type: array
-        items:
-          $ref: '#/definitions/parProperty'
-        minItems: 1
-      tool:
-        $ref: '#/definitions/tool'
-    required:
-      - id
-      - description
-      - type
-      - inputs
-      - outputs
-      - tool
-  parProperty:
-    title: PAR Property
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/parIdentifier'
-      class:
-        example: other
-        description: 'Property Class is the logical type of a specific property falls, e.g. fmt/43 is a file format, MD5 and SHA512 are both checksums, PASS and FAIL are both format validity measures.'
-        enum:
-          - checksum
-          - file format
-          - validity
-          - size
-          - rate
-          - raw
-          - other
-      type:
-        example: boolean
-        description: 'Property Type is the datatype in which the value of a specific property should be formatted, for example fmt/43, MD5 and SHA512 values are typically strings, validity metrics may be booleans, size measures will be numeric types.'
-        enum:
-          - string
-          - boolean
-          - integer
-          - float
-          - other
-      units:
-        description: 'Property Units allow for the specification of the units in which the value is given, for example an image size may be given in pixels (px), video bitrates may be specified in bits per second (bps) or kilobits per second (kbps).'
-        type: string
-      equivalentTo:
-        description: 'Equivalent To allows for assertions that a specific property is equivalent to named properties in other schemas or registries, for example, an Aspect Ration property for a video may be declared to be equivalent to the ebucore:aspectRatio, even if the representation of the measurement is different'
-        type: array
-        items:
-          type: string
-      value:
-        description: Property Value is the measured value of a specific property for a particular object.
-        type: string
-      localLastModifiedDate:
-        type: string
-    required:
-      - id
-      - class
-      - type
-  parIdentifier:
-    title: PAR Identifier
-    type: object
-    description: 'A generic identifier type for any PAR Core Entity. An identifier in PAR consists of the name of the object to identify, and the namespace in which that name is unique. These basic components should be combined into a GUID (Globally Unique Identifier). This is intended to be the machine readable and usable form and is the resource identifier that can be specified unambiguously in an API call. It is strongly recommended that this is a Version 3 or Version 5 UUID, generated by specifying the name of the object and a UUID identifying the namespace. The name and namespace elements are intended to be more human readable and usable forms of the identifier. Names are not required to be universally unique, but the combination of name and namespace should be.'
-    properties:
-      guid:
-        type: string
-      name:
-        type: string
-      namespace:
-        type: string
-    required:
-      - guid
-  formatFamily:
-    title: Format Family
-    type: object
-    description: 'A format family is simply a means of grouping more specific file formats into more general groups. These can be high level groupings such as Videos, Documents, etc, or more specific groupings such as JPEGs, Excel Spreadsheets, etc. It may even be used to group otherwise unrelated formats, to capture, for example, the set of accepted formats, for example, [PDF 1.4, TIFF, MKV, WAV], or to specify all formats, e.g. [ALL]. These can be formally specified, with a fixed ID and Namespace, or just a generic label'
-    properties:
-      identifier:
-        $ref: '#/definitions/parIdentifier'
-      familyType:
-        type: string
-      formats:
-        type: array
-        items:
-          $ref: '#/definitions/parIdentifier'
-  parameter:
-    title: Parameter
-    type: object
-  action:
-    title: Action
-    type: object
-    properties:
-      preservationAction:
-        $ref: '#/definitions/parIdentifier'
-      optionalInputs:
-        type: array
-        items:
-          $ref: '#/definitions/inputItem'
-      outputsRetrieved:
-        type: array
-        items:
-          $ref: '#/definitions/outputItem'
-      priority:
-        type: integer
-    required:
-      - preservationAction
-  businessRule:
-    title: Business Rule
-    description: 'A Business Rule describes additional context asserting how a Preservation Action should be performed. This allows the author of the rule to specify for example, a priority order in which to attempt certain Preservation Actions on particular content types, which inputs to supply, which outputs to extract etc. It also allows some free text fields to provide justification or share experience.'
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/parIdentifier'
-      description:
-        description: 'A short human readable explanation/display name for the Business Rule, e.g. ''Use md5sum to perform the MD5Check Preservation Action for all files'''
-        type: string
-      formats:
-        description: A list of file formats that this Business Rule should be applied to
-        type: array
-        items:
-          $ref: '#/definitions/parIdentifier'
-      formatFamilies:
-        description: A list of format families that this Business Rule should be applied to
-        type: array
-        items:
-          $ref: '#/definitions/formatFamily'
-      preservationActionTypes:
-        description: 'A list of Preservation Action Types that this Business Rule should be applied to. This might be a subset of those that the Preservation Actions themselves apply to. For example, a file format transformation action might itself apply to Migration and Normalization action types, but the Business Rule might be applicable only to Normalization'
-        type: array
-        items:
-          $ref: '#/definitions/preservationActionType'
-      preservationActions:
-        description: 'A list of specific actions. These are defined internally to reference the Core Preservation Action, the priority order in which it should be performed, and any inputs and outputs that should be used.'
-        type: array
-        items:
-          $ref: '#/definitions/action'
-      notes:
-        description: 'A free text field for providing additional context. This may be used to record the decision making process that led to the formulation of this rule, details of real-world experience in applying the rule, or any other text.'
-        type: string
-      localLastModifiedDate:
-        type: string
-        format: date-time
-    required:
-      - id
-externalDocs:
-  description: Find out more about PAR
-  url: 'http://parcore.org'
+swagger: '2.0'
+tags:
+  - externalDocs:
+      description: Website
+      url: 'http://parcore.org'
+    name: Preservation Action Registry

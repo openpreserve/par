@@ -1493,6 +1493,12 @@
             "$ref": "#/definitions/InputProperty"
           }
         },
+        "optionalInputFiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InputFile"
+          }
+        },
         "outputFilesRetrieved": {
           "type": "array",
           "items": {
@@ -1581,7 +1587,7 @@
     },
     "BusinessRules": {
       "properties": {
-        "": {
+        "businessRules": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/BusinessRule"
@@ -1819,7 +1825,7 @@
     },
     "FormatFamilies": {
       "properties": {
-        "": {
+        "formatFamilies": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/FormatFamily"
@@ -1984,7 +1990,7 @@
     },
     "ParProperties": {
       "properties": {
-        "": {
+        "parProperties": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ParProperty"
@@ -2137,7 +2143,7 @@
     },
     "PreservationActions": {
       "properties": {
-        "": {
+        "preservationActions": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/PreservationAction"
@@ -2251,7 +2257,7 @@
     },
     "Tools": {
       "properties": {
-        "": {
+        "tools": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Tool"

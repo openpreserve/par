@@ -4114,6 +4114,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/InputProperty'
+      optionalInputFiles:
+        type: array
+        items:
+          $ref: '#/definitions/InputFile'
       outputFilesRetrieved:
         type: array
         items:
@@ -4171,7 +4175,7 @@ definitions:
           $ref: '#/definitions/PreservationActionType'
   BusinessRules:
     properties:
-      '':
+      businessRules:
         type: array
         items:
           $ref: '#/definitions/BusinessRule'
@@ -4325,7 +4329,7 @@ definitions:
           $ref: '#/definitions/FileFormat'
   FormatFamilies:
     properties:
-      '':
+      formatFamilies:
         type: array
         items:
           $ref: '#/definitions/FormatFamily'
@@ -4427,7 +4431,7 @@ definitions:
         type: string
   ParProperties:
     properties:
-      '':
+      parProperties:
         type: array
         items:
           $ref: '#/definitions/ParProperty'
@@ -4525,7 +4529,7 @@ definitions:
           $ref: '#/definitions/PreservationActionType'
   PreservationActions:
     properties:
-      '':
+      preservationActions:
         type: array
         items:
           $ref: '#/definitions/PreservationAction'
@@ -4597,7 +4601,7 @@ definitions:
         type: string
   Tools:
     properties:
-      '':
+      tools:
         type: array
         items:
           $ref: '#/definitions/Tool'

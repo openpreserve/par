@@ -40,6 +40,9 @@ public class PreservationAction {
     @SerializedName("inputProperties")
     private List<InputProperty> inputProperties = null;
 
+    @SerializedName("inputToolArguments")
+    private List<InputToolArgument> inputToolArguments = null;
+
     @SerializedName("localLastModifiedDate")
     private String localLastModifiedDate = null;
 
@@ -155,6 +158,19 @@ public class PreservationAction {
 
     public void setInputProperties(List<InputProperty> inputProperties) {
         this.inputProperties = inputProperties;
+    }
+
+    public void addInputToolArgumentsItem(InputToolArgument inputToolArgument) {
+        this.inputToolArguments.add(inputToolArgument);
+    }
+
+    @ApiModelProperty(value = "")
+    public List<InputToolArgument> getInputToolArguments() {
+        return inputToolArguments;
+    }
+
+    public void setInputToolArguments(List<InputToolArgument> inputToolArguments) {
+        this.inputToolArguments = inputToolArguments;
     }
 
     /**

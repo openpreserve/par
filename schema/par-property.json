@@ -16,6 +16,10 @@
         "other"
       ]
     },
+    "description": {
+      "description": "A human readable description of the property",
+      "type": "string"
+    },
     "equivalentTo": {
       "description": "Equivalent To allows for assertions that a specific property is equivalent to named properties in other schemas or registries, for example, an Aspect Ration property for a video may be declared to be equivalent to the ebucore:aspectRatio, even if the representation of the measurement is different",
       "items": {

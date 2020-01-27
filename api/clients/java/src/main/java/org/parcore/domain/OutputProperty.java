@@ -24,24 +24,51 @@ public class OutputProperty {
     @SerializedName("description")
     private String description = null;
 
+    @SerializedName("groupIdBinding")
+    private String groupIdBinding = null;
+
+    @SerializedName("groupIdLabel")
+    private String groupIdLabel = null;
+
     @SerializedName("name")
     private String name = null;
 
     @SerializedName("parProperty")
     private ParProperty parProperty = null;
 
+    @SerializedName("toolBinding")
+    private String toolBinding = null;
+
     /**
      * Get description
      *
      * @return description
      **/
-    @ApiModelProperty(required = true, value = "")
+    @ApiModelProperty(required = true)
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @ApiModelProperty()
+    public String getGroupIdBinding() {
+        return groupIdBinding;
+    }
+
+    public void setGroupIdBinding(String groupIdBinding) {
+        this.groupIdBinding = groupIdBinding;
+    }
+
+    @ApiModelProperty()
+    public String getGroupIdLabel() {
+        return groupIdLabel;
+    }
+
+    public void setGroupIdLabel(String groupIdLabel) {
+        this.groupIdLabel = groupIdLabel;
     }
 
     /**
@@ -72,6 +99,14 @@ public class OutputProperty {
         this.parProperty = parProperty;
     }
 
+    @ApiModelProperty()
+    public String getToolBinding() {
+        return toolBinding;
+    }
+
+    public void setToolBinding(String toolBinding) {
+        this.toolBinding = toolBinding;
+    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -83,8 +118,11 @@ public class OutputProperty {
         }
         OutputProperty outputProperty = (OutputProperty) o;
         return Objects.equals(this.description, outputProperty.description) &&
+                Objects.equals(this.groupIdBinding, outputProperty.groupIdBinding) &&
+                Objects.equals(this.groupIdLabel, outputProperty.groupIdLabel) &&
                 Objects.equals(this.name, outputProperty.name) &&
-                Objects.equals(this.parProperty, outputProperty.parProperty);
+                Objects.equals(this.parProperty, outputProperty.parProperty) &&
+                Objects.equals(this.toolBinding, outputProperty.toolBinding);
     }
 
     @Override
@@ -99,8 +137,11 @@ public class OutputProperty {
         sb.append("class OutputProperty {\n");
 
         sb.append("    description: ").append(toIndentedString(description)).append("\n");
+        sb.append("    groupIdBinding: ").append(toIndentedString(groupIdBinding)).append("\n");
+        sb.append("    groupIdLabel: ").append(toIndentedString(groupIdLabel)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("    parProperty: ").append(toIndentedString(parProperty)).append("\n");
+        sb.append("    toolBinding: ").append(toIndentedString(toolBinding)).append("\n");
         sb.append("}");
         return sb.toString();
     }

@@ -9,7 +9,7 @@
         "familyType": {
           "type": "string"
         },
-        "formats": {
+        "fileFormats": {
           "items": {
             "$ref": "#/definitions/parIdentifier"
           },
@@ -52,7 +52,7 @@
       ],
       "type": "object"
     },
-    "parameter": {
+    "inputToolArgument": {
       "additionalProperties": false,
       "description": "A parameter to a tool, controlling the behaviour of that tool",
       "properties": {

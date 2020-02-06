@@ -22,6 +22,23 @@
       "required": [],
       "type": "object"
     },
+    "inputToolArgument": {
+      "additionalProperties": false,
+      "description": "A parameter to a tool, controlling the behaviour of that tool",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
     "parFile": {
       "additionalProperties": false,
       "description": "A file that is an input or output of a preservation action",
@@ -50,23 +67,6 @@
       "required": [
         "guid"
       ],
-      "type": "object"
-    },
-    "inputToolArgument": {
-      "additionalProperties": false,
-      "description": "A parameter to a tool, controlling the behaviour of that tool",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "required": [],
       "type": "object"
     }
   }

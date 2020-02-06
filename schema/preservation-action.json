@@ -218,7 +218,7 @@
     "inputToolArguments": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/inputToolArguments"
+        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/inputToolArgument"
       },
       "type": "array"
     },

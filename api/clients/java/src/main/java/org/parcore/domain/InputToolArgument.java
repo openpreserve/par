@@ -10,7 +10,7 @@ import java.util.Objects;
  * <p>
  * Parameter
  * <p>
- * Domain model for the Parameter object (part of the Tool Core Entity)
+ * Domain model for the InputToolArgument object (part of the Tool Core Entity)
  * <p>
  * OpenAPI spec version: 1.0.0
  * <p>
@@ -18,7 +18,7 @@ import java.util.Objects;
  * https://github.com/swagger-api/swagger-codegen.git
  */
 @SuppressWarnings("unused")
-public class Parameter {
+public class InputToolArgument {
 
     @SerializedName("description")
     private String description = null;
@@ -64,7 +64,7 @@ public class Parameter {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Parameter parameter = (Parameter) o;
+        InputToolArgument parameter = (InputToolArgument) o;
         return Objects.equals(this.description, parameter.description) &&
                 Objects.equals(this.type, parameter.type) &&
                 Objects.equals(this.value, parameter.value);
@@ -79,7 +79,7 @@ public class Parameter {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Parameter {\n");
+        sb.append("class InputToolArgument {\n");
 
         sb.append("    description: ").append(toIndentedString(description));
         sb.append("    type: ").append(toIndentedString(type));

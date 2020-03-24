@@ -37,7 +37,7 @@ public class ClientFactoryTest {
         ApiClient client = ClientFactory.getClientForEndpoint(testUrl, "username", "password");
         assertEquals("Endpoint does not match", client.getBasePath(), testUrl);
         Map<String, String> headerParams = new HashMap<>();
-        client.getAuthentications().get("authorization").applyToParams(Collections.EMPTY_LIST, headerParams);
+        client.getAuthentications().get("authorization").applyToParams(Collections.emptyList(), headerParams);
         assertTrue("Basic Auth header was not added correctly", headerParams.containsKey("Authorization"));
         assertEquals("Basic Auth header was not correct", headerParams.get("Authorization"), basicAuthValue);
     }
@@ -56,7 +56,7 @@ public class ClientFactoryTest {
         assertEquals("Endpoint does not match", client.getBasePath(), testUrl);
 
         Map<String, String> headerParams = new HashMap<>();
-        client.getAuthentications().get("authorization").applyToParams(Collections.EMPTY_LIST, headerParams);
+        client.getAuthentications().get("authorization").applyToParams(Collections.emptyList(), headerParams);
         assertTrue("Basic Auth header was not added correctly", headerParams.containsKey("Authorization"));
         assertEquals("Basic Auth header was not correct", headerParams.get("Authorization"), basicAuthValue);
     }

@@ -26,6 +26,9 @@ public class ParProperty {
     @SerializedName("class")
     private PropertyClass propertyClass = null;
 
+    @SerializedName("description")
+    private String description = null;
+
     @SerializedName("equivalentTo")
     private List<String> equivalentTo = null;
 
@@ -56,6 +59,15 @@ public class ParProperty {
 
     public void setPropertyClass(PropertyClass propertyClass) {
         this.propertyClass = propertyClass;
+    }
+
+    @ApiModelProperty(value = "A human readable description of the property")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void addEquivalentToItem(String equivalentToItem) {
@@ -217,6 +229,7 @@ public class ParProperty {
         }
         ParProperty parProperty = (ParProperty) o;
         return Objects.equals(this.propertyClass, parProperty.propertyClass) &&
+                Objects.equals(this.description, parProperty.description) &&
                 Objects.equals(this.equivalentTo, parProperty.equivalentTo) &&
                 Objects.equals(this.id, parProperty.id) &&
                 Objects.equals(this.localLastModifiedDate, parProperty.localLastModifiedDate) &&
@@ -237,6 +250,7 @@ public class ParProperty {
         sb.append("class ParProperty {\n");
 
         sb.append("    class: ").append(toIndentedString(propertyClass)).append("\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
         sb.append("    equivalentTo: ").append(toIndentedString(equivalentTo)).append("\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("    localLastModifiedDate: ").append(toIndentedString(localLastModifiedDate)).append("\n");

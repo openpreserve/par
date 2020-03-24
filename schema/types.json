@@ -9,7 +9,7 @@
         "familyType": {
           "type": "string"
         },
-        "formats": {
+        "fileFormats": {
           "items": {
             "$ref": "#/definitions/parIdentifier"
           },
@@ -17,6 +17,23 @@
         },
         "identifier": {
           "$ref": "#/definitions/parIdentifier"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "inputToolArgument": {
+      "additionalProperties": false,
+      "description": "A parameter to a tool, controlling the behaviour of that tool",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
         }
       },
       "required": [],
@@ -50,23 +67,6 @@
       "required": [
         "guid"
       ],
-      "type": "object"
-    },
-    "parameter": {
-      "additionalProperties": false,
-      "description": "A parameter to a tool, controlling the behaviour of that tool",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "required": [],
       "type": "object"
     }
   }

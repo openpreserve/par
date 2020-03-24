@@ -113,11 +113,20 @@
         "description": {
           "type": "string"
         },
+        "groupIdBinding": {
+          "type": "string"
+        },
+        "groupIdLabel": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
         "parProperty": {
           "$ref": "http://www.parcore.org/schema/par-property.json/#"
+        },
+        "toolBinding": {
+          "type": "string"
         }
       },
       "required": [
@@ -203,6 +212,13 @@
       "additionalItems": false,
       "items": {
         "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputProperty"
+      },
+      "type": "array"
+    },
+    "inputToolArguments": {
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/inputToolArgument"
       },
       "type": "array"
     },

@@ -27,8 +27,8 @@ public class FormatFamily {
     @SerializedName("familyType")
     private String familyType = null;
 
-    @SerializedName("formats")
-    private List<ParIdentifier> formats = null;
+    @SerializedName("fileFormats")
+    private List<ParIdentifier> fileFormats = null;
 
     @SerializedName("identifier")
     private ParIdentifier identifier = null;
@@ -48,24 +48,24 @@ public class FormatFamily {
     }
 
     public void addFormatsItem(ParIdentifier formatsItem) {
-        if (this.formats == null) {
-            this.formats = new ArrayList<>();
+        if (this.fileFormats == null) {
+            this.fileFormats = new ArrayList<>();
         }
-        this.formats.add(formatsItem);
+        this.fileFormats.add(formatsItem);
     }
 
     /**
-     * Get formats
+     * Get fileFormats
      *
-     * @return formats
+     * @return fileFormats
      **/
     @ApiModelProperty(value = "")
-    public List<ParIdentifier> getFormats() {
-        return formats;
+    public List<ParIdentifier> getFileFormats() {
+        return fileFormats;
     }
 
-    public void setFormats(List<ParIdentifier> formats) {
-        this.formats = formats;
+    public void setFileFormats(List<ParIdentifier> fileFormats) {
+        this.fileFormats = fileFormats;
     }
 
     /**
@@ -93,13 +93,13 @@ public class FormatFamily {
         }
         FormatFamily formatFamily = (FormatFamily) o;
         return Objects.equals(this.familyType, formatFamily.familyType) &&
-                Objects.equals(this.formats, formatFamily.formats) &&
+                Objects.equals(this.fileFormats, formatFamily.fileFormats) &&
                 Objects.equals(this.identifier, formatFamily.identifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(familyType, formats, identifier);
+        return Objects.hash(familyType, fileFormats, identifier);
     }
 
 
@@ -109,7 +109,7 @@ public class FormatFamily {
         sb.append("class FormatFamily {\n");
 
         sb.append("    familyType: ").append(toIndentedString(familyType)).append("\n");
-        sb.append("    formats: ").append(toIndentedString(formats)).append("\n");
+        sb.append("    fileFormats: ").append(toIndentedString(fileFormats)).append("\n");
         sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
         sb.append("}");
         return sb.toString();

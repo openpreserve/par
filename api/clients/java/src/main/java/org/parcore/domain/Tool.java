@@ -30,7 +30,7 @@ public class Tool {
     private String localLastModifiedDate = null;
 
     @SerializedName("toolAcceptedParameters")
-    private List<Parameter> toolAcceptedParameters = null;
+    private List<InputToolArgument> toolAcceptedParameters = null;
 
     @SerializedName("toolLabel")
     private String toolLabel = null;
@@ -75,7 +75,7 @@ public class Tool {
         this.localLastModifiedDate = localLastModifiedDate;
     }
 
-    public void addToolAcceptedParametersItem(Parameter toolAcceptedParametersItem) {
+    public void addToolAcceptedParametersItem(InputToolArgument toolAcceptedParametersItem) {
         if (this.toolAcceptedParameters == null) {
             this.toolAcceptedParameters = new ArrayList<>();
         }
@@ -88,11 +88,11 @@ public class Tool {
      * @return toolAcceptedParameters
      **/
     @ApiModelProperty(value = "")
-    public List<Parameter> getToolAcceptedParameters() {
+    public List<InputToolArgument> getToolAcceptedParameters() {
         return toolAcceptedParameters;
     }
 
-    public void setToolAcceptedParameters(List<Parameter> toolAcceptedParameters) {
+    public void setToolAcceptedParameters(List<InputToolArgument> toolAcceptedParameters) {
         this.toolAcceptedParameters = toolAcceptedParameters;
     }
 

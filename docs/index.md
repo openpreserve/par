@@ -42,7 +42,7 @@ It is envisaged that PAR would act as an enabler connecting users to sources of 
 
 <img src="/assets/img/par-model.svg" alt="PAR simplified conceptual model"/>
 
-<img src="/assets/img/par_concept.svg alt="PAR conceptual model"/>
+<img src="/assets/img/par_concept.svg" alt="PAR concept"/>
 
 
 # PAR Roadmap
@@ -133,17 +133,17 @@ The following PAR resources are available for reference / context:
 Please direct any PAR questions / queries to any of the par core team below:
 
 ## Open Preservation Forum
-Organisational / planning - Martin Speller; martin.speller@openpreservation.org
-Technical, specialism PAR client GUI - Carl Wilson; carl.wilson@openpreservation.org
+* Organisational / planning - Martin Speller; martin.speller@openpreservation.org
+* Technical, specialism PAR client GUI - Carl Wilson; carl.wilson@openpreservation.org
 
 ## Preservica
-Technical, specialism registry browser  - Jon Tilbury; jonathan.tilbury@preservica.com
-Technical, specialism PAR API- Jack OSullivan; jack.osullivan@preservica.com 
+* Technical, specialism registry browser  - Jon Tilbury; jonathan.tilbury@preservica.com
+* Technical, specialism PAR API- Jack OSullivan; jack.osullivan@preservica.com 
 
 ## Arkivum
-Technical, specialism ??? - Matthew Addis; matthew.addis@arkivum.com 
+* Technical, specialism ??? - Matthew Addis; matthew.addis@arkivum.com 
 
 ## Artefactual
-Technical, specialism ???? - Justin Simpson; jsimpson@artefactual.com 
+* Technical, specialism ???? - Justin Simpson; jsimpson@artefactual.com 
 
 

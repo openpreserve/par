@@ -1,8 +1,11 @@
-- title: "Presentations"
-  href: "/presentations/"
+- title: "Overview"
+  href: "/overview/"
+
+- title: "Roadmap"
+  href: "/roadmap/"
+
+- title: "Community"
+  href: "/community/"
 
 - title: "Resources"
   href: "/resources/"
-
-- title: "Partners"
-  href: "/partners/"

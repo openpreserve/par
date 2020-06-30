@@ -42,7 +42,7 @@ It is envisaged that PAR would act as an enabler connecting users to sources of 
 
 <img src="/assets/img/par-model.svg" alt="PAR simplified conceptual model"/>
 
-
+<img src="/assets/img/par_concept.svg alt="PAR conceptual model"/>
 
 
 # PAR Roadmap
@@ -120,9 +120,14 @@ The following PAR resources are available for reference / context:
 * xxx
 
 ## Presentations and Background Material
-* xxx
+* PAR 2020 Webinar v01 310320 (1).pdf
+* PAR Presentation York 2019.pdf
+* PAR Presentation iPres 2019.pdf
+* PAR Presentation iPres 2018.pdf
 
-## Any other resources to be included????
+## Other PAR resources
+* GitHub Repository
+* Project Announcement
 
 # Contacts
 Please direct any PAR questions / queries to any of the par core team below:

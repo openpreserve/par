@@ -40,8 +40,6 @@ The PAR vision is based on the establishment of a set of trusted sources that wo
 It is envisaged that PAR would act as an enabler connecting users to sources of good practice allowing them to review singular, complex and compounded actions and via their own systems, proprietary applications and / or client tools elect to import those actions into their own local environments. Likewise they would have the ability to make their own complex workflows available to other members of the DP community ensuring that data is shared throughout the PAR enterprise.
 
 
-<img src="/assets/img/par-model.svg" alt="PAR simplified conceptual model"/>
-
 <img src="/assets/img/par_concept.svg" alt="PAR concept"/>
 
 

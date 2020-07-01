@@ -1,5 +1,8 @@
+---
+layout: page
+title: Roadmap
+---
 
-# PAR Roadmap
 The priorities associated with each area of development are in the process of being further defined as is the finite detail associated with each release to move PAR from its current version, 0.3 to a production version 1.0.
 
 The main components of the roadmap are highlighted below:

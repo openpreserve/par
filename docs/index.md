@@ -1,4 +1,7 @@
-# PAR Overview 
+---
+layout: page
+title: Overview
+---
 Preservation Action Registries (PAR) has been set up to address a set of fundamental issues that affect the digital preservation (DP) community namely to:
 
 * facilitate the sharing of preservation actions between disparate DP systems, and

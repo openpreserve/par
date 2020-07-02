@@ -3,7 +3,7 @@ layout: page
 title: Resources
 ---
 
-# Resources
+## Resources
 The following PAR resources are available for reference / context:
 
 ## API Swagger Documentation

@@ -2,6 +2,8 @@
 layout: page
 title: Overview
 ---
+
+# PAR Overview
 Preservation Action Registries (PAR) has been set up to address a set of fundamental issues that affect the digital preservation (DP) community namely to:
 
 * facilitate the sharing of preservation actions between disparate DP systems, and
@@ -13,7 +15,7 @@ Typically, proprietary DP systems lack a common means to describe and execute pr
 
 The aim of PAR is to overcome this problem by providing the means to connect different registries to exchange policy information about preservation actions. The model makes registry content accessible through a feature rich API using a distributed set of registries. In this way information can be made available from a range of source registries as well as via direct exchange between trusted peer institutions or systems. 
 
-# PAR Today
+## PAR Today
 Following some initial funding from Jisc, PAR has evolved from a standing start to a standalone entity using the expertise and resources of a set of industry leading organisations to form the nucleus of the PAR core team
 
 * Preservica
@@ -31,7 +33,7 @@ The core software (v0.3) is still at pre production stage and needs to evolve si
 * Endpoint browser
 * Prototype implementation spanning Preservica, Achivematica and Arkivum DP systems
 
-# The PAR Vision
+## The PAR Vision
 The PAR vision is based on the establishment of a set of trusted sources that would provide the catalyst for information and good practice sharing across a set of proprietary Digital Preservation systems as well as the wider community. The end user would be able to determine the best / most appropriate preservation action sequences to fulfill their needs and have the opportunity to review, select or discard those options. Trusted sources could comprise:
  
 * Vendor systems

@@ -24,10 +24,6 @@ Product and documentation development tasks are contained in the Github repo: ht
 5. Select Issues that are labelled as ‘Community Issue’
 6. Assign yourself to the Issue! 
 
-PAR team question - how will this process be managed? Do we hold monthly community calls to check progress / encourage input. Do we advertise these?? We need to agree a process
-
-## Logging an Issue
-1. a
-2. b
-3. c
+## Monitoring Progress and Feedback Sessions
+????PAR team question - how will this process be managed? Do we hold monthly community calls to check progress / encourage input. Do we advertise these?? We need to define / agree a process
 

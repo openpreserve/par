@@ -7,32 +7,27 @@ The priorities associated with each area of development are in the process of be
 
 The main components of the roadmap are highlighted below:
 
-**API extensions** The existing Swagger documentation can be accessed via the Resources page. Further planned enhancements include:
+**API extensions** The existing Swagger documentation can be reviews at JACK TO DEFINE. Further planned enhancements include:
 * identity management
-* what else?
-* what else 
+* PAR Project team - what else?
 
-**Sync tool** that will:
-* enable preservation actions to be copied between systems??
-* What else?
-* c
+**Sync tool** that will enable preservation actions to be copied between systems??:
+* PAR Project team - what else / what needs to be developed, what are the key features?
+
 
 **Registry browser** this will replace the existing prototype, key functions will include:
-* What else?
-* b
-* c  
+* PAR Project team - what needs to be developed, what are the key features?
 
-**Register editing tool**
-* This will enable users to update their registry??
-* What else?
-* b
+**Register editing tool** this will enable users to update their own registry??
+* PAR Project team - what needs to be developed, what are the key features? 
 
 **Client GUI tool**
-* a
-* c
-* c
+* Do we all agree that this could be based on Jhove2020???
+* PAR Project team - what needs to be developed, what are the key features? 
 
-Would be nice to include some kind of plan / pictorial view of development ordering even if there are no timelines
+PAR Team - Are there any other generic / specific area of development that should be included in this high level roadmap???
+
+PAR TEAM - Do we want to include some kind of plan / pictorial view of development ordering even if there are no timelines???? If so what are they?
 
 
 

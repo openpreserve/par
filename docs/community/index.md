@@ -3,7 +3,7 @@ layout: page
 title: Community
 ---
 
-#Community Contribution
+## Community Contribution
 Following the transfer of the PAR stewardship to the OPF the focus has to be to educate and engage the community with the concepts of PAR and in doing so to encourage greater community involvement. Specifically we are looking towards the community to help with:
 
 * Product development - those with Java, REST API and JSON schema development skills would be of particular interest

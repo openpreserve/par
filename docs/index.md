@@ -46,8 +46,3 @@ It is envisaged that PAR would act as an enabler connecting users to sources of 
 
 
 <img src="/assets/img/par_concept.svg" alt="PAR concept"/>
-
-
-
-
-

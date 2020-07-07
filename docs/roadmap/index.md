@@ -16,7 +16,8 @@ The roadmap breaks down into three distinct categories, each has one or more spe
 The data model is the core component of PAR that describes the elements of preservation policies implemented using machine readable data structures. The data model describes attribute such as:
 * Preservation actions that can be performed on digital content
 * The tools that would be needed to perform the desired actions
-* What else???
+* File formats
+* Policy statements
 
 The model has now matured sufficiently in terms of what can be done but further effort is needed to define what it could do and what it’s limitations might be. So key focus areas for model development include:
 

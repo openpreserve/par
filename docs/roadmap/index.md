@@ -8,9 +8,9 @@ The priorities associated with each area of development are in the process of be
 
 The roadmap breaks down into three distinct categories, each has one or more specific development areas:
 
-Data model
-Tools
-Integration
+1. Data model
+2. Tools
+3. Integration
 
 ### Data Model
 Key areas of development include:

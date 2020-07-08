@@ -10,7 +10,7 @@ The following PAR resources are available for reference / context:
 * JACK to provide
 
 ## Presentations and Background Material
-- [PAR 2020 Webinar v01 310320.pdf](./presentations/PAR 2020 webinar v01 310320.pdf)
+- [PAR 2020 Webinar v01 310320.pdf](./presentations/PAR 2020 Webinar v01 310320.pdf)
 - [JISC 2019 Presentation, York](./presentations/PAR Presentation York 2019.pdf)
 - [iPres 2019 Presentation](./presentations/PAR Presentation iPres 2019.pdf)
 

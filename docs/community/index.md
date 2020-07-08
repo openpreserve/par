@@ -27,4 +27,3 @@ Product and documentation development tasks are contained in the Github repo: ht
 
 ### Monitoring Progress and Feedback Sessions
 ????PAR team question - how will this process be managed? Do we hold monthly community calls to check progress / encourage input. Do we advertise these?? We need to define / agree a process
-

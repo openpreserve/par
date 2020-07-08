@@ -34,6 +34,3 @@ Please direct any PAR questions / queries to any of the par core team below:
 
 ### Artefactual
 * Technical, specialism ???? - Justin Simpson; jsimpson@artefactual.com 
-
-
-

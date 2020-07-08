@@ -7,3 +7,11 @@ body {
 .bg-blue {
   background-color: #137da4;
 }
+
+.footer-text {
+  color: white;
+}
+
+footer {
+  text-align: center;
+}

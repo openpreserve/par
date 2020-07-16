@@ -7,7 +7,7 @@ title: Resources
 The following PAR resources are available for reference / context:
 
 ## API Swagger Documentation
-* JACK to provide
+* [API Documentation](https://concept.preservica.com/Registry/par/documentation.html)
 
 ## Presentations and Background Material
 - [PAR 2020 webinar v01 310320.pdf](./presentations/PAR%202020%20Webinar%20v01%20310320.pdf) 

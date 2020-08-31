@@ -24,7 +24,3 @@ Product and documentation development tasks are contained in the Github repo: ht
 4. Select Issues that are labelled as ‘Community Issue’
 5. If there is an Issue you want to work on that does not have any associated milestone please contact OPF
 6. Assign yourself to the Issue! 
-
-
-
-

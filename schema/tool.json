@@ -15,7 +15,7 @@
         },
         "toolAcceptedParameters": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/inputToolArgument"
           },
           "type": "array",
           "uniqueItems": true

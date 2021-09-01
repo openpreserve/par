@@ -1,0 +1,105 @@
+{
+  "$id": "http://www.parcore.org/schema/representation-format.json/#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "Representation Format",
+  "description": "This allows the definition of a set of criteria that must be matched in order to define a multi-part complex representation of an object.  All specified criteria must be met for identification of a set of content as having a specific representation format.",
+  "type": "object",
+  "definitions": {
+    "identifierArray": {
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+      },
+      "type": "array",
+      "minItems": 1
+    },
+    "representationFormatSignature": {
+      "title": "Representation Format Signature",
+      "type": "object",
+      "description": "",
+      "properties": {
+        "primaryFileCriteria": {
+          "additionalItems": false,
+          "items": {
+            "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/fileCriterion"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "fileCriteria": {
+          "additionalItems": false,
+          "items": {
+            "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/fileCriterion"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "anyOf": [{
+          "required": ["primaryFileCriteria"]
+        }, {
+          "required": ["fileCriteria"]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "fileCriterion": {
+      "title": "File Criterion",
+      "type": "object",
+      "description": "A criterion for a file within the multi-part object. A list of formats or format families, or both, may be specified, a content file is deemed to match this criterion if it is identified as any of the formats, or format families listed, i.e. the formats and families form a set of OR conditions. If no formats or families are listed, then any content file will match this criterion.",
+      "properties": {
+        "formats": {
+          "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/identifierArray"
+        },
+        "formatFamilies": {
+          "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/identifierArray"
+        },
+        "minimum": {
+          "description": "This specifies the minimum number of matching content files required, by default this is 1. Specifying 0 makes matching this criterion optional.",
+          "type": "string",
+          "pattern": "^[0-9]+$",
+          "default": "1"
+        },
+        "maximum": {
+          "description": "This specifies the maximum number of matching content files required, by default this is 1. Specifying 0 means that no content files should match this criterion, specifying \"unbounded\" means any number of files may match this criterion.",
+          "oneOf": [{
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            }, {
+              "type": "string",
+              "pattern": "^(?i)unbounded$"
+            }
+          ],
+          "default": "1"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "representationFormatSignature": {
+      "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/representationFormatSignature"
+    },
+    "hasPriorityOver": {
+      "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/identifierArray"
+    },
+    "localLastModifiedDate": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "representationFormatSignature"
+  ],
+  "additionalProperties": false
+}

@@ -28,7 +28,7 @@ script:
   - ajv compile -s "schema/tool.json" -r "schema/types.json" --validate-formats=false
   - ajv compile -s "schema/preservation-action.json" -r "schema/types.json" -r "schema/format.json" -r "schema/par-property.json" -r "schema/tool.json" -r "schema/preservation-action-type.json" --validate-formats=false --strict=false
   - ajv compile -s "schema/business-rule.json" -r "schema/preservation-action.json" -r "schema/types.json" -r "schema/format.json" -r "schema/par-property.json" -r "schema/tool.json" -r "schema/preservation-action-type.json" --validate-formats=false --strict=false
-  - ajv compile -s "schema/representation-format.json" -r "schema/types.json" --validate-formats=false
+  - ajv compile -s "schema/representation-format.json" -r "schema/types.json" --validate-formats=false --strict=false
   - ajv validate -s "schema/format.json" -d "examples/fmt-*.json" -r "schema/types.json" --validate-formats=false
   - ajv validate -s "schema/tool.json" -d "examples/md5*.json" -r "schema/types.json" --validate-formats=false
   - ajv validate -s "schema/business-rule.json" -d "examples/br-*.json" -r "schema/preservation-action.json" -r "schema/types.json" -r "schema/format.json" -r "schema/par-property.json" -r "schema/tool.json" -r "schema/preservation-action-type.json" --validate-formats=false --strict=false

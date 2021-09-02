@@ -44,7 +44,3 @@ Integtaion includes:
 
 **Vendor DP systems**
 * Integration of other vendor DP systems
-
-
-
-

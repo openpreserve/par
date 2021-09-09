@@ -1,0 +1,759 @@
+---
+swagger: "2.0"
+info:
+  description: "API to retrieve and update Business Rules, Preservation Actions etc\
+    \ from a Preservation Action Registries compliant endpoint"
+  version: "0.1"
+  title: "PAR API"
+host: "parcore.org"
+basePath: "/par"
+tags:
+- name: "/file-formats"
+  description: "Endpoints relation to PAR File Format entities"
+- name: "/properties"
+  description: "Endpoints relation to PAR Property entities"
+- name: "/format-families"
+  description: "Endpoints relation to PAR Format Family entities"
+schemes:
+- "https"
+paths:
+  /file-formats:
+    get:
+      tags:
+      - "/file-formats"
+      summary: "Get File Formats"
+      description: "Returns an array of File Formats that match all of the filter\
+        \ conditions supplied. Any number of filters can be used together.\nThe date\
+        \ filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ\
+        \ or yyyy-MM-dd.\nIf no time information is supplied, then 00:00:00 in UTC\
+        \ will be assumed. This means that if you supply modified-after and modified-before\
+        \ dates of 2019-01-01 and 2019-12-31, you will not match any FileFormats modified\
+        \ during the day of 31st December."
+      operationId: "file_formats_get"
+      consumes: []
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "guid"
+        in: "header"
+        description: "A comma separated list of GUIDs of FileFormats. This filter\
+          \ matches only those File Formats that are identified by one of the listed\
+          \ GUIDs."
+        required: false
+        type: "string"
+      - name: "modified_after"
+        in: "query"
+        description: "This filter matches only those File Formats whose local last\
+          \ modified date is after the specified date."
+        required: false
+        type: "string"
+      - name: "modified_before"
+        in: "query"
+        description: "This filter matches only those File Formats whose local last\
+          \ modified date is before the specified date."
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Used for requesting paged responses, this defines the offset\
+          \ of the first FileFormat to return from the start of the list of all matching\
+          \ File Formats."
+        required: false
+        type: "integer"
+        default: 0
+      - name: "limit"
+        in: "query"
+        description: "Used for requesting paged responses, this defines the maximum\
+          \ number of FileFormats to return."
+        required: false
+        type: "integer"
+        default: 0
+      responses:
+        "200":
+          description: "Success"
+          examples:
+            application/json;charset=UTF-8: "{\n  \"fileFormats\" : [ {\n    \"description\"\
+              \ : \"This is an outline record only, and requires further details,\
+              \ research or authentication to provide information that will enable\
+              \ users to further understand the format and to assess digital preservation\
+              \ risks associated with it if appropriate.\",\n    \"externalSignatures\"\
+              \ : [ {\n      \"signature\" : \"f4a\",\n      \"signatureType\" : \"\
+              File Extension\"\n    }, {\n      \"signature\" : \"m4v\",\n      \"\
+              signatureType\" : \"File Extension\"\n    }, {\n      \"signature\"\
+              \ : \"m4a\",\n      \"signatureType\" : \"File Extension\"\n    }, {\n\
+              \      \"signature\" : \"f4v\",\n      \"signatureType\" : \"File Extension\"\
+              \n    }, {\n      \"signature\" : \"mp4\",\n      \"signatureType\"\
+              \ : \"File Extension\"\n    } ],\n    \"id\" : {\n      \"guid\" : \"\
+              1d6dc249-b131-5492-bab2-60d98fa73e02\",\n      \"name\" : \"fmt/199\"\
+              ,\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\n  \
+              \  },\n    \"internalSignatures\" : [ {\n      \"byteSequences\" : [\
+              \ {\n        \"byteSequenceId\" : \"bs/357\",\n        \"byteSequenceIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n        \"byteSequenceValue\"\
+              \ : \"66747970{0-64}(6D703432|6D703431|69736F6D|69736F32)*6D6F6F76\"\
+              ,\n        \"maxOffset\" : \"0\",\n        \"offset\" : \"4\",\n   \
+              \     \"positionType\" : \"Absolute from BOF\"\n      } ],\n      \"\
+              signatureId\" : \"is/278\",\n      \"signatureIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    } ],\n    \"localLastModifiedDate\" : \"2017-07-05T20:22:48Z\"\
+              ,\n    \"name\" : \"MPEG-4 Media File\",\n    \"relatedFormats\" : [\
+              \ {\n      \"relatedFormatId\" : \"x-fmt/384\",\n      \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n      \"relatedFormatName\"\
+              \ : \"Quicktime\",\n      \"relatedFormatVersion\" : \"\\n      \",\n\
+              \      \"relationshipType\" : \"Has priority over\"\n    }, {\n    \
+              \  \"relatedFormatId\" : \"fmt/596\",\n      \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n      \"relatedFormatName\"\
+              \ : \"Apple Lossless Audio Codec\",\n      \"relatedFormatVersion\"\
+              \ : \"\\n      \",\n      \"relationshipType\" : \"Has lower priority\
+              \ than\"\n    }, {\n      \"relatedFormatId\" : \"fmt/357\",\n     \
+              \ \"relatedFormatIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              ,\n      \"relatedFormatName\" : \"3GPP Audio/Video File\",\n      \"\
+              relatedFormatVersion\" : \"\\n      \",\n      \"relationshipType\"\
+              \ : \"Has lower priority than\"\n    } ],\n    \"types\" : [ \"Video\"\
+              \ ],\n    \"version\" : \"\\n      \"\n  }, {\n    \"description\" :\
+              \ \"MPEG-2 is a lossy compression standard (an improvement and expansion\
+              \ of the MPEG-1 standard) designed for the generic coding of video and\
+              \ audio and intended to cover a wide scope of application, including:\
+              \ video production, broadcast and editing. Streams are at potentially\
+              \ higher bitrates than MPEG-1 but more efficient compression making\
+              \ it suited to High Definition video. MPEG-2 Video supports both 'progressive'\
+              \ and 'interlaced' frame video. An MPG-2 ‘Program’ stream (PS) file\
+              \ (*.mpg, *.mpeg) generally contain both video and audio streams, generally\
+              \ for synchronised playback, and may carry a variety of other data (e.g.\
+              \ video captions).\\n\\nSome camcorders store their MPEG-2 Program Stream\
+              \ video data as files with the .mod extension, usually alongside other\
+              \ files containing metadata and management information for the video.\"\
+              ,\n    \"externalSignatures\" : [ {\n      \"signature\" : \"mod\",\n\
+              \      \"signatureType\" : \"File Extension\"\n    }, {\n      \"signature\"\
+              \ : \"mpeg\",\n      \"signatureType\" : \"File Extension\"\n    },\
+              \ {\n      \"signature\" : \"mpg\",\n      \"signatureType\" : \"File\
+              \ Extension\"\n    } ],\n    \"id\" : {\n      \"guid\" : \"9f7df46e-89d4-57b7-ad22-26e6a9748422\"\
+              ,\n      \"name\" : \"x-fmt/386\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    },\n    \"identifiers\" : [ {\n      \"identifier\" : \"x-fmt/386\"\
+              ,\n      \"identifierType\" : \"PUID\"\n    }, {\n      \"identifier\"\
+              \ : \"video/mpeg\",\n      \"identifierType\" : \"MIME\"\n    } ],\n\
+              \    \"internalSignatures\" : [ {\n      \"byteSequences\" : [ {\n \
+              \       \"byteSequenceId\" : \"bs/800\",\n        \"byteSequenceIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n        \"byteSequenceValue\"\
+              \ : \"000001BA{8-12}000001BB{8-65536}000001B3{8-136}000001B5\",\n  \
+              \      \"maxOffset\" : \"0\",\n        \"offset\" : \"0\",\n       \
+              \ \"positionType\" : \"Absolute from BOF\"\n      } ],\n      \"signatureId\"\
+              \ : \"is/655\",\n      \"signatureIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    } ],\n    \"localLastModifiedDate\" : \"2019-07-30T19:28:46Z\"\
+              ,\n    \"name\" : \"MPEG-2 Program Stream\",\n    \"relatedFormats\"\
+              \ : [ {\n      \"relatedFormatId\" : \"x-fmt/385\",\n      \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n      \"relatedFormatName\"\
+              \ : \"MPEG-1 Program Stream\",\n      \"relatedFormatVersion\" : \"\\\
+              n      \",\n      \"relationshipType\" : \"Has priority over\"\n   \
+              \ }, {\n      \"relatedFormatId\" : \"fmt/425\",\n      \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n      \"relatedFormatName\"\
+              \ : \"Video Object File (MPEG-2 subset)\",\n      \"relatedFormatVersion\"\
+              \ : \"\\n      \",\n      \"relationshipType\" : \"Has lower priority\
+              \ than\"\n    } ],\n    \"types\" : [ \"Video\" ],\n    \"version\"\
+              \ : \"\\n      \"\n  } ]\n}"
+          schema:
+            $ref: "#/definitions/FileFormats"
+      x-swagger-router-controller: "swagger_server.controllers.file_formats_controller"
+  /file-formats/{guid}:
+    get:
+      tags:
+      - "/file-formats"
+      summary: "Get a File Format"
+      description: "Returns the File Format specified by the GUID of the PAR Identifier"
+      operationId: "file_formats_guid_get"
+      consumes: []
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "guid"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+          examples:
+            application/json;charset=UTF-8: "{\n  \"description\" : \"With the release\
+              \ of Word 97, Microsoft revised the native binary word processing format,\
+              \ which is based on its generic OLE2 Compound Document Format. The format\
+              \ is proprietary and Microsoft does not make details of its structure\
+              \ public. The information here is derived primarily from OpenOffice.org's\
+              \ reverse-engineered documentation of the format and should not therefore\
+              \ be regarded as definitive. A Word document is stored as a ‘WordDocument’\
+              \ stream within a Compound Document Format file. The format remained\
+              \ unchanged with the releases of Word 2000, 2002 and 2003. An alternative\
+              \ extension of .wbk refers to a backup file of a Word document, however\
+              \ there is no material or structural difference between a .wbk file\
+              \ and the .doc file it is a backup of.\",\n  \"externalSignatures\"\
+              \ : [ {\n    \"signature\" : \"wbk\",\n    \"signatureType\" : \"File\
+              \ Extension\"\n  }, {\n    \"signature\" : \"doc\",\n    \"signatureType\"\
+              \ : \"File Extension\"\n  } ],\n  \"id\" : {\n    \"guid\" : \"fd71f444-9a3b-533b-89a0-aec2404db911\"\
+              ,\n    \"name\" : \"fmt/40\",\n    \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  },\n  \"identifiers\" : [ {\n    \"identifier\" : \"fmt/40\",\n\
+              \    \"identifierType\" : \"PUID\"\n  }, {\n    \"identifier\" : \"\
+              application/msword\",\n    \"identifierType\" : \"MIME\"\n  } ],\n \
+              \ \"internalSignatures\" : [ {\n    \"byteSequences\" : [ {\n      \"\
+              byteSequenceId\" : \"bs/223\",\n      \"byteSequenceIdNamespace\" :\
+              \ \"http://www.nationalarchives.gov.uk\",\n      \"byteSequenceValue\"\
+              \ : \"57006F007200640044006F00630075006D0065006E007400{42}02(00|01)\"\
+              ,\n      \"maxOffset\" : \"0\",\n      \"offset\" : \"0\",\n      \"\
+              positionType\" : \"Variable\"\n    }, {\n      \"byteSequenceId\" :\
+              \ \"bs/222\",\n      \"byteSequenceIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              ,\n      \"byteSequenceValue\" : \"D0CF11E0A1B11AE1{20}FEFF\",\n   \
+              \   \"maxOffset\" : \"0\",\n      \"offset\" : \"0\",\n      \"positionType\"\
+              \ : \"Absolute from BOF\"\n    }, {\n      \"byteSequenceId\" : \"bs/224\"\
+              ,\n      \"byteSequenceIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              ,\n      \"byteSequenceValue\" : \"4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)\"\
+              ,\n      \"maxOffset\" : \"0\",\n      \"offset\" : \"0\",\n      \"\
+              positionType\" : \"Variable\"\n    } ],\n    \"signatureId\" : \"is/182\"\
+              ,\n    \"signatureIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  } ],\n  \"localLastModifiedDate\" : \"2017-07-05T20:22:59Z\",\n\
+              \  \"name\" : \"Microsoft Word Document\",\n  \"relatedFormats\" : [\
+              \ {\n    \"relatedFormatId\" : \"fmt/39\",\n    \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n    \"relatedFormatName\"\
+              \ : \"Microsoft Word Document\",\n    \"relatedFormatVersion\" : \"\
+              6.0/95\",\n    \"relationshipType\" : \"Is subsequent version of\"\n\
+              \  }, {\n    \"relatedFormatId\" : \"fmt/609\",\n    \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n    \"relatedFormatName\"\
+              \ : \"Microsoft Word (Generic)\",\n    \"relatedFormatVersion\" : \"\
+              6.0-2003\",\n    \"relationshipType\" : \"Has priority over\"\n  },\
+              \ {\n    \"relatedFormatId\" : \"fmt/111\",\n    \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n    \"relatedFormatName\"\
+              \ : \"OLE2 Compound Document Format\",\n    \"relatedFormatVersion\"\
+              \ : \"\\n      \",\n    \"relationshipType\" : \"Has priority over\"\
+              \n  }, {\n    \"relatedFormatId\" : \"x-fmt/45\",\n    \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n    \"relatedFormatName\"\
+              \ : \"Microsoft Word Document Template\",\n    \"relatedFormatVersion\"\
+              \ : \"97-2003\",\n    \"relationshipType\" : \"Has lower priority than\"\
+              \n  }, {\n    \"relatedFormatId\" : \"fmt/755\",\n    \"relatedFormatIdNamespace\"\
+              \ : \"http://www.nationalarchives.gov.uk\",\n    \"relatedFormatName\"\
+              \ : \"Microsoft Word Document Template (Password Protected)\",\n   \
+              \ \"relatedFormatVersion\" : \"97-2003\",\n    \"relationshipType\"\
+              \ : \"Has lower priority than\"\n  }, {\n    \"relatedFormatId\" : \"\
+              fmt/754\",\n    \"relatedFormatIdNamespace\" : \"http://www.nationalarchives.gov.uk\"\
+              ,\n    \"relatedFormatName\" : \"Microsoft Word Document (Password Protected)\"\
+              ,\n    \"relatedFormatVersion\" : \"97-2003\",\n    \"relationshipType\"\
+              \ : \"Has lower priority than\"\n  } ],\n  \"types\" : [ \"Document\"\
+              \ ],\n  \"version\" : \"97-2003\"\n}"
+          schema:
+            $ref: "#/definitions/FileFormat"
+        "404":
+          description: "If the specified guid does not reference a File Format known\
+            \ to this registry."
+      x-swagger-router-controller: "swagger_server.controllers.file_formats_controller"
+  /format-families:
+    get:
+      tags:
+      - "/format-families"
+      summary: "Get Format Families"
+      description: "Returns an array of Format Families that match all of the filter\
+        \ conditions supplied. Any number of filters can be used together.\nThe date\
+        \ filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ\
+        \ or yyyy-MM-dd.\nIf no time information is supplied, then 00:00:00 in UTC\
+        \ will be assumed. This means that if you supply modified-after and modified-before\
+        \ dates of 2019-01-01 and 2019-12-31, you will not match any Format Families\
+        \ modified during the day of 31st December."
+      operationId: "format_families_get"
+      consumes: []
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "file_format"
+        in: "header"
+        description: "A comma separated list of NAMEs of file formats (i.e. fmt/1,\
+          \ x-fmt/2. This filter matches only those Format Families that include any\
+          \ of the specified formats."
+        required: false
+        type: "string"
+      - name: "guid"
+        in: "header"
+        description: "A comma separated list of GUIDs of Format Families. This filter\
+          \ matches only those Format Families that are identified by one of the listed\
+          \ GUIDs."
+        required: false
+        type: "string"
+      - name: "modified_after"
+        in: "query"
+        description: "This filter matches only those Format Families whose local last\
+          \ modified date is after the specified date."
+        required: false
+        type: "string"
+      - name: "modified_before"
+        in: "query"
+        description: "This filter matches only those Format Families whose local last\
+          \ modified date is before the specified date."
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Used for requesting paged responses, this defines the offset\
+          \ of the first Format Family to return from the start of the list of all\
+          \ matching Format Families."
+        required: false
+        type: "integer"
+        default: 0
+      - name: "limit"
+        in: "query"
+        description: "Used for requesting paged responses, this defines the maximum\
+          \ number of Format Families to return."
+        required: false
+        type: "integer"
+        default: 0
+      responses:
+        "200":
+          description: "Success"
+          examples:
+            application/json;charset=UTF-8: "{\n  \"formatFamilies\" : [ {\n    \"\
+              id\" : {\n      \"guid\" : \"d7df91be-c3d1-51f2-8432-2d9ac63c43e7\"\
+              ,\n      \"name\" : \"matroska\",\n      \"namespace\" : \"http://par.preservica.com\"\
+              \n    },\n    \"familyType\" : \"Format Group\",\n    \"fileFormats\"\
+              \ : [ {\n      \"guid\" : \"4ea966c9-a431-56d1-9c34-5a56c1c4d32b\",\n\
+              \      \"name\" : \"fmt/569\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    } ]\n  }, {\n    \"id\" : {\n      \"guid\" : \"402dbdaf-92c9-5d4f-adb0-aeb787a692b3\"\
+              ,\n      \"name\" : \"container\",\n      \"namespace\" : \"http://par.preservica.com\"\
+              \n    },\n    \"familyType\" : \"Content Type\",\n    \"fileFormats\"\
+              \ : [ {\n      \"guid\" : \"ac5ed58c-9059-57d4-ad58-a7206d5fbf12\",\n\
+              \      \"name\" : \"fmt/1071\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"da90e482-2c08-57b9-ac63-6ef3c2837ca8\"\
+              ,\n      \"name\" : \"fmt/1087\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"fbf38e85-1980-5bb9-be01-1a15d99eb817\"\
+              ,\n      \"name\" : \"fmt/289\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"ce998789-ec87-527e-a76d-9c6767fd4adb\"\
+              ,\n      \"name\" : \"fmt/410\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"0897d6a7-a4c7-5869-8ed0-add85047fcd0\"\
+              ,\n      \"name\" : \"fmt/411\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"d67def5c-a7a8-522a-a193-b76d8c3c77b3\"\
+              ,\n      \"name\" : \"fmt/468\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"607c448a-3778-5445-b70f-ddce7d6e84a9\"\
+              ,\n      \"name\" : \"fmt/484\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"c3494448-8509-5728-ac7c-f1e8d6150729\"\
+              ,\n      \"name\" : \"fmt/625\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"9748cefb-43f7-5d88-aef5-eb5f6e52cf36\"\
+              ,\n      \"name\" : \"TSS-fmt/2\",\n      \"namespace\" : \"http://tessella.com\"\
+              \n    }, {\n      \"guid\" : \"76d0b902-f0c6-5960-b581-be2a3c9d825f\"\
+              ,\n      \"name\" : \"x-fmt/219\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"c2955350-56f8-5198-9193-777f0c022168\"\
+              ,\n      \"name\" : \"x-fmt/263\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"7fe92564-d680-5656-9239-2b54ce2664e1\"\
+              ,\n      \"name\" : \"x-fmt/264\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"de799ae7-7ae5-5efd-88b9-ac36532a8bde\"\
+              ,\n      \"name\" : \"x-fmt/265\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"3d063d8a-4a5a-584c-858f-e476436153bf\"\
+              ,\n      \"name\" : \"x-fmt/266\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"010115c8-2844-54d8-a61b-88b89b8694a4\"\
+              ,\n      \"name\" : \"x-fmt/267\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"c0b77a9d-919b-5657-9e98-186fc81d2348\"\
+              ,\n      \"name\" : \"x-fmt/268\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    }, {\n      \"guid\" : \"76d983f6-1aef-5cc2-941c-32778c3dd241\"\
+              ,\n      \"name\" : \"x-fmt/412\",\n      \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n    } ]\n  } ]\n}"
+          schema:
+            $ref: "#/definitions/FormatFamilies"
+      x-swagger-router-controller: "swagger_server.controllers.format_families_controller"
+  /format-families/{guid}:
+    get:
+      tags:
+      - "/format-families"
+      summary: "Get a Format Family"
+      description: "Returns the Format Family specified by the GUID of the PAR Identifier"
+      operationId: "format_families_guid_get"
+      consumes: []
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "guid"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+          examples:
+            application/json;charset=UTF-8: "{\n  \"id\" : {\n    \"guid\" : \"92a903da-be38-5c0c-97f4-c6aff4c98abf\"\
+              ,\n    \"name\" : \"ooxmltypes\",\n    \"namespace\" : \"http://par.preservica.com\"\
+              \n  },\n  \"familyType\" : \"Open Office XML Formats\",\n  \"fileFormats\"\
+              \ : [ {\n    \"guid\" : \"0d0e98d7-f5a4-5002-b3ea-e21c0fa2f06a\",\n\
+              \    \"name\" : \"fmt/214\",\n    \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  }, {\n    \"guid\" : \"30a7b22d-d71a-5bf7-b43a-490579e1d347\",\n\
+              \    \"name\" : \"fmt/412\",\n    \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  }, {\n    \"guid\" : \"bf17f1cd-ecca-5e56-9a8a-7b20da94fa45\",\n\
+              \    \"name\" : \"fmt/215\",\n    \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  }, {\n    \"guid\" : \"3b519ec6-c528-54d4-9702-67e09c76cebe\",\n\
+              \    \"name\" : \"fmt/599\",\n    \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  }, {\n    \"guid\" : \"d026a4dd-ddc2-57e1-9503-2c5d62095827\",\n\
+              \    \"name\" : \"fmt/629\",\n    \"namespace\" : \"http://www.nationalarchives.gov.uk\"\
+              \n  } ]\n}"
+          schema:
+            $ref: "#/definitions/FormatFamily"
+        "404":
+          description: "If the specified guid does not reference a Format Family known\
+            \ to this registry."
+      x-swagger-router-controller: "swagger_server.controllers.format_families_controller"
+  /properties:
+    get:
+      tags:
+      - "/properties"
+      summary: "Get Properties"
+      description: "Returns an array of Properties that match all of the filter conditions\
+        \ supplied. Any number of filters can be used together.\nThe date filters\
+        \ should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ\
+        \ or yyyy-MM-dd.\nIf no time information is supplied, then 00:00:00 in UTC\
+        \ will be assumed. This means that if you supply modified-after and modified-before\
+        \ dates of 2019-01-01 and 2019-12-31, you will not match any Properties modified\
+        \ during the day of 31st December."
+      operationId: "properties_get"
+      consumes: []
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "guid"
+        in: "header"
+        description: "A comma separated list of GUIDs of Properties. This filter matches\
+          \ only those Properties that are identified by one of the listed GUIDs."
+        required: false
+        type: "string"
+      - name: "modified_after"
+        in: "query"
+        description: "This filter matches only those Properties whose local last modified\
+          \ date is after the specified date."
+        required: false
+        type: "string"
+      - name: "modified_before"
+        in: "query"
+        description: "This filter matches only those Properties whose local last modified\
+          \ date is before the specified date."
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Used for requesting paged responses, this defines the offset\
+          \ of the first Property to return from the start of the list of all matching\
+          \ Properties."
+        required: false
+        type: "integer"
+        default: 0
+      - name: "limit"
+        in: "query"
+        description: "Used for requesting paged responses, this defines the maximum\
+          \ number of Properties to return."
+        required: false
+        type: "integer"
+        default: 0
+      responses:
+        "200":
+          description: "Success"
+          examples:
+            application/json;charset=UTF-8: "{\n  \"parProperties\" : [ {\n    \"\
+              id\" : {\n      \"guid\" : \"e21641c7-ea11-5f10-9a00-64a7b62d2b95\"\
+              ,\n      \"name\" : \"prp/10\",\n      \"namespace\" : \"http://par.preservica.com\"\
+              \n    },\n    \"type\" : \"integer\",\n    \"class\" : \"rate\",\n \
+              \   \"description\" : \"Samples Per Pixel\"\n  }, {\n    \"id\" : {\n\
+              \      \"guid\" : \"dac8e896-851a-5aa1-91f9-c36f3d82dd21\",\n      \"\
+              name\" : \"prp/5\",\n      \"namespace\" : \"http://par.preservica.com\"\
+              \n    },\n    \"type\" : \"string\",\n    \"class\" : \"other\",\n \
+              \   \"description\" : \"Colour Space\"\n  } ]\n}"
+          schema:
+            $ref: "#/definitions/ParProperties"
+      x-swagger-router-controller: "swagger_server.controllers.properties_controller"
+  /properties/{guid}:
+    get:
+      tags:
+      - "/properties"
+      summary: "Get a Property"
+      description: "Returns the Property specified by the GUID of the PAR Identifier"
+      operationId: "properties_guid_get"
+      consumes: []
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "guid"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Success"
+          examples:
+            application/json;charset=UTF-8: "{\n  \"id\" : {\n    \"guid\" : \"00bfe91a-eb9d-540c-8b00-0497701d773a\"\
+              ,\n    \"name\" : \"prp/1\",\n    \"namespace\" : \"http://par.preservica.com\"\
+              \n  },\n  \"type\" : \"string\",\n  \"class\" : \"algorithm\",\n  \"\
+              description\" : \"Compression Type\"\n}"
+          schema:
+            $ref: "#/definitions/ParProperty"
+        "404":
+          description: "If the specified guid does not reference a Property known\
+            \ to this registry."
+      x-swagger-router-controller: "swagger_server.controllers.properties_controller"
+definitions:
+  AuthorInformation:
+    properties:
+      authorCompoundName:
+        type: "string"
+      authorId:
+        type: "string"
+      authorIdNamespace:
+        type: "string"
+      authorName:
+        type: "string"
+      organisationName:
+        type: "string"
+  ByteSequenceInformation:
+    properties:
+      byteSequenceId:
+        type: "string"
+      byteSequenceIdNamespace:
+        type: "string"
+      byteSequenceValue:
+        type: "string"
+      endianness:
+        type: "string"
+      indirectOffsetLength:
+        type: "string"
+      indirectOffsetLocation:
+        type: "string"
+      maxOffset:
+        type: "string"
+      offset:
+        type: "string"
+      positionType:
+        type: "string"
+  DeveloperInformation:
+    properties:
+      developerCompoundName:
+        type: "string"
+      developerId:
+        type: "string"
+      developerIdNamespace:
+        type: "string"
+      developerName:
+        type: "string"
+      organisationName:
+        type: "string"
+  DocumentInformation:
+    properties:
+      author:
+        $ref: "#/definitions/AuthorInformation"
+      availabilityDescription:
+        type: "string"
+      availabilityNote:
+        type: "string"
+      displayText:
+        type: "string"
+      documentId:
+        type: "string"
+      documentIdNamespace:
+        type: "string"
+      documentIPR:
+        type: "string"
+      documentNote:
+        type: "string"
+      documentType:
+        type: "string"
+      publicationDate:
+        type: "string"
+      publisher:
+        $ref: "#/definitions/PublisherInformation"
+      titleText:
+        type: "string"
+  ExternalSignatureInformation:
+    properties:
+      externalSignatureId:
+        type: "string"
+      externalSignatureIdNamespace:
+        type: "string"
+      signature:
+        type: "string"
+      signatureType:
+        type: "string"
+  FileFormat:
+    properties:
+      aliases:
+        type: "array"
+        items:
+          type: "string"
+      binaryFileFormat:
+        type: "string"
+      byteOrders:
+        type: "array"
+        items:
+          type: "string"
+      description:
+        type: "string"
+      developers:
+        type: "array"
+        items:
+          $ref: "#/definitions/DeveloperInformation"
+      disclosure:
+        type: "string"
+      documents:
+        type: "array"
+        items:
+          $ref: "#/definitions/DocumentInformation"
+      externalSignatures:
+        type: "array"
+        items:
+          $ref: "#/definitions/ExternalSignatureInformation"
+      families:
+        type: "array"
+        items:
+          type: "string"
+      id:
+        $ref: "#/definitions/ParIdentifier"
+      identifiers:
+        type: "array"
+        items:
+          $ref: "#/definitions/IdentifierInformation"
+      internalSignatures:
+        type: "array"
+        items:
+          $ref: "#/definitions/InternalSignatureInformation"
+      lastUpdatedDate:
+        type: "string"
+      localLastModifiedDate:
+        type: "string"
+      name:
+        type: "string"
+      note:
+        type: "string"
+      provenance:
+        $ref: "#/definitions/ProvenanceInformation"
+      registryVersions:
+        type: "array"
+        items:
+          $ref: "#/definitions/RegistryVersionInformation"
+      relatedFormats:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedFormatInformation"
+      releaseDate:
+        type: "string"
+      risk:
+        type: "string"
+      technicalEnvironment:
+        type: "string"
+      types:
+        type: "array"
+        items:
+          type: "string"
+      version:
+        type: "string"
+      withdrawnDate:
+        type: "string"
+  FileFormats:
+    properties:
+      fileFormats:
+        type: "array"
+        items:
+          $ref: "#/definitions/FileFormat"
+  FormatFamilies:
+    properties:
+      formatFamilies:
+        type: "array"
+        items:
+          $ref: "#/definitions/FormatFamily"
+  FormatFamily:
+    properties:
+      familyType:
+        type: "string"
+      fileFormats:
+        type: "array"
+        items:
+          $ref: "#/definitions/ParIdentifier"
+      id:
+        $ref: "#/definitions/ParIdentifier"
+  IdentifierInformation:
+    properties:
+      identifier:
+        type: "string"
+      identifierType:
+        type: "string"
+  InternalSignatureInformation:
+    properties:
+      byteSequences:
+        type: "array"
+        items:
+          $ref: "#/definitions/ByteSequenceInformation"
+      signatureId:
+        type: "string"
+      signatureIdNamespace:
+        type: "string"
+      signatureName:
+        type: "string"
+      signatureNote:
+        type: "string"
+  ParIdentifier:
+    properties:
+      guid:
+        type: "string"
+      name:
+        type: "string"
+      namespace:
+        type: "string"
+  ParProperties:
+    properties:
+      parProperties:
+        type: "array"
+        items:
+          $ref: "#/definitions/ParProperty"
+  ParProperty:
+    properties:
+      description:
+        type: "string"
+      equivalentTo:
+        type: "array"
+        items:
+          type: "string"
+      id:
+        $ref: "#/definitions/ParIdentifier"
+      localLastModifiedDate:
+        type: "string"
+      class:
+        type: "string"
+      type:
+        type: "string"
+      units:
+        type: "string"
+      value:
+        type: "string"
+  ProvenanceInformation:
+    properties:
+      provenanceDescription:
+        type: "string"
+      provenanceName:
+        type: "string"
+      provenanceSourceDate:
+        type: "string"
+      provenanceSourceId:
+        type: "string"
+      provenanceSourceNamespace:
+        type: "string"
+  PublisherInformation:
+    properties:
+      organisationName:
+        type: "string"
+      publisherCompoundName:
+        type: "string"
+      publisherId:
+        type: "string"
+      publisherIdNamespace:
+        type: "string"
+      publisherName:
+        type: "string"
+  RegistryVersionInformation:
+    properties:
+      name:
+        type: "string"
+      registryNamespace:
+        type: "string"
+      version:
+        type: "string"
+  RelatedFormatInformation:
+    properties:
+      relatedFormatId:
+        type: "string"
+      relatedFormatIdNamespace:
+        type: "string"
+      relatedFormatName:
+        type: "string"
+      relatedFormatVersion:
+        type: "string"
+      relationshipType:
+        type: "string"

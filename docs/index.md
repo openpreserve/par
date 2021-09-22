@@ -21,7 +21,7 @@ Following some initial funding from Jisc, PAR has evolved from a standing start 
 * Preservica
 * Actefactual
 * Archivum
-* Open Preservation Forum
+* Open Preservation Foundation (OPF)
 
 To add further credibility, Wikidp is in the process of connecting into the network as a significant trusted source partner. The core team is currently in discussion with other potential sources to expand the network over the course of the coming months. 
 

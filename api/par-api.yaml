@@ -1,78 +1,634 @@
-swagger: '2.0'
-info:
-  description: 'API to retrieve and update Business Rules, Preservation Actions etc from a Preservation Action Registries compliant endpoint'
-  version: '0.1'
-  title: PAR API
-host: parcore.org
 basePath: /par
-tags:
-  - name: /business-rules
-    description: Requests relating to PAR Business Rule entities
-  - name: /preservation-actions
-    description: Endpoints relation to PAR Preservation Action entities
-  - name: /tools
-    description: Endpoints relation to PAR Tool entities
-  - name: /file-formats
-    description: Endpoints relation to PAR File Format entities
-  - name: /properties
-    description: Endpoints relation to PAR Property entities
-  - name: /preservation-action-types
-    description: Endpoints relation to PAR Preservation Action Type Type entities
-  - name: /format-families
-    description: Endpoints relation to PAR Format Family entities
-schemes:
-  - https
+definitions:
+  Action:
+    properties:
+      optionalInputFiles:
+        items:
+          $ref: '#/definitions/InputFile'
+        type: array
+      optionalInputProperties:
+        items:
+          $ref: '#/definitions/InputProperty'
+        type: array
+      outputFilesRetrieved:
+        items:
+          $ref: '#/definitions/OutputFile'
+        type: array
+      outputPropertiesRetrieved:
+        items:
+          $ref: '#/definitions/OutputProperty'
+        type: array
+      preservationAction:
+        $ref: '#/definitions/ParIdentifier'
+      priority:
+        format: int32
+        type: integer
+      rawOutputsRetrieved:
+        items:
+          $ref: '#/definitions/OutputRaw'
+        type: array
+  AuthorInformation:
+    properties:
+      authorCompoundName:
+        type: string
+      authorId:
+        type: string
+      authorIdNamespace:
+        type: string
+      authorName:
+        type: string
+      organisationName:
+        type: string
+  BusinessRule:
+    properties:
+      description:
+        type: string
+      formatFamilies:
+        items:
+          $ref: '#/definitions/FormatFamily'
+        type: array
+      formats:
+        items:
+          $ref: '#/definitions/ParIdentifier'
+        type: array
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      localLastModifiedDate:
+        type: string
+      notes:
+        type: string
+      preservationActionTypes:
+        items:
+          $ref: '#/definitions/PreservationActionType'
+        type: array
+      preservationActions:
+        items:
+          $ref: '#/definitions/Action'
+        type: array
+  BusinessRules:
+    properties:
+      businessRules:
+        items:
+          $ref: '#/definitions/BusinessRule'
+        type: array
+  ByteSequenceInformation:
+    properties:
+      byteSequenceId:
+        type: string
+      byteSequenceIdNamespace:
+        type: string
+      byteSequenceValue:
+        type: string
+      endianness:
+        type: string
+      indirectOffsetLength:
+        type: string
+      indirectOffsetLocation:
+        type: string
+      maxOffset:
+        type: string
+      offset:
+        type: string
+      positionType:
+        type: string
+  DeveloperInformation:
+    properties:
+      developerCompoundName:
+        type: string
+      developerId:
+        type: string
+      developerIdNamespace:
+        type: string
+      developerName:
+        type: string
+      organisationName:
+        type: string
+  DocumentInformation:
+    properties:
+      author:
+        $ref: '#/definitions/AuthorInformation'
+      availabilityDescription:
+        type: string
+      availabilityNote:
+        type: string
+      displayText:
+        type: string
+      documentIPR:
+        type: string
+      documentId:
+        type: string
+      documentIdNamespace:
+        type: string
+      documentNote:
+        type: string
+      documentType:
+        type: string
+      publicationDate:
+        type: string
+      publisher:
+        $ref: '#/definitions/PublisherInformation'
+      titleText:
+        type: string
+  ExternalSignatureInformation:
+    properties:
+      externalSignatureId:
+        type: string
+      externalSignatureIdNamespace:
+        type: string
+      signature:
+        type: string
+      signatureType:
+        type: string
+  FileCriterion:
+    properties:
+      formats:
+        items:
+          $ref: '#/definitions/ParIdentifier'
+        type: array
+      formatFamilies:
+        items:
+          $ref: '#/definitions/ParIdentifier'
+        type: array
+      minimum:
+        type: string
+        description: (representing a number)
+      maximum:
+        type: string
+        description: (representing a number or "unbounded")
+  FileFormat:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      binaryFileFormat:
+        type: string
+      byteOrders:
+        items:
+          type: string
+        type: array
+      description:
+        type: string
+      developers:
+        items:
+          $ref: '#/definitions/DeveloperInformation'
+        type: array
+      disclosure:
+        type: string
+      documents:
+        items:
+          $ref: '#/definitions/DocumentInformation'
+        type: array
+      externalSignatures:
+        items:
+          $ref: '#/definitions/ExternalSignatureInformation'
+        type: array
+      families:
+        items:
+          type: string
+        type: array
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      identifiers:
+        items:
+          $ref: '#/definitions/IdentifierInformation'
+        type: array
+      internalSignatures:
+        items:
+          $ref: '#/definitions/InternalSignatureInformation'
+        type: array
+      lastUpdatedDate:
+        type: string
+      localLastModifiedDate:
+        type: string
+      name:
+        type: string
+      note:
+        type: string
+      provenance:
+        $ref: '#/definitions/ProvenanceInformation'
+      registryVersions:
+        items:
+          $ref: '#/definitions/RegistryVersionInformation'
+        type: array
+      relatedFormats:
+        items:
+          $ref: '#/definitions/RelatedFormatInformation'
+        type: array
+      releaseDate:
+        type: string
+      risk:
+        type: string
+      technicalEnvironment:
+        type: string
+      types:
+        items:
+          type: string
+        type: array
+      version:
+        type: string
+      withdrawnDate:
+        type: string
+  FileFormats:
+    properties:
+      fileFormats:
+        items:
+          $ref: '#/definitions/FileFormat'
+        type: array
+  FormatFamilies:
+    properties:
+      formatFamilies:
+        items:
+          $ref: '#/definitions/FormatFamily'
+        type: array
+  FormatFamily:
+    properties:
+      familyType:
+        type: string
+      fileFormats:
+        items:
+          $ref: '#/definitions/ParIdentifier'
+        type: array
+      id:
+        $ref: '#/definitions/ParIdentifier'
+  IdentifierInformation:
+    properties:
+      identifier:
+        type: string
+      identifierType:
+        type: string
+  InputFile:
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/ParFile'
+      name:
+        type: string
+  InputProperty:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      parProperty:
+        $ref: '#/definitions/ParProperty'
+  InputToolArgument:
+    properties:
+      description:
+        type: string
+      type:
+        type: string
+      value:
+        type: string
+  InternalSignatureInformation:
+    properties:
+      byteSequences:
+        items:
+          $ref: '#/definitions/ByteSequenceInformation'
+        type: array
+      signatureId:
+        type: string
+      signatureIdNamespace:
+        type: string
+      signatureName:
+        type: string
+      signatureNote:
+        type: string
+  OutputFile:
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/ParFile'
+      name:
+        type: string
+  OutputProperty:
+    properties:
+      description:
+        type: string
+      groupIdBinding:
+        type: string
+      groupLabel:
+        type: string
+      name:
+        type: string
+      parProperty:
+        $ref: '#/definitions/ParProperty'
+      toolBinding:
+        type: string
+  OutputRaw:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      value:
+        type: string
+  ParFile:
+    properties:
+      filepath:
+        type: string
+  ParIdentifier:
+    properties:
+      guid:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string
+  ParProperties:
+    properties:
+      parProperties:
+        items:
+          $ref: '#/definitions/ParProperty'
+        type: array
+  ParProperty:
+    properties:
+      class:
+        type: string
+      description:
+        type: string
+      equivalentTo:
+        items:
+          type: string
+        type: array
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      localLastModifiedDate:
+        type: string
+      type:
+        type: string
+      units:
+        type: string
+      value:
+        type: string
+  PreservationAction:
+    properties:
+      constraints:
+        items:
+          $ref: '#/definitions/PreservationActionConstraints'
+        type: array
+      description:
+        type: string
+      example:
+        type: string
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      inputFiles:
+        items:
+          $ref: '#/definitions/InputFile'
+        type: array
+      inputProperties:
+        items:
+          $ref: '#/definitions/InputProperty'
+        type: array
+      inputToolArguments:
+        items:
+          $ref: '#/definitions/InputToolArgument'
+        type: array
+      localLastModifiedDate:
+        type: string
+      outputFiles:
+        items:
+          $ref: '#/definitions/OutputFile'
+        type: array
+      outputProperties:
+        items:
+          $ref: '#/definitions/OutputProperty'
+        type: array
+      rawOutputs:
+        items:
+          $ref: '#/definitions/OutputRaw'
+        type: array
+      tool:
+        $ref: '#/definitions/Tool'
+      type:
+        $ref: '#/definitions/PreservationActionType'
+  PreservationActionConstraints:
+    properties:
+      allowedFormats:
+        items:
+          $ref: '#/definitions/FileFormat'
+        type: array
+      allowedPropertiesAllOf:
+        items:
+          $ref: '#/definitions/ParProperty'
+        type: array
+      allowedPropertiesAnyOf:
+        items:
+          $ref: '#/definitions/ParProperty'
+        type: array
+      inputItemName:
+        type: string
+  PreservationActionType:
+    properties:
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      label:
+        type: string
+      localLastModifiedDate:
+        type: string
+  PreservationActionTypes:
+    properties:
+      preservationActionTypes:
+        items:
+          $ref: '#/definitions/PreservationActionType'
+        type: array
+  PreservationActions:
+    properties:
+      preservationActions:
+        items:
+          $ref: '#/definitions/PreservationAction'
+        type: array
+  ProvenanceInformation:
+    properties:
+      provenanceDescription:
+        type: string
+      provenanceName:
+        type: string
+      provenanceSourceDate:
+        type: string
+      provenanceSourceId:
+        type: string
+      provenanceSourceNamespace:
+        type: string
+  PublisherInformation:
+    properties:
+      organisationName:
+        type: string
+      publisherCompoundName:
+        type: string
+      publisherId:
+        type: string
+      publisherIdNamespace:
+        type: string
+      publisherName:
+        type: string
+  RegistryVersionInformation:
+    properties:
+      name:
+        type: string
+      registryNamespace:
+        type: string
+      version:
+        type: string
+  RelatedFormatInformation:
+    properties:
+      relatedFormatId:
+        type: string
+      relatedFormatIdNamespace:
+        type: string
+      relatedFormatName:
+        type: string
+      relatedFormatVersion:
+        type: string
+      relationshipType:
+        type: string
+  RepresentationFormat:
+    properties:
+      description:
+        type: string
+      hasPriorityOver:
+        items:
+          $ref: '#/definitions/ParIdentifier'
+        type: array
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      localLastModifiedDate:
+        type: string
+      name:
+        type: string
+      representationFormatSignature:
+        $ref: '#/definitions/RepresentationFormatSignature'
+  RepresentationFormats:
+    properties:
+      representationFormats:
+        items:
+          $ref: '#/definitions/RepresentationFormat'
+        type: array
+  RepresentationFormatSignature:
+    properties:
+      fileCriteria:
+        items:
+          $ref: '#/definitions/FileCriterion'
+        type:
+          array
+      primaryFileCriteria:
+        items:
+          $ref: '#/definitions/FileCriterion'
+        type:
+          array
+  Tool:
+    properties:
+      id:
+        $ref: '#/definitions/ParIdentifier'
+      localLastModifiedDate:
+        type: string
+      toolAcceptedParameters:
+        items:
+          type: string
+        type: array
+      toolLabel:
+        type: string
+      toolName:
+        type: string
+      toolOperatingEnvironments:
+        items:
+          type: string
+        type: array
+      toolPublisher:
+        type: string
+      toolVersion:
+        type: string
+  Tools:
+    properties:
+      tools:
+        items:
+          $ref: '#/definitions/Tool'
+        type: array
+host: parcore.org
+info:
+  description: >-
+    API to retrieve and update Business Rules, Preservation Actions etc from a
+    Preservation Action Registries compliant endpoint
+  title: PAR API
+  version: '0.1'
 paths:
   /business-rules:
     get:
-      tags:
-        - /business-rules
-      summary: Get Business Rules
-      description: |-
-        Returns an array of Business Rules that match all of the filter conditions supplied. Any number of fitlers can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Business Rules modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of Business Rules that match all of the filter
+        conditions supplied. Any number of fitlers can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any Business Rules modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of GUIDs of Preservation Action Types. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed types of action.
+          in: header
+          name: preservation-action-type
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of NAMEs of file formats (i.e. fmt/1,
+            x-fmt/2. This filter matches only those Business Rules that have
+            been defined to apply to one of the listed formats. This includes
+            formats where the rule is applicable indirectly through the format
+            family.
+          in: header
+          name: file-format
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of GUIDs of Business Rules. This filter
+            matches only those Business Rules that are identified by one of the
+            listed GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Business Rules whose local last
+            modified date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Business Rules whose local last
+            modified date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first Business Rule to return from the start of the list of all
+            matching Business Rules.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of Business Rules to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: preservation-action-type
-          in: header
-          description: A comma separated list of GUIDs of Preservation Action Types. This filter matches only those Business Rules whose purpose is to perform one of the listed types of action.
-          required: false
-          type: string
-        - name: file-format
-          in: header
-          description: 'A comma separated list of NAMEs of file formats (i.e. fmt/1, x-fmt/2. This filter matches only those Business Rules that have been defined to apply to one of the listed formats. This includes formats where the rule is applicable indirectly through the format family.'
-          required: false
-          type: string
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of Business Rules. This filter matches only those Business Rules that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those Business Rules whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those Business Rules whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first Business Rule to return from the start of the list of all matching Business Rules.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of Business Rules to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -446,26 +1002,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/BusinessRules'
-    post:
+      summary: Get Business Rules
       tags:
         - /business-rules
-      summary: Create Business Rule
-      description: Creates a new Business Rule and returns the rule as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new Business Rule and returns the rule as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/BusinessRule'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -590,21 +1146,49 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/business-rules/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Business Rule
       tags:
         - /business-rules
-      summary: Get a Business Rule
-      description: Returns the Business Rule specified by the GUID of the PAR Identifier
+  /business-rules/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Deletes the Business Rule specified by the GUID of the PAR Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: Business Rule successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete Business Rule
+      tags:
+        - /business-rules
+    get:
+      consumes: []
+      description: Returns the Business Rule specified by the GUID of the PAR Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -727,31 +1311,35 @@ paths:
           schema:
             $ref: '#/definitions/BusinessRule'
         '404':
-          description: If the specified guid does not reference a Business Rule known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a Business Rule known to
+            this registry.
+      summary: Get a Business Rule
       tags:
         - /business-rules
-      summary: Update Business Rule
-      description: Updates the Business Rule specified by the GUID of the PAR Identifier and returns the rule as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the Business Rule specified by the GUID of the PAR Identifier
+        and returns the rule as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/BusinessRule'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -876,73 +1464,68 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Business Rule
       tags:
         - /business-rules
-      summary: Delete Business Rule
-      description: Deletes the Business Rule specified by the GUID of the PAR Identifier
-      consumes: []
-      produces: []
-      parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: HTTP Basic Auth header
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Business Rule successfully deleted.
-          schema:
-            $ref: '#/definitions/BusinessRule'
-        '401':
-          description: If no Authorization header has been supplied.
-        '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
   /file-formats:
     get:
-      tags:
-        - /file-formats
-      summary: Get File Formats
-      description: |-
-        Returns an array of File Formats that match all of the filter conditions supplied. Any number of filters can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any FileFormats modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of File Formats that match all of the filter conditions
+        supplied. Any number of filters can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any FileFormats modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of GUIDs of FileFormats. This filter matches
+            only those File Formats that are identified by one of the listed
+            GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those File Formats whose local last
+            modified date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those File Formats whose local last
+            modified date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first FileFormat to return from the start of the list of all
+            matching File Formats.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of FileFormats to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of FileFormats. This filter matches only those File Formats that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those File Formats whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those File Formats whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first FileFormat to return from the start of the list of all matching File Formats.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of FileFormats to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -1064,26 +1647,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/FileFormats'
-    post:
+      summary: Get File Formats
       tags:
         - /file-formats
-      summary: Create FileFormat
-      description: Creates a new FileFormat and returns the fileFormat as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new FileFormat and returns the fileFormat as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/FileFormat'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -1183,21 +1766,49 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/file-formats/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create FileFormat
       tags:
         - /file-formats
-      summary: Get a File Format
-      description: Returns the File Format specified by the GUID of the PAR Identifier
+  /file-formats/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Deletes the File Format specified by the GUID of the PAR Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: File Format successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete File Format
+      tags:
+        - /file-formats
+    get:
+      consumes: []
+      description: Returns the File Format specified by the GUID of the PAR Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -1295,31 +1906,35 @@ paths:
           schema:
             $ref: '#/definitions/FileFormat'
         '404':
-          description: If the specified guid does not reference a File Format known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a File Format known to this
+            registry.
+      summary: Get a File Format
       tags:
         - /file-formats
-      summary: Update File Format
-      description: Updates the File Format specified by the GUID of the PAR Identifier and returns the file format as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the File Format specified by the GUID of the PAR Identifier and
+        returns the file format as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/FileFormat'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -1419,78 +2034,76 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update File Format
       tags:
         - /file-formats
-      summary: Delete File Format
-      description: Deletes the File Format specified by the GUID of the PAR Identifier
-      consumes: []
-      produces: []
-      parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: HTTP Basic Auth header
-          required: true
-          type: string
-      responses:
-        '204':
-          description: File Format successfully deleted.
-          schema:
-            $ref: '#/definitions/FileFormat'
-        '401':
-          description: If no Authorization header has been supplied.
-        '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
   /format-families:
     get:
-      tags:
-        - /format-families
-      summary: Get Format Families
-      description: |-
-        Returns an array of Format Families that match all of the filter conditions supplied. Any number of filters can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Format Families modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of Format Families that match all of the filter
+        conditions supplied. Any number of filters can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any Format Families modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of NAMEs of file formats (i.e. fmt/1,
+            x-fmt/2. This filter matches only those Format Families that include
+            any of the specified formats.
+          in: header
+          name: file-format
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of GUIDs of Format Families. This filter
+            matches only those Format Families that are identified by one of the
+            listed GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Format Families whose local last
+            modified date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Format Families whose local last
+            modified date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first Format Family to return from the start of the list of all
+            matching Format Families.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of Format Families to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: file-format
-          in: header
-          description: 'A comma separated list of NAMEs of file formats (i.e. fmt/1, x-fmt/2. This filter matches only those Format Families that include any of the specified formats.'
-          required: false
-          type: string
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of Format Families. This filter matches only those Format Families that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those Format Families whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those Format Families whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first Format Family to return from the start of the list of all matching Format Families.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of Format Families to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -1589,26 +2202,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/FormatFamilies'
-    post:
+      summary: Get Format Families
       tags:
         - /format-families
-      summary: Create Format Family
-      description: Creates a new Format Family and returns the family as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new Format Family and returns the family as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/FormatFamily'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -1648,21 +2261,49 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/format-families/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Format Family
       tags:
         - /format-families
-      summary: Get a Format Family
-      description: Returns the Format Family specified by the GUID of the PAR Identifier
+  /format-families/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Deletes the Format Family specified by the GUID of the PAR Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: Format Family successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete Format Family
+      tags:
+        - /format-families
+    get:
+      consumes: []
+      description: Returns the Format Family specified by the GUID of the PAR Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -1700,31 +2341,35 @@ paths:
           schema:
             $ref: '#/definitions/FormatFamily'
         '404':
-          description: If the specified guid does not reference a Format Family known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a Format Family known to
+            this registry.
+      summary: Get a Format Family
       tags:
         - /format-families
-      summary: Update Format Family
-      description: Updates the Format Family specified by the GUID of the PAR Identifier and returns the family as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the Format Family specified by the GUID of the PAR Identifier
+        and returns the family as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/FormatFamily'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -1764,73 +2409,68 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Format Family
       tags:
         - /format-families
-      summary: Delete Format Family
-      description: Deletes the Format Family specified by the GUID of the PAR Identifier
-      consumes: []
-      produces: []
-      parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: HTTP Basic Auth header
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Format Family successfully deleted.
-          schema:
-            $ref: '#/definitions/FormatFamily'
-        '401':
-          description: If no Authorization header has been supplied.
-        '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
   /preservation-action-types:
     get:
-      tags:
-        - /preservation-action-types
-      summary: Get Preservation Action Types
-      description: |-
-        Returns an array of Preservation Action Types that match all of the filter conditions supplied. Any number of filters can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Preservation Action Types modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of Preservation Action Types that match all of the
+        filter conditions supplied. Any number of filters can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any Preservation Action Types modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of GUIDs of Preservation Action Types. This
+            filter matches only those Preservation Action Types that are
+            identified by one of the listed GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Preservation Action Types whose local
+            last modified date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Preservation Action Types whose local
+            last modified date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first Preservation Action Type to return from the start of the list
+            of all matching Preservation Action Types.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of Preservation Action Types to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of Preservation Action Types. This filter matches only those Preservation Action Types that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those Preservation Action Types whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those Preservation Action Types whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first Preservation Action Type to return from the start of the list of all matching Preservation Action Types.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of Preservation Action Types to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -1855,26 +2495,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/PreservationActionTypes'
-    post:
+      summary: Get Preservation Action Types
       tags:
         - /preservation-action-types
-      summary: Create Preservation Action Type
-      description: Creates a new Preservation Action Type and returns the type as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new Preservation Action Type and returns the type as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/PreservationActionType'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -1893,21 +2533,53 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/preservation-action-types/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Preservation Action Type
       tags:
         - /preservation-action-types
-      summary: Get a Preservation Action Type
-      description: Returns the Preservation Action Type specified by the GUID of the PAR Identifier
+  /preservation-action-types/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Deletes the Preservation Action Type specified by the GUID of the PAR
+        Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: Preservation Action Type successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete Preservation Action Type
+      tags:
+        - /preservation-action-types
+    get:
+      consumes: []
+      description: >-
+        Returns the Preservation Action Type specified by the GUID of the PAR
+        Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -1924,31 +2596,35 @@ paths:
           schema:
             $ref: '#/definitions/PreservationActionType'
         '404':
-          description: If the specified guid does not reference a Preservation Action Type known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a Preservation Action Type
+            known to this registry.
+      summary: Get a Preservation Action Type
       tags:
         - /preservation-action-types
-      summary: Update Preservation Action Type
-      description: Updates the Preservation Action Type specified by the GUID of the PAR Identifier and returns the type as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the Preservation Action Type specified by the GUID of the PAR
+        Identifier and returns the type as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/PreservationActionType'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -1967,83 +2643,83 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Preservation Action Type
       tags:
         - /preservation-action-types
-      summary: Delete Preservation Action Type
-      description: Deletes the Preservation Action Type specified by the GUID of the PAR Identifier
-      consumes: []
-      produces: []
-      parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: HTTP Basic Auth header
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Preservation Action Type successfully deleted.
-          schema:
-            $ref: '#/definitions/PreservationActionType'
-        '401':
-          description: If no Authorization header has been supplied.
-        '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
   /preservation-actions:
     get:
-      tags:
-        - /preservation-actions
-      summary: Get Preservation Actions
-      description: |-
-        Returns an array of Preservation Actions that match all of the filter conditions supplied. Any number of filters can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Preservation Actions modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of Preservation Actions that match all of the filter
+        conditions supplied. Any number of filters can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any Preservation Actions modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of GUIDs of Preservation Action Types. This
+            filter matches only those Preservation Actions of one of the listed
+            types of action.
+          in: header
+          name: preservation-action-type
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of GUIDs of Tools. This filter matches only
+            those Preservation Actions that use one of the listed tools.
+          in: header
+          name: tool
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of GUIDs of Preservation Actions. This filter
+            matches only those Preservation Actions that are identified by one
+            of the listed GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Preservation Actions whose local last
+            modified date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Preservation Actions whose local last
+            modified date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first Preservation Action to return from the start of the list of
+            all matching Preservation Actions.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of Preservation Actions to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: preservation-action-type
-          in: header
-          description: A comma separated list of GUIDs of Preservation Action Types. This filter matches only those Preservation Actions of one of the listed types of action.
-          required: false
-          type: string
-        - name: tool
-          in: header
-          description: A comma separated list of GUIDs of Tools. This filter matches only those Preservation Actions that use one of the listed tools.
-          required: false
-          type: string
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of Preservation Actions. This filter matches only those Preservation Actions that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those Preservation Actions whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those Preservation Actions whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first Preservation Action to return from the start of the list of all matching Preservation Actions.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of Preservation Actions to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -2767,26 +3443,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/PreservationActions'
-    post:
+      summary: Get Preservation Actions
       tags:
         - /preservation-actions
-      summary: Create Preservation Action
-      description: Creates a new Preservation Action and returns the action as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new Preservation Action and returns the action as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/PreservationAction'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -3060,21 +3736,53 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/preservation-actions/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Preservation Action
       tags:
         - /preservation-actions
-      summary: Get a Preservation Action
-      description: Returns the Preservation Action specified by the GUID of the PAR Identifier
+  /preservation-actions/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Deletes the Preservation Action specified by the GUID of the PAR
+        Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: Preservation Action successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete Preservation Action
+      tags:
+        - /preservation-actions
+    get:
+      consumes: []
+      description: >-
+        Returns the Preservation Action specified by the GUID of the PAR
+        Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -3346,31 +4054,35 @@ paths:
           schema:
             $ref: '#/definitions/PreservationAction'
         '404':
-          description: If the specified guid does not reference a Preservation Action known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a Preservation Action known
+            to this registry.
+      summary: Get a Preservation Action
       tags:
         - /preservation-actions
-      summary: Update Preservation Action
-      description: Updates the Preservation Action specified by the GUID of the PAR Identifier and returns the action as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the Preservation Action specified by the GUID of the PAR
+        Identifier and returns the action as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/PreservationAction'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -3644,73 +4356,68 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Preservation Action
       tags:
         - /preservation-actions
-      summary: Delete Preservation Action
-      description: Deletes the Preservation Action specified by the GUID of the PAR Identifier
-      consumes: []
-      produces: []
-      parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: HTTP Basic Auth header
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Preservation Action successfully deleted.
-          schema:
-            $ref: '#/definitions/PreservationAction'
-        '401':
-          description: If no Authorization header has been supplied.
-        '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
   /properties:
     get:
-      tags:
-        - /properties
-      summary: Get Properties
-      description: |-
-        Returns an array of Properties that match all of the filter conditions supplied. Any number of filters can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Properties modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of Properties that match all of the filter conditions
+        supplied. Any number of filters can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any Properties modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of GUIDs of Properties. This filter matches
+            only those Properties that are identified by one of the listed
+            GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Properties whose local last modified
+            date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Properties whose local last modified
+            date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first Property to return from the start of the list of all matching
+            Properties.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of Properties to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of Properties. This filter matches only those Properties that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those Properties whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those Properties whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first Property to return from the start of the list of all matching Properties.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of Properties to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -3739,26 +4446,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/ParProperties'
-    post:
+      summary: Get Properties
       tags:
         - /properties
-      summary: Create Property
-      description: Creates a new Property and returns the property as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new Property and returns the property as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/ParProperty'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -3779,21 +4486,49 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/properties/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Property
       tags:
         - /properties
-      summary: Get a Property
-      description: Returns the Property specified by the GUID of the PAR Identifier
+  /properties/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Deletes the Property specified by the GUID of the PAR Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: Property successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete Property
+      tags:
+        - /properties
+    get:
+      consumes: []
+      description: Returns the Property specified by the GUID of the PAR Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -3812,31 +4547,35 @@ paths:
           schema:
             $ref: '#/definitions/ParProperty'
         '404':
-          description: If the specified guid does not reference a Property known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a Property known to this
+            registry.
+      summary: Get a Property
       tags:
         - /properties
-      summary: Update Property
-      description: Updates the Property specified by the GUID of the PAR Identifier and returns the property as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the Property specified by the GUID of the PAR Identifier and
+        returns the property as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/ParProperty'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -3857,73 +4596,332 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Property
       tags:
         - /properties
-      summary: Delete Property
-      description: Deletes the Property specified by the GUID of the PAR Identifier
+  /representation-formats:
+    get:
       consumes: []
-      produces: []
+      description: >-
+        Returns an array of Representation Formats that match all of the filter conditions
+        supplied. Any number of filters can be used together.
+        
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any RepresentationFormats modified during the day of 31st December.
       parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
+        - description: >-
+            A comma separated list of GUIDs of Representation Formats. This filter matches
+            only those Representation Formats that are identified by one of the listed
+            GUIDs.
           in: header
-          description: HTTP Basic Auth header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Representation Formats whose local last
+            modified date is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Representation Formats whose local last
+            modified date is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first RepresentationFormat to return from the start of the list of all
+            matching Representation Formats.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of RepresentationFormats to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
+      produces:
+        - application/json;charset=UTF-8
+      responses:
+        '200':
+          description: Success
+          examples:
+            application/json;charset=UTF-8: |-
+              {
+                "representationFormats" : [{
+                  "id": {
+                    "guid": "c9828123-71cc-57d0-97e2-489c71d457e0",
+                    "name": "repfmt/1",
+                    "namespace": "http://par.preservica.com"
+                  },
+                  "name": "Email",
+                  "description": "An Email is described by a primary internet message/email file. The email file may reference any number of additional files of any format that form the attachments to the email.",
+                  "representationFormatSignature": {
+                    "primaryFileCriteria": [
+                      {
+                        "formatFamilies": [
+                          {
+                            "guid": "a7069b2d-2fca-50fe-8028-ecb1a245ba5e",
+                            "name": "email",
+                            "namespace": "http://par.preservica.com"
+                          }
+                        ]
+                      }
+                    ],
+                    "fileCriteria": [
+                      {
+                        "minimum": "0",
+                        "maximum": "unbounded"
+                      }
+                    ]
+                  }
+                },{
+                  "id": {
+                    "guid": "b7ad4e34-304e-5b41-959f-9afb9fe5cd70",
+                    "name": "repfmt/2",
+                    "namespace": "http://par.preservica.com"
+                  },
+                  "name": "Tweet",
+                  "description": "A Tweet is described by a primary Tweet JSON file. This file may reference up to 4 jpg or png images and up to 1 MP4 video.",
+                  "representationFormatSignature": {
+                    "primaryFileCriteria": [
+                      {
+                        "formats": [
+                          {
+                            "guid": "61370fce-f770-5018-9d6d-39bd639c59cb",
+                            "name": "fmt/1311",
+                            "namespace": "http://www.nationalarchives.gov.uk"
+                          }
+                        ]
+                      }
+                    ],
+                    "fileCriteria": [
+                      {
+                        "formatFamilies": [
+                          {
+                            "guid": "7bcc3e4c-4e97-556e-9592-8d7ea62187fa",
+                            "name": "jpeg",
+                            "namespace": "http://par.preservica.com"
+                          },
+                          {
+                            "guid": "b7d2f299-ec03-591e-be30-16b74b599b3d",
+                            "name": "png",
+                            "namespace": "http://par.preservica.com"
+                          }
+                        ],
+                        "minimum": "0",
+                        "maximum": "4"
+                      },
+                      {
+                        "formats": [
+                          {
+                            "guid": "1d6dc249-b131-5492-bab2-60d98fa73e02",
+                            "name": "fmt/199",
+                            "namespace": "http://www.nationalarchives.gov.uk"
+                          }
+                        ],
+                        "minimum": "0",
+                        "maximum": "1"
+                      }
+                    ]
+                  }
+                }]
+              }
+          schema:
+            $ref: '#/definitions/RepresentationFormats'
+      summary: Get Representation Formats
+      tags:
+        - /representation-formats
+  /representation-formats/{guid}:
+    delete:
+        consumes: []
+        description: Deletes the Representation Format specified by the GUID of the PAR Identifier
+        parameters:
+          - in: path
+            name: guid
+            required: true
+            type: string
+          - description: HTTP Basic Auth header
+            in: header
+            name: Authorization
+            required: true
+            type: string
+        produces: []
+        responses:
+          '204':
+            description: Representation Format successfully deleted.
+          '401':
+            description: If no Authorization header has been supplied.
+          '403':
+            description: >-
+              If the supplied Authorization header does not reference a user with
+              write access to this registry.
+        summary: Delete Representation Format
+        tags:
+          - /representation-formats
+    get:
+      consumes: []
+      description: Returns the Representation Format specified by the GUID of the PAR Identifier
+      parameters:
+        - in: path
+          name: guid
           required: true
           type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
-        '204':
-          description: Property successfully deleted.
+        '200':
+          description: Success
+          examples:
+            application/json;charset=UTF-8: |-
+              {
+                "id": {
+                  "guid": "c9828123-71cc-57d0-97e2-489c71d457e0",
+                  "name": "repfmt/1",
+                  "namespace": "http://par.preservica.com"
+                },
+                "name": "Email",
+                "description": "An Email is described by a primary internet message/email file. The email file may reference any number of additional files of any format that form the attachments to the email.",
+                "representationFormatSignature": {
+                  "primaryFileCriteria": [
+                    {
+                      "formatFamilies": [
+                        {
+                          "guid": "a7069b2d-2fca-50fe-8028-ecb1a245ba5e",
+                          "name": "email",
+                          "namespace": "http://par.preservica.com"
+                        }
+                      ]
+                    }
+                  ],
+                  "fileCriteria": [
+                    {
+                      "minimum": "0",
+                      "maximum": "unbounded"
+                    }
+                  ]
+                }
+              }
           schema:
-            $ref: '#/definitions/ParProperty'
+            $ref: '#/definitions/RepresentationFormat'
+        '404':
+          description: >-
+            If the specified guid does not reference a Representation Format known to this
+            registry.
+      summary: Get a Representation Format
+      tags:
+        - /representation-formats
+    put:
+      consumes: []
+      description: >-
+        Updates the Representation Format specified by the GUID of the PAR Identifier and
+        returns the Representation Format as updated.
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: Serialised entity in request body
+          in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/RepresentationFormat'
+      produces:
+        - application/json;charset=UTF-8
+      responses:
+        '201':
+          description: Success
+          examples:
+            application/json;charset=UTF-8: |-
+              
+          schema:
+            $ref: '#/definitions/RepresentationFormat'
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Representation Format
+      tags:
+        - /representation-formats
   /tools:
     get:
-      tags:
-        - /tools
-      summary: Get Tools
-      description: |-
-        Returns an array of Tools that match all of the filter conditions supplied. Any number of filters can be used together.
-        The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
-        If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Tools modified during the day of 31st December.
       consumes: []
+      description: >-
+        Returns an array of Tools that match all of the filter conditions
+        supplied. Any number of filters can be used together.
+
+        The date filters should be supplied as ISO-8601 date times or dates,
+        i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.
+
+        If no time information is supplied, then 00:00:00 in UTC will be
+        assumed. This means that if you supply modified-after and
+        modified-before dates of 2019-01-01 and 2019-12-31, you will not match
+        any Tools modified during the day of 31st December.
+      parameters:
+        - description: >-
+            A comma separated list of GUIDs of Tools. This filter matches only
+            those Tools that are identified by one of the listed GUIDs.
+          in: header
+          name: guid
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Tools whose local last modified date
+            is after the specified date.
+          in: query
+          name: modified-after
+          required: false
+          type: string
+        - description: >-
+            This filter matches only those Tools whose local last modified date
+            is before the specified date.
+          in: query
+          name: modified-before
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the offset of the
+            first Tool to return from the start of the list of all matching
+            Tools.
+          in: query
+          name: offset
+          required: false
+          type: integer
+        - default: 0
+          description: >-
+            Used for requesting paged responses, this defines the maximum number
+            of Tools to return.
+          in: query
+          name: limit
+          required: false
+          type: integer
       produces:
         - application/json;charset=UTF-8
-      parameters:
-        - name: guid
-          in: header
-          description: A comma separated list of GUIDs of Tools. This filter matches only those Tools that are identified by one of the listed GUIDs.
-          required: false
-          type: string
-        - name: modified-after
-          in: query
-          description: This filter matches only those Tools whose local last modified date is after the specified date.
-          required: false
-          type: string
-        - name: modified-before
-          in: query
-          description: This filter matches only those Tools whose local last modified date is before the specified date.
-          required: false
-          type: string
-        - name: offset
-          in: query
-          description: 'Used for requesting paged responses, this defines the offset of the first Tool to return from the start of the list of all matching Tools.'
-          required: false
-          type: integer
-          default: 0
-        - name: limit
-          in: query
-          description: 'Used for requesting paged responses, this defines the maximum number of Tools to return.'
-          required: false
-          type: integer
-          default: 0
       responses:
         '200':
           description: Success
@@ -3956,26 +4954,26 @@ paths:
               }
           schema:
             $ref: '#/definitions/Tools'
-    post:
+      summary: Get Tools
       tags:
         - /tools
-      summary: Create Tool
-      description: Creates a new Tool and returns the tool as created.
+    post:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Creates a new Tool and returns the tool as created.
       parameters:
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/Tool'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -3998,21 +4996,49 @@ paths:
         '401':
           description: If no Authorization header has been supplied
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-  '/tools/{guid}':
-    get:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Tool
       tags:
         - /tools
-      summary: Get a Tool
-      description: Returns the Tool specified by the GUID of the PAR Identifier
+  /tools/{guid}:
+    delete:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: Deletes the Tool specified by the GUID of the PAR Identifier
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+      produces: []
+      responses:
+        '204':
+          description: Tool successfully deleted.
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Delete Tool
+      tags:
+        - /tools
+    get:
+      consumes: []
+      description: Returns the Tool specified by the GUID of the PAR Identifier
+      parameters:
+        - in: path
+          name: guid
+          required: true
+          type: string
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '200':
           description: Success
@@ -4033,31 +5059,35 @@ paths:
           schema:
             $ref: '#/definitions/Tool'
         '404':
-          description: If the specified guid does not reference a Tool known to this registry.
-    put:
+          description: >-
+            If the specified guid does not reference a Tool known to this
+            registry.
+      summary: Get a Tool
       tags:
         - /tools
-      summary: Update Tool
-      description: Updates the Tool specified by the GUID of the PAR Identifier and returns the tool as updated.
+    put:
       consumes: []
-      produces:
-        - application/json;charset=UTF-8
+      description: >-
+        Updates the Tool specified by the GUID of the PAR Identifier and returns
+        the tool as updated.
       parameters:
-        - name: guid
-          in: path
+        - in: path
+          name: guid
           required: true
           type: string
-        - name: Authorization
+        - description: HTTP Basic Auth header
           in: header
-          description: HTTP Basic Auth header
+          name: Authorization
           required: true
           type: string
-        - in: body
+        - description: Serialised entity in request body
+          in: body
           name: body
-          description: Serialised entity in request body
           required: false
           schema:
             $ref: '#/definitions/Tool'
+      produces:
+        - application/json;charset=UTF-8
       responses:
         '201':
           description: Success
@@ -4080,528 +5110,29 @@ paths:
         '401':
           description: If no Authorization header has been supplied.
         '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-    delete:
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Update Tool
       tags:
         - /tools
-      summary: Delete Tool
-      description: Deletes the Tool specified by the GUID of the PAR Identifier
-      consumes: []
-      produces: []
-      parameters:
-        - name: guid
-          in: path
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: HTTP Basic Auth header
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Tool successfully deleted.
-          schema:
-            $ref: '#/definitions/Tool'
-        '401':
-          description: If no Authorization header has been supplied.
-        '403':
-          description: If the supplied Authorization header does not reference a user with write access to this registry.
-definitions:
-  Action:
-    properties:
-      optionalInputProperties:
-        type: array
-        items:
-          $ref: '#/definitions/InputProperty'
-      optionalInputFiles:
-        type: array
-        items:
-          $ref: '#/definitions/InputFile'
-      outputFilesRetrieved:
-        type: array
-        items:
-          $ref: '#/definitions/OutputFile'
-      outputPropertiesRetrieved:
-        type: array
-        items:
-          $ref: '#/definitions/OutputProperty'
-      preservationAction:
-        $ref: '#/definitions/ParIdentifier'
-      priority:
-        type: integer
-        format: int32
-      rawOutputsRetrieved:
-        type: array
-        items:
-          $ref: '#/definitions/OutputRaw'
-  AuthorInformation:
-    properties:
-      authorCompoundName:
-        type: string
-      authorId:
-        type: string
-      authorIdNamespace:
-        type: string
-      authorName:
-        type: string
-      organisationName:
-        type: string
-  BusinessRule:
-    properties:
-      preservationActions:
-        type: array
-        items:
-          $ref: '#/definitions/Action'
-      description:
-        type: string
-      formatFamilies:
-        type: array
-        items:
-          $ref: '#/definitions/FormatFamily'
-      formats:
-        type: array
-        items:
-          $ref: '#/definitions/ParIdentifier'
-      id:
-        $ref: '#/definitions/ParIdentifier'
-      localLastModifiedDate:
-        type: string
-      notes:
-        type: string
-      preservationActionTypes:
-        type: array
-        items:
-          $ref: '#/definitions/PreservationActionType'
-  BusinessRules:
-    properties:
-      businessRules:
-        type: array
-        items:
-          $ref: '#/definitions/BusinessRule'
-  ByteSequenceInformation:
-    properties:
-      byteSequenceId:
-        type: string
-      byteSequenceIdNamespace:
-        type: string
-      byteSequenceValue:
-        type: string
-      endianness:
-        type: string
-      indirectOffsetLength:
-        type: string
-      indirectOffsetLocation:
-        type: string
-      maxOffset:
-        type: string
-      offset:
-        type: string
-      positionType:
-        type: string
-  DeveloperInformation:
-    properties:
-      developerCompoundName:
-        type: string
-      developerId:
-        type: string
-      developerIdNamespace:
-        type: string
-      developerName:
-        type: string
-      organisationName:
-        type: string
-  DocumentInformation:
-    properties:
-      author:
-        $ref: '#/definitions/AuthorInformation'
-      availabilityDescription:
-        type: string
-      availabilityNote:
-        type: string
-      displayText:
-        type: string
-      documentId:
-        type: string
-      documentIdNamespace:
-        type: string
-      documentIPR:
-        type: string
-      documentNote:
-        type: string
-      documentType:
-        type: string
-      publicationDate:
-        type: string
-      publisher:
-        $ref: '#/definitions/PublisherInformation'
-      titleText:
-        type: string
-  ExternalSignatureInformation:
-    properties:
-      externalSignatureId:
-        type: string
-      externalSignatureIdNamespace:
-        type: string
-      signature:
-        type: string
-      signatureType:
-        type: string
-  FileFormat:
-    properties:
-      aliases:
-        type: array
-        items:
-          type: string
-      binaryFileFormat:
-        type: string
-      byteOrders:
-        type: array
-        items:
-          type: string
-      description:
-        type: string
-      developers:
-        type: array
-        items:
-          $ref: '#/definitions/DeveloperInformation'
-      disclosure:
-        type: string
-      documents:
-        type: array
-        items:
-          $ref: '#/definitions/DocumentInformation'
-      externalSignatures:
-        type: array
-        items:
-          $ref: '#/definitions/ExternalSignatureInformation'
-      families:
-        type: array
-        items:
-          type: string
-      id:
-        $ref: '#/definitions/ParIdentifier'
-      identifiers:
-        type: array
-        items:
-          $ref: '#/definitions/IdentifierInformation'
-      internalSignatures:
-        type: array
-        items:
-          $ref: '#/definitions/InternalSignatureInformation'
-      lastUpdatedDate:
-        type: string
-      localLastModifiedDate:
-        type: string
-      name:
-        type: string
-      note:
-        type: string
-      provenance:
-        $ref: '#/definitions/ProvenanceInformation'
-      registryVersions:
-        type: array
-        items:
-          $ref: '#/definitions/RegistryVersionInformation'
-      relatedFormats:
-        type: array
-        items:
-          $ref: '#/definitions/RelatedFormatInformation'
-      releaseDate:
-        type: string
-      risk:
-        type: string
-      technicalEnvironment:
-        type: string
-      types:
-        type: array
-        items:
-          type: string
-      version:
-        type: string
-      withdrawnDate:
-        type: string
-  FileFormats:
-    properties:
-      fileFormats:
-        type: array
-        items:
-          $ref: '#/definitions/FileFormat'
-  FormatFamilies:
-    properties:
-      formatFamilies:
-        type: array
-        items:
-          $ref: '#/definitions/FormatFamily'
-  FormatFamily:
-    properties:
-      familyType:
-        type: string
-      fileFormats:
-        type: array
-        items:
-          $ref: '#/definitions/ParIdentifier'
-      id:
-        $ref: '#/definitions/ParIdentifier'
-  IdentifierInformation:
-    properties:
-      identifier:
-        type: string
-      identifierType:
-        type: string
-  InputFile:
-    properties:
-      description:
-        type: string
-      file:
-        $ref: '#/definitions/ParFile'
-      name:
-        type: string
-  InputProperty:
-    properties:
-      description:
-        type: string
-      name:
-        type: string
-      parProperty:
-        $ref: '#/definitions/ParProperty'
-  InputToolArgument:
-    properties:
-      description:
-        type: string
-      type:
-        type: string
-      value:
-        type: string
-  InternalSignatureInformation:
-    properties:
-      byteSequences:
-        type: array
-        items:
-          $ref: '#/definitions/ByteSequenceInformation'
-      signatureId:
-        type: string
-      signatureIdNamespace:
-        type: string
-      signatureName:
-        type: string
-      signatureNote:
-        type: string
-  OutputFile:
-    properties:
-      description:
-        type: string
-      file:
-        $ref: '#/definitions/ParFile'
-      name:
-        type: string
-  OutputProperty:
-    properties:
-      description:
-        type: string
-      groupIdBinding:
-        type: string
-      groupLabel:
-        type: string
-      name:
-        type: string
-      parProperty:
-        $ref: '#/definitions/ParProperty'
-      toolBinding:
-        type: string
-  OutputRaw:
-    properties:
-      description:
-        type: string
-      name:
-        type: string
-      value:
-        type: string
-  ParFile:
-    properties:
-      filepath:
-        type: string
-  ParIdentifier:
-    properties:
-      guid:
-        type: string
-      name:
-        type: string
-      namespace:
-        type: string
-  ParProperties:
-    properties:
-      parProperties:
-        type: array
-        items:
-          $ref: '#/definitions/ParProperty'
-  ParProperty:
-    properties:
-      description:
-        type: string
-      equivalentTo:
-        type: array
-        items:
-          type: string
-      id:
-        $ref: '#/definitions/ParIdentifier'
-      localLastModifiedDate:
-        type: string
-      class:
-        type: string
-      type:
-        type: string
-      units:
-        type: string
-      value:
-        type: string
-  PreservationAction:
-    properties:
-      constraints:
-        type: array
-        items:
-          $ref: '#/definitions/PreservationActionConstraints'
-      description:
-        type: string
-      example:
-        type: string
-      id:
-        $ref: '#/definitions/ParIdentifier'
-      inputFiles:
-        type: array
-        items:
-          $ref: '#/definitions/InputFile'
-      inputProperties:
-        type: array
-        items:
-          $ref: '#/definitions/InputProperty'
-      inputToolArguments:
-        type: array
-        items:
-          $ref: '#/definitions/InputToolArgument'
-      localLastModifiedDate:
-        type: string
-      outputFiles:
-        type: array
-        items:
-          $ref: '#/definitions/OutputFile'
-      outputProperties:
-        type: array
-        items:
-          $ref: '#/definitions/OutputProperty'
-      rawOutputs:
-        type: array
-        items:
-          $ref: '#/definitions/OutputRaw'
-      tool:
-        $ref: '#/definitions/Tool'
-      type:
-        $ref: '#/definitions/PreservationActionType'
-  PreservationActionConstraints:
-    properties:
-      allowedFormats:
-        type: array
-        items:
-          $ref: '#/definitions/FileFormat'
-      allowedPropertiesAllOf:
-        type: array
-        items:
-          $ref: '#/definitions/ParProperty'
-      allowedPropertiesAnyOf:
-        type: array
-        items:
-          $ref: '#/definitions/ParProperty'
-      inputItemName:
-        type: string
-  PreservationActionType:
-    properties:
-      id:
-        $ref: '#/definitions/ParIdentifier'
-      label:
-        type: string
-      localLastModifiedDate:
-        type: string
-  PreservationActionTypes:
-    properties:
-      preservationActionTypes:
-        type: array
-        items:
-          $ref: '#/definitions/PreservationActionType'
-  PreservationActions:
-    properties:
-      preservationActions:
-        type: array
-        items:
-          $ref: '#/definitions/PreservationAction'
-  ProvenanceInformation:
-    properties:
-      provenanceDescription:
-        type: string
-      provenanceName:
-        type: string
-      provenanceSourceDate:
-        type: string
-      provenanceSourceId:
-        type: string
-      provenanceSourceNamespace:
-        type: string
-  PublisherInformation:
-    properties:
-      organisationName:
-        type: string
-      publisherCompoundName:
-        type: string
-      publisherId:
-        type: string
-      publisherIdNamespace:
-        type: string
-      publisherName:
-        type: string
-  RegistryVersionInformation:
-    properties:
-      name:
-        type: string
-      registryNamespace:
-        type: string
-      version:
-        type: string
-  RelatedFormatInformation:
-    properties:
-      relatedFormatId:
-        type: string
-      relatedFormatIdNamespace:
-        type: string
-      relatedFormatName:
-        type: string
-      relatedFormatVersion:
-        type: string
-      relationshipType:
-        type: string
-  Tool:
-    properties:
-      id:
-        $ref: '#/definitions/ParIdentifier'
-      localLastModifiedDate:
-        type: string
-      toolAcceptedParameters:
-        type: array
-        items:
-          type: string
-      toolLabel:
-        type: string
-      toolName:
-        type: string
-      toolOperatingEnvironments:
-        type: array
-        items:
-          type: string
-      toolPublisher:
-        type: string
-      toolVersion:
-        type: string
-  Tools:
-    properties:
-      tools:
-        type: array
-        items:
-          $ref: '#/definitions/Tool'
+schemes:
+  - https
+swagger: '2.0'
+tags:
+  - description: Requests relating to PAR Business Rule entities
+    name: /business-rules
+  - description: Endpoints relating to PAR Preservation Action entities
+    name: /preservation-actions
+  - description: Endpoints relating to PAR Tool entities
+    name: /tools
+  - description: Endpoints relating to PAR File Format entities
+    name: /file-formats
+  - description: Endpoints relating to PAR Representation Format entities
+    name: /representation-formats
+  - description: Endpoints relating to PAR Property entities
+    name: /properties
+  - description: Endpoints relating to PAR Preservation Action Type Type entities
+    name: /preservation-action-types
+  - description: Endpoints relating to PAR Format Family entities
+    name: /format-families

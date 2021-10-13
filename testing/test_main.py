@@ -42,11 +42,14 @@ class AbstractSchemaValidatorTest(object):
             "http://www.parcore.org/schema/types.json/#",
             "schema/types.json"
         ),
-
         (
             "http://www.parcore.org/schema/par-property.json/#",
             "schema/par-property.json"
         ),
+        (
+            "http://www.parcore.org/schema/representation-format.json/#",
+            "schema/representation-format.json"       
+        )
     ]
 
     dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -204,3 +207,12 @@ class WidthPropertyTest(AbstractSchemaValidatorTest, TestCase):
     def test_validation(self):
         """ Test the example."""
         self.validate_json('examples/ebucorewidthprop.json')
+
+class RepresentationFormatTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for Representation Format example. """
+    def get_json_schema_file_name(self):
+        return 'schema/representation-format.json'
+
+    def test_validation(self):
+        """ Test the example. """
+        self.validate_json('examples/repfmt-tweet.json')

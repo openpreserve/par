@@ -861,7 +861,7 @@
   "info": {
     "description": "API to retrieve and update Business Rules, Preservation Actions etc from a Preservation Action Registries compliant endpoint",
     "title": "PAR API",
-    "version": "0.1"
+    "version": "1.0"
   },
   "paths": {
     "/business-rules": {
@@ -1115,7 +1115,7 @@
         "description": "Returns an array of File Formats that match all of the filter conditions supplied. Any number of filters can be used together.\nThe date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd.\nIf no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any FileFormats modified during the day of 31st December.",
         "parameters": [
           {
-            "description": "A comma separated list of GUIDs of FileFormats. This filter matches only those File Formats that are identified by one of the listed GUIDs.",
+            "description": "A comma separated list of the Name part of the ParIdentifier of FileFormats. This filter matches only those File Formats that are identified by one of the listed Names. (n.b. this header is named GUID but uses names in v1.0)",
             "in": "header",
             "name": "guid",
             "required": false,
@@ -1218,14 +1218,14 @@
         ]
       }
     },
-    "/file-formats/{guid}": {
+    "/file-formats/{name}": {
       "delete": {
         "consumes": [],
-        "description": "Deletes the File Format specified by the GUID of the PAR Identifier",
+        "description": "Deletes the File Format specified by the Name part of the PAR Identifier",
         "parameters": [
           {
             "in": "path",
-            "name": "guid",
+            "name": "name",
             "required": true,
             "type": "string"
           },
@@ -1256,11 +1256,11 @@
       },
       "get": {
         "consumes": [],
-        "description": "Returns the File Format specified by the GUID of the PAR Identifier",
+        "description": "Returns the File Format specified by the Name part of the PAR Identifier",
         "parameters": [
           {
             "in": "path",
-            "name": "guid",
+            "name": "name",
             "required": true,
             "type": "string"
           }
@@ -1279,7 +1279,7 @@
             }
           },
           "404": {
-            "description": "If the specified guid does not reference a File Format known to this registry."
+            "description": "If the specified name does not reference a File Format known to this registry."
           }
         },
         "summary": "Get a File Format",
@@ -1289,11 +1289,11 @@
       },
       "put": {
         "consumes": [],
-        "description": "Updates the File Format specified by the GUID of the PAR Identifier and returns the file format as updated.",
+        "description": "Updates the File Format specified by the Name part of the PAR Identifier and returns the file format as updated.",
         "parameters": [
           {
             "in": "path",
-            "name": "guid",
+            "name": "name",
             "required": true,
             "type": "string"
           },
@@ -2720,7 +2720,7 @@
       "name": "/tools"
     },
     {
-      "description": "Endpoints relating to PAR File Format entities",
+      "description": "Endpoints relating to PAR File Format entities. Note that to support backward compatibility against existing registries, for v1.0, the file-formats endpoint works with the \"name\" part of the ParIdentifier rather than the \"guid\" part.",
       "name": "/file-formats"
     },
     {

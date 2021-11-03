@@ -1,12 +1,25 @@
+#!/usr/bin/python
+# coding: UTF-8
+#
+# PAR Consortium
+# Copyright (C) 2020
+# All rights reserved.
+#
+# This code is distributed under the terms of the GNU General Public
+# License, Version 3. See the text file "COPYING" for further details
+# about the terms of this license.
+#
+""" Controller methods for the properties functions."""
 import connexion
-import six
 
-from swagger_server.models.par_properties import ParProperties  # noqa: E501
+from flask import abort
+
 from swagger_server.models.par_property import ParProperty  # noqa: E501
-from swagger_server import util
 
+import swagger_server.forge.factory as FACT
 
-def properties_get(guid=None, modified_after=None, modified_before=None, offset=None, limit=None):  # noqa: E501
+def properties_get(guid=None, modified_after=None, modified_before=None,
+                   offset=None, limit=None):  # noqa: E501
     """Get Properties
 
     Returns an array of Properties that match all of the filter conditions supplied. Any number of filters can be used together. The date filters should be supplied as ISO-8601 date times or dates, i.e. yyyy-MM-ddThh:mm:ss.SZ or yyyy-MM-dd. If no time information is supplied, then 00:00:00 in UTC will be assumed. This means that if you supply modified-after and modified-before dates of 2019-01-01 and 2019-12-31, you will not match any Properties modified during the day of 31st December. # noqa: E501
@@ -24,7 +37,7 @@ def properties_get(guid=None, modified_after=None, modified_before=None, offset=
 
     :rtype: ParProperties
     """
-    return 'do some magic!'
+    abort(FACT.method_not_allowed())
 
 
 def properties_guid_delete(guid, Authorization):  # noqa: E501
@@ -32,14 +45,14 @@ def properties_guid_delete(guid, Authorization):  # noqa: E501
 
     Deletes the Property specified by the GUID of the PAR Identifier # noqa: E501
 
-    :param guid: 
+    :param guid:
     :type guid: str
     :param Authorization: HTTP Basic Auth header
     :type Authorization: str
 
     :rtype: ParProperty
     """
-    return 'do some magic!'
+    abort(FACT.method_not_allowed())
 
 
 def properties_guid_get(guid):  # noqa: E501
@@ -47,12 +60,12 @@ def properties_guid_get(guid):  # noqa: E501
 
     Returns the Property specified by the GUID of the PAR Identifier # noqa: E501
 
-    :param guid: 
+    :param guid:
     :type guid: str
 
     :rtype: ParProperty
     """
-    return 'do some magic!'
+    abort(FACT.method_not_allowed())
 
 
 def properties_guid_put(guid, Authorization, body=None):  # noqa: E501
@@ -60,7 +73,7 @@ def properties_guid_put(guid, Authorization, body=None):  # noqa: E501
 
     Updates the Property specified by the GUID of the PAR Identifier and returns the property as updated. # noqa: E501
 
-    :param guid: 
+    :param guid:
     :type guid: str
     :param Authorization: HTTP Basic Auth header
     :type Authorization: str
@@ -71,7 +84,7 @@ def properties_guid_put(guid, Authorization, body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         body = ParProperty.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    abort(FACT.method_not_allowed())
 
 
 def properties_post(Authorization, body=None):  # noqa: E501
@@ -88,4 +101,4 @@ def properties_post(Authorization, body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         body = ParProperty.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    abort(FACT.method_not_allowed())

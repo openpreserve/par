@@ -22,7 +22,7 @@
               "type": "string"
             },
             {
-              "pattern": "^(?i)unbounded$",
+              "pattern": "^[Uu][Nn][Bb][Oo][Uu][Nn][Dd][Ee][Dd]$",
               "type": "string"
             }
           ]

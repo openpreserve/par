@@ -553,7 +553,7 @@ info:
     API to retrieve and update Business Rules, Preservation Actions etc from a
     Preservation Action Registries compliant endpoint
   title: PAR API
-  version: '0.1'
+  version: '1.0'
 paths:
   /business-rules:
     get:
@@ -1486,9 +1486,9 @@ paths:
         any FileFormats modified during the day of 31st December.
       parameters:
         - description: >-
-            A comma separated list of GUIDs of FileFormats. This filter matches
-            only those File Formats that are identified by one of the listed
-            GUIDs.
+            A comma separated list of the Name part of the ParIdentifier of FileFormats. This filter matches
+            only those File Formats that are identified by one of the listed Names. (n.b. this header is named
+            GUID but uses names in v1.0)
           in: header
           name: guid
           required: false
@@ -1772,13 +1772,13 @@ paths:
       summary: Create FileFormat
       tags:
         - /file-formats
-  /file-formats/{guid}:
+  /file-formats/{name}:
     delete:
       consumes: []
-      description: Deletes the File Format specified by the GUID of the PAR Identifier
+      description: Deletes the File Format specified by the Name part of the PAR Identifier
       parameters:
         - in: path
-          name: guid
+          name: name
           required: true
           type: string
         - description: HTTP Basic Auth header
@@ -1801,10 +1801,10 @@ paths:
         - /file-formats
     get:
       consumes: []
-      description: Returns the File Format specified by the GUID of the PAR Identifier
+      description: Returns the File Format specified by the Name part of the PAR Identifier
       parameters:
         - in: path
-          name: guid
+          name: name
           required: true
           type: string
       produces:
@@ -1907,7 +1907,7 @@ paths:
             $ref: '#/definitions/FileFormat'
         '404':
           description: >-
-            If the specified guid does not reference a File Format known to this
+            If the specified name does not reference a File Format known to this
             registry.
       summary: Get a File Format
       tags:
@@ -1915,11 +1915,11 @@ paths:
     put:
       consumes: []
       description: >-
-        Updates the File Format specified by the GUID of the PAR Identifier and
+        Updates the File Format specified by the Name part of the PAR Identifier and
         returns the file format as updated.
       parameters:
         - in: path
-          name: guid
+          name: name
           required: true
           type: string
         - description: HTTP Basic Auth header
@@ -5126,7 +5126,7 @@ tags:
     name: /preservation-actions
   - description: Endpoints relating to PAR Tool entities
     name: /tools
-  - description: Endpoints relating to PAR File Format entities
+  - description: Endpoints relating to PAR File Format entities. Note that to support backward compatibility against existing registries, for v1.0, the file-formats endpoint works with the "name" part of the ParIdentifier rather than the "guid" part.
     name: /file-formats
   - description: Endpoints relating to PAR Representation Format entities
     name: /representation-formats

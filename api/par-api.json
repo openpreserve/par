@@ -384,6 +384,12 @@
           },
           "type": "array"
         },
+        "formatFamilies": {
+          "items": {
+            "$ref": "#/definitions/FormatFamily"
+          },
+            "type": "array"
+        },
         "id": {
           "$ref": "#/definitions/ParIdentifier"
         }

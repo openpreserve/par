@@ -15,6 +15,12 @@
           },
           "type": "array"
         },
+        "formatFamilies": {
+          "items": { 
+            "$ref": "#"
+          },
+          "type": "array"
+        },
         "identifier": {
           "$ref": "#/definitions/parIdentifier"
         }

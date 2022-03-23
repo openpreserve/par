@@ -571,21 +571,69 @@ paths:
         any Business Rules modified during the day of 31st December.
       parameters:
         - description: >-
+            A comma separated list of GUIDs of Preservation Actions. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed actions.
+          in: header
+          name: preservation-action-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Preservation Actions. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed actions.
+          in: header
+          name: preservation-action-name
+          required: false
+          type: string
+        - description: >-
             A comma separated list of GUIDs of Preservation Action Types. This
             filter matches only those Business Rules whose purpose is to perform
             one of the listed types of action.
           in: header
-          name: preservation-action-type
+          name: preservation-action-type-guid
           required: false
           type: string
         - description: >-
-            A comma separated list of NAMEs of file formats (i.e. fmt/1,
-            x-fmt/2. This filter matches only those Business Rules that have
-            been defined to apply to one of the listed formats. This includes
-            formats where the rule is applicable indirectly through the format
-            family.
+            A comma separated list of name of Preservation Action Types. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed types of action.
           in: header
-          name: file-format
+          name: preservation-action-type-name
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of GUIDs of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-name
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-name
           required: false
           type: string
         - description: >-
@@ -594,6 +642,14 @@ paths:
             listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Business Rules. This filter
+            matches only those Business Rules that are identified by one of the
+            listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -1488,11 +1544,17 @@ paths:
         any FileFormats modified during the day of 31st December.
       parameters:
         - description: >-
-            A comma separated list of the Name part of the ParIdentifier of FileFormats. This filter matches
-            only those File Formats that are identified by one of the listed Names. (n.b. this header is named
-            GUID but uses names in v1.0)
+            A comma separated list of the GUIDs of File Formats. This filter matches
+            only those File Formats that are identified by one of the listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of the names of File Formats. This filter matches
+            only those File Formats that are identified by one of the listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -2060,11 +2122,18 @@ paths:
         any Format Families modified during the day of 31st December.
       parameters:
         - description: >-
-            A comma separated list of NAMEs of file formats (i.e. fmt/1,
+            A comma separated list of guids of file formats (i.e. fmt/1,
             x-fmt/2. This filter matches only those Format Families that include
             any of the specified formats.
           in: header
-          name: file-format
+          name: file-format-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of file formats. This filter matches
+            only those Format Families that include any of the specified formats.
+          in: header
+          name: file-format-name
           required: false
           type: string
         - description: >-
@@ -2073,6 +2142,14 @@ paths:
             listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Format Families. This filter
+            matches only those Format Families that are identified by one of the
+            listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -2445,6 +2522,14 @@ paths:
           required: false
           type: string
         - description: >-
+            A comma separated list of names of Preservation Action Types. This
+            filter matches only those Preservation Action Types that are
+            identified by one of the listed names.
+          in: header
+          name: name
+          required: false
+          type: string
+        - description: >-
             This filter matches only those Preservation Action Types whose local
             last modified date is after the specified date.
           in: query
@@ -2677,14 +2762,29 @@ paths:
             filter matches only those Preservation Actions of one of the listed
             types of action.
           in: header
-          name: preservation-action-type
+          name: preservation-action-type-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Preservation Action Types. This
+            filter matches only those Preservation Actions of one of the listed
+            types of action.
+          in: header
+          name: preservation-action-type-name
           required: false
           type: string
         - description: >-
             A comma separated list of GUIDs of Tools. This filter matches only
             those Preservation Actions that use one of the listed tools.
           in: header
-          name: tool
+          name: tool-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Tools. This filter matches only
+            those Preservation Actions that use one of the listed tools.
+          in: header
+          name: tool-name
           required: false
           type: string
         - description: >-
@@ -2693,6 +2793,14 @@ paths:
             of the listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Preservation Actions. This filter
+            matches only those Preservation Actions that are identified by one
+            of the listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -4396,6 +4504,14 @@ paths:
           required: false
           type: string
         - description: >-
+            A comma separated list of names of Properties. This filter matches
+            only those Properties that are identified by one of the listed
+            names.
+          in: header
+          name: name
+          required: false
+          type: string
+        - description: >-
             This filter matches only those Properties whose local last modified
             date is after the specified date.
           in: query
@@ -4630,11 +4746,53 @@ paths:
         any RepresentationFormats modified during the day of 31st December.
       parameters:
         - description: >-
+            A comma separated list of GUIDs of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-name
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-name
+          required: false
+          type: string
+        - description: >-
             A comma separated list of GUIDs of Representation Formats. This filter matches
             only those Representation Formats that are identified by one of the listed
             GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Representation Formats. This filter matches
+            only those Representation Formats that are identified by one of the listed
+            names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -4937,6 +5095,13 @@ paths:
             those Tools that are identified by one of the listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Tools. This filter matches only
+            those Tools that are identified by one of the listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-

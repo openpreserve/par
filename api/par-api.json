@@ -388,7 +388,7 @@
           "items": {
             "$ref": "#/definitions/FormatFamily"
           },
-            "type": "array"
+          "type": "array"
         },
         "id": {
           "$ref": "#/definitions/ParIdentifier"

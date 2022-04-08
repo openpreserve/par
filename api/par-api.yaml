@@ -557,7 +557,7 @@ info:
     API to retrieve and update Business Rules, Preservation Actions etc from a
     Preservation Action Registries compliant endpoint
   title: PAR API
-  version: '1.0'
+  version: '1.1'
 paths:
   /business-rules:
     get:
@@ -575,21 +575,69 @@ paths:
         any Business Rules modified during the day of 31st December.
       parameters:
         - description: >-
+            A comma separated list of GUIDs of Preservation Actions. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed actions.
+          in: header
+          name: preservation-action-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Preservation Actions. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed actions.
+          in: header
+          name: preservation-action-name
+          required: false
+          type: string
+        - description: >-
             A comma separated list of GUIDs of Preservation Action Types. This
             filter matches only those Business Rules whose purpose is to perform
             one of the listed types of action.
           in: header
-          name: preservation-action-type
+          name: preservation-action-type-guid
           required: false
           type: string
         - description: >-
-            A comma separated list of NAMEs of file formats (i.e. fmt/1,
-            x-fmt/2. This filter matches only those Business Rules that have
-            been defined to apply to one of the listed formats. This includes
-            formats where the rule is applicable indirectly through the format
-            family.
+            A comma separated list of name of Preservation Action Types. This
+            filter matches only those Business Rules whose purpose is to perform
+            one of the listed types of action.
           in: header
-          name: file-format
+          name: preservation-action-type-name
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of GUIDs of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-name
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-name
           required: false
           type: string
         - description: >-
@@ -598,6 +646,14 @@ paths:
             listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Business Rules. This filter
+            matches only those Business Rules that are identified by one of the
+            listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -1010,7 +1066,8 @@ paths:
       tags:
         - /business-rules
     post:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: Creates a new Business Rule and returns the rule as created.
       parameters:
         - description: HTTP Basic Auth header
@@ -1322,7 +1379,8 @@ paths:
       tags:
         - /business-rules
     put:
-      consumes: []
+      consumes: 
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Business Rule specified by the GUID of the PAR Identifier
         and returns the rule as updated.
@@ -1490,11 +1548,17 @@ paths:
         any FileFormats modified during the day of 31st December.
       parameters:
         - description: >-
-            A comma separated list of the Name part of the ParIdentifier of FileFormats. This filter matches
-            only those File Formats that are identified by one of the listed Names. (n.b. this header is named
-            GUID but uses names in v1.0)
+            A comma separated list of the GUIDs of File Formats. This filter matches
+            only those File Formats that are identified by one of the listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of the names of File Formats. This filter matches
+            only those File Formats that are identified by one of the listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -1655,8 +1719,9 @@ paths:
       tags:
         - /file-formats
     post:
-      consumes: []
-      description: Creates a new FileFormat and returns the fileFormat as created.
+      consumes: 
+        - application/json;charset=UTF-8 
+      description: Creates a new File Format and returns the fileFormat as created.
       parameters:
         - description: HTTP Basic Auth header
           in: header
@@ -1773,16 +1838,16 @@ paths:
           description: >-
             If the supplied Authorization header does not reference a user with
             write access to this registry.
-      summary: Create FileFormat
+      summary: Create File Format
       tags:
         - /file-formats
-  /file-formats/{name}:
+  /file-formats/{guid}:
     delete:
       consumes: []
       description: Deletes the File Format specified by the Name part of the PAR Identifier
       parameters:
         - in: path
-          name: name
+          name: guid
           required: true
           type: string
         - description: HTTP Basic Auth header
@@ -1808,7 +1873,7 @@ paths:
       description: Returns the File Format specified by the Name part of the PAR Identifier
       parameters:
         - in: path
-          name: name
+          name: guid
           required: true
           type: string
       produces:
@@ -1917,13 +1982,14 @@ paths:
       tags:
         - /file-formats
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the File Format specified by the Name part of the PAR Identifier and
         returns the file format as updated.
       parameters:
         - in: path
-          name: name
+          name: guid
           required: true
           type: string
         - description: HTTP Basic Auth header
@@ -2060,11 +2126,18 @@ paths:
         any Format Families modified during the day of 31st December.
       parameters:
         - description: >-
-            A comma separated list of NAMEs of file formats (i.e. fmt/1,
+            A comma separated list of guids of file formats (i.e. fmt/1,
             x-fmt/2. This filter matches only those Format Families that include
             any of the specified formats.
           in: header
-          name: file-format
+          name: file-format-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of file formats. This filter matches
+            only those Format Families that include any of the specified formats.
+          in: header
+          name: file-format-name
           required: false
           type: string
         - description: >-
@@ -2073,6 +2146,14 @@ paths:
             listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Format Families. This filter
+            matches only those Format Families that are identified by one of the
+            listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -2210,7 +2291,8 @@ paths:
       tags:
         - /format-families
     post:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: Creates a new Format Family and returns the family as created.
       parameters:
         - description: HTTP Basic Auth header
@@ -2352,7 +2434,8 @@ paths:
       tags:
         - /format-families
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Format Family specified by the GUID of the PAR Identifier
         and returns the family as updated.
@@ -2443,6 +2526,14 @@ paths:
           required: false
           type: string
         - description: >-
+            A comma separated list of names of Preservation Action Types. This
+            filter matches only those Preservation Action Types that are
+            identified by one of the listed names.
+          in: header
+          name: name
+          required: false
+          type: string
+        - description: >-
             This filter matches only those Preservation Action Types whose local
             last modified date is after the specified date.
           in: query
@@ -2503,7 +2594,8 @@ paths:
       tags:
         - /preservation-action-types
     post:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: Creates a new Preservation Action Type and returns the type as created.
       parameters:
         - description: HTTP Basic Auth header
@@ -2607,7 +2699,8 @@ paths:
       tags:
         - /preservation-action-types
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Preservation Action Type specified by the GUID of the PAR
         Identifier and returns the type as updated.
@@ -2673,14 +2766,29 @@ paths:
             filter matches only those Preservation Actions of one of the listed
             types of action.
           in: header
-          name: preservation-action-type
+          name: preservation-action-type-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Preservation Action Types. This
+            filter matches only those Preservation Actions of one of the listed
+            types of action.
+          in: header
+          name: preservation-action-type-name
           required: false
           type: string
         - description: >-
             A comma separated list of GUIDs of Tools. This filter matches only
             those Preservation Actions that use one of the listed tools.
           in: header
-          name: tool
+          name: tool-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Tools. This filter matches only
+            those Preservation Actions that use one of the listed tools.
+          in: header
+          name: tool-name
           required: false
           type: string
         - description: >-
@@ -2689,6 +2797,14 @@ paths:
             of the listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Preservation Actions. This filter
+            matches only those Preservation Actions that are identified by one
+            of the listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -3451,7 +3567,8 @@ paths:
       tags:
         - /preservation-actions
     post:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: Creates a new Preservation Action and returns the action as created.
       parameters:
         - description: HTTP Basic Auth header
@@ -4065,7 +4182,8 @@ paths:
       tags:
         - /preservation-actions
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Preservation Action specified by the GUID of the PAR
         Identifier and returns the action as updated.
@@ -4390,6 +4508,14 @@ paths:
           required: false
           type: string
         - description: >-
+            A comma separated list of names of Properties. This filter matches
+            only those Properties that are identified by one of the listed
+            names.
+          in: header
+          name: name
+          required: false
+          type: string
+        - description: >-
             This filter matches only those Properties whose local last modified
             date is after the specified date.
           in: query
@@ -4454,7 +4580,8 @@ paths:
       tags:
         - /properties
     post:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: Creates a new Property and returns the property as created.
       parameters:
         - description: HTTP Basic Auth header
@@ -4558,7 +4685,8 @@ paths:
       tags:
         - /properties
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Property specified by the GUID of the PAR Identifier and
         returns the property as updated.
@@ -4622,11 +4750,53 @@ paths:
         any RepresentationFormats modified during the day of 31st December.
       parameters:
         - description: >-
+            A comma separated list of GUIDs of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of file formats. This filter matches 
+            only those Business Rules that have been defined to apply to one of 
+            the listed formats. This includes formats where the rule is 
+            applicable indirectly through the format family.
+          in: header
+          name: file-format-name
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of formats families. This filter 
+            matches only those Business Rules that have been defined to apply to 
+            one of the listed format families. 
+          in: header
+          name: format-family-name
+          required: false
+          type: string
+        - description: >-
             A comma separated list of GUIDs of Representation Formats. This filter matches
             only those Representation Formats that are identified by one of the listed
             GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Representation Formats. This filter matches
+            only those Representation Formats that are identified by one of the listed
+            names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -4752,6 +4922,43 @@ paths:
       summary: Get Representation Formats
       tags:
         - /representation-formats
+    post:
+      consumes:
+        - application/json;charset=UTF-8 
+      description: >-
+        Creates a new Representation Format and
+        returns the Representation Format as updated.
+      parameters:
+        - description: HTTP Basic Auth header
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: Serialised entity in request body
+          in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/RepresentationFormat'
+      produces:
+        - application/json;charset=UTF-8
+      responses:
+        '201':
+          description: Success
+          examples:
+            application/json;charset=UTF-8: |-
+              
+          schema:
+            $ref: '#/definitions/RepresentationFormat'
+        '401':
+          description: If no Authorization header has been supplied.
+        '403':
+          description: >-
+            If the supplied Authorization header does not reference a user with
+            write access to this registry.
+      summary: Create Representation Format
+      tags:
+        - /representation-formats
   /representation-formats/{guid}:
     delete:
         consumes: []
@@ -4832,7 +5039,8 @@ paths:
       tags:
         - /representation-formats
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Representation Format specified by the GUID of the PAR Identifier and
         returns the Representation Format as updated.
@@ -4891,6 +5099,13 @@ paths:
             those Tools that are identified by one of the listed GUIDs.
           in: header
           name: guid
+          required: false
+          type: string
+        - description: >-
+            A comma separated list of names of Tools. This filter matches only
+            those Tools that are identified by one of the listed names.
+          in: header
+          name: name
           required: false
           type: string
         - description: >-
@@ -4962,7 +5177,8 @@ paths:
       tags:
         - /tools
     post:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: Creates a new Tool and returns the tool as created.
       parameters:
         - description: HTTP Basic Auth header
@@ -5070,7 +5286,8 @@ paths:
       tags:
         - /tools
     put:
-      consumes: []
+      consumes:
+        - application/json;charset=UTF-8 
       description: >-
         Updates the Tool specified by the GUID of the PAR Identifier and returns
         the tool as updated.
@@ -5130,7 +5347,7 @@ tags:
     name: /preservation-actions
   - description: Endpoints relating to PAR Tool entities
     name: /tools
-  - description: Endpoints relating to PAR File Format entities. Note that to support backward compatibility against existing registries, for v1.0, the file-formats endpoint works with the "name" part of the ParIdentifier rather than the "guid" part.
+  - description: Endpoints relating to PAR File Format entities.
     name: /file-formats
   - description: Endpoints relating to PAR Representation Format entities
     name: /representation-formats

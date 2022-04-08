@@ -7,8 +7,8 @@ OUTPUT_SEP="==================================="
 lintDirJson() {
   echo "JSONLINT - All files in dir $1."
   echo $OUTPUT_SEP
-  for file in $SCRIPT_DIR/../$1/*.json; do
-    jsonlint $file
+  for file in "$SCRIPT_DIR/../$1/"*.json; do
+    jsonlint "$file"
     exitStatus=$?
     if [[ $exitStatus -ne 0 ]]
     then
@@ -19,5 +19,4 @@ lintDirJson() {
 }
 
 lintDirJson "schema"
-lintDirJson "api"
 lintDirJson "examples"

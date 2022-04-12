@@ -19,6 +19,7 @@ before_script:
   - pylint --errors-only ./testing
 
 script:
+  - ./scripts/lint-yaml-dirs
   - ./scripts/lint-json-dirs
   - pre-commit run --all-files --verbose
   - pytest

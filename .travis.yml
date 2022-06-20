@@ -22,7 +22,13 @@ script:
   - ./scripts/lint-json-dirs
   - pre-commit run --all-files --verbose
   - pytest
-  - ajv compile -s "schema/*.json" -r "schema/*.json"
-  - ajv validate -s schema/format.json -d "examples/fmt-*.json" -r "schema/*.json"
-  - ajv validate -s schema/tool.json -d "examples/md5*.json" -r "schema/*.json"
-  - ajv validate -s schema/business-rule.json -d "examples/br-*.json" -r "schema/*.json"
+  - ajv compile -s "schema/format.json" -r "schema/types.json" --validate-formats=false
+  - ajv compile -s "schema/par-property.json" -r "schema/types.json" --validate-formats=false
+  - ajv compile -s "schema/preservation-action-type.json" -r "schema/types.json" --validate-formats=false
+  - ajv compile -s "schema/tool.json" -r "schema/types.json" --validate-formats=false
+  - ajv compile -s "schema/preservation-action.json" -r "schema/types.json" -r "schema/format.json" -r "schema/par-property.json" -r "schema/tool.json" -r "schema/preservation-action-type.json" --validate-formats=false --strict=false
+  - ajv compile -s "schema/business-rule.json" -r "schema/preservation-action.json" -r "schema/types.json" -r "schema/format.json" -r "schema/par-property.json" -r "schema/tool.json" -r "schema/preservation-action-type.json" --validate-formats=false --strict=false
+  - ajv compile -s "schema/representation-format.json" -r "schema/types.json" --validate-formats=false --strict=false
+  - ajv validate -s "schema/format.json" -d "examples/fmt-*.json" -r "schema/types.json" --validate-formats=false
+  - ajv validate -s "schema/tool.json" -d "examples/md5*.json" -r "schema/types.json" --validate-formats=false
+  - ajv validate -s "schema/business-rule.json" -d "examples/br-*.json" -r "schema/preservation-action.json" -r "schema/types.json" -r "schema/format.json" -r "schema/par-property.json" -r "schema/tool.json" -r "schema/preservation-action-type.json" --validate-formats=false --strict=false

@@ -45,7 +45,7 @@ definitions:
         type: string
       formatFamilies:
         items:
-          $ref: '#/definitions/FormatFamily'
+          $ref: '#/definitions/ParIdentifier'
         type: array
       formats:
         items:
@@ -251,7 +251,7 @@ definitions:
         type: array
       formatFamilies:
         items:
-          $ref: '#/definitions/FormatFamily'
+          $ref: '#/definitions/ParIdentifier'
         type: array
       id:
         $ref: '#/definitions/ParIdentifier'

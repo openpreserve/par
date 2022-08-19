@@ -101,7 +101,7 @@ def _pop_formats():
                                    None),
                   local_last_modified_date=format['date_modified']['value'])
                for format in results_json['results']['bindings']}
-    filtered_results = { k: v for k, v in results.items() if not k in FORMAT_FAMILIES }
+    filtered_results = { k: v for k, v in results.items() if k not in FORMAT_FAMILIES }
     return filtered_results
 
 def _bs(sig):
@@ -176,8 +176,9 @@ def filter_by_date_modified(to_filter, before=None, after=None):
                                                            after_date, to_filter))
     return to_filter
 
-def method_not_allowed():
+def method_not_implemented():
     """Returns a method not allowed response with appropriate allow header."""
-    response = Response(status=405)
+    response = Response(status=501)
+    response.set_data('Method not implemented')
     response.headers['Allow'] = "GET"
     return response

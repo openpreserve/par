@@ -1,6 +1,18 @@
-# coding: utf-8
+#!/usr/bin/python3
+# coding: UTF-8
+#
+# PAR Consortium
+# Copyright (C) 2020
+# All rights reserved.
+#
+# This code is distributed under the terms of the GNU General Public
+# License, Version 3. See the text file "COPYING" for further details
+# about the terms of this license.
 
 from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
+
+from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.author_information import AuthorInformation
@@ -14,7 +26,7 @@ class DocumentInformation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, author: AuthorInformation=None, availability_description: str=None, availability_note: str=None, display_text: str=None, document_id: str=None, document_id_namespace: str=None, document_ipr: str=None, document_note: str=None, document_type: str=None, publication_date: str=None, publisher: PublisherInformation=None, title_text: str=None):  # noqa: E501
+    def __init__(self, author: AuthorInformation=None, availability_description: str=None, availability_note: str=None, display_text: str=None, document_ipr: str=None, document_id: str=None, document_id_namespace: str=None, document_note: str=None, document_type: str=None, publication_date: str=None, publisher: PublisherInformation=None, title_text: str=None):  # noqa: E501
         """DocumentInformation - a model defined in Swagger
 
         :param author: The author of this DocumentInformation.  # noqa: E501
@@ -25,12 +37,12 @@ class DocumentInformation(Model):
         :type availability_note: str
         :param display_text: The display_text of this DocumentInformation.  # noqa: E501
         :type display_text: str
+        :param document_ipr: The document_ipr of this DocumentInformation.  # noqa: E501
+        :type document_ipr: str
         :param document_id: The document_id of this DocumentInformation.  # noqa: E501
         :type document_id: str
         :param document_id_namespace: The document_id_namespace of this DocumentInformation.  # noqa: E501
         :type document_id_namespace: str
-        :param document_ipr: The document_ipr of this DocumentInformation.  # noqa: E501
-        :type document_ipr: str
         :param document_note: The document_note of this DocumentInformation.  # noqa: E501
         :type document_note: str
         :param document_type: The document_type of this DocumentInformation.  # noqa: E501
@@ -47,9 +59,9 @@ class DocumentInformation(Model):
             'availability_description': str,
             'availability_note': str,
             'display_text': str,
+            'document_ipr': str,
             'document_id': str,
             'document_id_namespace': str,
-            'document_ipr': str,
             'document_note': str,
             'document_type': str,
             'publication_date': str,
@@ -62,9 +74,9 @@ class DocumentInformation(Model):
             'availability_description': 'availabilityDescription',
             'availability_note': 'availabilityNote',
             'display_text': 'displayText',
+            'document_ipr': 'documentIPR',
             'document_id': 'documentId',
             'document_id_namespace': 'documentIdNamespace',
-            'document_ipr': 'documentIPR',
             'document_note': 'documentNote',
             'document_type': 'documentType',
             'publication_date': 'publicationDate',
@@ -76,9 +88,9 @@ class DocumentInformation(Model):
         self._availability_description = availability_description
         self._availability_note = availability_note
         self._display_text = display_text
+        self._document_ipr = document_ipr
         self._document_id = document_id
         self._document_id_namespace = document_id_namespace
-        self._document_ipr = document_ipr
         self._document_note = document_note
         self._document_type = document_type
         self._publication_date = publication_date
@@ -181,6 +193,27 @@ class DocumentInformation(Model):
         self._display_text = display_text
 
     @property
+    def document_ipr(self) -> str:
+        """Gets the document_ipr of this DocumentInformation.
+
+
+        :return: The document_ipr of this DocumentInformation.
+        :rtype: str
+        """
+        return self._document_ipr
+
+    @document_ipr.setter
+    def document_ipr(self, document_ipr: str):
+        """Sets the document_ipr of this DocumentInformation.
+
+
+        :param document_ipr: The document_ipr of this DocumentInformation.
+        :type document_ipr: str
+        """
+
+        self._document_ipr = document_ipr
+
+    @property
     def document_id(self) -> str:
         """Gets the document_id of this DocumentInformation.
 
@@ -221,27 +254,6 @@ class DocumentInformation(Model):
         """
 
         self._document_id_namespace = document_id_namespace
-
-    @property
-    def document_ipr(self) -> str:
-        """Gets the document_ipr of this DocumentInformation.
-
-
-        :return: The document_ipr of this DocumentInformation.
-        :rtype: str
-        """
-        return self._document_ipr
-
-    @document_ipr.setter
-    def document_ipr(self, document_ipr: str):
-        """Sets the document_ipr of this DocumentInformation.
-
-
-        :param document_ipr: The document_ipr of this DocumentInformation.
-        :type document_ipr: str
-        """
-
-        self._document_ipr = document_ipr
 
     @property
     def document_note(self) -> str:

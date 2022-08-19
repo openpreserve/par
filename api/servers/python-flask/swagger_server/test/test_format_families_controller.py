@@ -22,8 +22,10 @@ class TestFormatFamiliesController(BaseTestCase):
                         ('modified_before', 'modified_before_example'),
                         ('offset', 0),
                         ('limit', 0)]
-        headers = [('file_format', 'file_format_example'),
-                   ('guid', 'guid_example')]
+        headers = [('file_format_guid', 'file_format_guid_example'),
+                   ('file_format_name', 'file_format_name_example'),
+                   ('guid', 'guid_example'),
+                   ('name', 'name_example')]
         response = self.client.open(
             '/par/format-families',
             method='GET',
@@ -67,8 +69,8 @@ class TestFormatFamiliesController(BaseTestCase):
             '/par/format-families/{guid}'.format(guid='guid_example'),
             method='PUT',
             data=json.dumps(body),
-            content_type='application/json',
-            headers=headers)
+            headers=headers,
+            content_type='application/json;charset=UTF-8')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -83,8 +85,8 @@ class TestFormatFamiliesController(BaseTestCase):
             '/par/format-families',
             method='POST',
             data=json.dumps(body),
-            content_type='application/json',
-            headers=headers)
+            headers=headers,
+            content_type='application/json;charset=UTF-8')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

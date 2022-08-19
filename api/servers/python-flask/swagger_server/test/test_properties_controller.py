@@ -22,7 +22,8 @@ class TestPropertiesController(BaseTestCase):
                         ('modified_before', 'modified_before_example'),
                         ('offset', 0),
                         ('limit', 0)]
-        headers = [('guid', 'guid_example')]
+        headers = [('guid', 'guid_example'),
+                   ('name', 'name_example')]
         response = self.client.open(
             '/par/properties',
             method='GET',
@@ -66,8 +67,8 @@ class TestPropertiesController(BaseTestCase):
             '/par/properties/{guid}'.format(guid='guid_example'),
             method='PUT',
             data=json.dumps(body),
-            content_type='application/json',
-            headers=headers)
+            headers=headers,
+            content_type='application/json;charset=UTF-8')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -82,8 +83,8 @@ class TestPropertiesController(BaseTestCase):
             '/par/properties',
             method='POST',
             data=json.dumps(body),
-            content_type='application/json',
-            headers=headers)
+            headers=headers,
+            content_type='application/json;charset=UTF-8')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

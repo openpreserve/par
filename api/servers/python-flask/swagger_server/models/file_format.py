@@ -1,22 +1,29 @@
-# coding: utf-8
+#!/usr/bin/python3
+# coding: UTF-8
+#
+# PAR Consortium
+# Copyright (C) 2020
+# All rights reserved.
+#
+# This code is distributed under the terms of the GNU General Public
+# License, Version 3. See the text file "COPYING" for further details
+# about the terms of this license.
 
 from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
 
-from typing import List  # noqa: F401
-
-from swagger_server.models.developer_information import DeveloperInformation
-from swagger_server.models.provenance_information import ProvenanceInformation
-from swagger_server.models.registry_version_information import RegistryVersionInformation
-from swagger_server.models.document_information import DocumentInformation
-from swagger_server.models.related_format_information import RelatedFormatInformation
-from swagger_server.models.external_signature_information import ExternalSignatureInformation
-from swagger_server.models.internal_signature_information import InternalSignatureInformation
-from swagger_server.models.par_identifier import ParIdentifier
-from swagger_server.models.identifier_information import IdentifierInformation
-
-
+from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
+from swagger_server.models.developer_information import DeveloperInformation
+from swagger_server.models.document_information import DocumentInformation
+from swagger_server.models.external_signature_information import ExternalSignatureInformation
+from swagger_server.models.identifier_information import IdentifierInformation
+from swagger_server.models.internal_signature_information import InternalSignatureInformation
+from swagger_server.models.par_identifier import ParIdentifier
+from swagger_server.models.provenance_information import ProvenanceInformation
+from swagger_server.models.registry_version_information import RegistryVersionInformation
+from swagger_server.models.related_format_information import RelatedFormatInformation
 from swagger_server import util
 
 

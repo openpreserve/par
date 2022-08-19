@@ -1,8 +1,19 @@
-# coding: utf-8
+#!/usr/bin/python3
+# coding: UTF-8
+#
+# PAR Consortium
+# Copyright (C) 2020
+# All rights reserved.
+#
+# This code is distributed under the terms of the GNU General Public
+# License, Version 3. See the text file "COPYING" for further details
+# about the terms of this license.
+
 
 from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
 
-from typing import List  # noqa: F401
+from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.par_identifier import ParIdentifier
@@ -15,9 +26,11 @@ class ParProperty(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, description: str=None, equivalent_to: List[str]=None, id: ParIdentifier=None, local_last_modified_date: str=None, _class: str=None, type: str=None, units: str=None, value: str=None):  # noqa: E501
+    def __init__(self, _class: str=None, description: str=None, equivalent_to: List[str]=None, id: ParIdentifier=None, local_last_modified_date: str=None, type: str=None, units: str=None, value: str=None):  # noqa: E501
         """ParProperty - a model defined in Swagger
 
+        :param _class: The _class of this ParProperty.  # noqa: E501
+        :type _class: str
         :param description: The description of this ParProperty.  # noqa: E501
         :type description: str
         :param equivalent_to: The equivalent_to of this ParProperty.  # noqa: E501
@@ -26,8 +39,6 @@ class ParProperty(Model):
         :type id: ParIdentifier
         :param local_last_modified_date: The local_last_modified_date of this ParProperty.  # noqa: E501
         :type local_last_modified_date: str
-        :param _class: The _class of this ParProperty.  # noqa: E501
-        :type _class: str
         :param type: The type of this ParProperty.  # noqa: E501
         :type type: str
         :param units: The units of this ParProperty.  # noqa: E501
@@ -36,32 +47,32 @@ class ParProperty(Model):
         :type value: str
         """
         self.swagger_types = {
+            '_class': str,
             'description': str,
             'equivalent_to': List[str],
             'id': ParIdentifier,
             'local_last_modified_date': str,
-            '_class': str,
             'type': str,
             'units': str,
             'value': str
         }
 
         self.attribute_map = {
+            '_class': 'class',
             'description': 'description',
             'equivalent_to': 'equivalentTo',
             'id': 'id',
             'local_last_modified_date': 'localLastModifiedDate',
-            '_class': 'class',
             'type': 'type',
             'units': 'units',
             'value': 'value'
         }
 
+        self.__class = _class
         self._description = description
         self._equivalent_to = equivalent_to
         self._id = id
         self._local_last_modified_date = local_last_modified_date
-        self.__class = _class
         self._type = type
         self._units = units
         self._value = value
@@ -76,6 +87,27 @@ class ParProperty(Model):
         :rtype: ParProperty
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def _class(self) -> str:
+        """Gets the _class of this ParProperty.
+
+
+        :return: The _class of this ParProperty.
+        :rtype: str
+        """
+        return self.__class
+
+    @_class.setter
+    def _class(self, _class: str):
+        """Sets the _class of this ParProperty.
+
+
+        :param _class: The _class of this ParProperty.
+        :type _class: str
+        """
+
+        self.__class = _class
 
     @property
     def description(self) -> str:
@@ -160,27 +192,6 @@ class ParProperty(Model):
         """
 
         self._local_last_modified_date = local_last_modified_date
-
-    @property
-    def _class(self) -> str:
-        """Gets the _class of this ParProperty.
-
-
-        :return: The _class of this ParProperty.
-        :rtype: str
-        """
-        return self.__class
-
-    @_class.setter
-    def _class(self, _class: str):
-        """Sets the _class of this ParProperty.
-
-
-        :param _class: The _class of this ParProperty.
-        :type _class: str
-        """
-
-        self.__class = _class
 
     @property
     def type(self) -> str:

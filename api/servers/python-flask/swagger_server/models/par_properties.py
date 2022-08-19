@@ -1,12 +1,22 @@
-# coding: utf-8
+#!/usr/bin/python3
+# coding: UTF-8
+#
+# PAR Consortium
+# Copyright (C) 2020
+# All rights reserved.
+#
+# This code is distributed under the terms of the GNU General Public
+# License, Version 3. See the text file "COPYING" for further details
+# about the terms of this license.
 
 from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
 
-from typing import List  # noqa: F401
+from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-from swagger_server import util
 from swagger_server.models.par_property import ParProperty
+from swagger_server import util
 
 
 class ParProperties(Model):

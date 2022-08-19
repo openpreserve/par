@@ -22,7 +22,8 @@ class TestFileFormatsController(BaseTestCase):
                         ('modified_before', 'modified_before_example'),
                         ('offset', 0),
                         ('limit', 0)]
-        headers = [('guid', 'guid_example')]
+        headers = [('guid', 'guid_example'),
+                   ('name', 'name_example')]
         response = self.client.open(
             '/par/file-formats',
             method='GET',
@@ -66,15 +67,15 @@ class TestFileFormatsController(BaseTestCase):
             '/par/file-formats/{guid}'.format(guid='guid_example'),
             method='PUT',
             data=json.dumps(body),
-            content_type='application/json',
-            headers=headers)
+            headers=headers,
+            content_type='application/json;charset=UTF-8')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
     def test_file_formats_post(self):
         """Test case for file_formats_post
 
-        Create FileFormat
+        Create File Format
         """
         body = FileFormat()
         headers = [('Authorization', 'Authorization_example')]
@@ -82,8 +83,8 @@ class TestFileFormatsController(BaseTestCase):
             '/par/file-formats',
             method='POST',
             data=json.dumps(body),
-            content_type='application/json',
-            headers=headers)
+            headers=headers,
+            content_type='application/json;charset=UTF-8')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

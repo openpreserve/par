@@ -1,8 +1,18 @@
-# coding: utf-8
+#!/usr/bin/python3
+# coding: UTF-8
+#
+# PAR Consortium
+# Copyright (C) 2020
+# All rights reserved.
+#
+# This code is distributed under the terms of the GNU General Public
+# License, Version 3. See the text file "COPYING" for further details
+# about the terms of this license.
 
 from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
 
-from typing import List  # noqa: F401
+from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.par_identifier import ParIdentifier
@@ -15,30 +25,35 @@ class FormatFamily(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, family_type: str=None, file_formats: List[ParIdentifier]=None, id: ParIdentifier=None):  # noqa: E501
+    def __init__(self, family_type: str=None, file_formats: List[ParIdentifier]=None, format_families: List["FormatFamily"]=None, id: ParIdentifier=None):  # noqa: E501
         """FormatFamily - a model defined in Swagger
 
         :param family_type: The family_type of this FormatFamily.  # noqa: E501
         :type family_type: str
         :param file_formats: The file_formats of this FormatFamily.  # noqa: E501
         :type file_formats: List[ParIdentifier]
+        :param format_families: The format_families of this FormatFamily.  # noqa: E501
+        :type format_families: List[FormatFamily]
         :param id: The id of this FormatFamily.  # noqa: E501
         :type id: ParIdentifier
         """
         self.swagger_types = {
             'family_type': str,
             'file_formats': List[ParIdentifier],
+            'format_families': List[FormatFamily],
             'id': ParIdentifier
         }
 
         self.attribute_map = {
             'family_type': 'familyType',
             'file_formats': 'fileFormats',
+            'format_families': 'formatFamilies',
             'id': 'id'
         }
 
         self._family_type = family_type
         self._file_formats = file_formats
+        self._format_families = format_families
         self._id = id
 
     @classmethod
@@ -93,6 +108,27 @@ class FormatFamily(Model):
         """
 
         self._file_formats = file_formats
+
+    @property
+    def format_families(self) -> List["FormatFamily"]:
+        """Gets the format_families of this FormatFamily.
+
+
+        :return: The format_families of this FormatFamily.
+        :rtype: List[FormatFamily]
+        """
+        return self._format_families
+
+    @format_families.setter
+    def format_families(self, format_families: List["FormatFamily"]):
+        """Sets the format_families of this FormatFamily.
+
+
+        :param format_families: The format_families of this FormatFamily.
+        :type format_families: List[FormatFamily]
+        """
+
+        self._format_families = format_families
 
     @property
     def id(self) -> ParIdentifier:

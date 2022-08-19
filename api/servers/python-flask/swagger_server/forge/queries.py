@@ -20,7 +20,7 @@ USER_AGENT='Wikidata PAR Endpoint/%s.%s' % (sys.version_info[0], sys.version_inf
 
 
 FORMAT_FAMILY_QUERY = """SELECT DISTINCT (?formatFamily AS ?id)
-?formatFamilyLabel ?date_modified
+?formatFamilyLabel ?date_modified ?parentClass
 (GROUP_CONCAT(DISTINCT ?part; SEPARATOR = "|") AS ?file_formats )
 WHERE {
   { ?formatFamily (wdt:P31/(wdt:P279*)) wd:Q26085352. }
@@ -29,7 +29,7 @@ WHERE {
    SERVICE wikibase:label {
      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en,fr,be,bn,ca,cs,da,de,en,es,fi,hu,it,nl,eo,pl,pt,ro,ru,sk,sv,sw,uk".
    }
-} GROUP BY ?formatFamily ?formatFamilyLabel ?date_modified
+} GROUP BY ?formatFamily ?formatFamilyLabel ?date_modified ?parentClass
 """
 
 def get_format_families():

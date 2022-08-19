@@ -25,7 +25,7 @@ class FormatFamily(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, family_type: str=None, file_formats: List[ParIdentifier]=None, format_families: List["FormatFamily"]=None, id: ParIdentifier=None):  # noqa: E501
+    def __init__(self, family_type: str=None, file_formats: List[ParIdentifier]=None, format_families: List[ParIdentifier]=None, id: ParIdentifier=None):  # noqa: E501
         """FormatFamily - a model defined in Swagger
 
         :param family_type: The family_type of this FormatFamily.  # noqa: E501
@@ -33,14 +33,14 @@ class FormatFamily(Model):
         :param file_formats: The file_formats of this FormatFamily.  # noqa: E501
         :type file_formats: List[ParIdentifier]
         :param format_families: The format_families of this FormatFamily.  # noqa: E501
-        :type format_families: List[FormatFamily]
+        :type format_families: List[ParIdentifier]
         :param id: The id of this FormatFamily.  # noqa: E501
         :type id: ParIdentifier
         """
         self.swagger_types = {
             'family_type': str,
             'file_formats': List[ParIdentifier],
-            'format_families': List[FormatFamily],
+            'format_families': List[ParIdentifier],
             'id': ParIdentifier
         }
 
@@ -110,22 +110,22 @@ class FormatFamily(Model):
         self._file_formats = file_formats
 
     @property
-    def format_families(self) -> List["FormatFamily"]:
+    def format_families(self) -> List[ParIdentifier]:
         """Gets the format_families of this FormatFamily.
 
 
         :return: The format_families of this FormatFamily.
-        :rtype: List[FormatFamily]
+        :rtype: List[ParIdentifier]
         """
         return self._format_families
 
     @format_families.setter
-    def format_families(self, format_families: List["FormatFamily"]):
+    def format_families(self, format_families: List[ParIdentifier]):
         """Sets the format_families of this FormatFamily.
 
 
         :param format_families: The format_families of this FormatFamily.
-        :type format_families: List[FormatFamily]
+        :type format_families: List[ParIdentifier]
         """
 
         self._format_families = format_families

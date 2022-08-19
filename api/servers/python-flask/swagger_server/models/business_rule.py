@@ -17,7 +17,6 @@ from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.action import Action
-from swagger_server.models.format_family import FormatFamily
 from swagger_server.models.par_identifier import ParIdentifier
 from swagger_server.models.preservation_action_type import PreservationActionType
 from swagger_server import util
@@ -29,13 +28,13 @@ class BusinessRule(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, description: str=None, format_families: List[FormatFamily]=None, formats: List[ParIdentifier]=None, id: ParIdentifier=None, local_last_modified_date: str=None, notes: str=None, preservation_action_types: List[PreservationActionType]=None, preservation_actions: List[Action]=None):  # noqa: E501
+    def __init__(self, description: str=None, format_families: List[ParIdentifier]=None, formats: List[ParIdentifier]=None, id: ParIdentifier=None, local_last_modified_date: str=None, notes: str=None, preservation_action_types: List[PreservationActionType]=None, preservation_actions: List[Action]=None):  # noqa: E501
         """BusinessRule - a model defined in Swagger
 
         :param description: The description of this BusinessRule.  # noqa: E501
         :type description: str
         :param format_families: The format_families of this BusinessRule.  # noqa: E501
-        :type format_families: List[FormatFamily]
+        :type format_families: List[ParIdentifier]
         :param formats: The formats of this BusinessRule.  # noqa: E501
         :type formats: List[ParIdentifier]
         :param id: The id of this BusinessRule.  # noqa: E501
@@ -51,7 +50,7 @@ class BusinessRule(Model):
         """
         self.swagger_types = {
             'description': str,
-            'format_families': List[FormatFamily],
+            'format_families': List[ParIdentifier],
             'formats': List[ParIdentifier],
             'id': ParIdentifier,
             'local_last_modified_date': str,
@@ -113,22 +112,22 @@ class BusinessRule(Model):
         self._description = description
 
     @property
-    def format_families(self) -> List[FormatFamily]:
+    def format_families(self) -> List[ParIdentifier]:
         """Gets the format_families of this BusinessRule.
 
 
         :return: The format_families of this BusinessRule.
-        :rtype: List[FormatFamily]
+        :rtype: List[ParIdentifier]
         """
         return self._format_families
 
     @format_families.setter
-    def format_families(self, format_families: List[FormatFamily]):
+    def format_families(self, format_families: List[ParIdentifier]):
         """Sets the format_families of this BusinessRule.
 
 
         :param format_families: The format_families of this BusinessRule.
-        :type format_families: List[FormatFamily]
+        :type format_families: List[ParIdentifier]
         """
 
         self._format_families = format_families

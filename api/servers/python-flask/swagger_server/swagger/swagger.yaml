@@ -3423,7 +3423,7 @@ definitions:
       formatFamilies:
         type: "array"
         items:
-          $ref: "#/definitions/FormatFamily"
+          $ref: "#/definitions/ParIdentifier"
       formats:
         type: "array"
         items:
@@ -3444,36 +3444,12 @@ definitions:
           $ref: "#/definitions/Action"
     example:
       formatFamilies:
-      - formatFamilies:
-        - null
-        - null
-        familyType: "familyType"
-        fileFormats:
-        - name: "name"
-          namespace: "namespace"
-          guid: "guid"
-        - name: "name"
-          namespace: "namespace"
-          guid: "guid"
-        id:
-          name: "name"
-          namespace: "namespace"
-          guid: "guid"
-      - formatFamilies:
-        - null
-        - null
-        familyType: "familyType"
-        fileFormats:
-        - name: "name"
-          namespace: "namespace"
-          guid: "guid"
-        - name: "name"
-          namespace: "namespace"
-          guid: "guid"
-        id:
-          name: "name"
-          namespace: "namespace"
-          guid: "guid"
+      - name: "name"
+        namespace: "namespace"
+        guid: "guid"
+      - name: "name"
+        namespace: "namespace"
+        guid: "guid"
       formats:
       - name: "name"
         namespace: "namespace"
@@ -4124,13 +4100,17 @@ definitions:
       formatFamilies:
         type: "array"
         items:
-          $ref: "#/definitions/FormatFamily"
+          $ref: "#/definitions/ParIdentifier"
       id:
         $ref: "#/definitions/ParIdentifier"
     example:
       formatFamilies:
-      - null
-      - null
+      - name: "name"
+        namespace: "namespace"
+        guid: "guid"
+      - name: "name"
+        namespace: "namespace"
+        guid: "guid"
       familyType: "familyType"
       fileFormats:
       - name: "name"

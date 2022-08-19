@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages
 
 NAME = "swagger_server"
-VERSION = "0.1.0"
+VERSION = "1.0.0"
 
 # To install the library, run the following
 #
@@ -22,7 +22,11 @@ VERSION = "0.1.0"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["connexion","sparqlwrapper"]
+REQUIRES = [
+    "connexion",
+    "swagger-ui-bundle>=0.0.2",
+    "sparqlwrapper",
+]
 
 setup(
     name=NAME,

@@ -51,7 +51,7 @@
     "formatFamilies": {
       "description": "A list of format families that this Business Rule should be applied to",
       "items": {
-        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/formatFamily"
+        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
       },
       "type": "array"
     },

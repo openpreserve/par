@@ -21,10 +21,12 @@ USER_AGENT='Wikidata PAR Endpoint/%s.%s' % (sys.version_info[0], sys.version_inf
 
 FORMAT_FAMILY_QUERY = """SELECT DISTINCT (?formatFamily AS ?id)
 ?formatFamilyLabel ?date_modified ?parentClass
+(GROUP_CONCAT(DISTINCT ?superClass; SEPARATOR = "|") AS ?super_classes )
 (GROUP_CONCAT(DISTINCT ?part; SEPARATOR = "|") AS ?file_formats )
 WHERE {
-  { ?formatFamily (wdt:P31/(wdt:P279*)) wd:Q26085352. }
+  { ?formatFamily wdt:P31 wd:Q26085352. }
   { ?formatFamily schema:dateModified ?date_modified. }
+  OPTIONAL { ?formatFamily wdt:P279 ?superClass. }
   OPTIONAL { ?formatFamily wdt:P527 ?part. }
    SERVICE wikibase:label {
      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en,fr,be,bn,ca,cs,da,de,en,es,fi,hu,it,nl,eo,pl,pt,ro,ru,sk,sv,sw,uk".

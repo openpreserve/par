@@ -34,12 +34,19 @@ def _pop_format_families():
         par_id(WD_MAIN_NS, family['id']['value'].replace(WD_ENT_PRFX, '')).name:MODEL.FormatFamily(
                    id=par_id(WD_MAIN_NS, family['id']['value'].replace(WD_ENT_PRFX, '')),
                    family_type=family['formatFamilyLabel']['value'],
+                   format_families=[],
                    file_formats=[
                        par_id(WD_MAIN_NS, format)
                        for format in family['file_formats']['value'].replace(WD_ENT_PRFX,
                                                                              '').split('|')
                      ] if family['file_formats']['value'] else [])
                for family in results_json['results']['bindings']}
+
+    for familiy in results_json['results']['bindings']:
+        for super_id in familiy['super_classes']['value'].replace(WD_ENT_PRFX, '').split('|'):
+            if super_id in ret_dict:
+                ret_dict[super_id].format_families.append(
+                    par_id(WD_MAIN_NS, familiy['id']['value'].replace(WD_ENT_PRFX, '')))
     return ret_dict
 
 FORMAT_FAMILIES = _pop_format_families()

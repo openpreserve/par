@@ -28,22 +28,7 @@ class TestFormatFamiliesController(BaseTestCase):
                    ('name', 'name_example')]
         response = self.client.open(
             '/par/format-families',
-            method='GET',
-            headers=headers,
-            query_string=query_string)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_format_families_guid_delete(self):
-        """Test case for format_families_guid_delete
-
-        Delete Format Family
-        """
-        headers = [('Authorization', 'Authorization_example')]
-        response = self.client.open(
-            '/par/format-families/{guid}'.format(guid='guid_example'),
-            method='DELETE',
-            headers=headers)
+            method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -55,41 +40,8 @@ class TestFormatFamiliesController(BaseTestCase):
         response = self.client.open(
             '/par/format-families/{guid}'.format(guid='guid_example'),
             method='GET')
-        self.assert200(response,
+        self.assert404(response,
                        'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_format_families_guid_put(self):
-        """Test case for format_families_guid_put
-
-        Update Format Family
-        """
-        body = FormatFamily()
-        headers = [('Authorization', 'Authorization_example')]
-        response = self.client.open(
-            '/par/format-families/{guid}'.format(guid='guid_example'),
-            method='PUT',
-            data=json.dumps(body),
-            headers=headers,
-            content_type='application/json;charset=UTF-8')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_format_families_post(self):
-        """Test case for format_families_post
-
-        Create Format Family
-        """
-        body = FormatFamily()
-        headers = [('Authorization', 'Authorization_example')]
-        response = self.client.open(
-            '/par/format-families',
-            method='POST',
-            data=json.dumps(body),
-            headers=headers,
-            content_type='application/json;charset=UTF-8')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
 
 if __name__ == '__main__':
     import unittest

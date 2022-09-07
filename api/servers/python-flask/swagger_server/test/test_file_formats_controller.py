@@ -27,20 +27,6 @@ class TestFileFormatsController(BaseTestCase):
         response = self.client.open(
             '/par/file-formats',
             method='GET',
-            headers=headers,
-            query_string=query_string)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_file_formats_guid_delete(self):
-        """Test case for file_formats_guid_delete
-
-        Delete File Format
-        """
-        headers = [('Authorization', 'Authorization_example')]
-        response = self.client.open(
-            '/par/file-formats/{guid}'.format(guid='guid_example'),
-            method='DELETE',
             headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -51,41 +37,20 @@ class TestFileFormatsController(BaseTestCase):
         Get a File Format
         """
         response = self.client.open(
-            '/par/file-formats/{guid}'.format(guid='guid_example'),
+            '/par/file-formats/{guid}'.format(guid='a12d90c2-d42e-5cc9-a49a-8980ccde81aa'),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_file_formats_guid_put(self):
-        """Test case for file_formats_guid_put
+    def test_file_formats_guid_get_missing(self):
+        """Test case for file_formats_guid_get
 
-        Update File Format
+        Get a File Format
         """
-        body = FileFormat()
-        headers = [('Authorization', 'Authorization_example')]
         response = self.client.open(
             '/par/file-formats/{guid}'.format(guid='guid_example'),
-            method='PUT',
-            data=json.dumps(body),
-            headers=headers,
-            content_type='application/json;charset=UTF-8')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_file_formats_post(self):
-        """Test case for file_formats_post
-
-        Create File Format
-        """
-        body = FileFormat()
-        headers = [('Authorization', 'Authorization_example')]
-        response = self.client.open(
-            '/par/file-formats',
-            method='POST',
-            data=json.dumps(body),
-            headers=headers,
-            content_type='application/json;charset=UTF-8')
-        self.assert200(response,
+            method='GET')
+        self.assert404(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
 

@@ -9,9 +9,7 @@
 # License, Version 3. See the text file "COPYING" for further details
 # about the terms of this license.
 
-from typing import List
 """
 controller generated to handled auth operation described at:
 https://connexion.readthedocs.io/en/latest/security.html
 """
-

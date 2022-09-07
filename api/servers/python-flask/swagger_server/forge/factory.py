@@ -11,6 +11,7 @@
 #
 """Factory and caching for PAR type."""
 from datetime import datetime
+import shelve
 import uuid
 
 from flask import Response
@@ -18,6 +19,8 @@ from flask import Response
 import swagger_server.models as MODEL
 from swagger_server.forge.const import WD_ENT_PRFX, WD_MAIN_NS, WD_ST_PRFX
 import swagger_server.forge.queries as QUERY
+
+SHELVE = shelve.open('/tmp/wikipar')
 
 def par_id(namespace, name):
     """
@@ -29,9 +32,11 @@ def par_id(namespace, name):
     return MODEL.ParIdentifier(guid=str(guid), namespace=namespace, name=name)
 
 def _pop_format_families():
+    if 'families' in SHELVE:
+        return SHELVE['families']
     results_json = QUERY.get_format_families()
     ret_dict = {
-        par_id(WD_MAIN_NS, family['id']['value'].replace(WD_ENT_PRFX, '')).name:MODEL.FormatFamily(
+        par_id(WD_MAIN_NS, family['id']['value'].replace(WD_ENT_PRFX, '')).guid:MODEL.FormatFamily(
                    id=par_id(WD_MAIN_NS, family['id']['value'].replace(WD_ENT_PRFX, '')),
                    family_type=family['formatFamilyLabel']['value'],
                    format_families=[],
@@ -47,6 +52,7 @@ def _pop_format_families():
             if super_id in ret_dict:
                 ret_dict[super_id].format_families.append(
                     par_id(WD_MAIN_NS, familiy['id']['value'].replace(WD_ENT_PRFX, '')))
+    SHELVE['families'] = ret_dict
     return ret_dict
 
 FORMAT_FAMILIES = _pop_format_families()
@@ -81,11 +87,13 @@ def ext_sigs_extensions(piped_extensions):
 
 def _pop_formats():
     """Query Wikidata for formats and returns a list of FileFormat instances."""
+    if 'formats' in SHELVE:
+        return SHELVE['formats']
     sig_lookup = _signatures()
     results_json = QUERY.get_formats()
     results = {
         par_id(WD_MAIN_NS,
-               format['format']['value'].replace(WD_ENT_PRFX, '')).name:MODEL.FileFormat(
+               format['format']['value'].replace(WD_ENT_PRFX, '')).guid : MODEL.FileFormat(
                   id=par_id(WD_MAIN_NS,
                             format['format']['value'].replace(WD_ENT_PRFX, '')),
                   name=format['name']['value'],
@@ -109,6 +117,7 @@ def _pop_formats():
                   local_last_modified_date=format['date_modified']['value'])
                for format in results_json['results']['bindings']}
     filtered_results = { k: v for k, v in results.items() if k not in FORMAT_FAMILIES }
+    SHELVE['formats'] = filtered_results
     return filtered_results
 
 def _bs(sig):
@@ -143,14 +152,15 @@ def _signatures():
     return sigs
 
 FORMATS=_pop_formats()
+SHELVE.close()
 
 def get_formats():
     """Return the full list of all fonts."""
     return list(FORMATS.values())
 
-def get_format(name):
-    """Return a font by id.name or None if no match."""
-    return FORMATS.get(name, None)
+def get_format(guid):
+    """Return a font by id.guid or None if no match."""
+    return FORMATS.get(guid, None)
 
 def slice_list(to_slice, limit=None, offset=None):
     """Returns a slice list from the passed params accounting for None values."""

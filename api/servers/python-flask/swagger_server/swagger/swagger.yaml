@@ -9829,4 +9829,3 @@ components:
         application/json;charset=UTF-8:
           schema:
             $ref: '#/components/schemas/RepresentationFormat'
-

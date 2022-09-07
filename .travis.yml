@@ -21,6 +21,7 @@ before_script:
 script:
   - ./scripts/lint-json-dirs
   - pre-commit run --all-files --verbose
+  - cp ./resources/wikipar.db /tmp/
   - pytest
   - ajv compile -s "schema/format.json" -r "schema/types.json" --validate-formats=false
   - ajv compile -s "schema/par-property.json" -r "schema/types.json" --validate-formats=false

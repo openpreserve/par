@@ -14,6 +14,7 @@ before_install:
 install:
   - npm install -g ajv-cli
   - pip install -r requirements.txt
+  - pip install -r ./api/servers/python-flask/requirements.txt 
 
 before_script:
   - pylint --errors-only ./testing

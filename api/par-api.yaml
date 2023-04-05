@@ -507,6 +507,8 @@ paths:
                     "notes" : "Use ExifTool for Nikon, Fujifilm, Olympus and Minolta RAW Image Property Extraction"
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /business-rules
@@ -649,12 +651,11 @@ paths:
                   "notes" : "Use FFmpeg for migration of video files to web presentable MP4 using FFmpeg, this uses the AAC audio and H.264 video codecs."
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /business-rules/{guid}:
     get:
@@ -794,6 +795,8 @@ paths:
           description: If the specified guid does not reference a Business Rule known
             to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /business-rules
@@ -942,12 +945,11 @@ paths:
                   "notes" : "Use FFmpeg for migration of video files to web presentable MP4 using FFmpeg, this uses the AAC audio and H.264 video codecs."
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -971,12 +973,11 @@ paths:
           description: Business Rule successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /file-formats:
     get:
       tags:
@@ -1150,6 +1151,8 @@ paths:
                     "version" : "\n      "
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /file-formats
@@ -1267,12 +1270,11 @@ paths:
                   "version" : "97-2003"
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /file-formats/{guid}:
     get:
@@ -1387,6 +1389,8 @@ paths:
           description: If the specified name does not reference a File Format known
             to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /file-formats
@@ -1510,12 +1514,11 @@ paths:
                   "version" : "97-2003"
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -1539,12 +1542,11 @@ paths:
           description: File Format successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /format-families:
     get:
       tags:
@@ -1708,6 +1710,8 @@ paths:
                     } ]
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /format-families
@@ -1765,12 +1769,11 @@ paths:
                   } ]
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /format-families/{guid}:
     get:
@@ -1825,6 +1828,8 @@ paths:
           description: If the specified guid does not reference a Format Family known
             to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /format-families
@@ -1888,12 +1893,11 @@ paths:
                   } ]
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -1917,12 +1921,11 @@ paths:
           description: Format Family successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /preservation-action-types:
     get:
       tags:
@@ -1999,6 +2002,8 @@ paths:
                     "label" : "metadata extraction"
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /preservation-action-types
@@ -2036,12 +2041,11 @@ paths:
                   "label" : "migration"
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /preservation-action-types/{guid}:
     get:
@@ -2076,6 +2080,8 @@ paths:
           description: If the specified guid does not reference a Preservation Action
             Type known to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /preservation-action-types
@@ -2118,12 +2124,11 @@ paths:
                   "label" : "migration"
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -2148,12 +2153,11 @@ paths:
           description: Preservation Action Type successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /preservation-actions:
     get:
       tags:
@@ -2955,6 +2959,8 @@ paths:
                     }
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /preservation-actions
@@ -3246,12 +3252,11 @@ paths:
                   }
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /preservation-actions/{guid}:
     get:
@@ -3541,6 +3546,8 @@ paths:
           description: If the specified guid does not reference a Preservation Action
             known to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /preservation-actions
@@ -3838,12 +3845,11 @@ paths:
                   }
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -3868,12 +3874,11 @@ paths:
           description: Preservation Action successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /properties:
     get:
       tags:
@@ -3952,6 +3957,8 @@ paths:
                     "description" : "Colour Space"
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /properties
@@ -3990,12 +3997,11 @@ paths:
                   "description" : "Compression Type"
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /properties/{guid}:
     get:
@@ -4031,6 +4037,8 @@ paths:
           description: If the specified guid does not reference a Property known to
             this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /properties
@@ -4075,12 +4083,11 @@ paths:
                   "description" : "Compression Type"
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -4104,12 +4111,13 @@ paths:
           description: Property successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
           description: If the supplied Authorization header does not reference a user
             with write access to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /representation-formats:
     get:
       tags:
@@ -4279,6 +4287,8 @@ paths:
                     }
                   }]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /representation-formats
@@ -4308,12 +4318,11 @@ paths:
                 $ref: '#/components/schemas/RepresentationFormat'
               example: ""
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /representation-formats/{guid}:
     get:
@@ -4368,6 +4377,8 @@ paths:
           description: If the specified guid does not reference a Representation Format
             known to this registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /representation-formats
@@ -4402,12 +4413,11 @@ paths:
                 $ref: '#/components/schemas/RepresentationFormat'
               example: ""
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -4432,12 +4442,11 @@ paths:
           description: Representation Format successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
   /tools:
     get:
       tags:
@@ -4519,6 +4528,8 @@ paths:
                     "toolVersion" : "5.3.5.2"
                   } ]
                 }
+        501:
+          $ref: '#/components/responses/NotImplemented'
     post:
       tags:
       - /tools
@@ -4559,12 +4570,11 @@ paths:
                   "toolVersion" : "6.7.8-9"
                 }
         401:
-          description: If no Authorization header has been supplied
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
   /tools/{guid}:
     get:
@@ -4602,6 +4612,8 @@ paths:
           description: If the specified guid does not reference a Tool known to this
             registry.
           content: {}
+        501:
+          $ref: '#/components/responses/NotImplemented'
     put:
       tags:
       - /tools
@@ -4648,12 +4660,11 @@ paths:
                   "toolVersion" : "6.7.8-9"
                 }
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
       x-codegen-request-body-name: body
     delete:
       tags:
@@ -4677,13 +4688,23 @@ paths:
           description: Tool successfully deleted.
           content: {}
         401:
-          description: If no Authorization header has been supplied.
-          content: {}
+          $ref: '#/components/responses/Unauthorized'
         403:
-          description: If the supplied Authorization header does not reference a user
-            with write access to this registry.
-          content: {}
+          $ref: '#/components/responses/Forbidden'
+        501:
+          $ref: '#/components/responses/NotImplemented'
 components:
+  responses:
+    NotImplemented:
+      description: The method called is currently not implemented by this server.
+      content: {}
+    Unauthorized:
+      description: If no Authorization header has been supplied
+      content: {}
+    Forbidden:
+      description: If the supplied Authorization header does not reference a user
+        with write access to this registry.
+      content: {}
   schemas:
     Action:
       type: object
@@ -4768,6 +4789,8 @@ components:
         byteSequenceIdNamespace:
           type: string
         byteSequenceValue:
+          type: string
+        encoding:
           type: string
         endianness:
           type: string

@@ -62,6 +62,25 @@ Once you have Pythton and pip you can install the other dependencies so: `pip in
 
 If the installation of demjson fails with an error similar to the below:
 
+```shell
+Collecting demjson                                                                                                                                                                            
+  Downloading demjson-2.2.4.tar.gz (131 kB)                                                                                                                                                   
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.5/131.5 kB 1.3 MB/s eta 0:00:00                                                                                                             
+  Preparing metadata (setup.py) ... error                                                                                                                                                     
+  error: subprocess-exited-with-error                                                                                                                                                         
+                                                                                                                                                                                              
+  × python setup.py egg_info did not run successfully.                                                                                                                                        
+  │ exit code: 1                                                                                                                                                                              
+  ╰─> [1 lines of output]                                                                                                                                                                     
+      error in demjson setup command: use_2to3 is invalid.                                                                                                                                    
+      [end of output]                                                                                                                                                                         
+                                                                                                                                                                                              
+  note: This error originates from a subprocess, and is likely not a problem with pip.                                                                                                        
+error: metadata-generation-failed
+```
+
+then you will need to install a less recent version of `setuptools` as follows: `pip install "setuptools<58"`. See #55.
+
 ### Testing
 
 Automated testing currently consists of:
@@ -107,7 +126,7 @@ pytest
 
 ===================== test session starts ===============================
 platform linux2 -- Python 2.7.12, pytest-3.6.2, py-1.5.3, pluggy-0.6.0
-rootdir: /home/cfw/proj/JISC/par, inifile:
+rootdir: /home/cfw/proj/openpreserv/par, inifile:
 collected 7 items
 
 testing/test_main.py .......                                                                                                                                                           [100%]

@@ -4790,8 +4790,6 @@ components:
           type: string
         byteSequenceValue:
           type: string
-        encoding:
-          type: string
         endianness:
           type: string
         indirectOffsetLength:

@@ -40,6 +40,11 @@
         "byteSequenceValue": {
           "type": "string"
         },
+        "encoding": {
+          "type": "string",
+          "enum": ["PRONOM", "ASCII", "HEX", "REGEX_PERL"],
+          "default": "PRONOM"
+        },
         "endianness": {
           "type": "string"
         },

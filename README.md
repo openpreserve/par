@@ -126,7 +126,7 @@ pytest
 
 ===================== test session starts ===============================
 platform linux2 -- Python 2.7.12, pytest-3.6.2, py-1.5.3, pluggy-0.6.0
-rootdir: /home/cfw/proj/openpreserv/par, inifile:
+rootdir: /par, inifile:
 collected 7 items
 
 testing/test_main.py .......                                                                                                                                                           [100%]

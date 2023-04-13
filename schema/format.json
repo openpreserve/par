@@ -41,9 +41,14 @@
           "type": "string"
         },
         "encoding": {
-          "type": "string",
-          "enum": ["PRONOM", "ASCII", "HEX", "REGEX_PERL"],
-          "default": "PRONOM"
+          "default": "PRONOM",
+          "enum": [
+            "PRONOM",
+            "ASCII",
+            "HEX",
+            "REGEX_PERL"
+          ],
+          "type": "string"
         },
         "endianness": {
           "type": "string"

@@ -30,9 +30,9 @@ jobs:
           python3 -m pip install --upgrade pip
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip "setuptools<58"
-          python3 -m pip install  --upgrade pip pytest pytest-cov
-          if [ -f requirements.txt ]; then python3 -m pip install --upgrade pip && python3 pip -V && python3 -m pip install -r requirements.txt; fi
+          python3 -m pip install --upgrade "setuptools<58"
+          python3 -m pip install  --upgrade pytest pytest-cov pylint
+          if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
           npm install -g ajv-cli
       - name: Static Pylint code QA
         run: python3 -m pylint --errors-only **/*.py

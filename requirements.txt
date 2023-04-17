@@ -1,4 +1,8 @@
+pip
+setuptools<58
 demjson
 jsonschema
 pre-commit
 pylint
+pytest
+pytest-cov

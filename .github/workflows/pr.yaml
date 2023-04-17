@@ -30,7 +30,7 @@ jobs:
           python3 -m pip install --upgrade pip
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade "pip setuptools<58"
+          python3 -m pip install --upgrade pip "setuptools<58"
           python3 -m pip install  --upgrade pip pytest pytest-cov
           if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
           npm install -g ajv-cli

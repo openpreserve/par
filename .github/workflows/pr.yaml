@@ -27,7 +27,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade pip "setuptools<58"
+          python3 -m pip install --upgrade pip pytest pytest-cov
           if [ -f requirements.txt ]; then python3 -m pip install --upgrade pip && python3 -m pip install --upgrade -r requirements.txt; fi
           npm install -g ajv-cli
       - name: Static Pylint code QA

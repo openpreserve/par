@@ -35,13 +35,13 @@ jobs:
           if [ -f requirements.txt ]; then python3 -m pip install --upgrade pip && python3 pip -V && python3 -m pip install -r requirements.txt; fi
           npm install -g ajv-cli
       - name: Static Pylint code QA
-        run: pylint --errors-only **/*.py
+        run: python3 -m pylint --errors-only **/*.py
       - name: JSON linting
         run: ./scripts/lint-json-dirs
       - name: Run pre-commit tests
         run: pre-commit run --all-files --verbose
       - name: Test with pytest
-        run: pytest
+        run: python3 -m pytest
       - name: Compile and validate schema
         run: |
           ajv compile -s "schema/format.json" -r "schema/types.json" --validate-formats=false

@@ -1066,6 +1066,7 @@ paths:
                         "byteSequenceId" : "bs/357",
                         "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                         "byteSequenceValue" : "66747970{0-64}(6D703432|6D703431|69736F6D|69736F32)*6D6F6F76",
+                        "encoding" : "PRONOM",
                         "maxOffset" : "0",
                         "offset" : "4",
                         "positionType" : "Absolute from BOF"
@@ -1125,6 +1126,7 @@ paths:
                         "byteSequenceId" : "bs/800",
                         "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                         "byteSequenceValue" : "000001BA{8-12}000001BB{8-65536}000001B3{8-136}000001B5",
+                        "encoding" : "PRONOM",
                         "maxOffset" : "0",
                         "offset" : "0",
                         "positionType" : "Absolute from BOF"
@@ -1206,6 +1208,7 @@ paths:
                       "byteSequenceId" : "bs/223",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "57006F007200640044006F00630075006D0065006E007400{42}02(00|01)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1213,6 +1216,7 @@ paths:
                       "byteSequenceId" : "bs/222",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "D0CF11E0A1B11AE1{20}FEFF",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Absolute from BOF"
@@ -1220,6 +1224,7 @@ paths:
                       "byteSequenceId" : "bs/224",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1322,6 +1327,7 @@ paths:
                       "byteSequenceId" : "bs/223",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "57006F007200640044006F00630075006D0065006E007400{42}02(00|01)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1329,6 +1335,7 @@ paths:
                       "byteSequenceId" : "bs/222",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "D0CF11E0A1B11AE1{20}FEFF",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Absolute from BOF"
@@ -1336,6 +1343,7 @@ paths:
                       "byteSequenceId" : "bs/224",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1450,6 +1458,7 @@ paths:
                       "byteSequenceId" : "bs/223",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "57006F007200640044006F00630075006D0065006E007400{42}02(00|01)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1457,6 +1466,7 @@ paths:
                       "byteSequenceId" : "bs/222",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "D0CF11E0A1B11AE1{20}FEFF",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Absolute from BOF"
@@ -1464,6 +1474,7 @@ paths:
                       "byteSequenceId" : "bs/224",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -4790,6 +4801,10 @@ components:
           type: string
         byteSequenceValue:
           type: string
+        encoding:
+          type: string
+          enum: ["PRONOM", "ASCII", "HEX", "REGEX_PERL"]
+          default: "PRONOM"
         endianness:
           type: string
         indirectOffsetLength:

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: PAR API
   description: API to retrieve and update Business Rules, Preservation Actions etc
@@ -140,7 +140,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/BusinessRules'
-              example: |-
+              examples: |-
                 {
                   "businessRules" : [ {
                     "id" : {
@@ -535,7 +535,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/BusinessRule'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "85fb1396-7625-55ed-b25c-6f6e75e6b27a",
@@ -676,7 +676,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/BusinessRule'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "85fb1396-7625-55ed-b25c-6f6e75e6b27a",
@@ -829,7 +829,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/BusinessRule'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "85fb1396-7625-55ed-b25c-6f6e75e6b27a",
@@ -1036,7 +1036,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FileFormats'
-              example: |-
+              examples: |-
                 {
                   "fileFormats" : [ {
                     "description" : "This is an outline record only, and requires further details, research or authentication to provide information that will enable users to further understand the format and to assess digital preservation risks associated with it if appropriate.",
@@ -1066,6 +1066,7 @@ paths:
                         "byteSequenceId" : "bs/357",
                         "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                         "byteSequenceValue" : "66747970{0-64}(6D703432|6D703431|69736F6D|69736F32)*6D6F6F76",
+                        "encoding" : "PRONOM",
                         "maxOffset" : "0",
                         "offset" : "4",
                         "positionType" : "Absolute from BOF"
@@ -1125,6 +1126,7 @@ paths:
                         "byteSequenceId" : "bs/800",
                         "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                         "byteSequenceValue" : "000001BA{8-12}000001BB{8-65536}000001B3{8-136}000001B5",
+                        "encoding" : "PRONOM",
                         "maxOffset" : "0",
                         "offset" : "0",
                         "positionType" : "Absolute from BOF"
@@ -1179,7 +1181,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FileFormat'
-              example: |-
+              examples: |-
                 {
                   "description" : "With the release of Word 97, Microsoft revised the native binary word processing format, which is based on its generic OLE2 Compound Document Format. The format is proprietary and Microsoft does not make details of its structure public. The information here is derived primarily from OpenOffice.org's reverse-engineered documentation of the format and should not therefore be regarded as definitive. A Word document is stored as a ‘WordDocument’ stream within a Compound Document Format file. The format remained unchanged with the releases of Word 2000, 2002 and 2003. An alternative extension of .wbk refers to a backup file of a Word document, however there is no material or structural difference between a .wbk file and the .doc file it is a backup of.",
                   "externalSignatures" : [ {
@@ -1206,6 +1208,7 @@ paths:
                       "byteSequenceId" : "bs/223",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "57006F007200640044006F00630075006D0065006E007400{42}02(00|01)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1213,6 +1216,7 @@ paths:
                       "byteSequenceId" : "bs/222",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "D0CF11E0A1B11AE1{20}FEFF",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Absolute from BOF"
@@ -1220,6 +1224,7 @@ paths:
                       "byteSequenceId" : "bs/224",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1295,7 +1300,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FileFormat'
-              example: |-
+              examples: |-
                 {
                   "description" : "With the release of Word 97, Microsoft revised the native binary word processing format, which is based on its generic OLE2 Compound Document Format. The format is proprietary and Microsoft does not make details of its structure public. The information here is derived primarily from OpenOffice.org's reverse-engineered documentation of the format and should not therefore be regarded as definitive. A Word document is stored as a ‘WordDocument’ stream within a Compound Document Format file. The format remained unchanged with the releases of Word 2000, 2002 and 2003. An alternative extension of .wbk refers to a backup file of a Word document, however there is no material or structural difference between a .wbk file and the .doc file it is a backup of.",
                   "externalSignatures" : [ {
@@ -1322,6 +1327,7 @@ paths:
                       "byteSequenceId" : "bs/223",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "57006F007200640044006F00630075006D0065006E007400{42}02(00|01)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1329,6 +1335,7 @@ paths:
                       "byteSequenceId" : "bs/222",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "D0CF11E0A1B11AE1{20}FEFF",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Absolute from BOF"
@@ -1336,6 +1343,7 @@ paths:
                       "byteSequenceId" : "bs/224",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1423,7 +1431,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FileFormat'
-              example: |-
+              examples: |-
                 {
                   "description" : "With the release of Word 97, Microsoft revised the native binary word processing format, which is based on its generic OLE2 Compound Document Format. The format is proprietary and Microsoft does not make details of its structure public. The information here is derived primarily from OpenOffice.org's reverse-engineered documentation of the format and should not therefore be regarded as definitive. A Word document is stored as a ‘WordDocument’ stream within a Compound Document Format file. The format remained unchanged with the releases of Word 2000, 2002 and 2003. An alternative extension of .wbk refers to a backup file of a Word document, however there is no material or structural difference between a .wbk file and the .doc file it is a backup of.",
                   "externalSignatures" : [ {
@@ -1450,6 +1458,7 @@ paths:
                       "byteSequenceId" : "bs/223",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "57006F007200640044006F00630075006D0065006E007400{42}02(00|01)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1457,6 +1466,7 @@ paths:
                       "byteSequenceId" : "bs/222",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "D0CF11E0A1B11AE1{20}FEFF",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Absolute from BOF"
@@ -1464,6 +1474,7 @@ paths:
                       "byteSequenceId" : "bs/224",
                       "byteSequenceIdNamespace" : "http://www.nationalarchives.gov.uk",
                       "byteSequenceValue" : "4D6963726F736F667420576F7264(20382E30|20392E30|2031302E30|2D446F6B756D656E74)",
+                      "encoding" : "PRONOM",
                       "maxOffset" : "0",
                       "offset" : "0",
                       "positionType" : "Variable"
@@ -1618,7 +1629,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FormatFamilies'
-              example: |-
+              examples: |-
                 {
                   "formatFamilies" : [ {
                     "id" : {
@@ -1738,7 +1749,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FormatFamily'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "92a903da-be38-5c0c-97f4-c6aff4c98abf",
@@ -1794,7 +1805,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FormatFamily'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "92a903da-be38-5c0c-97f4-c6aff4c98abf",
@@ -1862,7 +1873,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/FormatFamily'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "92a903da-be38-5c0c-97f4-c6aff4c98abf",
@@ -1984,7 +1995,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationActionTypes'
-              example: |-
+              examples: |-
                 {
                   "preservationActionTypes" : [ {
                     "id" : {
@@ -2031,7 +2042,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationActionType'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "45bad06c-e2c0-5b46-b740-0cd2ed140a6f",
@@ -2067,7 +2078,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationActionType'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "45bad06c-e2c0-5b46-b740-0cd2ed140a6f",
@@ -2114,7 +2125,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationActionType'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "45bad06c-e2c0-5b46-b740-0cd2ed140a6f",
@@ -2242,7 +2253,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationActions'
-              example: |-
+              examples: |-
                 {
                   "preservationActions" : [ {
                     "description" : "Property Extraction of video files using MediaInfo CLI and EBUCore Metadata",
@@ -2987,7 +2998,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationAction'
-              example: |-
+              examples: |-
                 {
                   "description" : "Property Extraction of Nikon, Fujifilm, Olympus and Minolta RAW image files using ExifTool",
                   "example" : "exiftool -X ${inputFile}",
@@ -3278,7 +3289,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationAction'
-              example: |-
+              examples: |-
                 {
                   "description" : "Property Extraction of Nikon, Fujifilm, Olympus and Minolta RAW image files using ExifTool",
                   "example" : "exiftool -X ${inputFile}",
@@ -3580,7 +3591,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/PreservationAction'
-              example: |-
+              examples: |-
                 {
                   "description" : "Property Extraction of Nikon, Fujifilm, Olympus and Minolta RAW image files using ExifTool",
                   "example" : "exiftool -X ${inputFile}",
@@ -3935,7 +3946,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ParProperties'
-              example: |-
+              examples: |-
                 {
                   "parProperties" : [ {
                     "id" : {
@@ -3985,7 +3996,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ParProperty'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "00bfe91a-eb9d-540c-8b00-0497701d773a",
@@ -4022,7 +4033,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ParProperty'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "00bfe91a-eb9d-540c-8b00-0497701d773a",
@@ -4071,7 +4082,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ParProperty'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "00bfe91a-eb9d-540c-8b00-0497701d773a",
@@ -4206,7 +4217,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RepresentationFormats'
-              example: |-
+              examples: |-
                 {
                   "representationFormats" : [{
                     "id": {
@@ -4316,7 +4327,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RepresentationFormat'
-              example: ""
+              examples: ""
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
@@ -4344,7 +4355,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RepresentationFormat'
-              example: |-
+              examples: |-
                 {
                   "id": {
                     "guid": "c9828123-71cc-57d0-97e2-489c71d457e0",
@@ -4411,7 +4422,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RepresentationFormat'
-              example: ""
+              examples: ""
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
@@ -4502,7 +4513,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/Tools'
-              example: |-
+              examples: |-
                 {
                   "tools" : [ {
                     "id" : {
@@ -4556,7 +4567,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/Tool'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "835e539a-abe2-55c1-b58b-8e68da664d8f",
@@ -4595,7 +4606,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/Tool'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "835e539a-abe2-55c1-b58b-8e68da664d8f",
@@ -4646,7 +4657,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/Tool'
-              example: |-
+              examples: |-
                 {
                   "id" : {
                     "guid" : "835e539a-abe2-55c1-b58b-8e68da664d8f",
@@ -4792,6 +4803,8 @@ components:
           type: string
         encoding:
           type: string
+          enum: ["PRONOM", "ASCII", "HEX", "REGEX_PERL"]
+          default: "PRONOM"
         endianness:
           type: string
         indirectOffsetLength:

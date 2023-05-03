@@ -6,13 +6,13 @@ title: Resources
 ## Resources
 The following PAR resources are available for reference / context:
 
-## API Swagger Documentation
-* [API Documentation](https://concept.preservica.com/Registry/par/documentation.html)
+## White Paper
+- [Digital Preservation Interoperability through Preservation Action Registries](https://osf.io/ns3am)
 
 ## Presentations and Background Material
 - [PAR 2020 Webinar v01 310320.pdf](./presentations/PAR 2020 Webinar v01 310320.pdf)
 - [JISC 2019 Presentation, York](./presentations/PAR Presentation York 2019.pdf)
-- [iPres 2019 Presentation](./presentations/PAR Presentation iPres 2019.pdf)
+- [iPres 2019 Workshop]{https://doi.org/10.17605/OSF.IO/NEMJQ) - [paper](https://osf.io/s8x4d), [slides](./presentations/PAR Presentation iPres 2019.pdf), [workshop notes](https://osf.io/download/76aze/)
 
 ## Other PAR resources
 - [GitHub Repository](https://github.com/openpreserve/par)
@@ -23,7 +23,6 @@ Please direct any PAR questions / queries to any of the par core team below or u
 * info@openpreservation.org
 
 ### Open Preservation Forum
-* Organisational / planning - Martin Speller; martin.speller@openpreservation.org
 * Technical matters - Carl Wilson; carl.wilson@openpreservation.org
 
 ### Preservica

@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/tool.json/#",
+  "$id": "http://www.parcore.org/schema/1.1/tool.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
     "tool": {
@@ -7,7 +7,7 @@
       "description": "A software tool or application that can be used to perform preservation actions",
       "properties": {
         "id": {
-          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+          "$ref": "http://www.parcore.org/schema/1.1/types.json/#/definitions/parIdentifier"
         },
         "localLastModifiedDate": {
           "format": "date-time",
@@ -15,7 +15,7 @@
         },
         "toolAcceptedParameters": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parameter"
+            "$ref": "http://www.parcore.org/schema/1.1/types.json/#/definitions/inputToolArgument"
           },
           "type": "array",
           "uniqueItems": true

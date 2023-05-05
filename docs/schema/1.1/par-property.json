@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/par-property.json/#",
+  "$id": "http://www.parcore.org/schema/1.1/par-property.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "additionalProperties": false,
   "description": "this is a skeleton definition of a Property",
@@ -16,6 +16,10 @@
         "other"
       ]
     },
+    "description": {
+      "description": "A human readable description of the property",
+      "type": "string"
+    },
     "equivalentTo": {
       "description": "Equivalent To allows for assertions that a specific property is equivalent to named properties in other schemas or registries, for example, an Aspect Ration property for a video may be declared to be equivalent to the ebucore:aspectRatio, even if the representation of the measurement is different",
       "items": {
@@ -24,7 +28,7 @@
       "type": "array"
     },
     "id": {
-      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+      "$ref": "http://www.parcore.org/schema/1.1/types.json/#/definitions/parIdentifier"
     },
     "localLastModifiedDate": {
       "format": "date-time",

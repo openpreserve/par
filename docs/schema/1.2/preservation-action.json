@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/preservation-action.json/#",
+  "$id": "http://www.parcore.org/schema/1.2/preservation-action.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "anyOf": [
     {
@@ -48,7 +48,7 @@
           "type": "string"
         },
         "file": {
-          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
+          "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parFile"
         },
         "name": {
           "type": "string"
@@ -73,7 +73,7 @@
           "type": "string"
         },
         "parProperty": {
-          "$ref": "http://www.parcore.org/schema/par-property.json/#"
+          "$ref": "http://www.parcore.org/schema/1.2/par-property.json/#"
         }
       },
       "required": [
@@ -92,7 +92,7 @@
           "type": "string"
         },
         "file": {
-          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parFile"
+          "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parFile"
         },
         "name": {
           "type": "string"
@@ -113,11 +113,20 @@
         "description": {
           "type": "string"
         },
+        "groupIdBinding": {
+          "type": "string"
+        },
+        "groupIdLabel": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
         "parProperty": {
-          "$ref": "http://www.parcore.org/schema/par-property.json/#"
+          "$ref": "http://www.parcore.org/schema/1.2/par-property.json/#"
+        },
+        "toolBinding": {
+          "type": "string"
         }
       },
       "required": [
@@ -158,19 +167,19 @@
         "properties": {
           "allowedFormats": {
             "items": {
-              "$ref": "http://www.parcore.org/schema/format.json/#"
+              "$ref": "http://www.parcore.org/schema/1.2/format.json/#"
             },
             "type": "array"
           },
           "allowedPropertiesAllOf": {
             "items": {
-              "$ref": "http://www.parcore.org/schema/par-property.json/#"
+              "$ref": "http://www.parcore.org/schema/1.2/par-property.json/#"
             },
             "type": "array"
           },
           "allowedPropertiesAnyOf": {
             "items": {
-              "$ref": "http://www.parcore.org/schema/par-property.json/#"
+              "$ref": "http://www.parcore.org/schema/1.2/par-property.json/#"
             },
             "type": "array"
           },
@@ -190,19 +199,26 @@
       "type": "string"
     },
     "id": {
-      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+      "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
     },
     "inputFiles": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputFile"
+        "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/inputFile"
       },
       "type": "array"
     },
     "inputProperties": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputProperty"
+        "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/inputProperty"
+      },
+      "type": "array"
+    },
+    "inputToolArguments": {
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/inputToolArgument"
       },
       "type": "array"
     },
@@ -213,7 +229,7 @@
     "outputFiles": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputFile"
+        "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/outputFile"
       },
       "minItems": 1,
       "type": "array"
@@ -221,7 +237,7 @@
     "outputProperties": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputProperty"
+        "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/outputProperty"
       },
       "minItems": 1,
       "type": "array"
@@ -229,16 +245,16 @@
     "rawOutputs": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputRaw"
+        "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/outputRaw"
       },
       "minItems": 1,
       "type": "array"
     },
     "tool": {
-      "$ref": "http://www.parcore.org/schema/tool.json/#"
+      "$ref": "http://www.parcore.org/schema/1.2/tool.json/#"
     },
     "type": {
-      "$ref": "http://www.parcore.org/schema/preservation-action-type.json/#"
+      "$ref": "http://www.parcore.org/schema/1.2/preservation-action-type.json/#"
     }
   },
   "required": [

@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/types.json/#",
+  "$id": "http://www.parcore.org/schema/1.2/types.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
     "formatFamily": {
@@ -9,7 +9,13 @@
         "familyType": {
           "type": "string"
         },
-        "formats": {
+        "fileFormats": {
+          "items": {
+            "$ref": "#/definitions/parIdentifier"
+          },
+          "type": "array"
+        },
+        "formatFamilies": {
           "items": {
             "$ref": "#/definitions/parIdentifier"
           },
@@ -17,6 +23,23 @@
         },
         "identifier": {
           "$ref": "#/definitions/parIdentifier"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "inputToolArgument": {
+      "additionalProperties": false,
+      "description": "A parameter to a tool, controlling the behaviour of that tool",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
         }
       },
       "required": [],
@@ -50,23 +73,6 @@
       "required": [
         "guid"
       ],
-      "type": "object"
-    },
-    "parameter": {
-      "additionalProperties": false,
-      "description": "A parameter to a tool, controlling the behaviour of that tool",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "required": [],
       "type": "object"
     }
   }

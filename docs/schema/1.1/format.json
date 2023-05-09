@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/format.json/#",
+  "$id": "http://www.parcore.org/schema/1.1/format.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "additionalProperties": false,
   "definitions": {
@@ -94,7 +94,7 @@
       "additionalProperties": false,
       "properties": {
         "author": {
-          "$ref": "http://www.parcore.org/schema/format.json/#/definitions/authorInformation"
+          "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/authorInformation"
         },
         "availabilityDescription": {
           "type": "string"
@@ -124,7 +124,7 @@
           "type": "string"
         },
         "publisher": {
-          "$ref": "http://www.parcore.org/schema/format.json/#/definitions/publisherInformation"
+          "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/publisherInformation"
         },
         "titleText": {
           "type": "string"
@@ -178,7 +178,7 @@
       "properties": {
         "byteSequences": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/format.json/#/definitions/byteSequenceInformation"
+            "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/byteSequenceInformation"
           },
           "type": "array"
         },
@@ -320,7 +320,7 @@
     },
     "developers": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/developerInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/developerInformation"
       },
       "type": "array"
     },
@@ -329,13 +329,13 @@
     },
     "documents": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/documentInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/documentInformation"
       },
       "type": "array"
     },
     "externalSignatures": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/externalSignatureInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/externalSignatureInformation"
       },
       "type": "array"
     },
@@ -346,18 +346,18 @@
       "type": "array"
     },
     "id": {
-      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier",
+      "$ref": "http://www.parcore.org/schema/1.1/types.json/#/definitions/parIdentifier",
       "description": "A persistent unique identifier for the format, in PAR form"
     },
     "identifiers": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/identifierInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/identifierInformation"
       },
       "type": "array"
     },
     "internalSignatures": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/internalSignatureInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/internalSignatureInformation"
       },
       "type": "array"
     },
@@ -376,17 +376,17 @@
       "type": "string"
     },
     "provenance": {
-      "$ref": "http://www.parcore.org/schema/format.json/#/definitions/provenanceInformation"
+      "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/provenanceInformation"
     },
     "registryVersions": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/registryVersionInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/registryVersionInformation"
       },
       "type": "array"
     },
     "relatedFormats": {
       "items": {
-        "$ref": "http://www.parcore.org/schema/format.json/#/definitions/relatedFormatInformation"
+        "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/relatedFormatInformation"
       },
       "type": "array"
     },
@@ -398,7 +398,7 @@
       "type": "string"
     },
     "technicalEnvironment": {
-      "$ref": "http://www.parcore.org/schema/format.json/#/definitions/environmentInformation"
+      "$ref": "http://www.parcore.org/schema/1.1/format.json/#/definitions/environmentInformation"
     },
     "types": {
       "items": {

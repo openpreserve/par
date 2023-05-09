@@ -1,0 +1,113 @@
+{
+  "$id": "http://www.parcore.org/schema/1.0/representation-format.json/#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "fileCriterion": {
+      "additionalProperties": false,
+      "description": "A criterion for a file within the multi-part object. A list of formats or format families, or both, may be specified, a content file is deemed to match this criterion if it is identified as any of the formats, or format families listed, i.e. the formats and families form a set of OR conditions. If no formats or families are listed, then any content file will match this criterion.",
+      "properties": {
+        "formatFamilies": {
+          "$ref": "http://www.parcore.org/schema/1.0/representation-format.json/#/definitions/identifierArray"
+        },
+        "formats": {
+          "$ref": "http://www.parcore.org/schema/1.0/representation-format.json/#/definitions/identifierArray"
+        },
+        "maximum": {
+          "default": "1",
+          "description": "This specifies the maximum number of matching content files required, by default this is 1. Specifying 0 means that no content files should match this criterion, specifying \"unbounded\" means any number of files may match this criterion.",
+          "oneOf": [
+            {
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            },
+            {
+              "pattern": "^[Uu][Nn][Bb][Oo][Uu][Nn][Dd][Ee][Dd]$",
+              "type": "string"
+            }
+          ]
+        },
+        "minimum": {
+          "default": "1",
+          "description": "This specifies the minimum number of matching content files required, by default this is 1. Specifying 0 makes matching this criterion optional.",
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      },
+      "title": "File Criterion",
+      "type": "object"
+    },
+    "identifierArray": {
+      "additionalItems": false,
+      "items": {
+        "$ref": "http://www.parcore.org/schema/1.0/types.json/#/definitions/parIdentifier"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "representationFormatSignature": {
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "primaryFileCriteria"
+          ]
+        },
+        {
+          "required": [
+            "fileCriteria"
+          ]
+        }
+      ],
+      "description": "",
+      "properties": {
+        "fileCriteria": {
+          "additionalItems": false,
+          "items": {
+            "$ref": "http://www.parcore.org/schema/1.0/representation-format.json/#/definitions/fileCriterion"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "primaryFileCriteria": {
+          "additionalItems": false,
+          "items": {
+            "$ref": "http://www.parcore.org/schema/1.0/representation-format.json/#/definitions/fileCriterion"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "title": "Representation Format Signature",
+      "type": "object"
+    }
+  },
+  "description": "This allows the definition of a set of criteria that must be matched in order to define a multi-part complex representation of an object.  All specified criteria must be met for identification of a set of content as having a specific representation format.",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "hasPriorityOver": {
+      "$ref": "http://www.parcore.org/schema/1.0/representation-format.json/#/definitions/identifierArray"
+    },
+    "id": {
+      "$ref": "http://www.parcore.org/schema/1.0/types.json/#/definitions/parIdentifier"
+    },
+    "localLastModifiedDate": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "representationFormatSignature": {
+      "$ref": "http://www.parcore.org/schema/1.0/representation-format.json/#/definitions/representationFormatSignature"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "representationFormatSignature"
+  ],
+  "title": "Representation Format",
+  "type": "object"
+}

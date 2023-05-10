@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/representation-format.json/#",
+  "$id": "http://www.parcore.org/schema/1.2/representation-format.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "additionalProperties": false,
   "definitions": {
@@ -8,10 +8,10 @@
       "description": "A criterion for a file within the multi-part object. A list of formats or format families, or both, may be specified, a content file is deemed to match this criterion if it is identified as any of the formats, or format families listed, i.e. the formats and families form a set of OR conditions. If no formats or families are listed, then any content file will match this criterion.",
       "properties": {
         "formatFamilies": {
-          "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/identifierArray"
+          "$ref": "http://www.parcore.org/schema/1.2/representation-format.json/#/definitions/identifierArray"
         },
         "formats": {
-          "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/identifierArray"
+          "$ref": "http://www.parcore.org/schema/1.2/representation-format.json/#/definitions/identifierArray"
         },
         "maximum": {
           "default": "1",
@@ -40,7 +40,7 @@
     "identifierArray": {
       "additionalItems": false,
       "items": {
-        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+        "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
       },
       "minItems": 1,
       "type": "array"
@@ -64,7 +64,7 @@
         "fileCriteria": {
           "additionalItems": false,
           "items": {
-            "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/fileCriterion"
+            "$ref": "http://www.parcore.org/schema/1.2/representation-format.json/#/definitions/fileCriterion"
           },
           "minItems": 1,
           "type": "array"
@@ -72,7 +72,7 @@
         "primaryFileCriteria": {
           "additionalItems": false,
           "items": {
-            "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/fileCriterion"
+            "$ref": "http://www.parcore.org/schema/1.2/representation-format.json/#/definitions/fileCriterion"
           },
           "minItems": 1,
           "type": "array"
@@ -88,10 +88,10 @@
       "type": "string"
     },
     "hasPriorityOver": {
-      "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/identifierArray"
+      "$ref": "http://www.parcore.org/schema/1.2/representation-format.json/#/definitions/identifierArray"
     },
     "id": {
-      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+      "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
     },
     "localLastModifiedDate": {
       "type": "string"
@@ -100,7 +100,7 @@
       "type": "string"
     },
     "representationFormatSignature": {
-      "$ref": "http://www.parcore.org/schema/representation-format.json/#/definitions/representationFormatSignature"
+      "$ref": "http://www.parcore.org/schema/1.2/representation-format.json/#/definitions/representationFormatSignature"
     }
   },
   "required": [

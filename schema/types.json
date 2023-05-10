@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/types.json/#",
+  "$id": "http://www.parcore.org/schema/1.2/types.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "definitions": {
     "formatFamily": {

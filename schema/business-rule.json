@@ -1,5 +1,5 @@
 {
-  "$id": "http://www.parcore.org/schema/business-rule.json/#",
+  "$id": "http://www.parcore.org/schema/1.2/business-rule.json/#",
   "$schema": "http://json-schema.org/draft-06/schema#",
   "additionalProperties": false,
   "definitions": {
@@ -7,31 +7,31 @@
       "properties": {
         "optionalInputProperties": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/inputProperty"
+            "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/inputProperty"
           },
           "type": "array"
         },
         "outputFilesRetrieved": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputFile"
+            "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/outputFile"
           },
           "type": "array"
         },
         "outputPropertiesRetrieved": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputProperty"
+            "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/outputProperty"
           },
           "type": "array"
         },
         "preservationAction": {
-          "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+          "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
         },
         "priority": {
           "type": "integer"
         },
         "rawOutputsRetrieved": {
           "items": {
-            "$ref": "http://www.parcore.org/schema/preservation-action.json/#/definitions/outputRaw"
+            "$ref": "http://www.parcore.org/schema/1.2/preservation-action.json/#/definitions/outputRaw"
           },
           "type": "array"
         }
@@ -51,19 +51,19 @@
     "formatFamilies": {
       "description": "A list of format families that this Business Rule should be applied to",
       "items": {
-        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+        "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
       },
       "type": "array"
     },
     "formats": {
       "description": "A list of file formats that this Business Rule should be applied to",
       "items": {
-        "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+        "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
       },
       "type": "array"
     },
     "id": {
-      "$ref": "http://www.parcore.org/schema/types.json/#/definitions/parIdentifier"
+      "$ref": "http://www.parcore.org/schema/1.2/types.json/#/definitions/parIdentifier"
     },
     "localLastModifiedDate": {
       "format": "date-time",
@@ -76,14 +76,14 @@
     "preservationActionTypes": {
       "description": "A list of Preservation Action Types that this Business Rule should be applied to. This might be a subset of those that the Preservation Actions themselves apply to. For example, a file format transformation action might itself apply to Migration and Normalization action types, but the Business Rule might be applicable only to Normalization",
       "items": {
-        "$ref": "http://www.parcore.org/schema/preservation-action-type.json/#"
+        "$ref": "http://www.parcore.org/schema/1.2/preservation-action-type.json/#"
       },
       "type": "array"
     },
     "preservationActions": {
       "description": "A list of specific actions. These are defined internally to reference the Core Preservation Action, the priority order in which it should be performed, and any inputs and outputs that should be used.",
       "items": {
-        "$ref": "http://www.parcore.org/schema/business-rule.json/#/definitions/action"
+        "$ref": "http://www.parcore.org/schema/1.2/business-rule.json/#/definitions/action"
       },
       "type": "array"
     }

@@ -1,4 +1,4 @@
 ---
 layout: forward
-target: ../1.2/representation-format.json
+target: /representation-format.json
 ---

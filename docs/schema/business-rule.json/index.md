@@ -1,4 +1,4 @@
 ---
 layout: forward
-target: ../1.2/business-rule.json
+target: /business-rule.json
 ---

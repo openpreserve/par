@@ -1,4 +1,4 @@
 ---
 layout: forward
-target: ../1.2/preservation-action-type.json
+target: /preservation-action-type.json
 ---

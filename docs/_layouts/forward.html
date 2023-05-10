@@ -4,22 +4,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% assign time = 0 %}
-    {% assign targetname = page.target %}
+    {% assign redirect_target = "/schema/" | append: site.data.par.version | append: page.target %}
  
     {% if page.time %}
     {% assign time = page.time %}
     {% endif %}
     
-    {% if page.targetname %}
-    {% assign targetname = page.targetname %}
-    {% endif %}
-
-    {% capture title %}Redirecting to {{ targetname }}{% endcapture %}
-    {% if page.targettitle %}
-    {% assign title = page.targettitle %}
-    {% endif %}
-    <meta http-equiv="refresh" content="{{ time }};url={{ page.target }}"/>
-    <link rel="canonical" href="{{ page.target }}"/>
+    {% capture title %}Redirecting to {{ redirect_target }}{% endcapture %}
+    <meta http-equiv="refresh" content="{{ time }};url={{ redirect_target }}"/>
+    <link rel="canonical" href="{{ redirect_target }}"/>
     <title>{{ title }}</title>
     <style>
         body {
@@ -38,7 +31,7 @@
     <p>This document has moved!</p>
     {% endif %}
 
-    <p>Redirecting to <a href="{{ page.target }}">{{ targetname }}</a> in {{ time }} seconds.</p>
+    <p>Redirecting to <a href="{{ redirect_target }}">{{ redirect_target }}</a> in {{ time }} seconds.</p>
 
 </body>
 </html>

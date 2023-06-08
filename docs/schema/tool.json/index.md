@@ -1,4 +1,4 @@
 ---
 layout: forward
-target: /tools.json
+target: /tool.json
 ---

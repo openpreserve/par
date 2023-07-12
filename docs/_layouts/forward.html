@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% assign time = 0 %}
-    {% assign redirect_target = "/schema/" | append: site.data.par.version | append: page.target %}
+    {% assign redirect_target = page.target | append: site.data.par.version %}
  
     {% if page.time %}
     {% assign time = page.time %}

@@ -6,7 +6,7 @@ import json
 import os
 from unittest import TestCase
 
-from jsonschema import validate, FormatChecker, RefResolver
+from jsonschema import validate, FormatChecker, RefResolver # pylint: disable = no-name-in-module
 
 from .const import get_schema_path
 

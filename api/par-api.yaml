@@ -3,7 +3,7 @@ info:
   title: PAR API
   description: API to retrieve and update Business Rules, Preservation Actions etc
     from a Preservation Action Registries compliant endpoint
-  version: "1.2"
+  version: "1.3"
 servers:
 - url: https://parcore.org/par
 tags:
@@ -136,6 +136,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -531,6 +537,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -672,6 +684,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -794,6 +812,12 @@ paths:
         404:
           description: If the specified guid does not reference a Business Rule known
             to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -825,6 +849,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -971,6 +1001,12 @@ paths:
       responses:
         204:
           description: Business Rule successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1032,6 +1068,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1177,6 +1219,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1296,6 +1344,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1396,6 +1450,12 @@ paths:
         404:
           description: If the specified name does not reference a File Format known
             to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -1427,6 +1487,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1551,6 +1617,12 @@ paths:
       responses:
         204:
           description: File Format successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1625,6 +1697,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1745,6 +1823,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1801,6 +1885,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1838,6 +1928,12 @@ paths:
         404:
           description: If the specified guid does not reference a Format Family known
             to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -1869,6 +1965,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1930,6 +2032,12 @@ paths:
       responses:
         204:
           description: Format Family successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1991,6 +2099,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2038,6 +2152,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2074,6 +2194,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2090,6 +2216,12 @@ paths:
         404:
           description: If the specified guid does not reference a Preservation Action
             Type known to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -2121,6 +2253,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2162,6 +2300,12 @@ paths:
       responses:
         204:
           description: Preservation Action Type successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -2249,6 +2393,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2994,6 +3144,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3285,6 +3441,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3556,6 +3718,12 @@ paths:
         404:
           description: If the specified guid does not reference a Preservation Action
             known to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -3587,6 +3755,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3883,6 +4057,12 @@ paths:
       responses:
         204:
           description: Preservation Action successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -3942,6 +4122,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3992,6 +4178,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4029,6 +4221,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4047,6 +4245,12 @@ paths:
         404:
           description: If the specified guid does not reference a Property known to
             this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4078,6 +4282,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4120,12 +4330,24 @@ paths:
       responses:
         204:
           description: Property successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
           description: If the supplied Authorization header does not reference a user
             with write access to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4213,6 +4435,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4323,6 +4551,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4351,6 +4585,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4387,6 +4627,12 @@ paths:
         404:
           description: If the specified guid does not reference a Representation Format
             known to this registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4418,6 +4664,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4451,6 +4703,12 @@ paths:
       responses:
         204:
           description: Representation Format successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4509,6 +4767,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4563,6 +4827,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4602,6 +4872,12 @@ paths:
       responses:
         200:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4622,6 +4898,12 @@ paths:
         404:
           description: If the specified guid does not reference a Tool known to this
             registry.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4653,6 +4935,12 @@ paths:
       responses:
         201:
           description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4697,6 +4985,12 @@ paths:
       responses:
         204:
           description: Tool successfully deleted.
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4708,13 +5002,31 @@ components:
   responses:
     NotImplemented:
       description: The method called is currently not implemented by this server.
+      headers:
+        PAR-Default-Version:
+          required: true
+          schema:
+            type: string
+          description: The default version of the PAR API supported by this enpoint.
       content: {}
     Unauthorized:
       description: If no Authorization header has been supplied
+      headers:
+        PAR-Default-Version:
+          required: true
+          schema:
+            type: string
+          description: The default version of the PAR API supported by this enpoint.
       content: {}
     Forbidden:
       description: If the supplied Authorization header does not reference a user
         with write access to this registry.
+      headers:
+        PAR-Default-Version:
+          required: true
+          schema:
+            type: string
+          description: The default version of the PAR API supported by this enpoint.
       content: {}
   schemas:
     Action:

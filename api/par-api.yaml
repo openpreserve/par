@@ -23,6 +23,8 @@ tags:
   description: Endpoints relating to PAR Preservation Action Type Type entities
 - name: /format-families
   description: Endpoints relating to PAR Format Family entities
+- name: /search
+  description: Endpoint for searching
 paths:
   /business-rules:
     get:
@@ -1036,18 +1038,6 @@ paths:
         description: A comma separated list of the names of File Formats. This filter
           matches only those File Formats that are identified by one of the listed
           names.
-        schema:
-          type: string
-      - name: modified-after
-        in: query
-        description: This filter matches only those File Formats whose local last
-          modified date is after the specified date.
-        schema:
-          type: string
-      - name: modified-before
-        in: query
-        description: This filter matches only those File Formats whose local last
-          modified date is before the specified date.
         schema:
           type: string
       - name: offset
@@ -4998,6 +4988,52 @@ paths:
           $ref: '#/components/responses/Forbidden'
         501:
           $ref: '#/components/responses/NotImplemented'
+  /search:
+      get:
+        tags:
+        - /search
+        summary: get catalog information about file-formats, and other types (coming soon). 
+        description: |-
+          Returns a set of results of the requested types. 
+          file-formats are the first type supported. Results can be 
+          filtered by providing a search string and field filters.
+        parameters:
+        - name: type
+        in: query
+        description: comma separated list of entity types you are searching for. Supports file-format only for now.
+        schema:
+          type: string
+        - name: q
+        in: query
+        description: |-
+          narrow down results by providing a query.  Adding a search string
+          will search all fields supported by the instance.
+          Supports field filters to narrow down the fields to search in.
+          The available filters are: name,  modified-after, modified-before, namespace, related-formats, extension, identifier-type
+          The name, namespace, related-formats, extension, and identifier-types fields accepts strings
+          The modified-after and modified-before accept ISO 8601 format datetimes 
+          Example : 2020-01-01T00:00:01Z
+          field filters are used by 
+          Example searches: q=PRONOM
+          q=stream&identifier-type=PRONOM&modified-after=2020-01-01T00:00:01Z
+        schmea:
+          type: string
+      responses:
+        200:
+          description: Success
+          headers:
+            PAR-Default-Version:
+              required: true
+              schema:
+                type: string
+              description: The default version of the PAR API supported by this enpoint.
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+              examples: same as /FileFormats (in future will include other types)
+        501:
+          $ref: '#/components/responses/NotImplemented'
 components:
   responses:
     NotImplemented:
@@ -5591,6 +5627,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FileCriterion'
+    SearchResults:
+      type: object
+      properties:
+        fileFormats:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileFormat'
     Tool:
       type: object
       properties:

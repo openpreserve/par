@@ -4764,6 +4764,16 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of Tools returned.
+        schema:
+          type: string
+          enum:
+            - toolLabel
+            - toolName
+            - toolVersion
       responses:
         200:
           description: Success

@@ -4767,13 +4767,17 @@ paths:
       - name: ordering
         in: query
         description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of Tools returned.
+          to user for ordering the list of Tools returned. Add 'd-' prefix for 
+          descending order.
         schema:
           type: string
           enum:
             - toolLabel
             - toolName
             - toolVersion
+            - d-toolLabel
+            - d-toolName
+            - d-toolVersion
       responses:
         200:
           description: Success

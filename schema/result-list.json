@@ -1,0 +1,78 @@
+{
+  "$id": "http://www.parcore.org/schema/result-list.json/#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "paging": {
+      "additionalProperties": false,
+      "description": "Details of the paging of this request. This contains details of the number of results returned in this page (i.e. with the specified offset and limit) by this query, the overall number of results matching the query (without paging restrictions) and enough information for the client to construct the request for the next page of results, this includes the next page URL and details of the parameters passed in the headers.",
+      "properties": {
+        "nextPage": {
+          "type": "string"
+        },
+        "parameters": {
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "type": "array"
+        },
+        "returnedResults": {
+          "type": "integer"
+        },
+        "totalResults": {
+          "type": "integer"
+        }
+      },
+      "title": "Paging Details",
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "description": "Details of the query submitted that can be used to replay the request, this includes the request url and details of the parameters passed in the headers.",
+      "properties": {
+        "parameters": {
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "description": "This is a wrapper object used by the PAR API to provide a standard return type for all listing endpoints.",
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "paging": {
+      "$ref": "http://www.parcore.org/schema/result-list.json/#/definitions/paging"
+    },
+    "query": {
+      "$ref": "http://www.parcore.org/schema/result-list.json/#/definitions/query"
+    }
+  },
+  "patternProperties": {
+    "businessRules|fileFormats|formatFamilies|preservationActionTypes|preservationActions|parProperties|representationFormats|tools": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "apiVersion",
+    "paging",
+    "query"
+  ],
+  "title": "Representation Format",
+  "type": "object"
+}

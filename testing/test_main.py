@@ -32,23 +32,27 @@ class AbstractSchemaValidatorTest(object):
         ),
         (
             "http://www.parcore.org/schema/business-rule.json/#",
-            "schema/business-rule.json"
+            get_schema_path("business-rule.json")
         ),
         (
             "http://www.parcore.org/schema/preservation-action-type.json/#",
-            "schema/preservation-action-type.json"
+            get_schema_path("preservation-action-type.json")
         ),
         (
             "http://www.parcore.org/schema/types.json/#",
-            "schema/types.json"
+            get_schema_path("types.json")
         ),
         (
             "http://www.parcore.org/schema/par-property.json/#",
-            "schema/par-property.json"
+            get_schema_path("par-property.json")
         ),
         (
             "http://www.parcore.org/schema/representation-format.json/#",
-            "schema/representation-format.json"       
+            get_schema_path("representation-format.json")
+        ),
+        (
+            "http://www.parcore.org/schema/result-list.json/#",
+            get_schema_path("result-list.json")
         )
     ]
 
@@ -90,7 +94,7 @@ class FormatTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/format.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/fmt-43.json')
 
 
@@ -100,7 +104,7 @@ class PreservationActionTest1(AbstractSchemaValidatorTest, TestCase):
         return 'schema/preservation-action.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/md5check1.json')
 
 class PreservationActionTest2(AbstractSchemaValidatorTest, TestCase):
@@ -109,7 +113,7 @@ class PreservationActionTest2(AbstractSchemaValidatorTest, TestCase):
         return 'schema/preservation-action.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/md5check2.json')
 
 class PreservationActionTest3(AbstractSchemaValidatorTest, TestCase):
@@ -127,7 +131,7 @@ class Md5sumToolTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/tool.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/md5sum.json')
 
 
@@ -137,7 +141,7 @@ class FfmpegToolTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/tool.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/ffmpeg.json')
 
 
@@ -147,7 +151,7 @@ class BusinessRuleTest1(AbstractSchemaValidatorTest, TestCase):
         return 'schema/business-rule.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/br-1.json')
 
 class BusinessRuleTest2(AbstractSchemaValidatorTest, TestCase):
@@ -156,7 +160,7 @@ class BusinessRuleTest2(AbstractSchemaValidatorTest, TestCase):
         return 'schema/business-rule.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/br-2.json')
 
 class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
@@ -165,7 +169,7 @@ class BusinessRuleTest3(AbstractSchemaValidatorTest, TestCase):
         return 'schema/business-rule.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/br-3.json')
 
 
@@ -175,7 +179,7 @@ class Md5PropertyTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/par-property.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/md5prop.json')
 
 
@@ -185,7 +189,7 @@ class PassFailPropertyTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/par-property.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/passfailprop.json')
 
 
@@ -195,7 +199,7 @@ class AspectRatioPropertyTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/par-property.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/aspectratioprop.json')
 
 
@@ -205,7 +209,7 @@ class WidthPropertyTest(AbstractSchemaValidatorTest, TestCase):
         return 'schema/par-property.json'
 
     def test_validation(self):
-        """ Test the example."""
+        """ Test the example. """
         self.validate_json('examples/ebucorewidthprop.json')
 
 class RepresentationFormatTest(AbstractSchemaValidatorTest, TestCase):
@@ -216,3 +220,21 @@ class RepresentationFormatTest(AbstractSchemaValidatorTest, TestCase):
     def test_validation(self):
         """ Test the example. """
         self.validate_json('examples/repfmt-tweet.json')
+
+class ResultListBusinessRulesTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for Result List Business Rules example. """
+    def get_json_schema_file_name(self):
+        return 'schema/result-list.json'
+
+    def test_validation(self):
+        """ Test the Business Rules example. """
+        self.validate_json('examples/result-list-business-rules.json')
+
+class ResultListBusinessRulesTest(AbstractSchemaValidatorTest, TestCase):
+    """Test for Result List Tools example. """
+    def get_json_schema_file_name(self):
+        return 'schema/result-list.json'
+
+    def test_validation(self):
+        """ Test the Tools example. """
+        self.validate_json('examples/result-list-tools.json')

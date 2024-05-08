@@ -11,13 +11,10 @@
           "type": "string"
         },
         "parameters": {
-          "items": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "type": "array"
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "returnedResults": {
           "type": "integer"
@@ -34,13 +31,10 @@
       "description": "Details of the query submitted that can be used to replay the request, this includes the request url and details of the parameters passed in the headers.",
       "properties": {
         "parameters": {
-          "items": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "type": "array"
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "url": {
           "type": "string"

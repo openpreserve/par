@@ -148,9 +148,24 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/BusinessRules'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/business-rules?offset=2&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 15
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/business-rules?offset=0&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee"
+                    }
+                  },
                   "businessRules" : [ {
                     "id" : {
                       "guid" : "cb2bea88-8006-58fa-a395-dcf0d76a32ee",
@@ -1083,9 +1098,20 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/FileFormats'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/file-formats?offset=1&limit=1",
+                    "parameters": {},
+                    "returnedResults": 1,
+                    "totalResults": 1594
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/file-formats?offset=0&limit=1",
+                    "parameters": {}
+                  },
                   "fileFormats" : [ {
                     "description" : "This is an outline record only, and requires further details, research or authentication to provide information that will enable users to further understand the format and to assess digital preservation risks associated with it if appropriate.",
                     "externalSignatures" : [ {
@@ -1715,9 +1741,24 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/FormatFamilies'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/format-families?offset=2&limit=2",
+                    "parameters": {
+                      "format-family-name": "matroska,container"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 2
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/format-families?offset=0&limit=2",
+                    "parameters": {
+                      "format-family-name": "matroska,container"
+                    }
+                  },
                   "formatFamilies" : [ {
                     "id" : {
                       "guid" : "d7df91be-c3d1-51f2-8432-2d9ac63c43e7",
@@ -2120,9 +2161,20 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/PreservationActionTypes'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/preservation-action-types?offset=2&limit=2",
+                    "parameters": {},
+                    "returnedResults": 2,
+                    "totalResults": 10
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/preservation-action-types?offset=0&limit=2",
+                    "parameters": {}
+                  },
                   "preservationActionTypes" : [ {
                     "id" : {
                       "guid" : "5f0fbe10-deec-5965-abbb-2474a857a39f",
@@ -2417,9 +2469,24 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/PreservationActions'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/preservation-actions?offset=2&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee,mig"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 50
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/preservation-actions?offset=0&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee,mig"
+                    }
+                  },
                   "preservationActions" : [ {
                     "description" : "Property Extraction of video files using MediaInfo CLI and EBUCore Metadata",
                     "example" : "mediainfo --Output=EBUCore ${inputfile}",
@@ -4149,9 +4216,20 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/ParProperties'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/properties?offset=2&limit=2",
+                    "parameters": {},
+                    "returnedResults": 2,
+                    "totalResults": 2
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/properties?offset=0&limit=2",
+                    "parameters": {}
+                  },
                   "parProperties" : [ {
                     "id" : {
                       "guid" : "e21641c7-ea11-5f10-9a00-64a7b62d2b95",
@@ -4465,9 +4543,26 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/RepresentationFormats'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/representation-formats?offset=3&limit=3",
+                    "parameters": {
+                      "file-format-name": "fmt/199",
+                      "format-family-name": "email"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 2
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/representation-formats?offset=0&limit=3",
+                    "parameters": {
+                      "file-format-name": "fmt/199",
+                      "format-family-name": "email"
+                    },
+                  },
                   "representationFormats" : [{
                     "id": {
                       "guid": "c9828123-71cc-57d0-97e2-489c71d457e0",
@@ -4801,9 +4896,20 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/Tools'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/tools?offset=2&limit=2",
+                    "parameters": {},
+                    "returnedResults": 2,
+                    "totalResults": 20
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/tools?offset=0&limit=2",
+                    "parameters": {}
+                  },
                   "tools" : [ {
                     "id" : {
                       "guid" : "8fb7cc10-0c3f-56da-8be6-1d892f36abc3",
@@ -5375,6 +5481,20 @@ components:
           type: string
         signatureNote:
           type: string
+    ListResult:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        paging:
+          $ref: '#/components/schemas/Paging'
+        query:
+          $ref: '#/components/schemas/Query'
+      patternProperties:
+        businessRules|fileFormats|formatFamilies|preservationActionTypes|preservationActions|parProperties|representationFormats|tools:
+          type: array
+          items:
+            type: object
     OutputFile:
       type: object
       properties:
@@ -5408,6 +5528,19 @@ components:
           type: string
         value:
           type: string
+    Paging:
+      type: object
+      properties:
+        nextPage:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        returnedResults:
+          type: integer
+        totalResults:
+          type: integer
     ParFile:
       type: object
       properties:
@@ -5558,6 +5691,15 @@ components:
         publisherIdNamespace:
           type: string
         publisherName:
+          type: string
+    Query:
+      type: object
+      properties:
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        url:
           type: string
     RegistryVersionInformation:
       type: object

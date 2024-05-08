@@ -11,10 +11,10 @@
           "type": "string"
         },
         "parameters": {
-          "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "type": "object"
         },
         "returnedResults": {
           "type": "integer"
@@ -31,10 +31,10 @@
       "description": "Details of the query submitted that can be used to replay the request, this includes the request url and details of the parameters passed in the headers.",
       "properties": {
         "parameters": {
-          "type": "object",
           "additionalProperties": {
             "type": "string"
-          }
+          },
+          "type": "object"
         },
         "url": {
           "type": "string"
@@ -43,6 +43,14 @@
     }
   },
   "description": "This is a wrapper object used by the PAR API to provide a standard return type for all listing endpoints.",
+  "patternProperties": {
+    "businessRules|fileFormats|formatFamilies|preservationActionTypes|preservationActions|parProperties|representationFormats|tools": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
   "properties": {
     "apiVersion": {
       "type": "string"
@@ -52,14 +60,6 @@
     },
     "query": {
       "$ref": "http://www.parcore.org/schema/result-list.json/#/definitions/query"
-    }
-  },
-  "patternProperties": {
-    "businessRules|fileFormats|formatFamilies|preservationActionTypes|preservationActions|parProperties|representationFormats|tools": {
-      "items": {
-        "type": "object"
-      },
-      "type": "array"
     }
   },
   "required": [

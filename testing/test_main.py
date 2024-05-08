@@ -230,7 +230,7 @@ class ResultListBusinessRulesTest(AbstractSchemaValidatorTest, TestCase):
         """ Test the Business Rules example. """
         self.validate_json('examples/result-list-business-rules.json')
 
-class ResultListBusinessRulesTest(AbstractSchemaValidatorTest, TestCase):
+class ResultListToolsTest(AbstractSchemaValidatorTest, TestCase):
     """Test for Result List Tools example. """
     def get_json_schema_file_name(self):
         return 'schema/result-list.json'

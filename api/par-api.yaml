@@ -131,8 +131,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of Business Rules to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -144,7 +143,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -560,7 +559,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -707,7 +706,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -835,7 +834,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -872,7 +871,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1024,7 +1023,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1081,8 +1080,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of FileFormats to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -1094,7 +1092,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1256,7 +1254,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1381,7 +1379,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1487,7 +1485,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -1524,7 +1522,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1654,7 +1652,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1724,8 +1722,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of Format Families to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -1737,7 +1734,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1878,7 +1875,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1940,7 +1937,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1983,7 +1980,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -2020,7 +2017,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2087,7 +2084,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -2144,8 +2141,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of Preservation Action Types to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -2157,7 +2153,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2221,7 +2217,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2263,7 +2259,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2285,7 +2281,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -2322,7 +2318,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2369,7 +2365,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -2452,8 +2448,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of Preservation Actions to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -2465,7 +2460,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3231,7 +3226,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3528,7 +3523,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3805,7 +3800,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -3842,7 +3837,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4144,7 +4139,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4199,8 +4194,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of Properties to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -4212,7 +4206,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4279,7 +4273,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4322,7 +4316,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4346,7 +4340,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4383,7 +4377,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4431,7 +4425,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4443,7 +4437,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4526,8 +4520,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of RepresentationFormats to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -4539,7 +4532,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4672,7 +4665,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4706,7 +4699,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4748,7 +4741,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4785,7 +4778,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4824,7 +4817,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4879,8 +4872,7 @@ paths:
         description: Used for requesting paged responses, this defines the maximum
           number of Tools to return. If not specified, all results will be returned.
           To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
-          and empty list of results will be returned along with standard details of how many
-          results actually matched.
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -4892,7 +4884,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4963,7 +4955,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -5008,7 +5000,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -5034,7 +5026,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -5071,7 +5063,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -5121,7 +5113,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -5138,7 +5130,7 @@ components:
           required: true
           schema:
             type: string
-          description: The default version of the PAR API supported by this enpoint.
+          description: The default version of the PAR API supported by this endpoint.
       content: {}
     Unauthorized:
       description: If no Authorization header has been supplied
@@ -5147,7 +5139,7 @@ components:
           required: true
           schema:
             type: string
-          description: The default version of the PAR API supported by this enpoint.
+          description: The default version of the PAR API supported by this endpoint.
       content: {}
     Forbidden:
       description: If the supplied Authorization header does not reference a user
@@ -5157,7 +5149,7 @@ components:
           required: true
           schema:
             type: string
-          description: The default version of the PAR API supported by this enpoint.
+          description: The default version of the PAR API supported by this endpoint.
       content: {}
   schemas:
     Action:

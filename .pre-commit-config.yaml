@@ -3,14 +3,24 @@ repos:
     rev: v1.4.0
     hooks:
     -   id: check-byte-order-marker
+        language_version: python3
     -   id: check-case-conflict
+        language_version: python3
     -   id: check-docstring-first
+        language_version: python3
     -   id: check-json
+        language_version: python3
     -   id: check-yaml
+        language_version: python3
     -   id: end-of-file-fixer
         exclude: ^.*\.(svg)$
+        language_version: python3
     -   id: forbid-new-submodules
+        language_version: python3
     -   id: name-tests-test
+        language_version: python3
     -   id: requirements-txt-fixer
+        language_version: python3
     -   id: pretty-format-json
         args: [ --autofix, --indent=2]
+        language_version: python3

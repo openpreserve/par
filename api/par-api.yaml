@@ -133,6 +133,18 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of Business Rules returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - d-name
+            - d-last-modified-date
       responses:
         200:
           description: Success
@@ -1065,6 +1077,18 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of FileFormats returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - d-name
+            - d-last-modified-date
       responses:
         200:
           description: Success
@@ -1694,6 +1718,18 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of Format Families returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - d-name
+            - d-last-modified-date
       responses:
         200:
           description: Success
@@ -2096,6 +2132,18 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of Preservation Action Types returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - d-name
+            - d-last-modified-date
       responses:
         200:
           description: Success
@@ -2390,6 +2438,20 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of Preservation Actions returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - preservation-action-type
+            - d-name
+            - d-last-modified-date
+            - d-preservation-action-type
       responses:
         200:
           description: Success
@@ -4119,6 +4181,18 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of Properties returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - d-name
+            - d-last-modified-date
       responses:
         200:
           description: Success
@@ -4372,14 +4446,14 @@ paths:
       - name: file-format-name
         in: header
         description: A comma separated list of names of file formats. This filter
-          matches  only those Business Rules that have been defined to apply to one
-          of  the listed formats. This includes formats where the rule is  applicable
+          matches only those Business Rules that have been defined to apply to one
+          of the listed formats. This includes formats where the rule is  applicable
           indirectly through the format family.
         schema:
           type: string
       - name: format-family-guid
         in: header
-        description: 'A comma separated list of names of formats families. This filter  matches
+        description: 'A comma separated list of GUIDs of formats families. This filter  matches
           only those Business Rules that have been defined to apply to  one of the
           listed format families. '
         schema:
@@ -4432,6 +4506,20 @@ paths:
         schema:
           type: integer
           default: 0
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the list of RepresentationFormats returned. 
+          Add 'd-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - id-name
+            - name
+            - last-modified-date
+            - d-id-name
+            - d-name
+            - d-last-modified-date
       responses:
         200:
           description: Success

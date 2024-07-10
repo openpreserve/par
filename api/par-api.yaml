@@ -143,8 +143,8 @@ paths:
           enum:
             - name
             - last-modified-date
-            - d-name
-            - d-last-modified-date
+            - -name
+            - -last-modified-date
       responses:
         200:
           description: Success
@@ -1087,8 +1087,8 @@ paths:
           enum:
             - name
             - last-modified-date
-            - d-name
-            - d-last-modified-date
+            - -name
+            - -last-modified-date
       responses:
         200:
           description: Success
@@ -1728,8 +1728,8 @@ paths:
           enum:
             - name
             - last-modified-date
-            - d-name
-            - d-last-modified-date
+            - -name
+            - -last-modified-date
       responses:
         200:
           description: Success
@@ -2142,8 +2142,8 @@ paths:
           enum:
             - name
             - last-modified-date
-            - d-name
-            - d-last-modified-date
+            - -name
+            - -last-modified-date
       responses:
         200:
           description: Success
@@ -2449,9 +2449,9 @@ paths:
             - name
             - last-modified-date
             - preservation-action-type
-            - d-name
-            - d-last-modified-date
-            - d-preservation-action-type
+            - -name
+            - -last-modified-date
+            - -preservation-action-type
       responses:
         200:
           description: Success
@@ -4191,8 +4191,8 @@ paths:
           enum:
             - name
             - last-modified-date
-            - d-name
-            - d-last-modified-date
+            - -name
+            - -last-modified-date
       responses:
         200:
           description: Success
@@ -4517,9 +4517,9 @@ paths:
             - id-name
             - name
             - last-modified-date
-            - d-id-name
-            - d-name
-            - d-last-modified-date
+            - -id-name
+            - -name
+            - -last-modified-date
       responses:
         200:
           description: Success
@@ -4863,9 +4863,9 @@ paths:
             - toolLabel
             - toolName
             - toolVersion
-            - d-toolLabel
-            - d-toolName
-            - d-toolVersion
+            - -toolLabel
+            - -toolName
+            - -toolVersion
       responses:
         200:
           description: Success

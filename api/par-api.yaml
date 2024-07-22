@@ -137,7 +137,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of Business Rules returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -1081,7 +1081,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of FileFormats returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -1722,7 +1722,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of Format Families returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -2136,7 +2136,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of Preservation Action Types returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -2442,7 +2442,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of Preservation Actions returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -4185,7 +4185,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of Properties returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -4510,7 +4510,7 @@ paths:
         in: query
         description: Used for requested ordered responses, this defines the properties
           to user for ordering the list of RepresentationFormats returned. 
-          Add 'd-' prefix for descending order.
+          Add '-' prefix for descending order.
         schema:
           type: string
           enum:
@@ -4855,7 +4855,7 @@ paths:
       - name: ordering
         in: query
         description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of Tools returned. Add 'd-' prefix for 
+          to user for ordering the list of Tools returned. Add '-' prefix for 
           descending order.
         schema:
           type: string

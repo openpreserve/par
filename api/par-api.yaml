@@ -122,14 +122,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first Business Rule to return from the start of the list of all matching
-          Business Rules.
+          Business Rules. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of Business Rules to return.
+          number of Business Rules to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -153,13 +155,28 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/BusinessRules'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/business-rules?offset=2&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 15
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/business-rules?offset=0&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee"
+                    }
+                  },
                   "businessRules" : [ {
                     "id" : {
                       "guid" : "cb2bea88-8006-58fa-a395-dcf0d76a32ee",
@@ -554,7 +571,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -701,7 +718,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -829,7 +846,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -866,7 +883,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1018,7 +1035,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1066,14 +1083,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first FileFormat to return from the start of the list of all matching
-          File Formats.
+          File Formats. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of FileFormats to return.
+          number of FileFormats to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -1097,13 +1116,24 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/FileFormats'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/file-formats?offset=1&limit=1",
+                    "parameters": {},
+                    "returnedResults": 1,
+                    "totalResults": 1594
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/file-formats?offset=0&limit=1",
+                    "parameters": {}
+                  },
                   "fileFormats" : [ {
                     "description" : "This is an outline record only, and requires further details, research or authentication to provide information that will enable users to further understand the format and to assess digital preservation risks associated with it if appropriate.",
                     "externalSignatures" : [ {
@@ -1248,7 +1278,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1373,7 +1403,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1479,7 +1509,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -1516,7 +1546,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1646,7 +1676,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -1707,14 +1737,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first Format Family to return from the start of the list of all matching
-          Format Families.
+          Format Families. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of Format Families to return.
+          number of Format Families to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -1738,13 +1770,28 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/FormatFamilies'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/format-families?offset=2&limit=2",
+                    "parameters": {
+                      "format-family-name": "matroska,container"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 2
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/format-families?offset=0&limit=2",
+                    "parameters": {
+                      "format-family-name": "matroska,container"
+                    }
+                  },
                   "formatFamilies" : [ {
                     "id" : {
                       "guid" : "d7df91be-c3d1-51f2-8432-2d9ac63c43e7",
@@ -1864,7 +1911,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1926,7 +1973,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -1969,7 +2016,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -2006,7 +2053,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2073,7 +2120,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -2121,14 +2168,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first Preservation Action Type to return from the start of the list
-          of all matching Preservation Action Types.
+          of all matching Preservation Action Types. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of Preservation Action Types to return.
+          number of Preservation Action Types to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -2152,13 +2201,24 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/PreservationActionTypes'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/preservation-action-types?offset=2&limit=2",
+                    "parameters": {},
+                    "returnedResults": 2,
+                    "totalResults": 10
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/preservation-action-types?offset=0&limit=2",
+                    "parameters": {}
+                  },
                   "preservationActionTypes" : [ {
                     "id" : {
                       "guid" : "5f0fbe10-deec-5965-abbb-2474a857a39f",
@@ -2205,7 +2265,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2247,7 +2307,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2269,7 +2329,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -2306,7 +2366,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -2353,7 +2413,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -2427,14 +2487,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first Preservation Action to return from the start of the list of
-          all matching Preservation Actions.
+          all matching Preservation Actions. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of Preservation Actions to return.
+          number of Preservation Actions to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -2460,13 +2522,28 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/PreservationActions'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/preservation-actions?offset=2&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee,mig"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 50
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/preservation-actions?offset=0&limit=2",
+                    "parameters": {
+                      "preservation-action-type-name": "mee,mig"
+                    }
+                  },
                   "preservationActions" : [ {
                     "description" : "Property Extraction of video files using MediaInfo CLI and EBUCore Metadata",
                     "example" : "mediainfo --Output=EBUCore ${inputfile}",
@@ -3211,7 +3288,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3508,7 +3585,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -3785,7 +3862,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -3822,7 +3899,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4124,7 +4201,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4170,14 +4247,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first Property to return from the start of the list of all matching
-          Properties.
+          Properties. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of Properties to return.
+          number of Properties to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -4201,13 +4280,24 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/ParProperties'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/properties?offset=2&limit=2",
+                    "parameters": {},
+                    "returnedResults": 2,
+                    "totalResults": 2
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/properties?offset=0&limit=2",
+                    "parameters": {}
+                  },
                   "parProperties" : [ {
                     "id" : {
                       "guid" : "e21641c7-ea11-5f10-9a00-64a7b62d2b95",
@@ -4257,7 +4347,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4300,7 +4390,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4324,7 +4414,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4361,7 +4451,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4409,7 +4499,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4421,7 +4511,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4495,14 +4585,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first RepresentationFormat to return from the start of the list of
-          all matching Representation Formats.
+          all matching Representation Formats. If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of RepresentationFormats to return.
+          number of RepresentationFormats to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -4528,13 +4620,30 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/RepresentationFormats'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/representation-formats?offset=3&limit=3",
+                    "parameters": {
+                      "file-format-name": "fmt/199",
+                      "format-family-name": "email"
+                    },
+                    "returnedResults": 2,
+                    "totalResults": 2
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/representation-formats?offset=0&limit=3",
+                    "parameters": {
+                      "file-format-name": "fmt/199",
+                      "format-family-name": "email"
+                    },
+                  },
                   "representationFormats" : [{
                     "id": {
                       "guid": "c9828123-71cc-57d0-97e2-489c71d457e0",
@@ -4644,7 +4753,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4678,7 +4787,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4720,7 +4829,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -4757,7 +4866,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4796,7 +4905,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -4842,13 +4951,16 @@ paths:
         in: query
         description: Used for requesting paged responses, this defines the offset
           of the first Tool to return from the start of the list of all matching Tools.
+          If not specified this defaults to 0.
         schema:
           type: integer
           default: 0
       - name: limit
         in: query
         description: Used for requesting paged responses, this defines the maximum
-          number of Tools to return.
+          number of Tools to return. If not specified, all results will be returned.
+          To explicitly request all results, set to a value < 0 (e.g. limit=-1). If set to 0
+          an empty list of results will be returned along with a count of matching results.
         schema:
           type: integer
           default: 0
@@ -4874,13 +4986,24 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/Tools'
+                $ref: '#/components/schemas/ListResult'
               examples: |-
                 {
+                  "apiVersion": "1.3",
+                  "paging": {
+                    "nextPage": "https://parcore.org/par/tools?offset=2&limit=2",
+                    "parameters": {},
+                    "returnedResults": 2,
+                    "totalResults": 20
+                  },
+                  "query": {
+                    "url": "https://parcore.org/par/tools?offset=0&limit=2",
+                    "parameters": {}
+                  },
                   "tools" : [ {
                     "id" : {
                       "guid" : "8fb7cc10-0c3f-56da-8be6-1d892f36abc3",
@@ -4934,7 +5057,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -4979,7 +5102,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -5005,7 +5128,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         501:
           $ref: '#/components/responses/NotImplemented'
@@ -5042,7 +5165,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content:
             application/json;charset=UTF-8:
               schema:
@@ -5092,7 +5215,7 @@ paths:
               required: true
               schema:
                 type: string
-              description: The default version of the PAR API supported by this enpoint.
+              description: The default version of the PAR API supported by this endpoint.
           content: {}
         401:
           $ref: '#/components/responses/Unauthorized'
@@ -5109,7 +5232,7 @@ components:
           required: true
           schema:
             type: string
-          description: The default version of the PAR API supported by this enpoint.
+          description: The default version of the PAR API supported by this endpoint.
       content: {}
     Unauthorized:
       description: If no Authorization header has been supplied
@@ -5118,7 +5241,7 @@ components:
           required: true
           schema:
             type: string
-          description: The default version of the PAR API supported by this enpoint.
+          description: The default version of the PAR API supported by this endpoint.
       content: {}
     Forbidden:
       description: If the supplied Authorization header does not reference a user
@@ -5128,7 +5251,7 @@ components:
           required: true
           schema:
             type: string
-          description: The default version of the PAR API supported by this enpoint.
+          description: The default version of the PAR API supported by this endpoint.
       content: {}
   schemas:
     Action:
@@ -5452,6 +5575,20 @@ components:
           type: string
         signatureNote:
           type: string
+    ListResult:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        paging:
+          $ref: '#/components/schemas/Paging'
+        query:
+          $ref: '#/components/schemas/Query'
+      patternProperties:
+        businessRules|fileFormats|formatFamilies|preservationActionTypes|preservationActions|parProperties|representationFormats|tools:
+          type: array
+          items:
+            type: object
     OutputFile:
       type: object
       properties:
@@ -5485,6 +5622,19 @@ components:
           type: string
         value:
           type: string
+    Paging:
+      type: object
+      properties:
+        nextPage:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        returnedResults:
+          type: integer
+        totalResults:
+          type: integer
     ParFile:
       type: object
       properties:
@@ -5635,6 +5785,15 @@ components:
         publisherIdNamespace:
           type: string
         publisherName:
+          type: string
+    Query:
+      type: object
+      properties:
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        url:
           type: string
     RegistryVersionInformation:
       type: object

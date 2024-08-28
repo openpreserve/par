@@ -135,18 +135,7 @@ paths:
         schema:
           type: integer
           default: 0
-      - name: ordering
-        in: query
-        description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of Business Rules returned. 
-          Add '-' prefix for descending order.
-        schema:
-          type: string
-          enum:
-            - name
-            - last-modified-date
-            - -name
-            - -last-modified-date
+      - $ref: '#/components/parameters/orderNameLastModDateParam'
       responses:
         200:
           description: Success
@@ -1096,18 +1085,7 @@ paths:
         schema:
           type: integer
           default: 0
-      - name: ordering
-        in: query
-        description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of FileFormats returned. 
-          Add '-' prefix for descending order.
-        schema:
-          type: string
-          enum:
-            - name
-            - last-modified-date
-            - -name
-            - -last-modified-date
+      - $ref: '#/components/parameters/orderNameLastModDateParam'
       responses:
         200:
           description: Success
@@ -1750,18 +1728,7 @@ paths:
         schema:
           type: integer
           default: 0
-      - name: ordering
-        in: query
-        description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of Format Families returned. 
-          Add '-' prefix for descending order.
-        schema:
-          type: string
-          enum:
-            - name
-            - last-modified-date
-            - -name
-            - -last-modified-date
+      - $ref: '#/components/parameters/orderNameLastModDateParam'
       responses:
         200:
           description: Success
@@ -2181,18 +2148,7 @@ paths:
         schema:
           type: integer
           default: 0
-      - name: ordering
-        in: query
-        description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of Preservation Action Types returned. 
-          Add '-' prefix for descending order.
-        schema:
-          type: string
-          enum:
-            - name
-            - last-modified-date
-            - -name
-            - -last-modified-date
+      - $ref: '#/components/parameters/orderNameLastModDateParam'
       responses:
         200:
           description: Success
@@ -4260,18 +4216,7 @@ paths:
         schema:
           type: integer
           default: 0
-      - name: ordering
-        in: query
-        description: Used for requested ordered responses, this defines the properties
-          to user for ordering the list of Properties returned. 
-          Add '-' prefix for descending order.
-        schema:
-          type: string
-          enum:
-            - name
-            - last-modified-date
-            - -name
-            - -last-modified-date
+      - $ref: '#/components/parameters/orderNameLastModDateParam'
       responses:
         200:
           description: Success
@@ -5882,3 +5827,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tool'
+  parameters:
+    orderNameLastModDateParam:
+      - name: ordering
+        in: query
+        description: Used for requested ordered responses, this defines the properties
+          to user for ordering the returned list. 
+          Add '-' prefix for descending order.
+        schema:
+          type: string
+          enum:
+            - name
+            - last-modified-date
+            - -name
+            - -last-modified-date
